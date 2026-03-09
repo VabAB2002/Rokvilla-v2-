@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import type { Project } from '@/types/project'
-import { glassOverlayVariants, glassContentVariants, EASE_OUT_QUART } from '@/lib/motion'
+import { EASE_OUT_QUART } from '@/lib/motion'
 
 interface ProjectCardProps {
   readonly project: Project
@@ -34,24 +34,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
           />
         </motion.div>
 
-        {/* Glassmorphism overlay */}
-        <motion.div
-          className="absolute inset-x-0 bottom-0 flex h-full flex-col justify-end border-t border-white/10 bg-obsidian/50 p-5 backdrop-blur-md"
-          variants={glassOverlayVariants}
-        >
-          <motion.span
-            className="font-accent text-[11px] uppercase tracking-[0.14em] text-bone/60"
-            variants={glassContentVariants}
-          >
+        {/* Always-visible gradient overlay with text */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent p-5 pt-16">
+          <span className="font-accent text-[11px] uppercase tracking-[0.14em] text-bone/60">
             {project.category}
-          </motion.span>
-          <motion.h3
-            className="mt-1 font-display text-xl font-medium text-bone"
-            variants={glassContentVariants}
-          >
+          </span>
+          <h3 className="mt-1 font-display text-xl font-medium text-bone">
             {project.name}
-          </motion.h3>
-        </motion.div>
+          </h3>
+        </div>
       </div>
     </motion.div>
   )

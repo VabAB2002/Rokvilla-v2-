@@ -9,7 +9,6 @@ export function HeroSection() {
   return (
     <section aria-label="Hero" className="relative h-dvh min-h-[600px] overflow-hidden">
       <VideoBackground
-        videoSrc="/videos/hero.mp4"
         imageSrc="/images/hero-fallback.jpg"
         imageAlt="RokVilla architecture showcase — Cedar Homestore at dusk"
       />

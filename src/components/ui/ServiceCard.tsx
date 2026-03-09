@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import type { Service } from '@/types/service'
-import { glassOverlayVariants, glassContentVariants, EASE_OUT_QUART } from '@/lib/motion'
+import { EASE_OUT_QUART } from '@/lib/motion'
 
 interface ServiceCardProps {
   readonly service: Service
@@ -34,24 +34,15 @@ export function ServiceCard({ service }: ServiceCardProps) {
           />
         </motion.div>
 
-        {/* Glassmorphism overlay */}
-        <motion.div
-          className="absolute inset-x-0 bottom-0 flex h-full flex-col justify-end border-t border-white/10 bg-obsidian/50 p-6 backdrop-blur-md"
-          variants={glassOverlayVariants}
-        >
-          <motion.h3
-            className="font-display text-2xl font-medium text-bone"
-            variants={glassContentVariants}
-          >
+        {/* Always-visible gradient overlay with text */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent p-6 pt-16">
+          <h3 className="font-display text-2xl font-medium text-bone">
             {service.title}
-          </motion.h3>
-          <motion.p
-            className="mt-2 font-body text-sm leading-relaxed text-bone/75"
-            variants={glassContentVariants}
-          >
+          </h3>
+          <p className="mt-2 font-body text-sm leading-relaxed text-bone/75">
             {service.description}
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </div>
     </motion.div>
   )

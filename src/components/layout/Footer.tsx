@@ -13,7 +13,7 @@ const FOOTER_LINKS = {
     { label: 'Furnish', href: '/#services' },
   ],
   locations: [
-    { label: 'Hubli', href: '/#locations' },
+    { label: 'Hubballi', href: '/#locations' },
     { label: 'Dharwad', href: '/#locations' },
     { label: 'Ballari', href: '/#locations' },
   ],
