@@ -32,13 +32,13 @@ export function ProjectsSection() {
     <section id="projects" aria-labelledby="projects-heading" className="bg-parchment py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         {/* Section header */}
-        <AnimatedSection>
-          <span className="font-accent text-[13px] uppercase tracking-[0.18em] text-terracotta">
+        <AnimatedSection className="text-center">
+          <h2 id="projects-heading" className="font-display text-4xl font-medium uppercase text-obsidian md:text-5xl">
             Projects
-          </span>
-          <h2 id="projects-heading" className="mt-4 font-display text-4xl font-medium text-obsidian md:text-5xl">
-            From Home to Industries
           </h2>
+          <p className="mt-3 font-body text-base tracking-wide text-slate md:text-lg">
+            From Home to Industries
+          </p>
         </AnimatedSection>
 
         {/* Filter tabs */}

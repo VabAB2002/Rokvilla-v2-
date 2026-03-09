@@ -60,25 +60,33 @@ export function HeroSection() {
               </ButtonDark>
             </motion.div>
 
-            {/* Scroll indicator */}
-            <motion.div
-              variants={heroItemVariants}
-              className="mt-16 hidden md:block"
-            >
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                className="flex flex-col items-start gap-2"
-              >
-                <span className="font-accent text-[11px] uppercase tracking-[0.16em] text-stone/60">
-                  Scroll to explore
-                </span>
-                <div className="h-8 w-[1px] bg-stone/30" />
-              </motion.div>
-            </motion.div>
           </motion.div>
         </div>
       </div>
+
+      {/* Down arrow */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.6 }}
+        className="absolute inset-x-0 bottom-8 z-10 flex justify-center"
+      >
+        <motion.svg
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="text-bone/70"
+        >
+          <path d="M12 5v14M5 12l7 7 7-7" />
+        </motion.svg>
+      </motion.div>
     </section>
   )
 }

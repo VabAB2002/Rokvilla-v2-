@@ -42,7 +42,7 @@ export function Footer() {
     <footer className="relative overflow-hidden bg-void" aria-label="Site footer">
       {/* Ghosted wordmark */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <span className="font-display text-[clamp(80px,12vw,160px)] font-light tracking-wide text-bone/[0.03] select-none">
+        <span className="font-display text-[clamp(80px,12vw,160px)] font-light uppercase tracking-wide text-bone/[0.03] select-none">
           RokVilla
         </span>
       </div>

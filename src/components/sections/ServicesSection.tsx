@@ -11,8 +11,8 @@ export function ServicesSection() {
     <section id="services" aria-labelledby="services-heading" className="bg-white py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         {/* Section header */}
-        <AnimatedSection>
-          <h2 id="services-heading" className="font-display text-4xl font-medium text-obsidian md:text-5xl">
+        <AnimatedSection className="text-center">
+          <h2 id="services-heading" className="font-display text-4xl font-medium uppercase text-obsidian md:text-5xl">
             Services
           </h2>
           <p className="mt-3 font-body text-base tracking-wide text-slate md:text-lg">
