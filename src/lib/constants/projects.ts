@@ -1,0 +1,58 @@
+import type { Project } from '@/types/project'
+
+export const PROJECTS: ReadonlyArray<Project> = [
+  {
+    id: 'sripradha',
+    name: 'Sripradha',
+    category: 'residential',
+    location: 'hubli',
+    image: '/images/projects/sripradha.jpg',
+    description: 'A contemporary multi-storey residence with double-height atriums, wooden-framed skylights, and lush greenery.',
+    year: 2024,
+  },
+  {
+    id: 'mig265',
+    name: 'MIG 265',
+    category: 'residential',
+    location: 'dharwad',
+    image: '/images/projects/mig265.jpg',
+    description: 'A vertical garden residence featuring cascading flower planters that bring vibrant colour to a modern facade.',
+    year: 2023,
+  },
+  {
+    id: 'cedar-homestore',
+    name: 'Cedar Homestore',
+    category: 'commercial',
+    location: 'hubli',
+    image: '/images/projects/cedar-homestore.jpg',
+    description: 'A modern retail showroom with a sweeping canopy, living green walls, and a striking dusk-lit presence.',
+    year: 2024,
+  },
+  {
+    id: 'spectrum-industry',
+    name: 'Spectrum Industry',
+    category: 'commercial',
+    location: 'ballari',
+    image: '/images/projects/spectrum-industry.jpg',
+    description: 'A large-scale industrial facility with a bold louvered facade, designed for efficient logistics and operations.',
+    year: 2023,
+  },
+  {
+    id: 'raj-residence',
+    name: 'Raj Residence',
+    category: 'interior',
+    location: 'dharwad',
+    image: '/images/projects/raj-residence.jpg',
+    description: 'Luxury interiors featuring a signature gold arch framing the kitchen, marble accents, and warm wood tones.',
+    year: 2024,
+  },
+  {
+    id: 'pavan-vj',
+    name: 'Pavan VJ Residence',
+    category: 'interior',
+    location: 'hubli',
+    image: '/images/projects/pavan-vj.jpg',
+    description: 'A dramatic double-height living space with glass staircase, arched niches, and rich material contrasts.',
+    year: 2025,
+  },
+] as const

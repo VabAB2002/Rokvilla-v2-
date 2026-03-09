@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ═══════════════════════════════════════════════
+   RokVilla Design System — Tailwind v4 Theme
+   Karnataka earth tones, architectural precision
+   ═══════════════════════════════════════════════ */
+
+@theme {
+  /* ── Typography ── */
+  --font-display: var(--font-cormorant-garamond), Georgia, serif;
+  --font-body: var(--font-dm-sans), system-ui, sans-serif;
+  --font-accent: var(--font-cormorant-sc), Georgia, serif;
+
+  /* ── Core Neutrals (clean white base) ── */
+  --color-bone: #FFFFFF;
+  --color-parchment: #FAFAFA;
+  --color-limestone: #D4C9B0;
+  --color-stone: #9E9182;
+  --color-slate: #5C5248;
+  --color-obsidian: #1C1916;
+
+  /* ── Earth Accent — Karnataka laterite ── */
+  --color-terracotta: #C4622D;
+  --color-terracotta-deep: #9E4A20;
+  --color-terracotta-pale: #E8C4A8;
+  --color-terracotta-muted: #D4956E;
+
+  /* ── Brass Accent — premium metallic ── */
+  --color-brass: #B8942A;
+  --color-brass-light: #D4AC45;
+  --color-brass-pale: #F0E4B8;
+
+  /* ── Dark sections ── */
+  --color-void: #0F0D0B;
+  --color-charcoal: #242019;
+  --color-graphite: #3A3530;
+
+  /* ── Shadows ── */
+  --shadow-card: 0 1px 3px rgba(28,25,22,0.06), 0 4px 16px rgba(28,25,22,0.08);
+  --shadow-card-hover: 0 8px 32px rgba(28,25,22,0.14), 0 2px 8px rgba(28,25,22,0.08);
+  --shadow-accent: 0 4px 20px rgba(196, 98, 45, 0.3);
+  --shadow-dark: 0 4px 24px rgba(0,0,0,0.3);
+
+  /* ── Easings ── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-sine: cubic-bezier(0.37, 0, 0.63, 1);
+  --ease-in-expo: cubic-bezier(0.7, 0, 0.84, 0);
+
+  /* ── Animations ── */
+  --animate-fade-up: fadeUp 0.7s var(--ease-out-expo) forwards;
+  --animate-fade-in: fadeIn 0.5s var(--ease-out-expo) forwards;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── Keyframes ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes shadowPulse {
+  0%   { box-shadow: 0 4px 16px rgba(196, 98, 45, 0.25); }
+  100% { box-shadow: 0 6px 24px rgba(196, 98, 45, 0.45); }
+}
+
+/* ── Base Styles ── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    background-color: var(--color-bone);
+    color: var(--color-obsidian);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+  }
+
+  ::selection {
+    background-color: var(--color-terracotta-pale);
+    color: var(--color-obsidian);
+  }
 }
