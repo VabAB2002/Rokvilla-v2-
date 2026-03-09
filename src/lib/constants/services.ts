@@ -7,7 +7,7 @@ export const SERVICES: ReadonlyArray<Service> = [
     description:
       'From concept to blueprint — architectural designs that balance aesthetics and function.',
     icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5',
-    href: '/services/design',
+    href: '/design',
     image: '/images/service-design.jpg',
   },
   {
