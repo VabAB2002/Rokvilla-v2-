@@ -10,6 +10,7 @@ interface ButtonBaseProps {
   readonly variant?: ButtonVariant
   readonly children: ReactNode
   readonly className?: string
+  readonly fullWidth?: boolean
 }
 
 interface ButtonAsButton extends ButtonBaseProps {
@@ -51,6 +52,7 @@ export function Button({
   variant = 'primary',
   children,
   className = '',
+  fullWidth = false,
   href,
   onClick,
   type = 'button',
@@ -60,10 +62,11 @@ export function Button({
   const baseClasses = `
     inline-flex items-center justify-center gap-2
     rounded-[2px] border-[1.5px]
-    px-8 py-3.5
+    px-6 py-3.5 md:px-8
     font-body text-[13px] font-medium uppercase tracking-[0.12em]
     transition-all duration-200
     ${styles.base} ${styles.hover}
+    ${fullWidth ? 'w-full' : ''}
     ${className}
   `.trim()
 
@@ -97,6 +100,7 @@ export function ButtonDark({
   variant = 'primary',
   children,
   className = '',
+  fullWidth = false,
   href,
 }: ButtonProps) {
   const darkStyle = variantStylesDark[variant]
@@ -104,10 +108,11 @@ export function ButtonDark({
   const baseClasses = `
     inline-flex items-center justify-center gap-2
     rounded-[2px] border-[1.5px] border-transparent
-    px-8 py-3.5
+    px-6 py-3.5 md:px-8
     font-body text-[13px] font-medium uppercase tracking-[0.12em]
     transition-all duration-200
     ${darkStyle}
+    ${fullWidth ? 'w-full' : ''}
     ${className}
   `.trim()
 

@@ -4,35 +4,54 @@ import { motion } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ServiceCard } from '@/components/ui/ServiceCard'
 import { SERVICES } from '@/lib/constants/services'
-import { staggerContainerVariants, fadeUpVariants, TRANSITION_SMOOTH } from '@/lib/motion'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { makeStaggerContainerVariants, makeFadeUpVariants, TRANSITION_SMOOTH } from '@/lib/motion'
 
 export function ServicesSection() {
+  const reducedMotion = useReducedMotion()
+  const staggerVariants = makeStaggerContainerVariants(reducedMotion)
+  const fadeVariants = makeFadeUpVariants(reducedMotion)
+
   return (
-    <section id="services" aria-labelledby="services-heading" className="bg-white py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-6 md:px-12">
-        {/* Section header */}
+    <section id="services" aria-labelledby="services-heading" className="bg-white py-24 md:py-32 lg:py-36">
+      {/* Section header — contained */}
+      <div className="mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
         <AnimatedSection className="text-center">
-          <h2 id="services-heading" className="font-display text-4xl font-medium uppercase text-obsidian md:text-5xl">
+          <h2 id="services-heading" className="font-display text-3xl font-medium uppercase text-obsidian md:text-4xl lg:text-5xl">
             Services
           </h2>
           <p className="mt-3 font-body text-base tracking-wide text-slate md:text-lg">
             From Design to Completion
           </p>
         </AnimatedSection>
+      </div>
 
-        {/* Cards */}
+      {/* Cards — edge-to-edge */}
+      <div className="mt-16 px-3 md:px-4">
+        {/* Mobile: horizontal scroll carousel */}
+        <div className="md:hidden">
+          <div className="flex gap-3 overflow-x-auto scroll-snap-x no-scrollbar pb-4">
+            {SERVICES.map((service) => (
+              <div key={service.id} className="w-[80vw] max-w-[320px] shrink-0 scroll-snap-start">
+                <ServiceCard service={service} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop: staggered grid */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          variants={staggerContainerVariants}
-          className="mt-16 grid gap-8 md:grid-cols-3"
+          variants={staggerVariants}
+          className="hidden gap-3 md:grid md:grid-cols-3 md:gap-4"
         >
           {SERVICES.map((service, i) => (
             <motion.div
               key={service.id}
-              variants={fadeUpVariants}
-              transition={{ ...TRANSITION_SMOOTH, delay: i * 0.12 }}
+              variants={fadeVariants}
+              transition={{ ...TRANSITION_SMOOTH, delay: reducedMotion ? 0 : i * 0.12 }}
             >
               <ServiceCard service={service} />
             </motion.div>

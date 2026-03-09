@@ -25,6 +25,7 @@ export function LocationMiniMap({ location }: LocationMiniMapProps) {
     }
   }, [])
 
+  // Lazy init map only when card is visible (IntersectionObserver)
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return
 
@@ -35,10 +36,13 @@ export function LocationMiniMap({ location }: LocationMiniMapProps) {
     }
 
     let map: mapboxgl.Map | null = null
+    let observer: IntersectionObserver | null = null
+    let cancelled = false
 
     async function initMap() {
       try {
         const mapboxgl = (await import('mapbox-gl')).default
+        if (cancelled) return
         mapboxgl.accessToken = token!
 
         map = new mapboxgl.Map({
@@ -69,9 +73,21 @@ export function LocationMiniMap({ location }: LocationMiniMapProps) {
       }
     }
 
-    initMap()
+    observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          initMap()
+          observer?.disconnect()
+        }
+      },
+      { threshold: 0.1 },
+    )
+
+    observer.observe(containerRef.current)
 
     return () => {
+      cancelled = true
+      observer?.disconnect()
       map?.remove()
       mapRef.current = null
     }
@@ -79,11 +95,11 @@ export function LocationMiniMap({ location }: LocationMiniMapProps) {
 
   if (hasError) {
     return (
-      <div className="flex h-48 items-center justify-center bg-parchment">
+      <div className="flex h-full w-full items-center justify-center bg-parchment">
         <p className="font-body text-xs text-stone">Map unavailable</p>
       </div>
     )
   }
 
-  return <div ref={containerRef} className="h-48 w-full" />
+  return <div ref={containerRef} className="h-full w-full" />
 }

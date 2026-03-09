@@ -42,23 +42,23 @@ export function Footer() {
     <footer className="relative overflow-hidden bg-void" aria-label="Site footer">
       {/* Ghosted wordmark */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <span className="font-display text-[clamp(80px,12vw,160px)] font-light uppercase tracking-wide text-bone/[0.03] select-none">
+        <span className="font-display text-[clamp(56px,12vw,160px)] font-light uppercase tracking-wide text-bone/[0.03] select-none">
           RokVilla
         </span>
       </div>
 
       <div className="relative mx-auto max-w-[1440px] px-6 pt-20 pb-10 md:px-10 lg:px-16">
-        {/* Main grid */}
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-4 lg:gap-16">
+        {/* Main grid — stacked on mobile, 2-col on sm, 4-col on md+ */}
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:gap-16">
           {/* Brand column */}
-          <div className="col-span-2 md:col-span-1">
+          <div className="sm:col-span-2 md:col-span-1">
             <Link href="/" className="inline-block">
               <Image
                 src="/logo/rok-logo-white.png"
                 alt="RokVilla"
                 width={1024}
                 height={576}
-                className="h-18 w-auto opacity-90"
+                className="h-12 w-auto opacity-90 sm:h-16 md:h-18"
               />
             </Link>
             <p className="mt-4 max-w-xs font-body text-sm leading-relaxed text-stone">
@@ -77,7 +77,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="font-body text-[13px] text-stone transition-colors duration-200 hover:text-brass-light"
+                    className="py-1 font-body text-[13px] text-stone transition-colors duration-200 hover:text-brass-light active:text-brass-light"
                   >
                     {link.label}
                   </Link>
@@ -96,7 +96,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="font-body text-[13px] text-stone transition-colors duration-200 hover:text-brass-light"
+                    className="py-1 font-body text-[13px] text-stone transition-colors duration-200 hover:text-brass-light active:text-brass-light"
                   >
                     {link.label}
                   </Link>
@@ -115,7 +115,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="font-body text-[13px] text-stone transition-colors duration-200 hover:text-brass-light"
+                    className="py-1 font-body text-[13px] text-stone transition-colors duration-200 hover:text-brass-light active:text-brass-light"
                   >
                     {link.label}
                   </Link>
@@ -134,18 +134,17 @@ export function Footer() {
             &copy; {new Date().getFullYear()} RokVilla. All rights reserved.
           </p>
 
-          {/* Social icons */}
+          {/* Social icons — enlarged tap targets */}
           <div className="flex items-center gap-5">
             {SOCIAL_LINKS.map((social) => (
               <a
                 key={social.label}
                 href={social.href}
                 aria-label={social.label}
-                className="text-stone transition-colors duration-200 hover:text-brass-light"
+                className="p-2 -m-2 text-stone transition-colors duration-200 hover:text-brass-light active:text-brass-light"
               >
                 <svg
-                  width="20"
-                  height="20"
+                  className="h-5 w-5"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"

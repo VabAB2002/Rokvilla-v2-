@@ -4,20 +4,24 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import type { Project } from '@/types/project'
 import { EASE_OUT_QUART } from '@/lib/motion'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 interface ProjectCardProps {
   readonly project: Project
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const reducedMotion = useReducedMotion()
+
   return (
     <motion.div
       className="group relative cursor-pointer overflow-hidden rounded-[4px] shadow-card transition-shadow duration-300 hover:shadow-card-hover"
       initial="rest"
-      whileHover="hover"
+      whileHover={reducedMotion ? undefined : 'hover'}
+      whileTap={reducedMotion ? undefined : 'hover'}
     >
       <div className="relative aspect-[4/3] overflow-hidden">
-        {/* Image with scale on hover */}
+        {/* Image with scale on hover/tap */}
         <motion.div
           className="h-full w-full"
           variants={{
@@ -39,7 +43,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <span className="font-accent text-[11px] uppercase tracking-[0.14em] text-bone/60">
             {project.category}
           </span>
-          <h3 className="mt-1 font-display text-xl font-medium text-bone">
+          <h3 className="mt-1 font-display text-lg font-medium text-bone md:text-xl">
             {project.name}
           </h3>
         </div>

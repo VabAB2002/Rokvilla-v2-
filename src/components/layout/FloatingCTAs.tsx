@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useScrollPosition } from '@/hooks/useScrollPosition'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { floatUpVariants } from '@/lib/motion'
 
 // REPLACE_ME: Update with actual phone number
@@ -11,27 +12,36 @@ const CALL_URL = `tel:${PHONE_NUMBER}`
 
 export function FloatingCTAs() {
   const isVisible = useScrollPosition(400)
+  const reducedMotion = useReducedMotion()
 
   return (
     <motion.div
-      className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 md:bottom-8 md:right-8"
+      className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 md:bottom-8 md:right-8 xl:bottom-10 xl:right-10"
       initial="hidden"
       animate={isVisible ? 'visible' : 'hidden'}
-      variants={{
-        hidden: { opacity: 0, y: 24 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { staggerChildren: 0.1, delayChildren: 0.1 },
-        },
-      }}
+      variants={
+        reducedMotion
+          ? {
+              hidden: { opacity: 0 },
+              visible: { opacity: 1 },
+            }
+          : {
+              hidden: { opacity: 0, y: 24 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+              },
+            }
+      }
     >
       {/* Call button */}
       <motion.a
         href={CALL_URL}
-        variants={floatUpVariants}
+        variants={reducedMotion ? undefined : floatUpVariants}
         whileHover={{ scale: 1.05, y: -2 }}
-        className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-terracotta text-bone shadow-accent transition-shadow hover:shadow-[0_6px_24px_rgba(196,98,45,0.45)] md:h-14 md:w-14"
+        whileTap={{ scale: 0.95 }}
+        className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-terracotta text-bone shadow-accent transition-shadow hover:shadow-[0_6px_24px_rgba(196,98,45,0.45)] md:h-14 md:w-14 xl:h-16 xl:w-16"
         aria-label="Call us"
       >
         <svg
@@ -53,9 +63,10 @@ export function FloatingCTAs() {
         href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
-        variants={floatUpVariants}
+        variants={reducedMotion ? undefined : floatUpVariants}
         whileHover={{ scale: 1.05, y: -2 }}
-        className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-[#25D366] text-bone shadow-[0_4px_16px_rgba(37,211,102,0.3)] transition-shadow hover:shadow-[0_6px_24px_rgba(37,211,102,0.45)] md:h-14 md:w-14"
+        whileTap={{ scale: 0.95 }}
+        className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-[#25D366] text-bone shadow-[0_4px_16px_rgba(37,211,102,0.3)] transition-shadow hover:shadow-[0_6px_24px_rgba(37,211,102,0.45)] md:h-14 md:w-14 xl:h-16 xl:w-16"
         aria-label="Chat on WhatsApp"
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">

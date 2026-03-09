@@ -80,6 +80,7 @@
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
   }
 
   h1, h2, h3, h4 {
@@ -89,5 +90,33 @@
   ::selection {
     background-color: var(--color-terracotta-pale);
     color: var(--color-obsidian);
+  }
+
+  /* Reduced motion: CSS safety net for non-Framer animations */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ── Scroll & Mobile Utilities ── */
+@layer utilities {
+  .scroll-snap-x {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .scroll-snap-start {
+    scroll-snap-align: start;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }

@@ -98,3 +98,56 @@ export const floatUpVariants: Variants = {
     transition: { duration: 0.5, ease: EASE_OUT_EXPO },
   },
 }
+
+/* ── Card tap scale (touch feedback) ── */
+export const cardTapScale = {
+  scale: 0.98,
+  transition: { duration: 0.1, ease: EASE_OUT_QUART },
+}
+
+/* ═══════════════════════════════════════════════
+   Reduced-motion-aware factory functions
+   Pass `useReducedMotion()` result to get
+   accessible variants automatically.
+   ═══════════════════════════════════════════════ */
+
+export function makeFadeUpVariants(reduced: boolean): Variants {
+  return {
+    hidden: reduced ? { opacity: 0 } : { opacity: 0, y: 32 },
+    visible: { opacity: 1, y: 0 },
+  }
+}
+
+export function makeStaggerContainerVariants(reduced: boolean): Variants {
+  return {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: reduced ? 0 : 0.12,
+      },
+    },
+  }
+}
+
+export function makeHeroContainerVariants(reduced: boolean): Variants {
+  return {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: reduced ? 0 : 0.12,
+        delayChildren: reduced ? 0 : 0.2,
+      },
+    },
+  }
+}
+
+export function makeHeroItemVariants(reduced: boolean): Variants {
+  return {
+    hidden: reduced ? { opacity: 0 } : { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: reduced ? 0.2 : 0.8, ease: EASE_OUT_EXPO },
+    },
+  }
+}

@@ -3,9 +3,14 @@
 import { motion } from 'framer-motion'
 import { VideoBackground } from '@/components/ui/VideoBackground'
 import { ButtonDark } from '@/components/ui/Button'
-import { heroContainerVariants, heroItemVariants } from '@/lib/motion'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { makeHeroContainerVariants, makeHeroItemVariants } from '@/lib/motion'
 
 export function HeroSection() {
+  const reducedMotion = useReducedMotion()
+  const containerVariants = makeHeroContainerVariants(reducedMotion)
+  const itemVariants = makeHeroItemVariants(reducedMotion)
+
   return (
     <section aria-label="Hero" className="relative h-dvh min-h-[600px] overflow-hidden">
       <VideoBackground
@@ -17,14 +22,14 @@ export function HeroSection() {
       <div className="relative z-10 flex h-full items-end pb-24 md:items-center md:pb-0">
         <div className="mx-auto w-full max-w-7xl px-6 md:px-12">
           <motion.div
-            variants={heroContainerVariants}
+            variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="max-w-2xl"
+            className="max-w-2xl lg:max-w-3xl"
           >
             {/* Overline */}
             <motion.span
-              variants={heroItemVariants}
+              variants={itemVariants}
               className="mb-6 block font-accent text-[13px] uppercase tracking-[0.18em] text-brass-light"
             >
               Architecture &amp; Construction
@@ -32,7 +37,7 @@ export function HeroSection() {
 
             {/* Heading */}
             <motion.h1
-              variants={heroItemVariants}
+              variants={itemVariants}
               className="font-display text-[clamp(3.5rem,8vw,7.5rem)] font-light leading-[0.9] text-bone whitespace-pre-line"
             >
               {'Built to\nEndure.'}
@@ -40,21 +45,21 @@ export function HeroSection() {
 
             {/* Body */}
             <motion.p
-              variants={heroItemVariants}
+              variants={itemVariants}
               className="mt-6 max-w-md font-body text-base leading-relaxed text-stone md:text-lg"
             >
               Premium residential, commercial, and interior spaces — crafted with precision across Karnataka.
             </motion.p>
 
-            {/* CTAs */}
+            {/* CTAs — stacked on mobile, side-by-side on sm+ */}
             <motion.div
-              variants={heroItemVariants}
-              className="mt-10 flex flex-wrap gap-4"
+              variants={itemVariants}
+              className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4"
             >
-              <ButtonDark variant="primary" href="#services">
+              <ButtonDark variant="primary" href="#services" className="w-full sm:w-auto">
                 Our Services
               </ButtonDark>
-              <ButtonDark variant="secondary" href="#projects">
+              <ButtonDark variant="secondary" href="#projects" className="w-full sm:w-auto">
                 View Our Work
               </ButtonDark>
             </motion.div>
@@ -67,12 +72,12 @@ export function HeroSection() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
+        transition={{ delay: reducedMotion ? 0 : 1.5, duration: reducedMotion ? 0.2 : 0.6 }}
         className="absolute inset-x-0 bottom-8 z-10 flex justify-center"
       >
         <motion.svg
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+          animate={reducedMotion ? undefined : { y: [0, 6, 0] }}
+          transition={reducedMotion ? undefined : { duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
           width="24"
           height="24"
           viewBox="0 0 24 24"

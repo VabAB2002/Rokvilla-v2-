@@ -11,7 +11,7 @@ export function LocationCard({ location }: LocationCardProps) {
   return (
     <div className="overflow-hidden rounded-[4px] border border-limestone/60 bg-white">
       {/* Map */}
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-40 overflow-hidden sm:h-48">
         <LocationMiniMap location={location} />
       </div>
 
@@ -24,7 +24,7 @@ export function LocationCard({ location }: LocationCardProps) {
           href={directionsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-2 inline-flex items-center gap-2 font-body text-[13px] font-medium uppercase tracking-[0.08em] text-slate transition-colors duration-200 hover:text-terracotta"
+          className="mt-2 inline-flex min-h-[44px] items-center gap-2 font-body text-[13px] font-medium uppercase tracking-[0.08em] text-slate transition-colors duration-200 hover:text-terracotta active:text-terracotta"
         >
           Get Directions &rarr;
         </a>
