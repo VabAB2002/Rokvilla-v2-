@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { VideoBackground } from '@/components/ui/VideoBackground'
-import { ButtonDark } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { makeHeroContainerVariants, makeHeroItemVariants } from '@/lib/motion'
 
@@ -51,18 +50,6 @@ export function HeroSection() {
               Premium residential, commercial, and interior spaces — crafted with precision across Karnataka.
             </motion.p>
 
-            {/* CTAs — stacked on mobile, side-by-side on sm+ */}
-            <motion.div
-              variants={itemVariants}
-              className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4"
-            >
-              <ButtonDark variant="primary" href="#services" className="w-full sm:w-auto">
-                Our Services
-              </ButtonDark>
-              <ButtonDark variant="secondary" href="#projects" className="w-full sm:w-auto">
-                View Our Work
-              </ButtonDark>
-            </motion.div>
 
           </motion.div>
         </div>

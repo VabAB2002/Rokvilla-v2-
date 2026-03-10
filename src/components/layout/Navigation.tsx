@@ -9,8 +9,12 @@ import { MenuOverlay } from '@/components/layout/MenuOverlay'
 
 const LEFT_LINKS = [
   { label: 'Home', href: '/' },
-  { label: 'Services', href: '/#services' },
+] as const
+
+const SERVICE_CHILDREN = [
   { label: 'Design', href: '/design' },
+  { label: 'Build', href: '/services/build' },
+  { label: 'Furnish', href: '/services/furnish' },
 ] as const
 
 const RIGHT_LINKS = [
@@ -18,13 +22,10 @@ const RIGHT_LINKS = [
   { label: 'Locations', href: '/#locations' },
 ] as const
 
-const GLASS =
-  'border-white/20 bg-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.4)] backdrop-blur-[28px] backdrop-saturate-[1.8]'
-
 const LINK_CLASS =
-  'font-body text-[11px] font-semibold uppercase tracking-[0.12em] text-obsidian/90 transition-colors duration-300 hover:text-terracotta'
+  'font-body text-[11px] font-semibold uppercase tracking-[0.12em] text-bone/80 transition-colors duration-300 hover:text-terracotta'
 
-const DIVIDER = 'h-4 w-px bg-obsidian/20'
+const DIVIDER = 'h-4 w-px bg-bone/20'
 
 export function Navigation() {
   const isHidden = useScrollDirection(80, 10)
@@ -70,7 +71,7 @@ export function Navigation() {
   // Don't hide nav when menu is open
   const shouldHide = isHidden && !isMenuOpen
   const hamburgerDuration = reducedMotion ? 0.01 : undefined
-  const lineColor = isMenuOpen ? 'bg-bone' : 'bg-obsidian'
+  const lineColor = 'bg-bone'
 
   const hamburgerLines = (
     <div className="flex flex-col gap-1.5">
@@ -100,97 +101,93 @@ export function Navigation() {
         }`}
         aria-label="Main navigation"
       >
-        {/* Desktop: hamburger left + centered glass pill */}
-        <div className="hidden lg:flex lg:items-center lg:gap-4 lg:px-10 lg:pt-5">
-          {/* Hamburger — glass circle */}
+        {/* Desktop: hamburger left + centered links + spacer right */}
+        <div className="hidden lg:flex lg:items-center lg:px-10 lg:py-5">
+          {/* Hamburger */}
+          <button
+            type="button"
+            onClick={toggleMenu}
+            className="flex h-11 w-11 shrink-0 items-center justify-center"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+            aria-controls="menu-overlay"
+          >
+            {hamburgerLines}
+          </button>
+
+          {/* Centered nav links — fade out when overlay is open */}
           <div
-            className={`shrink-0 rounded-full border transition-all duration-300 ${
-              isMenuOpen ? 'border-transparent bg-transparent' : GLASS
+            className={`flex flex-1 items-center justify-center transition-opacity duration-300 ${
+              isMenuOpen ? 'pointer-events-none opacity-0' : 'opacity-100'
             }`}
           >
-            <button
-              type="button"
-              onClick={toggleMenu}
-              className="flex h-11 w-11 items-center justify-center"
-              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={isMenuOpen}
-              aria-controls="menu-overlay"
-            >
-              {hamburgerLines}
-            </button>
-          </div>
-
-          {/* Centered pill — fades out when overlay is open */}
-          <div className="flex flex-1 justify-center">
-            <div
-              className={`rounded-full border px-8 py-2.5 transition-all duration-300 ${
-                isMenuOpen
-                  ? 'pointer-events-none border-transparent opacity-0'
-                  : `${GLASS} opacity-100`
-              }`}
-            >
-              <div className="flex items-center gap-6">
-                <div className="flex items-center gap-5">
-                  {LEFT_LINKS.map((link) => (
-                    <Link key={link.href} href={link.href} className={LINK_CLASS}>
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-                <span className={DIVIDER} aria-hidden="true" />
-                <Link
-                  href="/"
-                  className="font-accent text-[15px] uppercase tracking-[0.2em] text-obsidian transition-colors duration-300 hover:text-terracotta"
-                >
-                  RokVilla
+            <div className="flex items-baseline gap-5">
+              {LEFT_LINKS.map((link) => (
+                <Link key={link.href} href={link.href} className={LINK_CLASS}>
+                  {link.label}
                 </Link>
-                <span className={DIVIDER} aria-hidden="true" />
-                <div className="flex items-center gap-5">
-                  {RIGHT_LINKS.map((link) => (
-                    <Link key={link.href} href={link.href} className={LINK_CLASS}>
-                      {link.label}
-                    </Link>
-                  ))}
+              ))}
+
+              {/* Services with dropdown */}
+              <div className="group relative">
+                <Link href="/#services" className={LINK_CLASS}>
+                  Services
+                </Link>
+                <div className="pointer-events-none absolute left-1/2 top-full pt-3 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:opacity-100">
+                  <div className="-translate-x-1/2 border border-white/10 bg-void/80 py-2 backdrop-blur-md">
+                    {SERVICE_CHILDREN.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className="block whitespace-nowrap px-5 py-2 font-body text-[11px] font-medium uppercase tracking-[0.1em] text-bone/70 transition-colors duration-200 hover:text-terracotta"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
+
+              <span className={DIVIDER} aria-hidden="true" />
+              <Link
+                href="/"
+                className="font-accent text-[15px] uppercase tracking-[0.2em] text-bone transition-colors duration-300 hover:text-terracotta"
+              >
+                RokVilla
+              </Link>
+              <span className={DIVIDER} aria-hidden="true" />
+
+              {RIGHT_LINKS.map((link) => (
+                <Link key={link.href} href={link.href} className={LINK_CLASS}>
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
 
-          {/* Invisible spacer to balance hamburger for true centering */}
+          {/* Invisible spacer to balance hamburger */}
           <div className="w-11 shrink-0" aria-hidden="true" />
         </div>
 
         {/* Mobile: hamburger left + wordmark right */}
-        <div className="px-4 pt-3 lg:hidden">
-          <div
-            className={`rounded-2xl border px-3 py-1 transition-all duration-300 ${
-              isMenuOpen ? 'border-transparent bg-transparent' : GLASS
-            }`}
+        <div className="flex items-center justify-between px-4 py-3 lg:hidden">
+          <button
+            type="button"
+            onClick={toggleMenu}
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+            aria-controls="menu-overlay"
           >
-            <div className="flex items-center justify-between">
-              {/* Hamburger on LEFT */}
-              <button
-                type="button"
-                onClick={toggleMenu}
-                className="flex min-h-[44px] min-w-[44px] items-center justify-center"
-                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-                aria-expanded={isMenuOpen}
-                aria-controls="menu-overlay"
-              >
-                {hamburgerLines}
-              </button>
+            {hamburgerLines}
+          </button>
 
-              {/* Wordmark on RIGHT */}
-              <Link
-                href="/"
-                className={`font-accent text-[15px] uppercase tracking-[0.2em] transition-colors duration-300 ${
-                  isMenuOpen ? 'text-bone' : 'text-obsidian'
-                }`}
-              >
-                RokVilla
-              </Link>
-            </div>
-          </div>
+          <Link
+            href="/"
+            className="font-accent text-[15px] uppercase tracking-[0.2em] text-bone transition-colors duration-300"
+          >
+            RokVilla
+          </Link>
         </div>
       </nav>
 

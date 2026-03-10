@@ -40,26 +40,23 @@ const SOCIAL_LINKS = [
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-void" aria-label="Site footer">
-      {/* Ghosted wordmark */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <span className="font-display text-[clamp(56px,12vw,160px)] font-light uppercase tracking-wide text-bone/[0.03] select-none">
-          RokVilla
-        </span>
-      </div>
-
       <div className="relative mx-auto max-w-[1440px] px-6 pt-20 pb-10 md:px-10 lg:px-16">
         {/* Main grid — stacked on mobile, 2-col on sm, 4-col on md+ */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:gap-16">
           {/* Brand column */}
           <div className="sm:col-span-2 md:col-span-1">
-            <Link href="/" className="inline-block">
+            <Link href="/" className="inline-flex items-center">
               <Image
                 src="/logo/rok-logo-white.png"
                 alt="RokVilla"
                 width={1024}
                 height={576}
-                className="h-12 w-auto opacity-90 sm:h-16 md:h-18"
+                className="-ml-5 h-12 w-auto opacity-90 sm:-ml-[26px] sm:h-16 md:h-18"
               />
+              <span className="-ml-4 h-6 w-px bg-bone/20 sm:-ml-5 sm:h-8" />
+              <span className="ml-2 font-display text-lg font-light uppercase tracking-[0.12em] text-bone/90 sm:text-xl">
+                RokVilla
+              </span>
             </Link>
             <p className="mt-4 max-w-xs font-body text-sm leading-relaxed text-stone">
               Crafting spaces that stand the test of time.

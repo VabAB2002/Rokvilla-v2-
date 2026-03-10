@@ -40,7 +40,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Always-visible gradient overlay with text */}
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent p-5 pt-16">
-          <span className="font-accent text-[11px] uppercase tracking-[0.14em] text-bone/60">
+          <span className="font-accent text-[13px] uppercase tracking-[0.14em] text-bone/90">
             {project.category}
           </span>
           <h3 className="mt-1 font-display text-lg font-medium text-bone md:text-xl">

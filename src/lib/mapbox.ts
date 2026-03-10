@@ -1,7 +1,7 @@
 import type { Location } from '@/types/location'
 import { LOCATIONS } from './constants/locations'
 
-export const MAPBOX_STYLE = 'mapbox://styles/mapbox/light-v11'
+export const MAPBOX_STYLE = 'mapbox://styles/mapbox/satellite-streets-v12'
 
 export const MAP_DEFAULT_CENTER = {
   latitude: 15.32,

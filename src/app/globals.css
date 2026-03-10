@@ -119,4 +119,14 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  /* Hide all Mapbox controls on location cards */
+  .mapboxgl-ctrl-logo,
+  .mapboxgl-ctrl-attrib,
+  .mapboxgl-ctrl-bottom-left,
+  .mapboxgl-ctrl-bottom-right,
+  .mapboxgl-ctrl-top-left,
+  .mapboxgl-ctrl-top-right {
+    display: none !important;
+  }
 }

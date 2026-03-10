@@ -7,8 +7,15 @@ import { EASE_OUT_EXPO } from '@/lib/motion'
 
 const MENU_LINKS = [
   { label: 'Home', href: '/' },
-  { label: 'Services', href: '/#services' },
-  { label: 'Design', href: '/design' },
+  {
+    label: 'Services',
+    href: '/#services',
+    children: [
+      { label: 'Design', href: '/design' },
+      { label: 'Build', href: '/services/build' },
+      { label: 'Furnish', href: '/services/furnish' },
+    ],
+  },
   { label: 'Projects', href: '/#projects' },
   { label: 'Locations', href: '/#locations' },
 ] as const
@@ -55,7 +62,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: reducedMotion ? 0.1 : 0.4, ease: EASE_OUT_EXPO }}
+          transition={{ duration: reducedMotion ? 0.05 : 0.15 }}
         >
           {/* Dark glass background — click to close */}
           <div
@@ -96,6 +103,26 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                             <span className="absolute -bottom-1 left-0 h-px w-0 bg-terracotta transition-all duration-500 ease-out group-hover:w-full" />
                           </span>
                         </Link>
+
+                        {/* Sub-links */}
+                        {'children' in link && (
+                          <ul className="ml-10 mt-1 flex flex-col gap-0.5 lg:ml-12">
+                            {link.children.map((child) => (
+                              <li key={child.href}>
+                                <Link
+                                  href={child.href}
+                                  onClick={onClose}
+                                  className="group inline-flex items-baseline gap-3 py-1"
+                                >
+                                  <span className="h-px w-3 bg-bone/20 transition-colors duration-300 group-hover:bg-terracotta/50" aria-hidden="true" />
+                                  <span className="font-body text-sm font-light tracking-wide text-bone/50 transition-colors duration-300 group-hover:text-bone/90 lg:text-base">
+                                    {child.label}
+                                  </span>
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </motion.li>
                     ))}
                   </ul>

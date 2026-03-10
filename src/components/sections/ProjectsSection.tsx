@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ProjectCard } from '@/components/ui/ProjectCard'
 import { PROJECTS } from '@/lib/constants/projects'
@@ -46,7 +47,7 @@ export function ProjectsSection() {
 
         {/* Filter tabs — horizontal scroll on mobile */}
         <AnimatedSection delay={0.15} className="mt-12">
-          <div className="flex gap-2 overflow-x-auto no-scrollbar">
+          <div className="flex justify-center gap-2 overflow-x-auto no-scrollbar">
             {TABS.map((tab) => (
               <button
                 key={tab.id}
@@ -74,7 +75,7 @@ export function ProjectsSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -16 }}
             transition={{ duration: reducedMotion ? 0.15 : 0.35, ease: EASE_OUT_EXPO }}
-            className="grid gap-3 md:gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            className="flex flex-wrap justify-center gap-3 md:gap-4"
           >
             {filteredProjects.map((project, i) => (
               <motion.div
@@ -83,12 +84,26 @@ export function ProjectsSection() {
                 initial="hidden"
                 animate="visible"
                 transition={{ ...TRANSITION_SMOOTH, delay: reducedMotion ? 0 : i * 0.08 }}
+                className="w-full sm:w-[calc(50%-6px)] lg:w-[calc(33.333%-11px)]"
               >
                 <ProjectCard project={project} />
               </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
+
+        {/* Show more */}
+        <div className="mt-14 flex flex-col items-center gap-3">
+          <Link
+            href="/projects"
+            className="group inline-flex items-center gap-3 border border-obsidian/15 px-8 py-3 font-accent text-[12px] uppercase tracking-[0.18em] text-obsidian/80 transition-all duration-300 hover:border-terracotta hover:text-terracotta"
+          >
+            View All Projects
+            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+              &rarr;
+            </span>
+          </Link>
+        </div>
       </div>
     </section>
   )
