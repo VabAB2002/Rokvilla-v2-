@@ -15,12 +15,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <motion.div
-      className="group relative cursor-pointer overflow-hidden"
+      className="group relative cursor-pointer overflow-hidden rounded-sm"
       initial="rest"
       whileHover={reducedMotion ? undefined : 'hover'}
       whileTap={reducedMotion ? undefined : 'hover'}
     >
-      <div className="relative aspect-[3/2] overflow-hidden">
+      <div className="relative h-64 overflow-hidden sm:h-80">
         {/* Image with scale on hover/tap */}
         <motion.div
           className="h-full w-full"
@@ -38,8 +38,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
           />
         </motion.div>
 
-        {/* Always-visible gradient overlay with text */}
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent p-5 pt-16">
+        {/* Vignette — darkened edges all around */}
+        <div
+          className="pointer-events-none absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.4)]"
+          aria-hidden="true"
+        />
+
+        {/* Bottom gradient overlay with text */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent p-6 pt-16">
           <span className="font-accent text-[13px] uppercase tracking-[0.14em] text-bone/90">
             {project.category}
           </span>

@@ -17,7 +17,7 @@ export function LocationCard({ location }: LocationCardProps) {
   return (
     <a href={directionsUrl} target="_blank" rel="noopener noreferrer">
       <motion.div
-        className="group relative cursor-pointer overflow-hidden"
+        className="group relative cursor-pointer overflow-hidden rounded-sm"
         initial="rest"
         whileHover={reducedMotion ? undefined : 'hover'}
         whileTap={reducedMotion ? undefined : 'hover'}
@@ -34,7 +34,13 @@ export function LocationCard({ location }: LocationCardProps) {
             <LocationMiniMap location={location} />
           </motion.div>
 
-          {/* Always-visible gradient overlay with text */}
+          {/* Vignette — darkened edges all around */}
+          <div
+            className="pointer-events-none absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.4)]"
+            aria-hidden="true"
+          />
+
+          {/* Bottom gradient overlay with text */}
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent p-6 pt-16">
             <h3 className="font-display text-xl font-medium text-bone md:text-2xl">
               {location.city}

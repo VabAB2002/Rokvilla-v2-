@@ -35,61 +35,170 @@ export const DESIGN_STEPS: ReadonlyArray<ProcessStep> = [
   },
 ] as const
 
-/* ── Docket Tiers ── */
+/* ── Pricing Services (à la carte) ── */
 
-export interface DocketTier {
+export type PricingUnit = 'sqft' | 'room' | 'unit'
+
+export interface PricingService {
   readonly id: string
   readonly name: string
-  readonly tagline: string
-  readonly inclusions: ReadonlyArray<string>
-  readonly highlighted: boolean
+  readonly shortName: string
+  readonly unit: PricingUnit
+  readonly iconPath: string
 }
 
-export const DESIGN_DOCKETS: ReadonlyArray<DocketTier> = [
+export interface PricingCategory {
+  readonly id: string
+  readonly label: string
+  readonly shortLabel: string
+}
+
+export const PRICING_CATEGORIES: ReadonlyArray<PricingCategory> = [
+  { id: 'small-residential', label: "Residential (up to 30'×50')", shortLabel: 'Small Residential' },
+  { id: 'large-residential', label: "Residential (40'×60' & above)", shortLabel: 'Large Residential' },
+  { id: 'commercial-small', label: 'Commercial & Hospitality (< 5,000 sqft)', shortLabel: 'Commercial < 5K' },
+  { id: 'commercial-large', label: 'Commercial & Hospitality (≥ 5,000 sqft)', shortLabel: 'Commercial ≥ 5K' },
+] as const
+
+export const PRICING_SERVICES: ReadonlyArray<PricingService> = [
   {
-    id: 'basic',
-    name: 'Basic Docket',
-    tagline: 'Essential drawings to get started',
-    inclusions: [
-      'Floor plans (all levels)',
-      'Two exterior elevations',
-      'Basic site plan',
-      'Area statement',
-      '2 revision rounds',
-    ],
-    highlighted: false,
+    id: 'floor-plans',
+    name: 'Floor Plans',
+    shortName: 'Floor Plans',
+    unit: 'sqft',
+    iconPath: 'M3 3h7v7H3V3zm11 0h7v7h-7V3zm0 11h7v7h-7v-7zM3 14h7v7H3v-7z',
   },
   {
-    id: 'standard',
-    name: 'Standard Docket',
-    tagline: 'Complete working drawings for construction',
-    inclusions: [
-      'Everything in Basic',
-      'All four elevations',
-      'Section drawings',
-      'Structural layout',
-      'Electrical & plumbing layout',
-      'Door & window schedule',
-      '4 revision rounds',
-    ],
-    highlighted: true,
+    id: '3d-exterior',
+    name: '3D Renders — Exterior',
+    shortName: '3D Exterior',
+    unit: 'sqft',
+    iconPath: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5',
   },
   {
-    id: 'premium',
-    name: 'Premium Docket',
-    tagline: 'Full documentation with 3D visualization',
-    inclusions: [
-      'Everything in Standard',
-      '3D exterior renders (4 views)',
-      'Interior walkthrough views',
-      'Detailed BOQ estimation',
-      'Landscape plan',
-      'Construction supervision notes',
-      'Unlimited revisions',
-    ],
-    highlighted: false,
+    id: '3d-basic-interior',
+    name: '3D Renders — Basic Interior',
+    shortName: '3D Basic Interior',
+    unit: 'room',
+    iconPath: 'M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z',
+  },
+  {
+    id: '3d-luxury-interior',
+    name: '3D Renders — Luxury Interior',
+    shortName: '3D Luxury Interior',
+    unit: 'room',
+    iconPath: 'M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z',
+  },
+  {
+    id: 'walkthrough-basic',
+    name: '3D + Walkthrough — Basic Interior',
+    shortName: 'Walkthrough Basic',
+    unit: 'sqft',
+    iconPath: 'M5 3l14 9-14 9V3z',
+  },
+  {
+    id: 'walkthrough-luxury',
+    name: '3D + Walkthrough — Luxury Interior',
+    shortName: 'Walkthrough Luxury',
+    unit: 'sqft',
+    iconPath: 'M19.82 2H4.18A2.18 2.18 0 0 0 2 4.18v15.64A2.18 2.18 0 0 0 4.18 22h15.64A2.18 2.18 0 0 0 22 19.82V4.18A2.18 2.18 0 0 0 19.82 2zM7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5',
+  },
+  {
+    id: 'wall-marking-2d',
+    name: 'Wall-Marking Plans & 2D Elevation',
+    shortName: 'Wall-Marking & 2D',
+    unit: 'sqft',
+    iconPath: 'M2 20h20M5 20V10l7-7 7 7v10M9 20v-6h6v6',
+  },
+  {
+    id: 'electrical-plumbing',
+    name: 'Electrical & Plumbing Drawings',
+    shortName: 'Electrical & Plumbing',
+    unit: 'sqft',
+    iconPath: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
+  },
+  {
+    id: 'site-measured',
+    name: 'Site & Property Measured Drawings',
+    shortName: 'Site Measured Dwgs',
+    unit: 'sqft',
+    iconPath: 'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0zM12 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6z',
+  },
+  {
+    id: 'furniture-working',
+    name: 'Detailed Furniture Working Drawings',
+    shortName: 'Furniture Dwgs',
+    unit: 'unit',
+    iconPath: 'M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3M3 16h18M5 19v2M19 19v2M3 11a2 2 0 0 0-1 2v3h20v-3a2 2 0 0 0-1-2',
+  },
+  {
+    id: 'boq',
+    name: 'Bill of Quantities (BOQ)',
+    shortName: 'BOQ',
+    unit: 'sqft',
+    iconPath: 'M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2M9 5h6M9 14h6M9 10h6',
   },
 ] as const
+
+export type PricingCategoryId = (typeof PRICING_CATEGORIES)[number]['id']
+export type PricingServiceId = (typeof PRICING_SERVICES)[number]['id']
+
+type RateMap = Readonly<Record<PricingServiceId, number>>
+
+export const PRICING_RATES: Readonly<Record<PricingCategoryId, RateMap>> = {
+  'small-residential': {
+    'floor-plans': 5,
+    '3d-exterior': 2.5,
+    '3d-basic-interior': 20,
+    '3d-luxury-interior': 30,
+    'walkthrough-basic': 7,
+    'walkthrough-luxury': 10,
+    'wall-marking-2d': 1.5,
+    'electrical-plumbing': 5,
+    'site-measured': 0.75,
+    'furniture-working': 1000,
+    'boq': 4,
+  },
+  'large-residential': {
+    'floor-plans': 7,
+    '3d-exterior': 4,
+    '3d-basic-interior': 25,
+    '3d-luxury-interior': 35,
+    'walkthrough-basic': 9,
+    'walkthrough-luxury': 12,
+    'wall-marking-2d': 2,
+    'electrical-plumbing': 7,
+    'site-measured': 0.75,
+    'furniture-working': 1200,
+    'boq': 5,
+  },
+  'commercial-small': {
+    'floor-plans': 4,
+    '3d-exterior': 2,
+    '3d-basic-interior': 25,
+    '3d-luxury-interior': 35,
+    'walkthrough-basic': 9,
+    'walkthrough-luxury': 12,
+    'wall-marking-2d': 2,
+    'electrical-plumbing': 7,
+    'site-measured': 0.75,
+    'furniture-working': 1200,
+    'boq': 4,
+  },
+  'commercial-large': {
+    'floor-plans': 2,
+    '3d-exterior': 1,
+    '3d-basic-interior': 25,
+    '3d-luxury-interior': 35,
+    'walkthrough-basic': 6,
+    'walkthrough-luxury': 8,
+    'wall-marking-2d': 1,
+    'electrical-plumbing': 3,
+    'site-measured': 0.75,
+    'furniture-working': 1200,
+    'boq': 4,
+  },
+} as const
 
 /* ── Testimonials ── */
 

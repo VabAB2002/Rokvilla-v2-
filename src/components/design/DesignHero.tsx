@@ -1,8 +1,8 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { VideoBackground } from '@/components/ui/VideoBackground'
-import { ButtonDark } from '@/components/ui/Button'
+import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { makeHeroContainerVariants, makeHeroItemVariants } from '@/lib/motion'
 
@@ -12,10 +12,26 @@ export function DesignHero() {
   const itemVariants = makeHeroItemVariants(reducedMotion)
 
   return (
-    <section aria-label="Design hero" className="relative h-dvh min-h-[600px] overflow-hidden">
-      <VideoBackground
-        imageSrc="/00 FINISHED/01 SRIPRADHA/HERO IMAGE_01_SRIPRADHA.png"
-        imageAlt="Sripradha residence — contemporary architectural design by RokVilla"
+    <section aria-label="Design hero" className="relative h-dvh min-h-[600px] overflow-hidden bg-white">
+      {/* Blueprint background image — pushed right so text has clear space */}
+      <div className="absolute inset-y-0 -right-[10%] left-[35%] md:left-[40%]">
+        <Image
+          src="/images/design-blueprint.jpg"
+          alt=""
+          fill
+          priority
+          className="object-contain object-right"
+          sizes="75vw"
+        />
+      </div>
+
+      {/* Gradient overlay for text readability */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(to right, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.75) 35%, rgba(255,255,255,0.2) 65%, rgba(255,255,255,0) 100%)',
+        }}
       />
 
       {/* Content */}
@@ -30,7 +46,7 @@ export function DesignHero() {
             {/* Overline */}
             <motion.span
               variants={itemVariants}
-              className="mb-6 block font-accent text-[13px] uppercase tracking-[0.18em] text-brass-light"
+              className="mb-6 block font-accent text-[13px] uppercase tracking-[0.18em] text-brass"
             >
               Design Services
             </motion.span>
@@ -38,15 +54,15 @@ export function DesignHero() {
             {/* Heading */}
             <motion.h1
               variants={itemVariants}
-              className="font-display text-[clamp(3rem,7vw,7rem)] font-light leading-[0.9] text-bone whitespace-pre-line"
+              className="font-display text-[clamp(3rem,7vw,7rem)] font-light leading-[0.9] text-void whitespace-pre-line"
             >
-              {"Let's Design\nSomething Truly\nRok-Smart"}
+              {"From Blueprint\nto Reality"}
             </motion.h1>
 
             {/* Body */}
             <motion.p
               variants={itemVariants}
-              className="mt-6 max-w-md font-body text-base leading-relaxed text-stone md:text-lg"
+              className="mt-6 max-w-md font-body text-base leading-relaxed text-graphite md:text-lg"
             >
               From concept sketches to construction-ready blueprints — architectural
               designs that balance aesthetics, function, and budget.
@@ -57,12 +73,12 @@ export function DesignHero() {
               variants={itemVariants}
               className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4"
             >
-              <ButtonDark variant="primary" href="#design-projects" className="w-full sm:w-auto">
+              <Button variant="primary" href="#design-projects" className="w-full sm:w-auto">
                 Browse Projects
-              </ButtonDark>
-              <ButtonDark variant="secondary" href="#consultation" className="w-full sm:w-auto">
+              </Button>
+              <Button variant="secondary" href="#consultation" className="w-full sm:w-auto">
                 Book Consultation
-              </ButtonDark>
+              </Button>
             </motion.div>
           </motion.div>
         </div>
@@ -72,7 +88,7 @@ export function DesignHero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: reducedMotion ? 0 : 1.5, duration: reducedMotion ? 0.2 : 0.6 }}
+        transition={{ delay: reducedMotion ? 0 : 1.2, duration: reducedMotion ? 0.2 : 0.6 }}
         className="absolute inset-x-0 bottom-8 z-10 flex justify-center"
       >
         <motion.svg
@@ -88,7 +104,7 @@ export function DesignHero() {
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-bone/70"
+          className="text-stone"
         >
           <path d="M12 5v14M5 12l7 7 7-7" />
         </motion.svg>

@@ -16,28 +16,19 @@ export function FurnishHero() {
       aria-label="Furnish hero"
       className="relative h-dvh min-h-[600px] overflow-hidden bg-white"
     >
-      {/* Illustration — positioned right, vertically centered */}
+      {/* Background illustration — anchored right, full height */}
       <div className="absolute inset-0">
         <Image
-          src="/images/furnish-hero.png"
+          src="/images/furnish-hero-bg.png"
           alt="Interior design sketch — living room with sofa, dining table, and shelving"
           fill
           priority
           fetchPriority="high"
           quality={90}
-          className="object-cover object-[65%_bottom] md:object-[55%_center]"
+          className="object-contain object-[center_bottom] md:object-[right_center]"
           sizes="100vw"
         />
       </div>
-
-      {/* Subtle left-side veil so text stays crisp over any image bleed */}
-      <div
-        className="absolute inset-0 md:hidden"
-        style={{
-          background:
-            'linear-gradient(to bottom, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.3) 100%)',
-        }}
-      />
 
       {/* Text — left-aligned, vertically centered */}
       <div className="relative z-10 flex h-full items-center">
@@ -59,16 +50,16 @@ export function FurnishHero() {
               variants={itemVariants}
               className="font-display text-[clamp(2.8rem,6vw,5.5rem)] font-light leading-[0.95] text-obsidian"
             >
-              Furnish Your
+              From Concept
               <br />
-              Vision
+              to Comfort
             </motion.h1>
 
             <motion.p
               variants={itemVariants}
               className="mt-5 max-w-sm font-body text-base leading-relaxed text-slate md:text-lg"
             >
-              Interiors crafted with precision, styled with intent.
+              Thoughtfully designed interiors that bring your vision to life.
             </motion.p>
 
             <motion.div

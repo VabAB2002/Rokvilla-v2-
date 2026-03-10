@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { type ReactNode, useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Button } from '@/components/ui/Button'
@@ -41,6 +41,11 @@ interface ConsultationFormProps {
   readonly title?: string
   readonly subtitle?: string
   readonly categories?: ReadonlyArray<{ readonly value: string; readonly label: string }>
+  readonly layout?: 'centered' | 'split'
+  readonly illustration?: ReactNode
+  readonly contactEmail?: string
+  readonly contactPhone?: string
+  readonly sectionClassName?: string
 }
 
 /* ── Validation ── */
@@ -116,10 +121,34 @@ function FormInput({
 
 /* ── Main component ── */
 
+/* ── Blueprint grid background for split layout ── */
+
+function BlueprintGrid() {
+  return (
+    <svg
+      className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.035]"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <defs>
+        <pattern id="blueprint-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+          <path d="M 24 0 L 0 0 0 24" fill="none" stroke="currentColor" strokeWidth="0.5" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#blueprint-grid)" className="text-terracotta" />
+    </svg>
+  )
+}
+
 export function ConsultationForm({
   title = 'You Dream. We Deliver.',
   subtitle = 'Ready to build your dream home? Schedule a free consultation today and begin the journey of turning your dream into reality.',
   categories = DEFAULT_CATEGORIES,
+  layout = 'centered',
+  illustration,
+  contactEmail = 'hello@rokvilla.com',
+  contactPhone = '+91 98765 43210',
+  sectionClassName,
 }: ConsultationFormProps) {
   const reducedMotion = useReducedMotion()
   const [fields, setFields] = useState<FormFields>(INITIAL_FIELDS)
@@ -150,6 +179,326 @@ export function ConsultationForm({
     [fields],
   )
 
+  /* ── Split layout variant ── */
+  if (layout === 'split') {
+    return (
+      <section
+        id="consultation"
+        aria-labelledby="consultation-heading"
+        className={sectionClassName ?? "relative overflow-hidden bg-parchment py-24 md:py-32 lg:py-36"}
+      >
+        <BlueprintGrid />
+        {/* Faint construction guide lines */}
+        <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.05]" aria-hidden="true">
+          <line x1="0" y1="50%" x2="100%" y2="50%" stroke="currentColor" strokeWidth="0.5" strokeDasharray="8 5" className="text-limestone" />
+          <line x1="40%" y1="0" x2="40%" y2="100%" stroke="currentColor" strokeWidth="0.5" strokeDasharray="8 5" className="text-limestone" />
+        </svg>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
+          <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
+            {/* Left column: text + illustration + contact */}
+            <AnimatedSection className="flex-1 lg:max-w-md">
+              <p className="font-accent text-xs uppercase tracking-[0.2em] text-brass">
+                We&apos;re here to help
+              </p>
+              <h2
+                id="consultation-heading"
+                className="mt-3 font-display text-3xl font-light leading-[1.06] text-obsidian md:text-4xl lg:text-5xl"
+              >
+                {title.includes('Deliver') ? (
+                  <>
+                    You Dream.
+                    <br />
+                    We <span className="text-terracotta">Deliver.</span>
+                  </>
+                ) : (
+                  title
+                )}
+              </h2>
+              <p className="mt-4 max-w-sm font-body text-sm leading-relaxed tracking-wide text-slate md:text-base">
+                {subtitle}
+              </p>
+
+              {/* Illustration slot */}
+              {illustration && <div className="mt-8">{illustration}</div>}
+
+              {/* Contact info */}
+              <div className="mt-6 flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-terracotta/10 bg-terracotta/5">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      className="text-terracotta"
+                    >
+                      <rect x="2" y="4" width="20" height="16" rx="2" />
+                      <path d="M22,4L12,13L2,4" />
+                    </svg>
+                  </div>
+                  <span className="font-body text-sm text-slate">{contactEmail}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-terracotta/10 bg-terracotta/5">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      className="text-terracotta"
+                    >
+                      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.98.36 1.94.68 2.87a2 2 0 01-.45 2.11L8.09 9.91" />
+                    </svg>
+                  </div>
+                  <span className="font-body text-sm text-slate">{contactPhone}</span>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Right column: elevated form card */}
+            <AnimatedSection delay={0.15} className="flex-1">
+              <AnimatePresence mode="wait">
+                {submitted ? (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: reducedMotion ? 0.15 : 0.5, ease: EASE_OUT_EXPO }}
+                    className="rounded-[10px] border border-limestone/20 bg-white p-12 text-center shadow-[0_1px_3px_rgba(0,0,0,0.03),0_8px_32px_rgba(0,0,0,0.05)]"
+                  >
+                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-terracotta/10">
+                      <svg
+                        width="28"
+                        height="28"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="text-terracotta"
+                      >
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg>
+                    </div>
+                    <h3 className="font-display text-2xl font-medium text-obsidian">
+                      Thank You!
+                    </h3>
+                    <p className="mt-2 font-body text-sm text-slate">
+                      We&apos;ve received your consultation request. Our team will reach out
+                      within 24 hours.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setSubmitted(false)}
+                      className="mt-6 font-body text-[13px] uppercase tracking-[0.08em] text-terracotta transition-colors hover:text-terracotta-deep"
+                    >
+                      Submit Another Request
+                    </button>
+                  </motion.div>
+                ) : (
+                  <motion.form
+                    key="form"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    onSubmit={handleSubmit}
+                    noValidate
+                    className="rounded-[10px] border border-limestone/20 bg-white p-7 shadow-[0_1px_3px_rgba(0,0,0,0.03),0_8px_32px_rgba(0,0,0,0.05)] md:p-10"
+                  >
+                    <h3 className="mb-5 font-display text-lg text-obsidian">
+                      Book a Consultation
+                    </h3>
+
+                    {/* Row 1: Name + Email */}
+                    <div className="grid gap-4 md:grid-cols-2">
+                      <FormInput
+                        label="Name"
+                        name="name"
+                        value={fields.name}
+                        error={errors.name}
+                        placeholder="Your name"
+                        onChange={handleChange}
+                      />
+                      <FormInput
+                        label="Email"
+                        name="email"
+                        type="email"
+                        value={fields.email}
+                        error={errors.email}
+                        placeholder="you@example.com"
+                        onChange={handleChange}
+                      />
+                    </div>
+
+                    {/* Row 2: Phone + Category */}
+                    <div className="mt-4 grid gap-4 md:grid-cols-2">
+                      <FormInput
+                        label="Phone"
+                        name="phone"
+                        type="tel"
+                        value={fields.phone}
+                        error={errors.phone}
+                        placeholder="+91 98765 43210"
+                        onChange={handleChange}
+                      />
+                      <div>
+                        <label
+                          htmlFor="form-category"
+                          className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
+                        >
+                          Category
+                        </label>
+                        <select
+                          id="form-category"
+                          name="category"
+                          value={fields.category}
+                          onChange={(e) => handleChange('category', e.target.value)}
+                          aria-invalid={!!errors.category}
+                          aria-describedby={errors.category ? 'form-category-error' : undefined}
+                          className={`w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
+                            errors.category
+                              ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
+                              : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
+                          }`}
+                        >
+                          <option value="">Select a category</option>
+                          {categories.map((cat) => (
+                            <option key={cat.value} value={cat.value}>
+                              {cat.label}
+                            </option>
+                          ))}
+                        </select>
+                        {errors.category && (
+                          <p
+                            id="form-category-error"
+                            role="alert"
+                            className="mt-1 font-body text-xs text-terracotta-deep"
+                          >
+                            {errors.category}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Row 3: Consultation type */}
+                    <fieldset className="mt-4">
+                      <legend className="mb-2 font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate">
+                        Consultation Type
+                      </legend>
+                      <div className="flex gap-3">
+                        {(['in-person', 'virtual'] as const).map((type) => (
+                          <label
+                            key={type}
+                            className={`flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-[4px] border px-4 py-2.5 font-body text-sm transition-colors ${
+                              fields.consultationType === type
+                                ? 'border-terracotta bg-terracotta/5 text-terracotta'
+                                : 'border-limestone text-slate hover:border-slate/40'
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="consultationType"
+                              value={type}
+                              checked={fields.consultationType === type}
+                              onChange={(e) => handleChange('consultationType', e.target.value)}
+                              className="sr-only"
+                            />
+                            {type === 'in-person' ? 'In Person' : 'Virtual'}
+                          </label>
+                        ))}
+                      </div>
+                    </fieldset>
+
+                    {/* Row 4: Message */}
+                    <div className="mt-4">
+                      <label
+                        htmlFor="form-message"
+                        className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
+                      >
+                        Message (optional)
+                      </label>
+                      <textarea
+                        id="form-message"
+                        name="message"
+                        rows={3}
+                        value={fields.message}
+                        onChange={(e) => handleChange('message', e.target.value)}
+                        placeholder="Tell us about your project..."
+                        className="w-full resize-none rounded-[2px] border border-limestone bg-white px-4 py-3 font-body text-sm text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta/30"
+                      />
+                    </div>
+
+                    {/* Privacy checkbox */}
+                    <div className="mt-4">
+                      <label
+                        htmlFor="form-privacy-split"
+                        className="flex cursor-pointer items-start gap-2.5"
+                      >
+                        <input
+                          id="form-privacy-split"
+                          name="privacy"
+                          type="checkbox"
+                          checked={fields.privacy}
+                          onChange={(e) =>
+                            setFields((prev) => ({ ...prev, privacy: e.target.checked }))
+                          }
+                          aria-invalid={!!errors.privacy}
+                          aria-describedby={errors.privacy ? 'form-privacy-split-error' : undefined}
+                          className="mt-0.5 h-4 w-4 accent-terracotta"
+                        />
+                        <span className="font-body text-xs text-slate">
+                          I agree to the Privacy Policy and Terms &amp; Conditions
+                        </span>
+                      </label>
+                      {errors.privacy && (
+                        <p
+                          id="form-privacy-split-error"
+                          role="alert"
+                          className="mt-1 font-body text-xs text-terracotta-deep"
+                        >
+                          {errors.privacy}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Submit */}
+                    <div className="mt-6">
+                      <Button variant="primary" type="submit" fullWidth>
+                        Book a Meeting
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          className="ml-2"
+                        >
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </Button>
+                    </div>
+                  </motion.form>
+                )}
+              </AnimatePresence>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  /* ── Centered layout (default) ── */
   return (
     <section
       id="consultation"

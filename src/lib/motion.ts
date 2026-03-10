@@ -195,47 +195,6 @@ export const AMBIENT_BLINK = {
   opacity: { duration: 1.2, ease: 'easeInOut', repeat: Infinity },
 } satisfies Transition
 
-/* ── Villa isometric drawing (consultation section) ── */
-
-export function makeVillaContainerVariants(reduced: boolean): Variants {
-  return {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: reduced ? 0 : 0.15,
-        delayChildren: reduced ? 0 : 0.3,
-      },
-    },
-  }
-}
-
-export function makeVillaDrawVariants(reduced: boolean): Variants {
-  if (reduced) {
-    return {
-      hidden: { opacity: 0 },
-      visible: { opacity: 1, transition: { duration: 0.2 } },
-    }
-  }
-  return {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: {
-      pathLength: 1,
-      opacity: 1,
-      transition: { duration: 1.2, ease: EASE_OUT_QUART },
-    },
-  }
-}
-
-export function makeVillaFillVariants(reduced: boolean): Variants {
-  return {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { duration: reduced ? 0.2 : 0.8, ease: EASE_OUT_QUART },
-    },
-  }
-}
-
 export function makeDesignHeroContainerVariants(reduced: boolean): Variants {
   return {
     hidden: {},

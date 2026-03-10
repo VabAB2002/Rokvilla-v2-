@@ -21,6 +21,7 @@ interface FAQSectionProps {
   }>
   readonly title?: string
   readonly subtitle?: string
+  readonly sectionClassName?: string
 }
 
 /* ── Accordion item ── */
@@ -97,6 +98,7 @@ export function FAQSection({
   categories,
   title = 'Frequently Asked Questions',
   subtitle = 'Everything you need to know',
+  sectionClassName,
 }: FAQSectionProps) {
   const reducedMotion = useReducedMotion()
   const [activeCategory, setActiveCategory] = useState<string>(categories[0]?.id ?? '')
@@ -117,7 +119,7 @@ export function FAQSection({
     <section
       id="faq"
       aria-labelledby="faq-heading"
-      className="bg-parchment py-24 md:py-32 lg:py-36"
+      className={sectionClassName ?? "bg-parchment py-24 md:py-32 lg:py-36"}
     >
       <div className="mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
         {/* Header */}
@@ -135,7 +137,7 @@ export function FAQSection({
 
         {/* Category tabs */}
         <AnimatedSection delay={0.15} className="mt-12">
-          <div className="flex gap-2 overflow-x-auto no-scrollbar">
+          <div className="flex justify-center gap-2 overflow-x-auto no-scrollbar">
             {categories.map((cat) => (
               <button
                 key={cat.id}
