@@ -17,12 +17,12 @@ export function ServiceCard({ service }: ServiceCardProps) {
   return (
     <Link href={service.href}>
       <motion.div
-        className="group relative cursor-pointer overflow-hidden rounded-[4px]"
+        className="group relative cursor-pointer overflow-hidden"
         initial="rest"
         whileHover={reducedMotion ? undefined : 'hover'}
         whileTap={reducedMotion ? undefined : 'hover'}
       >
-        <div className="relative aspect-[4/3] overflow-hidden">
+        <div className="relative aspect-[3/2] overflow-hidden">
           {/* Image with scale on hover/tap */}
           <motion.div
             className="h-full w-full"

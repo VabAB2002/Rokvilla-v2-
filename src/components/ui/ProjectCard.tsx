@@ -15,12 +15,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <motion.div
-      className="group relative cursor-pointer overflow-hidden rounded-[4px] shadow-card transition-shadow duration-300 hover:shadow-card-hover"
+      className="group relative cursor-pointer overflow-hidden"
       initial="rest"
       whileHover={reducedMotion ? undefined : 'hover'}
       whileTap={reducedMotion ? undefined : 'hover'}
     >
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative aspect-[3/2] overflow-hidden">
         {/* Image with scale on hover/tap */}
         <motion.div
           className="h-full w-full"

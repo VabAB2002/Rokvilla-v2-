@@ -26,26 +26,26 @@ export function ServicesSection() {
         </AnimatedSection>
       </div>
 
-      {/* Cards — edge-to-edge */}
-      <div className="mt-16 px-3 md:px-4">
+      {/* Cards — flush edge-to-edge, no gaps */}
+      <div className="mt-16">
         {/* Mobile: horizontal scroll carousel */}
         <div className="md:hidden">
-          <div className="flex gap-3 overflow-x-auto scroll-snap-x no-scrollbar pb-4">
+          <div className="flex overflow-x-auto scroll-snap-x no-scrollbar">
             {SERVICES.map((service) => (
-              <div key={service.id} className="w-[80vw] max-w-[320px] shrink-0 scroll-snap-start">
+              <div key={service.id} className="w-[85vw] shrink-0 scroll-snap-start">
                 <ServiceCard service={service} />
               </div>
             ))}
           </div>
         </div>
 
-        {/* Desktop: staggered grid */}
+        {/* Desktop: staggered grid — no gaps */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
           variants={staggerVariants}
-          className="hidden gap-3 md:grid md:grid-cols-3 md:gap-4"
+          className="hidden md:grid md:grid-cols-3 md:gap-4"
         >
           {SERVICES.map((service, i) => (
             <motion.div

@@ -66,7 +66,7 @@ export function ProjectsSection() {
       </div>
 
       {/* Project grid — edge-to-edge */}
-      <div className="mt-10 px-3 md:px-4">
+      <div className="mt-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -74,7 +74,7 @@ export function ProjectsSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -16 }}
             transition={{ duration: reducedMotion ? 0.15 : 0.35, ease: EASE_OUT_EXPO }}
-            className="grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3"
+            className="grid gap-3 md:gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             {filteredProjects.map((project, i) => (
               <motion.div
