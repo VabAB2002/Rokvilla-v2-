@@ -9,7 +9,7 @@ import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { MenuOverlay } from '@/components/layout/MenuOverlay'
 
 /* Routes with light (white) backgrounds — navbar uses dark text */
-const LIGHT_BG_ROUTES = ['/design'] as const
+const LIGHT_BG_ROUTES = ['/design', '/furnish'] as const
 
 const LEFT_LINKS = [
   { label: 'Home', href: '/' },

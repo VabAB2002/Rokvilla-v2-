@@ -1,8 +1,8 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { VideoBackground } from '@/components/ui/VideoBackground'
-import { ButtonDark } from '@/components/ui/Button'
+import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { makeHeroContainerVariants, makeHeroItemVariants } from '@/lib/motion'
 
@@ -12,57 +12,81 @@ export function FurnishHero() {
   const itemVariants = makeHeroItemVariants(reducedMotion)
 
   return (
-    <section aria-label="Furnish hero" className="relative h-dvh min-h-[600px] overflow-hidden">
-      <VideoBackground
-        imageSrc="/00 FINISHED/14 ROKVILLA OFFICE/14_ROKVILLA OFFICE_01.jpg"
-        imageAlt="RokVilla interior furnishing — modern living space with premium materials"
+    <section
+      aria-label="Furnish hero"
+      className="relative h-dvh min-h-[600px] overflow-hidden bg-[#f4f2ed]"
+    >
+      {/* Illustration — positioned right, vertically centered */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/furnish-hero.png"
+          alt="Interior design sketch — living room with sofa, dining table, and shelving"
+          fill
+          priority
+          fetchPriority="high"
+          quality={90}
+          className="object-contain object-right-bottom md:object-right"
+          sizes="100vw"
+        />
+      </div>
+
+      {/* Subtle left-side veil so text stays crisp over any image bleed */}
+      <div
+        className="absolute inset-0 md:hidden"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(244,242,237,0.92) 0%, rgba(244,242,237,0.6) 50%, rgba(244,242,237,0.3) 100%)',
+        }}
       />
 
-      <div className="relative z-10 flex h-full items-end pb-24 md:items-center md:pb-0">
+      {/* Text — left-aligned, vertically centered */}
+      <div className="relative z-10 flex h-full items-center">
         <div className="mx-auto w-full max-w-7xl px-6 md:px-12">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="max-w-2xl lg:max-w-3xl"
+            className="max-w-lg lg:max-w-xl"
           >
             <motion.span
               variants={itemVariants}
-              className="mb-6 block font-accent text-[13px] uppercase tracking-[0.18em] text-brass-light"
+              className="mb-5 block font-accent text-[13px] uppercase tracking-[0.18em] text-terracotta"
             >
               Furnishing Services
             </motion.span>
 
             <motion.h1
               variants={itemVariants}
-              className="font-display text-[clamp(3rem,7vw,7rem)] font-light leading-[0.9] text-bone whitespace-pre-line"
+              className="font-display text-[clamp(2.8rem,6vw,5.5rem)] font-light leading-[0.95] text-obsidian"
             >
-              {"Let's Furnish\nYour Rok-Villa"}
+              Furnish Your
+              <br />
+              Vision
             </motion.h1>
 
             <motion.p
               variants={itemVariants}
-              className="mt-6 max-w-md font-body text-base leading-relaxed text-stone md:text-lg"
+              className="mt-5 max-w-sm font-body text-base leading-relaxed text-slate md:text-lg"
             >
-              End-to-end interior furnishing with premium materials, expert
-              craftsmanship, and a 10-year warranty on all woodwork.
+              Interiors crafted with precision, styled with intent.
             </motion.p>
 
             <motion.div
               variants={itemVariants}
-              className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4"
+              className="mt-9 flex flex-col gap-3 sm:flex-row sm:gap-4"
             >
-              <ButtonDark variant="primary" href="#furnish-projects" className="w-full sm:w-auto">
+              <Button variant="primary" href="#furnish-projects" className="w-full sm:w-auto">
                 Browse Projects
-              </ButtonDark>
-              <ButtonDark variant="secondary" href="#consultation" className="w-full sm:w-auto">
+              </Button>
+              <Button variant="secondary" href="#consultation" className="w-full sm:w-auto">
                 Book Consultation
-              </ButtonDark>
+              </Button>
             </motion.div>
           </motion.div>
         </div>
       </div>
 
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -82,7 +106,7 @@ export function FurnishHero() {
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-bone/70"
+          className="text-slate/50"
         >
           <path d="M12 5v14M5 12l7 7 7-7" />
         </motion.svg>
