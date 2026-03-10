@@ -46,7 +46,7 @@ export function FurnishHero() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="max-w-lg lg:max-w-xl"
+            className="max-w-sm md:max-w-md"
           >
             <motion.span
               variants={itemVariants}
