@@ -151,3 +151,99 @@ export function makeHeroItemVariants(reduced: boolean): Variants {
     },
   }
 }
+
+/* ── Illustration scene entrance (staggered items) ── */
+export function makeSceneContainerVariants(reduced: boolean): Variants {
+  return {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: reduced ? 0 : 0.07,
+        delayChildren: reduced ? 0 : 0.1,
+      },
+    },
+  }
+}
+
+export function makeSceneItemVariants(reduced: boolean): Variants {
+  return {
+    hidden: reduced ? { opacity: 0 } : { opacity: 0, y: 18 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: reduced ? 0.15 : 0.55, ease: EASE_OUT_EXPO },
+    },
+  }
+}
+
+/* ── Ambient loop transitions (used in illustration scenes) ── */
+/* Typed as Record so per-property keys (scale, rotate, etc.) are accessible */
+export const AMBIENT_STEAM = {
+  y: { duration: 3, ease: 'easeInOut', repeat: Infinity },
+  opacity: { duration: 3, ease: 'easeInOut', repeat: Infinity },
+} satisfies Transition
+
+export const AMBIENT_PULSE = {
+  scale: { duration: 2, ease: 'easeInOut', repeat: Infinity },
+} satisfies Transition
+
+export const AMBIENT_WOBBLE = {
+  rotate: { duration: 2.5, ease: 'easeInOut', repeat: Infinity },
+} satisfies Transition
+
+export const AMBIENT_BLINK = {
+  opacity: { duration: 1.2, ease: 'easeInOut', repeat: Infinity },
+} satisfies Transition
+
+/* ── Villa isometric drawing (consultation section) ── */
+
+export function makeVillaContainerVariants(reduced: boolean): Variants {
+  return {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: reduced ? 0 : 0.15,
+        delayChildren: reduced ? 0 : 0.3,
+      },
+    },
+  }
+}
+
+export function makeVillaDrawVariants(reduced: boolean): Variants {
+  if (reduced) {
+    return {
+      hidden: { opacity: 0 },
+      visible: { opacity: 1, transition: { duration: 0.2 } },
+    }
+  }
+  return {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: {
+      pathLength: 1,
+      opacity: 1,
+      transition: { duration: 1.2, ease: EASE_OUT_QUART },
+    },
+  }
+}
+
+export function makeVillaFillVariants(reduced: boolean): Variants {
+  return {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { duration: reduced ? 0.2 : 0.8, ease: EASE_OUT_QUART },
+    },
+  }
+}
+
+export function makeDesignHeroContainerVariants(reduced: boolean): Variants {
+  return {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: reduced ? 0 : 0.12,
+        delayChildren: reduced ? 0 : 1.6,
+      },
+    },
+  }
+}

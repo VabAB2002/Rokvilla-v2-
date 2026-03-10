@@ -2,10 +2,14 @@
 
 import { useState, useCallback, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { useScrollDirection } from '@/hooks/useScrollDirection'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { MenuOverlay } from '@/components/layout/MenuOverlay'
+
+/* Routes with light (white) backgrounds — navbar uses dark text */
+const LIGHT_BG_ROUTES = ['/design'] as const
 
 const LEFT_LINKS = [
   { label: 'Home', href: '/' },
@@ -14,7 +18,7 @@ const LEFT_LINKS = [
 const SERVICE_CHILDREN = [
   { label: 'Design', href: '/design' },
   { label: 'Build', href: '/services/build' },
-  { label: 'Furnish', href: '/services/furnish' },
+  { label: 'Furnish', href: '/furnish' },
 ] as const
 
 const RIGHT_LINKS = [
@@ -28,6 +32,8 @@ const LINK_CLASS =
 const DIVIDER = 'h-4 w-px bg-bone/20'
 
 export function Navigation() {
+  const pathname = usePathname()
+  const isLightBg = LIGHT_BG_ROUTES.some((r) => pathname === r)
   const isHidden = useScrollDirection(80, 10)
   const reducedMotion = useReducedMotion()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -71,7 +77,14 @@ export function Navigation() {
   // Don't hide nav when menu is open
   const shouldHide = isHidden && !isMenuOpen
   const hamburgerDuration = reducedMotion ? 0.01 : undefined
-  const lineColor = 'bg-bone'
+  const lineColor = isLightBg ? 'bg-charcoal' : 'bg-bone'
+  const linkClass = isLightBg
+    ? 'font-body text-[11px] font-semibold uppercase tracking-[0.12em] text-charcoal/80 transition-colors duration-300 hover:text-terracotta'
+    : LINK_CLASS
+  const dividerClass = isLightBg ? 'h-4 w-px bg-charcoal/20' : DIVIDER
+  const wordmarkClass = isLightBg
+    ? 'font-accent text-[15px] uppercase tracking-[0.2em] text-charcoal transition-colors duration-300 hover:text-terracotta'
+    : 'font-accent text-[15px] uppercase tracking-[0.2em] text-bone transition-colors duration-300 hover:text-terracotta'
 
   const hamburgerLines = (
     <div className="flex flex-col gap-1.5">
@@ -123,42 +136,41 @@ export function Navigation() {
           >
             <div className="flex items-baseline gap-5">
               {LEFT_LINKS.map((link) => (
-                <Link key={link.href} href={link.href} className={LINK_CLASS}>
+                <Link key={link.href} href={link.href} className={linkClass}>
                   {link.label}
                 </Link>
               ))}
 
               {/* Services with dropdown */}
-              <div className="group relative">
-                <Link href="/#services" className={LINK_CLASS}>
+              <div className="group relative pb-2 -mb-2">
+                <Link href="/#services" className={linkClass}>
                   Services
                 </Link>
-                <div className="pointer-events-none absolute left-1/2 top-full pt-3 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:opacity-100">
-                  <div className="-translate-x-1/2 border border-white/10 bg-void/80 py-2 backdrop-blur-md">
-                    {SERVICE_CHILDREN.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="block whitespace-nowrap px-5 py-2 font-body text-[11px] font-medium uppercase tracking-[0.1em] text-bone/70 transition-colors duration-200 hover:text-terracotta"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
+                <div className="invisible absolute left-1/2 top-full opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                  <div className="-translate-x-1/2 pt-2">
+                    <div className={`border py-2 backdrop-blur-md ${isLightBg ? 'border-charcoal/10 bg-bone/80' : 'border-white/10 bg-void/80'}`}>
+                      {SERVICE_CHILDREN.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className={`block whitespace-nowrap px-5 py-2 font-body text-[11px] font-medium uppercase tracking-[0.1em] transition-colors duration-200 hover:text-terracotta ${isLightBg ? 'text-charcoal/70' : 'text-bone/70'}`}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <span className={DIVIDER} aria-hidden="true" />
-              <Link
-                href="/"
-                className="font-accent text-[15px] uppercase tracking-[0.2em] text-bone transition-colors duration-300 hover:text-terracotta"
-              >
+              <span className={dividerClass} aria-hidden="true" />
+              <Link href="/" className={wordmarkClass}>
                 RokVilla
               </Link>
-              <span className={DIVIDER} aria-hidden="true" />
+              <span className={dividerClass} aria-hidden="true" />
 
               {RIGHT_LINKS.map((link) => (
-                <Link key={link.href} href={link.href} className={LINK_CLASS}>
+                <Link key={link.href} href={link.href} className={linkClass}>
                   {link.label}
                 </Link>
               ))}
@@ -184,7 +196,7 @@ export function Navigation() {
 
           <Link
             href="/"
-            className="font-accent text-[15px] uppercase tracking-[0.2em] text-bone transition-colors duration-300"
+            className={`font-accent text-[15px] uppercase tracking-[0.2em] transition-colors duration-300 ${isLightBg ? 'text-charcoal' : 'text-bone'}`}
           >
             RokVilla
           </Link>

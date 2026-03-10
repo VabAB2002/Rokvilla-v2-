@@ -13,7 +13,7 @@ const MENU_LINKS = [
     children: [
       { label: 'Design', href: '/design' },
       { label: 'Build', href: '/services/build' },
-      { label: 'Furnish', href: '/services/furnish' },
+      { label: 'Furnish', href: '/furnish' },
     ],
   },
   { label: 'Projects', href: '/#projects' },
