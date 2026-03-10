@@ -39,8 +39,8 @@ export function FurnishHero() {
         }}
       />
 
-      {/* Text — left-aligned, vertically centered */}
-      <div className="relative z-10 flex h-full items-center">
+      {/* Text — left-aligned, pushed into upper half to clear illustration */}
+      <div className="relative z-10 flex h-full items-center pb-[18vh] md:pb-[22vh]">
         <div className="mx-auto w-full max-w-7xl px-6 md:px-12">
           <motion.div
             variants={containerVariants}
