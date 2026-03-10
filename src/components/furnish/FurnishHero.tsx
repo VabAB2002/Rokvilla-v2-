@@ -25,7 +25,7 @@ export function FurnishHero() {
           priority
           fetchPriority="high"
           quality={90}
-          className="object-contain object-right-bottom md:object-right"
+          className="object-cover object-[65%_bottom] md:object-[55%_center]"
           sizes="100vw"
         />
       </div>
