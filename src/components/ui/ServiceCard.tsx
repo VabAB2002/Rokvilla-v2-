@@ -45,7 +45,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
             <h3 className="font-display text-xl font-medium text-bone md:text-2xl">
               {service.title}
             </h3>
-            <p className="mt-2 font-body text-[15px] leading-relaxed text-bone/90">
+            <p className="mt-2 line-clamp-1 font-body text-[15px] leading-relaxed text-bone/90">
               {service.description}
             </p>
           </div>
