@@ -14,7 +14,7 @@ export function FurnishHero() {
   return (
     <section
       aria-label="Furnish hero"
-      className="relative h-dvh min-h-[600px] overflow-hidden bg-[#f4f2ed]"
+      className="relative h-dvh min-h-[600px] overflow-hidden bg-white"
     >
       {/* Illustration — positioned right, vertically centered */}
       <div className="absolute inset-0">
@@ -35,18 +35,18 @@ export function FurnishHero() {
         className="absolute inset-0 md:hidden"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(244,242,237,0.92) 0%, rgba(244,242,237,0.6) 50%, rgba(244,242,237,0.3) 100%)',
+            'linear-gradient(to bottom, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.3) 100%)',
         }}
       />
 
-      {/* Text — left-aligned, pushed into upper half to clear illustration */}
-      <div className="relative z-10 flex h-full items-center pb-[18vh] md:pb-[22vh]">
+      {/* Text — left-aligned, vertically centered */}
+      <div className="relative z-10 flex h-full items-center">
         <div className="mx-auto w-full max-w-7xl px-6 md:px-12">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="max-w-sm md:max-w-md"
+            className="max-w-lg lg:max-w-xl"
           >
             <motion.span
               variants={itemVariants}
