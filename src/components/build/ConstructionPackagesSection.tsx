@@ -70,8 +70,6 @@ import {
   X,
   Minus,
   Circle,
-  Eye,
-  EyeOff,
 } from 'lucide-react'
 
 /* ── Icon lookup ── */
@@ -333,20 +331,28 @@ function PackageTypeToggle({
 }) {
   return (
     <div className="mt-8 flex justify-center">
-      <div className="inline-flex gap-2 rounded-[2px] border border-limestone/40 bg-white p-1.5">
+      <div className="inline-flex rounded-full bg-limestone/20 p-1 shadow-inner">
         {PACKAGE_TYPES.map((pt) => (
           <button
             key={pt.id}
             type="button"
             onClick={() => onSelect(pt.id)}
-            className={`rounded-[2px] px-5 py-2.5 font-body text-[13px] uppercase tracking-[0.08em] transition-all duration-200 min-h-[44px] ${
-              activeId === pt.id
-                ? 'bg-terracotta text-bone shadow-sm'
-                : 'text-slate hover:text-obsidian'
+            className={`relative min-h-[44px] rounded-full px-6 py-3 transition-colors duration-200 ${
+              activeId === pt.id ? 'text-bone' : 'text-slate hover:text-obsidian'
             }`}
           >
-            <span className="block font-medium">{pt.label}</span>
-            <span className="mt-0.5 block text-[11px] tracking-[0.04em] opacity-80">
+            {activeId === pt.id && (
+              <motion.span
+                layoutId="pkg-pill"
+                className="absolute inset-0 rounded-full bg-terracotta shadow-md"
+                style={{ borderRadius: 9999 }}
+                transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
+              />
+            )}
+            <span className="relative z-10 block font-body text-[13px] font-medium uppercase tracking-[0.08em]">
+              {pt.label}
+            </span>
+            <span className="relative z-10 mt-0.5 block font-body text-[11px] tracking-[0.04em] opacity-80">
               starts at ₹{INR_FORMAT.format(pt.startingPrice)} per sqft
             </span>
           </button>
@@ -430,18 +436,26 @@ export function ConstructionPackagesSection() {
           />
 
           {/* Highlight differences toggle */}
-          <div className="mt-4 flex justify-center">
+          <div className="mt-5 flex items-center justify-center gap-3">
+            <span className="font-body text-[13px] tracking-[0.04em] text-slate">
+              Highlight Differences
+            </span>
             <button
               type="button"
+              role="switch"
+              aria-checked={highlightDiffs}
+              aria-label="Highlight differences between packages"
               onClick={() => setHighlightDiffs((prev) => !prev)}
-              className={`inline-flex min-h-[44px] items-center gap-2 rounded-[2px] px-5 py-2.5 font-body text-[13px] tracking-[0.04em] transition-all duration-200 ${
-                highlightDiffs
-                  ? 'bg-obsidian text-bone shadow-sm'
-                  : 'border border-limestone/40 text-slate hover:text-obsidian'
+              className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full transition-colors duration-300 ${
+                highlightDiffs ? 'bg-terracotta' : 'bg-limestone/40'
               }`}
             >
-              {highlightDiffs ? <EyeOff size={15} /> : <Eye size={15} />}
-              Highlight Differences
+              <motion.span
+                layout
+                className="pointer-events-none block h-5 w-5 rounded-full bg-white shadow-sm"
+                transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
+                style={{ marginLeft: highlightDiffs ? 22 : 2 }}
+              />
             </button>
           </div>
         </AnimatedSection>
