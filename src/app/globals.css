@@ -38,7 +38,7 @@
   /* ── Shadows ── */
   --shadow-card: 0 1px 3px rgba(28,25,22,0.06), 0 4px 16px rgba(28,25,22,0.08);
   --shadow-card-hover: 0 8px 32px rgba(28,25,22,0.14), 0 2px 8px rgba(28,25,22,0.08);
-  --shadow-accent: 0 4px 20px rgba(196, 98, 45, 0.3);
+  --shadow-accent: 0 4px 20px rgba(238, 119, 7, 0.3);
   --shadow-dark: 0 4px 24px rgba(0,0,0,0.3);
 
   /* ── Easings ── */
@@ -64,8 +64,8 @@
 }
 
 @keyframes shadowPulse {
-  0%   { box-shadow: 0 4px 16px rgba(196, 98, 45, 0.25); }
-  100% { box-shadow: 0 6px 24px rgba(196, 98, 45, 0.45); }
+  0%   { box-shadow: 0 4px 16px rgba(238, 119, 7, 0.25); }
+  100% { box-shadow: 0 6px 24px rgba(238, 119, 7, 0.45); }
 }
 
 /* ── Base Styles ── */

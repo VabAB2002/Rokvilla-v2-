@@ -41,7 +41,7 @@ export function FloatingCTAs() {
         variants={reducedMotion ? undefined : floatUpVariants}
         whileHover={{ scale: 1.05, y: -2 }}
         whileTap={{ scale: 0.95 }}
-        className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-terracotta text-bone shadow-accent transition-shadow hover:shadow-[0_6px_24px_rgba(196,98,45,0.45)] md:h-14 md:w-14 xl:h-16 xl:w-16"
+        className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-terracotta text-bone shadow-accent transition-shadow hover:shadow-[0_6px_24px_rgba(238,119,7,0.45)] md:h-14 md:w-14 xl:h-16 xl:w-16"
         aria-label="Call us"
       >
         <svg

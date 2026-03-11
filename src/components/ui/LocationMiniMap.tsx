@@ -58,7 +58,7 @@ export function LocationMiniMap({ location }: LocationMiniMapProps) {
         const markerEl = document.createElement('div')
         markerEl.innerHTML = `
           <svg width="24" height="32" viewBox="0 0 28 38" fill="none">
-            <path d="M14 0C6.268 0 0 6.268 0 14c0 10.5 14 24 14 24s14-13.5 14-24C28 6.268 21.732 0 14 0z" fill="#C4622D"/>
+            <path d="M14 0C6.268 0 0 6.268 0 14c0 10.5 14 24 14 24s14-13.5 14-24C28 6.268 21.732 0 14 0z" fill="#EE7707"/>
             <circle cx="14" cy="14" r="6" fill="#FFFFFF"/>
           </svg>
         `
