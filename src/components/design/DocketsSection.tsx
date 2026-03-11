@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -13,131 +12,168 @@ import {
   type PricingUnit,
 } from '@/lib/constants/design'
 
-/* ── Helpers ── */
+/* ── Row stagger variants ── */
 
-function formatPrice(rate: number, unit: PricingUnit): string {
-  const r = `₹${rate.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`
-  switch (unit) {
-    case 'sqft':
-      return `${r} / Sqft`
-    case 'room':
-      return `${r} / Room`
-    case 'unit':
-      return `${r} / Unit`
+function makeRowContainerVariants(reduced: boolean): Variants {
+  return {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: reduced ? 0 : 0.04 },
+    },
   }
+}
+
+function makeRowItemVariants(reduced: boolean): Variants {
+  return {
+    hidden: reduced ? { opacity: 0 } : { opacity: 0, y: 8 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: reduced ? 0.1 : 0.3, ease: EASE_OUT_QUART },
+    },
+  }
+}
+
+/* ── Formatting ── */
+
+const INR_FORMAT = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 })
+
+const UNIT_LABELS: Readonly<Record<PricingUnit, string>> = {
+  sqft: '/ sqft',
+  unit: '/ unit',
 }
 
 /* ── Main Section ── */
 
 export function DocketsSection() {
   const reduced = useReducedMotion()
-  const [active, setActive] = useState(PRICING_CATEGORIES[0].id)
-
-  const handleChange = useCallback((id: string) => {
-    setActive(id)
-  }, [])
-
-  const rates = PRICING_RATES[active]
-  const activeCategory = PRICING_CATEGORIES.find((c) => c.id === active)
+  const rowContainerVariants = makeRowContainerVariants(reduced)
+  const rowItemVariants = makeRowItemVariants(reduced)
 
   return (
     <section
       id="dockets"
       aria-labelledby="dockets-heading"
-      className="bg-parchment py-24 md:py-32 lg:py-36"
+      className="bg-white py-24 md:py-32 lg:py-36"
     >
       <div className="mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
         {/* Header */}
         <AnimatedSection className="text-center">
+          <span className="mb-4 block font-accent text-[13px] uppercase tracking-[0.18em] text-terracotta md:text-[15px]">
+            Looking for Drawings Only?
+          </span>
           <h2
             id="dockets-heading"
-            className="font-display text-2xl font-medium uppercase text-obsidian md:text-3xl lg:text-4xl"
+            className="font-display text-3xl font-medium text-obsidian md:text-4xl lg:text-5xl"
           >
-            Architectural Drawing Services
+            Architectural &amp; Good for Construction Drawings
           </h2>
-          <p className="mt-3 font-body text-base tracking-wide text-slate md:text-lg">
-            Transparent pricing for every project type
+          <p className="mt-4 font-body text-base leading-relaxed text-slate md:text-lg">
+            Transparent, per-unit rates across all project types.
           </p>
         </AnimatedSection>
 
-        {/* Category Filter Tabs */}
+        {/* Comparison Table */}
         <AnimatedSection delay={0.15} className="mt-12">
-          <div
-            role="tablist"
-            aria-label="Project categories"
-            className="flex flex-wrap justify-center gap-2"
-          >
-            {PRICING_CATEGORIES.map((cat) => (
-              <button
-                key={cat.id}
-                id={`tab-${cat.id}`}
-                type="button"
-                role="tab"
-                aria-selected={active === cat.id}
-                aria-label={cat.label}
-                onClick={() => handleChange(cat.id)}
-                className={`shrink-0 rounded-[2px] border px-4 py-2.5 min-h-[44px] inline-flex items-center font-body text-[12px] uppercase tracking-[0.08em] transition-all duration-200 md:px-5 md:text-[13px] ${
-                  active === cat.id
-                    ? 'border-terracotta bg-terracotta text-bone'
-                    : 'border-limestone text-slate hover:border-obsidian/30 hover:text-obsidian'
-                }`}
-              >
-                <span aria-hidden="true" className="hidden md:inline">{cat.label}</span>
-                <span aria-hidden="true" className="md:hidden">{cat.shortLabel}</span>
-              </button>
-            ))}
-          </div>
-        </AnimatedSection>
+          <div className="mx-auto max-w-5xl overflow-x-auto rounded-[4px] border border-limestone/40 bg-white shadow-card no-scrollbar">
+            <table className="w-full min-w-[640px]">
+              {/* Column Headers */}
+              <thead>
+                <tr className="border-b border-limestone/30">
+                  <th className="sticky left-0 z-10 border-r border-limestone/20 bg-white py-4 pl-6 pr-4 text-left font-display text-sm font-medium text-stone md:pl-8 md:text-base">
+                    Service
+                  </th>
+                  {PRICING_CATEGORIES.map((cat) => (
+                    <th
+                      key={cat.id}
+                      className="px-3 py-4 text-center font-body text-xs uppercase tracking-[0.08em] text-slate md:px-4"
+                    >
+                      <span className="hidden lg:inline">{cat.label}</span>
+                      <span className="lg:hidden">{cat.shortLabel}</span>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
 
-        {/* Pricing Table */}
-        <AnimatedSection delay={0.25} className="mt-10">
-          <div className="mx-auto max-w-3xl">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active}
-                role="tabpanel"
-                aria-labelledby={`tab-${active}`}
-                initial={reduced ? { opacity: 0 } : { opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reduced ? { opacity: 0 } : { opacity: 0, y: -12 }}
-                transition={{ duration: reduced ? 0.1 : 0.3, ease: EASE_OUT_QUART }}
+              {/* Service Rows */}
+              <motion.tbody
+                variants={rowContainerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-60px' }}
               >
-                {/* Category heading */}
-                <h3 className="font-display text-xl font-medium italic text-obsidian md:text-2xl">
-                  {activeCategory?.label}
-                </h3>
-                <div className="mt-3 h-px bg-limestone/60" />
+                {PRICING_SERVICES.map((service, i) => {
+                  const isLast = i === PRICING_SERVICES.length - 1
 
-                {/* Table — no column headers, self-explanatory */}
-                <table className="mt-1 w-full">
-                  <tbody>
-                    {PRICING_SERVICES.map((service, i) => (
-                      <tr
-                        key={service.id}
-                        className={`border-b border-limestone/25 transition-colors duration-150 hover:bg-limestone/15 ${
-                          i % 2 === 0 ? 'bg-transparent' : 'bg-white/60'
-                        }`}
-                      >
-                        <td className="py-3.5 pr-4 font-body text-sm text-obsidian md:text-[15px]">
-                          {service.name}
-                        </td>
-                        <td className="whitespace-nowrap py-3.5 pl-4 text-right font-display text-sm font-medium text-obsidian md:text-base">
-                          {formatPrice(rates[service.id] ?? 0, service.unit)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </motion.div>
-            </AnimatePresence>
+                  return (
+                    <motion.tr
+                      key={service.id}
+                      variants={rowItemVariants}
+                      className={`group transition-colors duration-150 hover:bg-parchment ${
+                        !isLast ? 'border-b border-limestone/15' : ''
+                      }`}
+                    >
+                      {/* Service name + icon (sticky on mobile scroll) */}
+                      <td className="sticky left-0 z-10 border-r border-limestone/20 bg-white py-3 pl-6 pr-4 transition-colors duration-150 group-hover:bg-parchment md:pl-8">
+                        <div className="flex items-center gap-3">
+                          <div
+                            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-terracotta/8 md:h-9 md:w-9"
+                            aria-hidden="true"
+                          >
+                            <svg
+                              width="15"
+                              height="15"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="text-terracotta md:h-[17px] md:w-[17px]"
+                            >
+                              <path d={service.iconPath} />
+                            </svg>
+                          </div>
+                          <span className="font-body text-[13px] text-obsidian md:text-sm">
+                            {service.name}
+                          </span>
+                        </div>
+                      </td>
+
+                      {/* Price cells for each category */}
+                      {PRICING_CATEGORIES.map((cat) => {
+                        const rate = PRICING_RATES[cat.id][service.id] ?? 0
+
+                        return (
+                          <td
+                            key={cat.id}
+                            className="px-3 py-3 text-center md:px-4"
+                          >
+                            <span className="font-display text-sm font-medium text-obsidian md:text-base">
+                              ₹{INR_FORMAT.format(rate)}
+                            </span>
+                            <span className="ml-0.5 font-body text-xs text-stone">
+                              {UNIT_LABELS[service.unit]}
+                            </span>
+                          </td>
+                        )
+                      })}
+                    </motion.tr>
+                  )
+                })}
+              </motion.tbody>
+            </table>
           </div>
         </AnimatedSection>
 
         {/* CTA */}
-        <AnimatedSection delay={0.35} className="mt-14 text-center">
+        <AnimatedSection delay={0.3} className="mt-12 text-center">
           <Button variant="primary" href="#consultation">
             Get a Custom Quote
           </Button>
+          <p className="mt-4 font-body text-xs tracking-wide text-stone">
+            Prices are indicative. Final quote based on project scope.
+          </p>
         </AnimatedSection>
       </div>
     </section>

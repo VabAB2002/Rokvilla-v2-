@@ -37,7 +37,7 @@ export const DESIGN_STEPS: ReadonlyArray<ProcessStep> = [
 
 /* ── Pricing Services (à la carte) ── */
 
-export type PricingUnit = 'sqft' | 'room' | 'unit'
+export type PricingUnit = 'sqft' | 'unit'
 
 export interface PricingService {
   readonly id: string
@@ -79,14 +79,14 @@ export const PRICING_SERVICES: ReadonlyArray<PricingService> = [
     id: '3d-basic-interior',
     name: '3D Renders — Basic Interior',
     shortName: '3D Basic Interior',
-    unit: 'room',
+    unit: 'sqft',
     iconPath: 'M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z',
   },
   {
     id: '3d-luxury-interior',
     name: '3D Renders — Luxury Interior',
     shortName: '3D Luxury Interior',
-    unit: 'room',
+    unit: 'sqft',
     iconPath: 'M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z',
   },
   {

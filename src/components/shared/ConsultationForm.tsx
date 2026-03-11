@@ -15,6 +15,7 @@ interface FormFields {
   readonly phone: string
   readonly category: string
   readonly consultationType: string
+  readonly location: string
   readonly message: string
   readonly privacy: boolean
 }
@@ -26,10 +27,17 @@ const INITIAL_FIELDS: FormFields = {
   email: '',
   phone: '',
   category: '',
-  consultationType: 'in-person',
+  consultationType: '',
+  location: '',
   message: '',
   privacy: false,
 }
+
+const CONSULTATION_TYPES = [
+  { value: 'in-person', label: 'In Person' },
+  { value: 'virtual', label: 'Virtual' },
+] as const
+
 
 const DEFAULT_CATEGORIES: ReadonlyArray<{ readonly value: string; readonly label: string }> = [
   { value: 'residential', label: 'Residential' },
@@ -65,6 +73,8 @@ function validateForm(fields: FormFields): FormErrors {
     errors.phone = 'Enter a valid phone number'
   }
   if (!fields.category) errors.category = 'Select a category'
+  if (!fields.consultationType) errors.consultationType = 'Select a consultation type'
+  if (!fields.location) errors.location = 'Select a location'
   if (!fields.privacy) errors.privacy = 'You must agree to the privacy policy'
 
   return errors
@@ -198,12 +208,12 @@ export function ConsultationForm({
           <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
             {/* Left column: text + illustration + contact */}
             <AnimatedSection className="flex-1 lg:max-w-md">
-              <p className="font-accent text-xs uppercase tracking-[0.2em] text-brass">
+              <p className="font-accent text-[13px] uppercase tracking-[0.18em] text-brass md:text-[15px]">
                 We&apos;re here to help
               </p>
               <h2
                 id="consultation-heading"
-                className="mt-3 font-display text-3xl font-light leading-[1.06] text-obsidian md:text-4xl lg:text-5xl"
+                className="mt-3 font-display text-3xl font-medium text-obsidian md:text-4xl lg:text-5xl"
               >
                 {title.includes('Deliver') ? (
                   <>
@@ -215,7 +225,7 @@ export function ConsultationForm({
                   title
                 )}
               </h2>
-              <p className="mt-4 max-w-sm font-body text-sm leading-relaxed tracking-wide text-slate md:text-base">
+              <p className="mt-4 max-w-sm font-body text-base leading-relaxed tracking-wide text-slate md:text-lg">
                 {subtitle}
               </p>
 
@@ -315,7 +325,7 @@ export function ConsultationForm({
                     className="rounded-[10px] border border-limestone/20 bg-white p-7 shadow-[0_1px_3px_rgba(0,0,0,0.03),0_8px_32px_rgba(0,0,0,0.05)] md:p-10"
                   >
                     <h3 className="mb-5 font-display text-lg text-obsidian">
-                      Book a Consultation
+                      Get in Touch
                     </h3>
 
                     {/* Row 1: Name + Email */}
@@ -389,34 +399,48 @@ export function ConsultationForm({
                       </div>
                     </div>
 
-                    {/* Row 3: Consultation type */}
-                    <fieldset className="mt-4">
-                      <legend className="mb-2 font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate">
-                        Consultation Type
-                      </legend>
-                      <div className="flex gap-3">
-                        {(['in-person', 'virtual'] as const).map((type) => (
-                          <label
-                            key={type}
-                            className={`flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-[4px] border px-4 py-2.5 font-body text-sm transition-colors ${
-                              fields.consultationType === type
-                                ? 'border-terracotta bg-terracotta/5 text-terracotta'
-                                : 'border-limestone text-slate hover:border-slate/40'
-                            }`}
-                          >
-                            <input
-                              type="radio"
-                              name="consultationType"
-                              value={type}
-                              checked={fields.consultationType === type}
-                              onChange={(e) => handleChange('consultationType', e.target.value)}
-                              className="sr-only"
-                            />
-                            {type === 'in-person' ? 'In Person' : 'Virtual'}
-                          </label>
-                        ))}
+                    {/* Row 3: Consultation Type + Location */}
+                    <div className="mt-4 grid gap-4 md:grid-cols-2">
+                      <div>
+                        <label
+                          htmlFor="form-consultationType-split"
+                          className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
+                        >
+                          Consultation Type
+                        </label>
+                        <select
+                          id="form-consultationType-split"
+                          name="consultationType"
+                          value={fields.consultationType}
+                          onChange={(e) => handleChange('consultationType', e.target.value)}
+                          aria-invalid={!!errors.consultationType}
+                          aria-describedby={errors.consultationType ? 'form-consultationType-split-error' : undefined}
+                          className={`w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
+                            errors.consultationType
+                              ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
+                              : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
+                          }`}
+                        >
+                          <option value="">Select type</option>
+                          {CONSULTATION_TYPES.map((ct) => (
+                            <option key={ct.value} value={ct.value}>{ct.label}</option>
+                          ))}
+                        </select>
+                        {errors.consultationType && (
+                          <p id="form-consultationType-split-error" role="alert" className="mt-1 font-body text-xs text-terracotta-deep">
+                            {errors.consultationType}
+                          </p>
+                        )}
                       </div>
-                    </fieldset>
+                      <FormInput
+                        label="Location"
+                        name="location"
+                        value={fields.location}
+                        error={errors.location}
+                        placeholder="Your city or area"
+                        onChange={handleChange}
+                      />
+                    </div>
 
                     {/* Row 4: Message */}
                     <div className="mt-4">
@@ -503,7 +527,7 @@ export function ConsultationForm({
     <section
       id="consultation"
       aria-labelledby="consultation-heading"
-      className="bg-white py-24 md:py-32 lg:py-36"
+      className={sectionClassName ?? "bg-white py-24 md:py-32 lg:py-36"}
     >
       <div className="mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
         {/* Header */}
@@ -514,7 +538,7 @@ export function ConsultationForm({
           >
             {title}
           </h2>
-          <p className="mt-3 font-body text-base tracking-wide text-slate md:text-lg">
+          <p className="mt-3 font-body text-base leading-relaxed tracking-wide text-slate md:text-lg">
             {subtitle}
           </p>
         </AnimatedSection>
@@ -634,31 +658,48 @@ export function ConsultationForm({
                   )}
                 </div>
 
-                {/* Row 3: Consultation type */}
-                <fieldset className="mt-5">
-                  <legend className="mb-2 font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate">
-                    Consultation Type
-                  </legend>
-                  <div className="flex gap-6">
-                    {(['in-person', 'virtual'] as const).map((type) => (
-                      <label key={type} className="flex cursor-pointer items-center gap-2">
-                        <input
-                          type="radio"
-                          name="consultationType"
-                          value={type}
-                          checked={fields.consultationType === type}
-                          onChange={(e) =>
-                            handleChange('consultationType', e.target.value)
-                          }
-                          className="h-4 w-4 accent-terracotta"
-                        />
-                        <span className="font-body text-sm text-obsidian">
-                          {type === 'in-person' ? 'In Person' : 'Virtual'}
-                        </span>
-                      </label>
-                    ))}
+                {/* Row 3: Consultation Type + Location */}
+                <div className="mt-5 grid gap-5 md:grid-cols-2">
+                  <div>
+                    <label
+                      htmlFor="form-consultationType"
+                      className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
+                    >
+                      Consultation Type
+                    </label>
+                    <select
+                      id="form-consultationType"
+                      name="consultationType"
+                      value={fields.consultationType}
+                      onChange={(e) => handleChange('consultationType', e.target.value)}
+                      aria-invalid={!!errors.consultationType}
+                      aria-describedby={errors.consultationType ? 'form-consultationType-error' : undefined}
+                      className={`w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
+                        errors.consultationType
+                          ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
+                          : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
+                      }`}
+                    >
+                      <option value="">Select type</option>
+                      {CONSULTATION_TYPES.map((ct) => (
+                        <option key={ct.value} value={ct.value}>{ct.label}</option>
+                      ))}
+                    </select>
+                    {errors.consultationType && (
+                      <p id="form-consultationType-error" role="alert" className="mt-1 font-body text-xs text-terracotta-deep">
+                        {errors.consultationType}
+                      </p>
+                    )}
                   </div>
-                </fieldset>
+                  <FormInput
+                    label="Location"
+                    name="location"
+                    value={fields.location}
+                    error={errors.location}
+                    placeholder="Your city or area"
+                    onChange={handleChange}
+                  />
+                </div>
 
                 {/* Row 4: Message */}
                 <div className="mt-5">

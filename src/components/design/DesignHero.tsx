@@ -46,7 +46,7 @@ export function DesignHero() {
             {/* Overline */}
             <motion.span
               variants={itemVariants}
-              className="mb-6 block font-accent text-[13px] uppercase tracking-[0.18em] text-brass"
+              className="mb-6 block font-accent text-[13px] uppercase tracking-[0.18em] text-brass md:text-[15px]"
             >
               Design Services
             </motion.span>

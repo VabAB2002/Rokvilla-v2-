@@ -16,7 +16,7 @@ export const SERVICES: ReadonlyArray<Service> = [
     description:
       'Turnkey construction with transparent pricing, from foundation to finishing.',
     icon: 'M3 21h18M3 7v1a3 3 0 006 0V7m0 0V7a3 3 0 016 0v1m0-1V7a3 3 0 016 0v1M6 21V10m6 11V10m6 11V10',
-    href: '/services/build',
+    href: '/build',
     image: '/images/service-build.jpg',
   },
   {

@@ -91,7 +91,7 @@ export function TestimonialsSection({
               </>
             )}
           </h2>
-          <p className="mt-3 font-body text-base tracking-wide text-slate md:text-lg">
+          <p className="mt-3 font-body text-base leading-relaxed tracking-wide text-slate md:text-lg">
             {subtitle}
           </p>
         </AnimatedSection>
