@@ -60,7 +60,7 @@ export const BUILD_PHASE_GROUPS: ReadonlyArray<BuildPhaseGroup> = [
     id: 'phase-getting-started',
     phaseLabel: 'Getting Started',
     phaseNumber: 'Phase 01',
-    illustrationSrc: '/images/build-phase-getting-started.png',
+    illustrationSrc: '/images/build/build-phase-getting-started.png',
     illustrationAlt: 'Architect and client reviewing site plans at a table',
     steps: [
       {
@@ -93,7 +93,7 @@ export const BUILD_PHASE_GROUPS: ReadonlyArray<BuildPhaseGroup> = [
     id: 'phase-building',
     phaseLabel: 'Building Your Dream',
     phaseNumber: 'Phase 02',
-    illustrationSrc: '/images/build-phase-construction.png',
+    illustrationSrc: '/images/build/build-phase-construction.png',
     illustrationAlt: 'Construction site with house frame rising and scaffolding',
     steps: [
       {
@@ -254,15 +254,15 @@ export const BUILD_TESTIMONIALS: ReadonlyArray<Testimonial> = [
 
 /* ── Build FAQs ── */
 
-export type BuildFAQCategory = 'packages' | 'process' | 'materials' | 'warranty'
+export type BuildFAQCategory = 'packages' | 'pricing' | 'process' | 'warranty'
 
 export const BUILD_FAQ_CATEGORIES: ReadonlyArray<{
   readonly id: BuildFAQCategory
   readonly label: string
 }> = [
   { id: 'packages', label: 'Packages' },
+  { id: 'pricing', label: 'Pricing' },
   { id: 'process', label: 'Process' },
-  { id: 'materials', label: 'Materials' },
   { id: 'warranty', label: 'Warranty' },
 ] as const
 
@@ -277,71 +277,70 @@ export const BUILD_FAQS: ReadonlyArray<BuildFAQItem> = [
   {
     id: 'build-faq-1',
     category: 'packages',
-    question: 'What is the difference between the three luxury construction packages?',
+    question: "What's covered in each construction package?",
     answer:
-      'Each package progressively includes higher-grade materials and finishes. Freesia covers essential luxury construction with premium fittings, Dahlia adds wooden flooring, elevator, centralized AC, and enhanced home automation, and Magnolia is the flagship tier with a private pool, glass elevator, and top-tier smart home integration.',
+      'Every package comes with the materials and labour needed to build your home, along with end-to-end project management, a dedicated on-site engineer, a mobile app for real-time project tracking, and a 10-year structural warranty plus a 1-year warranty on materials. For a detailed breakdown of inclusions, refer to the comparison table above.',
   },
   {
     id: 'build-faq-2',
     category: 'packages',
-    question: 'Can I customise a package to mix features from different tiers?',
+    question: 'How do the packages differ from one another?',
     answer:
-      'Absolutely. Our packages serve as a starting point. During the consultation, we can create a custom scope that combines elements from different tiers based on your priorities and budget. The final quote reflects exactly what you choose.',
+      'The core differences come down to material quality — brands of cement and steel, underground and overhead tank capacities, and the wallet amounts allocated for tiles, granite, kitchen and bathroom fittings, paint finishes, doors, windows, and electrical switches.',
   },
   {
     id: 'build-faq-3',
     category: 'packages',
-    question: 'How long does it take to construct a standard residential project?',
+    question: 'Is it possible to customise a package?',
     answer:
-      'A typical residential home (1,500–2,500 sqft) takes 8 to 12 months from foundation to handover, depending on the package and complexity. We provide a detailed project timeline at the start so you can plan your move-in date with confidence.',
+      'Absolutely. Each package includes a fixed wallet amount for items such as tiles, fittings, and finishes. Speak with your Technical Consultant to explore the customisation options available for your project.',
   },
   {
     id: 'build-faq-4',
-    category: 'process',
-    question: 'How does the construction process begin after I choose a package?',
+    category: 'packages',
+    question: 'Do I get to choose my own fittings?',
     answer:
-      'After you select a package and sign the contract, we conduct a detailed site survey, finalise architectural drawings (free if included in your contract), obtain necessary approvals, and begin foundation work. A dedicated project coordinator is assigned from day one.',
+      'Yes — you will have a selection of fittings to pick from, so you can choose options that match your personal style and budget.',
   },
   {
     id: 'build-faq-5',
-    category: 'process',
-    question: 'Will I receive regular updates during construction?',
+    category: 'pricing',
+    question: 'What exactly is a wallet amount?',
     answer:
-      'Yes. We send daily site update photos and progress summaries directly to you via WhatsApp. You also have a dedicated project coordinator who is your single point of contact for any questions or concerns throughout the build.',
+      'A wallet amount is a pre-allocated budget built into your package, which you can spend on items like tiles, doors, and fittings. If you opt for selections that exceed the wallet amount, the difference is payable separately.',
   },
   {
     id: 'build-faq-6',
-    category: 'process',
-    question: 'Do I need to be present on site during construction?',
-    answer:
-      'Not at all. Our in-house project coordinators manage every aspect of the build. With daily updates and milestone check-ins, many of our clients oversee their projects remotely — especially those relocating from other cities.',
+    category: 'pricing',
+    question: 'Are the listed prices inclusive of GST?',
+    answer: 'Yes, all prices shown are inclusive of GST.',
   },
   {
     id: 'build-faq-7',
-    category: 'materials',
-    question: 'What grade of steel and cement do you use?',
+    category: 'pricing',
+    question: 'Are there any hidden charges I should know about?',
     answer:
-      'We use Fe 550 TMT steel bars and OPC 53-grade cement from reputed brands like JSW Neosteel, SAIL, ACC, Ultratech, and Ramco Supercrete for all structural work. These materials meet or exceed IS (Indian Standards) requirements for residential and commercial construction.',
+      'None at all. Every expense is transparently documented in the contract before construction begins, so you will know the full cost upfront with no surprises along the way.',
   },
   {
     id: 'build-faq-8',
-    category: 'materials',
-    question: 'Can I choose my own material brands and specifications?',
+    category: 'packages',
+    question: 'Is the compound wall part of the package?',
     answer:
-      'Yes. While each package comes with recommended brand tiers, you are free to upgrade or substitute materials based on your preference. Our team will provide cost implications for any changes so you can make informed decisions.',
+      'Since not every home requires a compound wall — and some may only need it on two or three sides — we offer it as an optional add-on. This way, only clients who need it pay for it, keeping costs fair for everyone.',
   },
   {
     id: 'build-faq-9',
-    category: 'warranty',
-    question: 'What does the 10-year construction warranty cover?',
+    category: 'process',
+    question: 'Does Rokvilla handle building approvals?',
     answer:
-      'Our 10-year warranty covers structural defects including foundation settlement, beam or column cracking, roof leakage, and wall dampness caused by construction defects. It does not cover damage from natural disasters, misuse, or third-party modifications.',
+      'Rokvilla facilitates the approval process through experienced Construction Professionals on our platform. While we are not directly involved in the approvals, our partners work closely with you to ensure a completely hassle-free experience from start to finish.',
   },
   {
     id: 'build-faq-10',
     category: 'warranty',
-    question: 'How do I claim warranty service if an issue arises?',
+    question: 'What warranty do I get on the completed work?',
     answer:
-      'Simply contact us via phone or WhatsApp with photos and a description of the issue. Our team will schedule an inspection within 48 hours and initiate repairs at no cost if the issue falls under warranty coverage.',
+      'We stand behind every project with a 10-year warranty on the structure of your home and a 1-year warranty on finishing work. Any warranties on fittings and furnishings are honoured directly by their respective manufacturers and suppliers.',
   },
 ] as const

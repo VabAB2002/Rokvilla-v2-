@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import { FurnishHero } from '@/components/furnish/FurnishHero'
 import { HowItWorksSection } from '@/components/furnish/HowItWorksSection'
-import { ProjectsGallerySection } from '@/components/furnish/ProjectsGallerySection'
+import { FurnishProjectsWrapper } from '@/components/furnish/FurnishProjectsWrapper'
 import { DesignThemesSection } from '@/components/furnish/DesignThemesSection'
 import { KeyFeaturesSection } from '@/components/furnish/KeyFeaturesSection'
 import { MaterialFeaturesSection } from '@/components/furnish/MaterialFeaturesSection'
 import { ConsultationForm } from '@/components/shared/ConsultationForm'
+import { ConsultationPhoto } from '@/components/design/ConsultationPhoto'
 import { TestimonialsSection } from '@/components/shared/TestimonialsSection'
 import { FAQSection } from '@/components/shared/FAQSection'
 import {
@@ -25,13 +26,14 @@ export default function FurnishPage() {
     <>
       <FurnishHero />
       <HowItWorksSection />
-      <ProjectsGallerySection />
+      <FurnishProjectsWrapper />
       <DesignThemesSection />
       <KeyFeaturesSection />
       <MaterialFeaturesSection />
       <ConsultationForm
-        title="You Dream. We Deliver."
-        subtitle="Ready to transform your interiors? Schedule a free consultation today and let our experts bring your vision to life."
+        layout="split"
+        illustration={<ConsultationPhoto />}
+        sectionClassName="relative overflow-hidden bg-white py-24 md:py-32 lg:py-36"
       />
       <TestimonialsSection testimonials={FURNISH_TESTIMONIALS} />
       <FAQSection

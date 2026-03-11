@@ -16,7 +16,7 @@ export function BuildHero() {
       {/* Background illustration */}
       <div className="absolute inset-0">
         <Image
-          src="/images/Gemini_Generated_Image_26aklo26aklo26ak.png"
+          src="/images/build/build-hero.png"
           alt="Construction illustration showing a building in progress"
           fill
           priority

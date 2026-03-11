@@ -80,8 +80,9 @@ export function Navigation() {
   const shouldHide = isHidden && !isMenuOpen
   const hamburgerDuration = reducedMotion ? 0.01 : undefined
   // When scrolled, always use dark text on white bg; otherwise use route-based colors
-  const useDarkText = isScrolled || isLightBg
-  const lineColor = useDarkText ? 'bg-charcoal' : 'bg-bone'
+  const useDarkText = (isScrolled && !isMenuOpen) || isLightBg
+  // Hamburger lines: always light on dark overlay, otherwise follow useDarkText
+  const lineColor = isMenuOpen ? 'bg-bone' : useDarkText ? 'bg-charcoal' : 'bg-bone'
   const linkClass = useDarkText
     ? 'font-body text-[11px] font-semibold uppercase tracking-[0.12em] text-charcoal/80 transition-colors duration-300 hover:text-terracotta'
     : LINK_CLASS
@@ -115,7 +116,7 @@ export function Navigation() {
       <nav
         className={`fixed left-0 top-0 z-[60] w-full transition-all duration-300 ${
           shouldHide ? '-translate-y-full' : 'translate-y-0'
-        } ${isScrolled ? 'bg-white/95 shadow-sm backdrop-blur-md' : ''}`}
+        } ${isScrolled && !isMenuOpen ? 'bg-white/95 shadow-sm backdrop-blur-md' : ''}`}
         aria-label="Main navigation"
       >
         {/* Desktop: hamburger left + centered links + spacer right */}

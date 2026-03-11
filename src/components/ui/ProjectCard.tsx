@@ -2,12 +2,17 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import type { Project } from '@/types/project'
 import { EASE_OUT_QUART } from '@/lib/motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
+export interface ProjectCardData {
+  readonly name: string
+  readonly category: string
+  readonly image: string
+}
+
 interface ProjectCardProps {
-  readonly project: Project
+  readonly project: ProjectCardData
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {

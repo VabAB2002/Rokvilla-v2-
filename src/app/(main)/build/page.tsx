@@ -4,10 +4,10 @@ import { BuildHowItWorksSection } from '@/components/build/BuildHowItWorksSectio
 import { ConstructionPackagesSection } from '@/components/build/ConstructionPackagesSection'
 import { BuildKeyFeaturesSection } from '@/components/build/BuildKeyFeaturesSection'
 import { ConsultationForm } from '@/components/shared/ConsultationForm'
+import { ConsultationPhoto } from '@/components/design/ConsultationPhoto'
 import { TestimonialsSection } from '@/components/shared/TestimonialsSection'
 import { ProjectsSection } from '@/components/sections/ProjectsSection'
 import { FAQSection } from '@/components/shared/FAQSection'
-import { ConstructionCTASection } from '@/components/build/ConstructionCTASection'
 import {
   BUILD_TESTIMONIALS,
   BUILD_FAQS,
@@ -20,12 +20,6 @@ export const metadata: Metadata = {
     'From foundation to finish — construction packages with transparent pricing, daily site updates, and a 10-year warranty. Choose your package and build your dream home.',
 }
 
-const BUILD_CONSULTATION_CATEGORIES = [
-  { value: 'residential', label: 'Residential Home' },
-  { value: 'luxury-villa', label: 'Luxury Villa' },
-  { value: 'commercial', label: 'Commercial' },
-] as const
-
 export default function BuildPage() {
   return (
     <>
@@ -34,10 +28,9 @@ export default function BuildPage() {
       <ConstructionPackagesSection />
       <BuildKeyFeaturesSection />
       <ConsultationForm
-        title="Build Your Dream Home"
-        subtitle="Ready to start construction? Schedule a free site visit today and get a personalised cost estimate from our team."
-        categories={BUILD_CONSULTATION_CATEGORIES}
-        sectionClassName="bg-parchment py-24 md:py-32 lg:py-36"
+        layout="split"
+        illustration={<ConsultationPhoto />}
+        sectionClassName="relative overflow-hidden bg-white py-24 md:py-32 lg:py-36"
       />
       <TestimonialsSection testimonials={BUILD_TESTIMONIALS} />
       <ProjectsSection />
@@ -45,9 +38,8 @@ export default function BuildPage() {
         faqs={BUILD_FAQS}
         categories={BUILD_FAQ_CATEGORIES}
         subtitle="Everything you need to know about our construction services"
-        sectionClassName="bg-parchment py-24 md:py-32 lg:py-36"
+        sectionClassName="bg-white py-24 md:py-32 lg:py-36"
       />
-      <ConstructionCTASection />
     </>
   )
 }

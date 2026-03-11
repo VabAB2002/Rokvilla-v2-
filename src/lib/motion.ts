@@ -195,6 +195,20 @@ export const AMBIENT_BLINK = {
   opacity: { duration: 1.2, ease: 'easeInOut', repeat: Infinity },
 } satisfies Transition
 
+/* ── Carousel spring (track slide) ── */
+export const TRANSITION_SPRING_CAROUSEL: Transition = {
+  type: 'spring',
+  stiffness: 300,
+  damping: 35,
+  mass: 0.8,
+}
+
+export function makeCarouselTransition(reduced: boolean): Transition {
+  return reduced
+    ? { type: 'tween', duration: 0.15, ease: EASE_OUT_QUART }
+    : TRANSITION_SPRING_CAROUSEL
+}
+
 export function makeDesignHeroContainerVariants(reduced: boolean): Variants {
   return {
     hidden: {},

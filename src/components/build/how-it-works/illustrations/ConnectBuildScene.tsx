@@ -3,7 +3,7 @@ import Image from 'next/image'
 export function ConnectBuildScene() {
   return (
     <Image
-      src="/images/build-step-connect.png"
+      src="/images/build/build-step-connect.png"
       alt="Clipboard with form, coffee cup, and phone on a table"
       width={480}
       height={480}

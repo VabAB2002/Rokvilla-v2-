@@ -16,7 +16,7 @@ export function DesignHero() {
       {/* Blueprint background image — pushed right so text has clear space */}
       <div className="absolute inset-y-0 -right-[10%] left-[35%] md:left-[40%]">
         <Image
-          src="/images/design-blueprint.jpg"
+          src="/images/design/design-blueprint.jpg"
           alt=""
           fill
           priority

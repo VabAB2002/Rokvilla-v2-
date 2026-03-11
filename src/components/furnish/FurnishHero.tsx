@@ -19,7 +19,7 @@ export function FurnishHero() {
       {/* Background illustration — anchored right, full height */}
       <div className="absolute inset-0">
         <Image
-          src="/images/furnish-hero-bg.png"
+          src="/images/furnish/furnish-hero-bg.png"
           alt="Interior design sketch — living room with sofa, dining table, and shelving"
           fill
           priority

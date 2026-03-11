@@ -18,7 +18,7 @@ export function ConsultationPhoto() {
       className="relative w-full max-w-[400px]"
     >
       <Image
-        src="/images/consultation-illustration.png"
+        src="/images/design/consultation-illustration.png"
         alt="From dream sketch to finished home — RokVilla consultation"
         width={1400}
         height={800}
