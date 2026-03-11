@@ -38,7 +38,7 @@ export function FurnishProjectsWrapper() {
       items={FURNISH_ITEMS}
       tabs={FURNISH_TABS}
       heading="Our Projects"
-      subtitle="End-to-End Interior Solutions"
+      subtitle="Browse our portfolio of furnished interiors"
       sectionId="furnish-projects"
       viewAllHref={null}
       matchesTab={matchesTab}

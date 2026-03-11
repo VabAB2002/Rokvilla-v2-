@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { FurnishHero } from '@/components/furnish/FurnishHero'
 import { HowItWorksSection } from '@/components/furnish/HowItWorksSection'
 import { FurnishProjectsWrapper } from '@/components/furnish/FurnishProjectsWrapper'
+import { InteriorSolutionsSection } from '@/components/furnish/InteriorSolutionsSection'
 import { DesignThemesSection } from '@/components/furnish/DesignThemesSection'
 import { KeyFeaturesSection } from '@/components/furnish/KeyFeaturesSection'
 import { MaterialFeaturesSection } from '@/components/furnish/MaterialFeaturesSection'
@@ -27,6 +28,7 @@ export default function FurnishPage() {
       <FurnishHero />
       <HowItWorksSection />
       <FurnishProjectsWrapper />
+      <InteriorSolutionsSection />
       <DesignThemesSection />
       <KeyFeaturesSection />
       <MaterialFeaturesSection />
