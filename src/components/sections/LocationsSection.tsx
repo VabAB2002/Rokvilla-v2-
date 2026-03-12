@@ -30,7 +30,7 @@ export function LocationsSection() {
       <div className="mt-16 px-3 md:px-4">
         {/* Mobile: horizontal scroll carousel */}
         <div className="md:hidden">
-          <div className="flex gap-3 overflow-x-auto scroll-snap-x no-scrollbar pb-4">
+          <div role="region" aria-label="Locations" className="flex gap-3 overflow-x-auto scroll-snap-x no-scrollbar pb-4">
             {LOCATIONS.map((location) => (
               <div key={location.id} className="w-[85vw] max-w-[340px] shrink-0 scroll-snap-start">
                 <LocationCard location={location} />

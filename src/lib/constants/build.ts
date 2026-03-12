@@ -152,6 +152,13 @@ export const BUILD_KEY_FEATURES: ReadonlyArray<BuildKeyFeature> = [
     icon: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z',
   },
   {
+    id: 'feat-vastu',
+    title: 'Vastu Compliant Designing',
+    description:
+      'Every layout is thoughtfully aligned with Vastu Shastra principles so your home feels balanced, positive, and harmonious from day one.',
+    icon: 'M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9',
+  },
+  {
     id: 'feat-free-drawings',
     title: 'Free Architectural Design & Drawings if Construction Contract Signed',
     description:
@@ -164,13 +171,6 @@ export const BUILD_KEY_FEATURES: ReadonlyArray<BuildKeyFeature> = [
     description:
       'Stay informed every step of the way with daily progress photos and updates from the construction site, directly to your phone.',
     icon: 'M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9',
-  },
-  {
-    id: 'feat-vastu',
-    title: 'Vastu Compliant Designing',
-    description:
-      'Every layout is thoughtfully aligned with Vastu Shastra principles so your home feels balanced, positive, and harmonious from day one.',
-    icon: 'M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9',
   },
   {
     id: 'feat-warranty',

@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useEffect, type ReactNode, useCallback } from 'react'
+import { useRef, useState, useEffect, type ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { makeCarouselTransition } from '@/lib/motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -38,6 +38,7 @@ interface CarouselTrackProps {
   readonly dotCount: number
   readonly gap: number
   readonly children: ReactNode
+  readonly ariaLabel?: string
 }
 
 /* ── Component ── */
@@ -55,6 +56,7 @@ export function CarouselTrack({
   dotCount,
   gap,
   children,
+  ariaLabel = 'Content carousel',
 }: CarouselTrackProps) {
   const reducedMotion = useReducedMotion()
   const viewportRef = useRef<HTMLDivElement>(null)
@@ -83,31 +85,11 @@ export function CarouselTrack({
 
   const needsCarousel = dotCount > 1
 
-  const regionRef = useRef<HTMLDivElement>(null)
-
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      // Only handle arrows when the region itself is focused, not inner buttons
-      if (e.target !== regionRef.current) return
-      if (e.key === 'ArrowRight') {
-        e.preventDefault()
-        goNext()
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault()
-        goPrev()
-      }
-    },
-    [goNext, goPrev],
-  )
-
   return (
     <div
-      ref={regionRef}
       className="group relative"
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
       role="region"
-      aria-label="Projects carousel"
+      aria-label={ariaLabel}
     >
       {/* Clip area */}
       <div ref={viewportRef} className="overflow-hidden">
@@ -133,7 +115,7 @@ export function CarouselTrack({
           disabled={!canGoPrev}
           aria-label="Previous project"
           className={`absolute top-1/2 -translate-y-1/2 left-2 lg:-left-5 z-10
-            flex h-10 w-10 items-center justify-center rounded-full
+            flex h-12 w-12 items-center justify-center rounded-full
             border border-limestone bg-bone/90 backdrop-blur-sm
             transition-all duration-200
             lg:opacity-0 lg:group-hover:opacity-100
@@ -155,7 +137,7 @@ export function CarouselTrack({
           disabled={!canGoNext}
           aria-label="Next project"
           className={`absolute top-1/2 -translate-y-1/2 right-2 lg:-right-5 z-10
-            flex h-10 w-10 items-center justify-center rounded-full
+            flex h-12 w-12 items-center justify-center rounded-full
             border border-limestone bg-bone/90 backdrop-blur-sm
             transition-all duration-200
             lg:opacity-0 lg:group-hover:opacity-100
@@ -180,7 +162,7 @@ export function CarouselTrack({
               aria-selected={i === currentIndex}
               aria-label={`Go to slide ${i + 1} of ${dotCount}`}
               onClick={() => goTo(i)}
-              className="relative flex items-center justify-center p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:rounded-full"
+              className="relative flex min-h-[44px] min-w-[44px] items-center justify-center p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:rounded-full"
             >
               <motion.span
                 layout

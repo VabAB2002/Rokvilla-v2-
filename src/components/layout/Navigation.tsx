@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
@@ -43,6 +43,8 @@ export function Navigation() {
   const isHidden = direction === 'down' && isScrolled
   const reducedMotion = useReducedMotion()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isServicesOpen, setIsServicesOpen] = useState(false)
+  const servicesBtnRef = useRef<HTMLButtonElement>(null)
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen((prev) => !prev)
@@ -50,6 +52,14 @@ export function Navigation() {
 
   const closeMenu = useCallback(() => {
     setIsMenuOpen(false)
+  }, [])
+
+  const toggleServices = useCallback(() => {
+    setIsServicesOpen((prev) => !prev)
+  }, [])
+
+  const closeServices = useCallback(() => {
+    setIsServicesOpen(false)
   }, [])
 
   // Body scroll lock when menu overlay is open (with scrollbar compensation)
@@ -150,26 +160,68 @@ export function Navigation() {
                 </Link>
               ))}
 
-              {/* Services with dropdown */}
-              <div className="group relative pb-2 -mb-2">
-                <Link href="/#services" className={linkClass}>
+              {/* Services with keyboard-accessible dropdown */}
+              <div
+                className="relative -mb-2 pb-2"
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={() => setIsServicesOpen(false)}
+                onBlur={(e) => {
+                  if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                    setIsServicesOpen(false)
+                  }
+                }}
+              >
+                <button
+                  ref={servicesBtnRef}
+                  type="button"
+                  aria-expanded={isServicesOpen}
+                  onClick={toggleServices}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Escape') {
+                      closeServices()
+                      servicesBtnRef.current?.focus()
+                    }
+                  }}
+                  className={`${linkClass} flex items-center gap-1`}
+                >
                   Services
-                </Link>
-                <div className="invisible absolute left-1/2 top-full opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                  <div className="-translate-x-1/2 pt-2">
-                    <div className={`rounded-sm py-2 backdrop-blur-xl ${useDarkText ? 'bg-white/60 ring-1 ring-charcoal/5' : 'bg-void/60 ring-1 ring-white/10'}`}>
-                      {SERVICE_CHILDREN.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className={`block whitespace-nowrap px-5 py-2 font-body text-[11px] font-medium uppercase tracking-[0.1em] transition-colors duration-200 hover:text-terracotta ${useDarkText ? 'text-charcoal/70' : 'text-bone/70'}`}
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    aria-hidden="true"
+                    className={`transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`}
+                  >
+                    <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                {isServicesOpen && (
+                  <div className="absolute left-1/2 top-full">
+                    <div className="-translate-x-1/2 pt-2">
+                      <div
+                        className={`rounded-sm py-2 backdrop-blur-xl ${useDarkText ? 'bg-white/60 ring-1 ring-charcoal/5' : 'bg-void/60 ring-1 ring-white/10'}`}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Escape') {
+                            closeServices()
+                            servicesBtnRef.current?.focus()
+                          }
+                        }}
+                      >
+                        {SERVICE_CHILDREN.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            onClick={closeServices}
+                            className={`block whitespace-nowrap px-5 py-2 font-body text-[11px] font-medium uppercase tracking-[0.1em] transition-colors duration-200 hover:text-terracotta ${useDarkText ? 'text-charcoal/70' : 'text-bone/70'}`}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
 
               <span className={dividerClass} aria-hidden="true" />

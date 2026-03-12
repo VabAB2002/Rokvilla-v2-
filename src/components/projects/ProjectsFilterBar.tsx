@@ -123,7 +123,7 @@ export function ProjectsFilterBar({
           <button
             type="button"
             onClick={() => onSortChange('year-desc')}
-            className={`min-h-[36px] rounded-[2px] px-3 py-1.5 font-body text-[12px] uppercase tracking-[0.08em] transition-all duration-200 ${
+            className={`min-h-[44px] rounded-[2px] px-4 font-body text-[12px] uppercase tracking-[0.08em] transition-all duration-200 ${
               sortOrder === 'year-desc'
                 ? 'bg-terracotta text-bone'
                 : 'text-slate hover:text-obsidian'
@@ -134,7 +134,7 @@ export function ProjectsFilterBar({
           <button
             type="button"
             onClick={() => onSortChange('alpha')}
-            className={`min-h-[36px] rounded-[2px] px-3 py-1.5 font-body text-[12px] uppercase tracking-[0.08em] transition-all duration-200 ${
+            className={`min-h-[44px] rounded-[2px] px-4 font-body text-[12px] uppercase tracking-[0.08em] transition-all duration-200 ${
               sortOrder === 'alpha'
                 ? 'bg-terracotta text-bone'
                 : 'text-slate hover:text-obsidian'

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { SOCIAL_LINKS } from '@/lib/constants/contact'
 
 const FOOTER_LINKS = {
   company: [
@@ -18,24 +19,6 @@ const FOOTER_LINKS = {
     { label: 'Ballari', href: '/#locations' },
   ],
 } as const
-
-const SOCIAL_LINKS = [
-  {
-    label: 'Instagram',
-    href: '#',
-    icon: 'M16 4H8a4 4 0 00-4 4v8a4 4 0 004 4h8a4 4 0 004-4V8a4 4 0 00-4-4z M12 15a3 3 0 110-6 3 3 0 010 6z M16.5 7.5h.01',
-  },
-  {
-    label: 'Facebook',
-    href: '#',
-    icon: 'M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z',
-  },
-  {
-    label: 'LinkedIn',
-    href: '#',
-    icon: 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z M2 9h4v12H2z M4 6a2 2 0 110-4 2 2 0 010 4z',
-  },
-] as const
 
 export function Footer() {
   return (
@@ -74,7 +57,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="py-1 font-body text-[13px] text-stone transition-colors duration-200 hover:text-brass-light active:text-brass-light"
+                    className="inline-flex min-h-[44px] items-center py-2 font-body text-[13px] text-stone transition-colors duration-200 hover:text-brass-light active:text-brass-light"
                   >
                     {link.label}
                   </Link>
@@ -93,7 +76,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="py-1 font-body text-[13px] text-stone transition-colors duration-200 hover:text-brass-light active:text-brass-light"
+                    className="inline-flex min-h-[44px] items-center py-2 font-body text-[13px] text-stone transition-colors duration-200 hover:text-brass-light active:text-brass-light"
                   >
                     {link.label}
                   </Link>
@@ -112,7 +95,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="py-1 font-body text-[13px] text-stone transition-colors duration-200 hover:text-brass-light active:text-brass-light"
+                    className="inline-flex min-h-[44px] items-center py-2 font-body text-[13px] text-stone transition-colors duration-200 hover:text-brass-light active:text-brass-light"
                   >
                     {link.label}
                   </Link>
@@ -138,7 +121,7 @@ export function Footer() {
                 key={social.label}
                 href={social.href}
                 aria-label={social.label}
-                className="p-2 -m-2 text-stone transition-colors duration-200 hover:text-brass-light active:text-brass-light"
+                className="flex min-h-[44px] min-w-[44px] items-center justify-center text-stone transition-colors duration-200 hover:text-brass-light active:text-brass-light"
               >
                 <svg
                   className="h-5 w-5"

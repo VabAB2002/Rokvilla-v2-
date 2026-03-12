@@ -15,9 +15,9 @@ import { WarrantyBuildScene } from './illustrations/WarrantyBuildScene'
 const SCENES: ReadonlyArray<React.ComponentType> = [
   InhouseTeamBuildScene,
   FreeEstimationBuildScene,
+  VastuBuildScene,
   FreeDrawingsBuildScene,
   DailyUpdatesBuildScene,
-  VastuBuildScene,
   WarrantyBuildScene,
 ]
 

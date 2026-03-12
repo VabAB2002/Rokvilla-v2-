@@ -72,7 +72,13 @@ export default function RootLayout({
       <body
         className={`${cormorantGaramond.variable} ${cormorantSC.variable} ${dmSans.variable} antialiased`}
       >
-        <main>{children}</main>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded focus:bg-terracotta focus:px-4 focus:py-2 focus:font-body focus:text-sm focus:text-bone focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
+        <main id="main-content">{children}</main>
       </body>
     </html>
   )

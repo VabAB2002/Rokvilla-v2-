@@ -1,6 +1,6 @@
 'use client'
 
-import { type ReactNode, useState, useCallback } from 'react'
+import { type ReactNode, useState, useCallback, useId } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Button } from '@/components/ui/Button'
@@ -90,6 +90,9 @@ function FormInput({
   error,
   placeholder,
   onChange,
+  autoComplete,
+  required,
+  idPrefix,
 }: {
   readonly label: string
   readonly name: string
@@ -98,32 +101,39 @@ function FormInput({
   readonly error?: string
   readonly placeholder?: string
   readonly onChange: (name: string, value: string) => void
+  readonly autoComplete?: string
+  readonly required?: boolean
+  readonly idPrefix: string
 }) {
+  const inputId = `${idPrefix}-${name}`
+  const errorId = `${inputId}-error`
   return (
     <div>
       <label
-        htmlFor={`form-${name}`}
+        htmlFor={inputId}
         className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
       >
         {label}
       </label>
       <input
-        id={`form-${name}`}
+        id={inputId}
         name={name}
         type={type}
         value={value}
         placeholder={placeholder}
         onChange={(e) => onChange(name, e.target.value)}
         aria-invalid={!!error}
-        aria-describedby={error ? `form-${name}-error` : undefined}
-        className={`w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:outline-none focus:ring-1 ${
+        aria-describedby={error ? errorId : undefined}
+        autoComplete={autoComplete}
+        aria-required={required}
+        className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:outline-none focus:ring-1 ${
           error
             ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
             : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
         }`}
       />
       {error && (
-        <p id={`form-${name}-error`} role="alert" className="mt-1 font-body text-xs text-terracotta-deep">{error}</p>
+        <p id={errorId} role="alert" className="mt-1 font-body text-xs text-terracotta-deep">{error}</p>
       )}
     </div>
   )
@@ -161,6 +171,7 @@ export function ConsultationForm({
   sectionClassName,
 }: ConsultationFormProps) {
   const reducedMotion = useReducedMotion()
+  const uid = useId()
   const [fields, setFields] = useState<FormFields>(INITIAL_FIELDS)
   const [errors, setErrors] = useState<FormErrors>({})
   const [submitted, setSubmitted] = useState(false)
@@ -337,6 +348,9 @@ export function ConsultationForm({
                         error={errors.name}
                         placeholder="Your name"
                         onChange={handleChange}
+                        autoComplete="name"
+                        required
+                        idPrefix={uid}
                       />
                       <FormInput
                         label="Email"
@@ -346,6 +360,9 @@ export function ConsultationForm({
                         error={errors.email}
                         placeholder="you@example.com"
                         onChange={handleChange}
+                        autoComplete="email"
+                        required
+                        idPrefix={uid}
                       />
                     </div>
 
@@ -359,22 +376,26 @@ export function ConsultationForm({
                         error={errors.phone}
                         placeholder="+91 98765 43210"
                         onChange={handleChange}
+                        autoComplete="tel"
+                        required
+                        idPrefix={uid}
                       />
                       <div>
                         <label
-                          htmlFor="form-category"
+                          htmlFor={`${uid}-category`}
                           className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
                         >
                           Category
                         </label>
                         <select
-                          id="form-category"
+                          id={`${uid}-category`}
                           name="category"
                           value={fields.category}
                           onChange={(e) => handleChange('category', e.target.value)}
                           aria-invalid={!!errors.category}
-                          aria-describedby={errors.category ? 'form-category-error' : undefined}
-                          className={`w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
+                          aria-describedby={errors.category ? `${uid}-category-error` : undefined}
+                          aria-required="true"
+                          className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
                             errors.category
                               ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
                               : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
@@ -389,7 +410,7 @@ export function ConsultationForm({
                         </select>
                         {errors.category && (
                           <p
-                            id="form-category-error"
+                            id={`${uid}-category-error`}
                             role="alert"
                             className="mt-1 font-body text-xs text-terracotta-deep"
                           >
@@ -403,19 +424,20 @@ export function ConsultationForm({
                     <div className="mt-4 grid gap-4 md:grid-cols-2">
                       <div>
                         <label
-                          htmlFor="form-consultationType-split"
+                          htmlFor={`${uid}-consultationType`}
                           className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
                         >
                           Consultation Type
                         </label>
                         <select
-                          id="form-consultationType-split"
+                          id={`${uid}-consultationType`}
                           name="consultationType"
                           value={fields.consultationType}
                           onChange={(e) => handleChange('consultationType', e.target.value)}
                           aria-invalid={!!errors.consultationType}
-                          aria-describedby={errors.consultationType ? 'form-consultationType-split-error' : undefined}
-                          className={`w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
+                          aria-describedby={errors.consultationType ? `${uid}-consultationType-error` : undefined}
+                          aria-required="true"
+                          className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
                             errors.consultationType
                               ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
                               : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
@@ -427,7 +449,7 @@ export function ConsultationForm({
                           ))}
                         </select>
                         {errors.consultationType && (
-                          <p id="form-consultationType-split-error" role="alert" className="mt-1 font-body text-xs text-terracotta-deep">
+                          <p id={`${uid}-consultationType-error`} role="alert" className="mt-1 font-body text-xs text-terracotta-deep">
                             {errors.consultationType}
                           </p>
                         )}
@@ -439,19 +461,21 @@ export function ConsultationForm({
                         error={errors.location}
                         placeholder="Your city or area"
                         onChange={handleChange}
+                        required
+                        idPrefix={uid}
                       />
                     </div>
 
                     {/* Row 4: Message */}
                     <div className="mt-4">
                       <label
-                        htmlFor="form-message"
+                        htmlFor={`${uid}-message`}
                         className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
                       >
                         Message (optional)
                       </label>
                       <textarea
-                        id="form-message"
+                        id={`${uid}-message`}
                         name="message"
                         rows={3}
                         value={fields.message}
@@ -464,11 +488,11 @@ export function ConsultationForm({
                     {/* Privacy checkbox */}
                     <div className="mt-4">
                       <label
-                        htmlFor="form-privacy-split"
-                        className="flex cursor-pointer items-start gap-2.5"
+                        htmlFor={`${uid}-privacy`}
+                        className="flex cursor-pointer items-start gap-3"
                       >
                         <input
-                          id="form-privacy-split"
+                          id={`${uid}-privacy`}
                           name="privacy"
                           type="checkbox"
                           checked={fields.privacy}
@@ -476,8 +500,9 @@ export function ConsultationForm({
                             setFields((prev) => ({ ...prev, privacy: e.target.checked }))
                           }
                           aria-invalid={!!errors.privacy}
-                          aria-describedby={errors.privacy ? 'form-privacy-split-error' : undefined}
-                          className="mt-0.5 h-4 w-4 accent-terracotta"
+                          aria-describedby={errors.privacy ? `${uid}-privacy-error` : undefined}
+                          aria-required="true"
+                          className="mt-0.5 h-5 w-5 accent-terracotta"
                         />
                         <span className="font-body text-xs text-slate">
                           I agree to the Privacy Policy and Terms &amp; Conditions
@@ -485,7 +510,7 @@ export function ConsultationForm({
                       </label>
                       {errors.privacy && (
                         <p
-                          id="form-privacy-split-error"
+                          id={`${uid}-privacy-error`}
                           role="alert"
                           className="mt-1 font-body text-xs text-terracotta-deep"
                         >
@@ -604,6 +629,9 @@ export function ConsultationForm({
                     error={errors.name}
                     placeholder="Your name"
                     onChange={handleChange}
+                    autoComplete="name"
+                    required
+                    idPrefix={uid}
                   />
                   <FormInput
                     label="Email"
@@ -613,6 +641,9 @@ export function ConsultationForm({
                     error={errors.email}
                     placeholder="you@example.com"
                     onChange={handleChange}
+                    autoComplete="email"
+                    required
+                    idPrefix={uid}
                   />
                   <FormInput
                     label="Phone"
@@ -622,25 +653,29 @@ export function ConsultationForm({
                     error={errors.phone}
                     placeholder="+91 98765 43210"
                     onChange={handleChange}
+                    autoComplete="tel"
+                    required
+                    idPrefix={uid}
                   />
                 </div>
 
                 {/* Row 2: Category */}
                 <div className="mt-5">
                   <label
-                    htmlFor="form-category"
+                    htmlFor={`${uid}-category`}
                     className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
                   >
                     Category
                   </label>
                   <select
-                    id="form-category"
+                    id={`${uid}-category`}
                     name="category"
                     value={fields.category}
                     onChange={(e) => handleChange('category', e.target.value)}
                     aria-invalid={!!errors.category}
-                    aria-describedby={errors.category ? 'form-category-error' : undefined}
-                    className={`w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
+                    aria-describedby={errors.category ? `${uid}-category-error` : undefined}
+                    aria-required="true"
+                    className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
                       errors.category
                         ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
                         : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
@@ -652,7 +687,7 @@ export function ConsultationForm({
                     ))}
                   </select>
                   {errors.category && (
-                    <p id="form-category-error" role="alert" className="mt-1 font-body text-xs text-terracotta-deep">
+                    <p id={`${uid}-category-error`} role="alert" className="mt-1 font-body text-xs text-terracotta-deep">
                       {errors.category}
                     </p>
                   )}
@@ -662,19 +697,20 @@ export function ConsultationForm({
                 <div className="mt-5 grid gap-5 md:grid-cols-2">
                   <div>
                     <label
-                      htmlFor="form-consultationType"
+                      htmlFor={`${uid}-consultationType`}
                       className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
                     >
                       Consultation Type
                     </label>
                     <select
-                      id="form-consultationType"
+                      id={`${uid}-consultationType`}
                       name="consultationType"
                       value={fields.consultationType}
                       onChange={(e) => handleChange('consultationType', e.target.value)}
                       aria-invalid={!!errors.consultationType}
-                      aria-describedby={errors.consultationType ? 'form-consultationType-error' : undefined}
-                      className={`w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
+                      aria-describedby={errors.consultationType ? `${uid}-consultationType-error` : undefined}
+                      aria-required="true"
+                      className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
                         errors.consultationType
                           ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
                           : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
@@ -686,7 +722,7 @@ export function ConsultationForm({
                       ))}
                     </select>
                     {errors.consultationType && (
-                      <p id="form-consultationType-error" role="alert" className="mt-1 font-body text-xs text-terracotta-deep">
+                      <p id={`${uid}-consultationType-error`} role="alert" className="mt-1 font-body text-xs text-terracotta-deep">
                         {errors.consultationType}
                       </p>
                     )}
@@ -698,19 +734,21 @@ export function ConsultationForm({
                     error={errors.location}
                     placeholder="Your city or area"
                     onChange={handleChange}
+                    required
+                    idPrefix={uid}
                   />
                 </div>
 
                 {/* Row 4: Message */}
                 <div className="mt-5">
                   <label
-                    htmlFor="form-message"
+                    htmlFor={`${uid}-message`}
                     className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
                   >
                     Message (optional)
                   </label>
                   <textarea
-                    id="form-message"
+                    id={`${uid}-message`}
                     name="message"
                     rows={4}
                     value={fields.message}
@@ -722,9 +760,9 @@ export function ConsultationForm({
 
                 {/* Privacy checkbox */}
                 <div className="mt-5">
-                  <label htmlFor="form-privacy" className="flex cursor-pointer items-start gap-2.5">
+                  <label htmlFor={`${uid}-privacy`} className="flex cursor-pointer items-start gap-3">
                     <input
-                      id="form-privacy"
+                      id={`${uid}-privacy`}
                       name="privacy"
                       type="checkbox"
                       checked={fields.privacy}
@@ -732,15 +770,16 @@ export function ConsultationForm({
                         setFields((prev) => ({ ...prev, privacy: e.target.checked }))
                       }
                       aria-invalid={!!errors.privacy}
-                      aria-describedby={errors.privacy ? 'form-privacy-error' : undefined}
-                      className="mt-0.5 h-4 w-4 accent-terracotta"
+                      aria-describedby={errors.privacy ? `${uid}-privacy-error` : undefined}
+                      aria-required="true"
+                      className="mt-0.5 h-5 w-5 accent-terracotta"
                     />
                     <span className="font-body text-xs text-slate">
                       I agree to the Privacy Policy and Terms &amp; Conditions
                     </span>
                   </label>
                   {errors.privacy && (
-                    <p id="form-privacy-error" role="alert" className="mt-1 font-body text-xs text-terracotta-deep">
+                    <p id={`${uid}-privacy-error`} role="alert" className="mt-1 font-body text-xs text-terracotta-deep">
                       {errors.privacy}
                     </p>
                   )}

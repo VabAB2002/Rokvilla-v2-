@@ -30,7 +30,7 @@ export function ServicesSection() {
       <div className="mt-16">
         {/* Mobile: horizontal scroll carousel */}
         <div className="md:hidden">
-          <div className="flex overflow-x-auto scroll-snap-x no-scrollbar">
+          <div role="region" aria-label="Services" className="flex overflow-x-auto scroll-snap-x no-scrollbar">
             {SERVICES.map((service) => (
               <div key={service.id} className="w-[85vw] shrink-0 scroll-snap-start">
                 <ServiceCard service={service} />
