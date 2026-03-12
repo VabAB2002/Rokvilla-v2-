@@ -10,7 +10,8 @@ import { useReducedMotion } from '@/hooks/useReducedMotion'
 import dynamic from 'next/dynamic'
 
 const MenuOverlay = dynamic(
-  () => import('@/components/layout/MenuOverlay').then(m => m.MenuOverlay)
+  () => import('@/components/layout/MenuOverlay').then(m => m.MenuOverlay),
+  { loading: () => null }
 )
 
 /* Routes with light (white) backgrounds — navbar uses dark text */
