@@ -10,7 +10,7 @@ import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { MenuOverlay } from '@/components/layout/MenuOverlay'
 
 /* Routes with light (white) backgrounds — navbar uses dark text */
-const LIGHT_BG_ROUTES = ['/design', '/furnish', '/build'] as const
+const LIGHT_BG_ROUTES = ['/design', '/furnish', '/build', '/projects'] as const
 
 const LEFT_LINKS = [
   { label: 'Home', href: '/' },
@@ -23,7 +23,7 @@ const SERVICE_CHILDREN = [
 ] as const
 
 const RIGHT_LINKS = [
-  { label: 'Projects', href: '/#projects' },
+  { label: 'Projects', href: '/projects' },
   { label: 'Locations', href: '/#locations' },
 ] as const
 

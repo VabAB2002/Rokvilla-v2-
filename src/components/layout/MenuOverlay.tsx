@@ -16,7 +16,7 @@ const MENU_LINKS = [
       { label: 'Furnish', href: '/furnish' },
     ],
   },
-  { label: 'Projects', href: '/#projects' },
+  { label: 'Projects', href: '/projects' },
   { label: 'Locations', href: '/#locations' },
 ] as const
 
