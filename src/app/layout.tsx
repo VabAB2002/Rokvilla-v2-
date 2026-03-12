@@ -4,25 +4,29 @@ import './globals.css'
 
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  style: ['normal', 'italic'],
+  weight: ['300', '500'],
   variable: '--font-cormorant-garamond',
-  display: 'swap',
+  display: 'optional',
+  adjustFontFallback: true,
+  fallback: ['Georgia', 'serif'],
 })
 
 const cormorantSC = Cormorant_SC({
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
+  weight: ['400', '500'],
   variable: '--font-cormorant-sc',
-  display: 'swap',
+  display: 'optional',
+  adjustFontFallback: true,
+  fallback: ['Georgia', 'serif'],
 })
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500'],
-  style: ['normal', 'italic'],
   variable: '--font-dm-sans',
-  display: 'swap',
+  display: 'optional',
+  adjustFontFallback: true,
+  fallback: ['system-ui', 'sans-serif'],
 })
 
 export const viewport: Viewport = {

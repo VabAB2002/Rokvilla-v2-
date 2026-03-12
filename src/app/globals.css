@@ -68,6 +68,16 @@
   100% { box-shadow: 0 6px 24px rgba(238, 119, 7, 0.45); }
 }
 
+/* ── Gentle bounce for hero scroll indicators ── */
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 1.2s ease-in-out infinite;
+}
+
 /* ── Base Styles ── */
 @layer base {
   html {
@@ -118,6 +128,12 @@
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Content-visibility for below-fold sections */
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 600px;
   }
 
   /* Hide all Mapbox controls on location cards */
