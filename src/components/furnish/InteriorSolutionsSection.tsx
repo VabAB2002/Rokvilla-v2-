@@ -1,24 +1,7 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
-import {
-  CookingPot,
-  DoorClosed,
-  Wine,
-  Minimize2,
-  Tv,
-  BookOpen,
-  LampCeiling,
-  Lightbulb,
-  Wallpaper,
-  PaintRoller,
-  Bath,
-  Flame,
-  DoorOpen,
-  Armchair,
-  BedDouble,
-  type LucideIcon,
-} from 'lucide-react'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { EASE_OUT_EXPO } from '@/lib/motion'
@@ -28,43 +11,42 @@ import { EASE_OUT_EXPO } from '@/lib/motion'
 interface SolutionItem {
   readonly id: string
   readonly label: string
-  readonly icon: LucideIcon
+  readonly image: string
 }
 
 const SOLUTIONS: ReadonlyArray<SolutionItem> = [
-  { id: 'modular-kitchen', label: 'Modular Kitchen', icon: CookingPot },
-  { id: 'storage-wardrobe', label: 'Storage and Wardrobe', icon: DoorClosed },
-  { id: 'crockery-units', label: 'Crockery Units', icon: Wine },
-  { id: 'space-saving', label: 'Space Saving Furniture', icon: Minimize2 },
-  { id: 'tv-units', label: 'TV Units', icon: Tv },
-  { id: 'study-tables', label: 'Study Tables', icon: BookOpen },
-  { id: 'false-ceiling', label: 'False Ceiling', icon: LampCeiling },
-  { id: 'lights', label: 'Lights', icon: Lightbulb },
-  { id: 'wallpaper', label: 'Wallpaper', icon: Wallpaper },
-  { id: 'wall-paint', label: 'Wall Paint', icon: PaintRoller },
-  { id: 'bathroom', label: 'Bathroom', icon: Bath },
-  { id: 'pooja-unit', label: 'Pooja Unit', icon: Flame },
-  { id: 'foyer-designs', label: 'Foyer Designs', icon: DoorOpen },
-  { id: 'movable-furniture', label: 'Movable Furniture', icon: Armchair },
-  { id: 'kids-bedroom', label: 'Kids Bedroom', icon: BedDouble },
+  { id: 'modular-kitchen', label: 'Modular Kitchen', image: '/images/furnish/solution-modular-kitchen.png' },
+  { id: 'storage-wardrobe', label: 'Storage and Wardrobe', image: '/images/furnish/solution-storage-wardrobe.png' },
+  { id: 'crockery-units', label: 'Crockery Units', image: '/images/furnish/solution-crockery-units.png' },
+  { id: 'space-saving', label: 'Space Saving Furniture', image: '/images/furnish/solution-space-saving.png' },
+  { id: 'tv-units', label: 'TV Units', image: '/images/furnish/solution-tv-units.png' },
+  { id: 'study-tables', label: 'Study Tables', image: '/images/furnish/solution-study-tables.png' },
+  { id: 'false-ceiling', label: 'False Ceiling', image: '/images/furnish/solution-false-ceiling.png' },
+  { id: 'lights', label: 'Lights', image: '/images/furnish/solution-lights.png' },
+  { id: 'wallpaper', label: 'Wallpaper', image: '/images/furnish/solution-wallpaper.png' },
+  { id: 'wall-paint', label: 'Wall Paint', image: '/images/furnish/solution-wall-paint.png' },
+  { id: 'bathroom', label: 'Bathroom', image: '/images/furnish/solution-bathroom.png' },
+  { id: 'pooja-unit', label: 'Pooja Unit', image: '/images/furnish/solution-pooja-unit.png' },
+  { id: 'foyer-designs', label: 'Foyer Designs', image: '/images/furnish/solution-foyer-designs.png' },
+  { id: 'movable-furniture', label: 'Movable Furniture', image: '/images/furnish/solution-movable-furniture.png' },
+  { id: 'kids-bedroom', label: 'Kids Bedroom', image: '/images/furnish/solution-kids-bedroom.png' },
 ] as const
 
 /* ── Item card ── */
 
 function SolutionCard({ item }: { readonly item: SolutionItem }) {
-  const Icon = item.icon
-
   return (
-    <div className="group flex flex-col items-center gap-3 text-center">
-      <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-limestone/50 bg-parchment transition-all duration-300 group-hover:border-terracotta/30 group-hover:bg-terracotta/[0.06] group-hover:shadow-sm">
-        <Icon
-          size={28}
-          strokeWidth={1.4}
-          className="text-obsidian/70 transition-colors duration-300 group-hover:text-terracotta"
-          aria-hidden="true"
+    <div className="group flex flex-col items-center gap-4 text-center">
+      <div className="w-full max-w-[160px]">
+        <Image
+          src={item.image}
+          alt={item.label}
+          width={480}
+          height={480}
+          className="h-auto w-full"
         />
       </div>
-      <span className="max-w-[120px] font-body text-[13px] leading-snug text-obsidian/80 transition-colors duration-300 group-hover:text-obsidian">
+      <span className="max-w-[140px] font-display text-sm font-medium leading-snug text-obsidian/80 transition-colors duration-300 group-hover:text-terracotta">
         {item.label}
       </span>
     </div>

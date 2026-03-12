@@ -42,6 +42,7 @@ export default function FurnishPage() {
         faqs={FURNISH_FAQS}
         categories={FURNISH_FAQ_CATEGORIES}
         subtitle="Everything you need to know about our furnishing services"
+        sectionClassName="bg-white py-24 md:py-32 lg:py-36"
       />
     </>
   )

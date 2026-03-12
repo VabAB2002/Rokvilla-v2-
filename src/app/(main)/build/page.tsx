@@ -6,7 +6,7 @@ import { BuildKeyFeaturesSection } from '@/components/build/BuildKeyFeaturesSect
 import { ConsultationForm } from '@/components/shared/ConsultationForm'
 import { ConsultationPhoto } from '@/components/design/ConsultationPhoto'
 import { TestimonialsSection } from '@/components/shared/TestimonialsSection'
-import { ProjectsSection } from '@/components/sections/ProjectsSection'
+import { BuildProjectsWrapper } from '@/components/build/BuildProjectsWrapper'
 import { FAQSection } from '@/components/shared/FAQSection'
 import {
   BUILD_TESTIMONIALS,
@@ -33,7 +33,7 @@ export default function BuildPage() {
         sectionClassName="relative overflow-hidden bg-white py-24 md:py-32 lg:py-36"
       />
       <TestimonialsSection testimonials={BUILD_TESTIMONIALS} />
-      <ProjectsSection />
+      <BuildProjectsWrapper />
       <FAQSection
         faqs={BUILD_FAQS}
         categories={BUILD_FAQ_CATEGORIES}

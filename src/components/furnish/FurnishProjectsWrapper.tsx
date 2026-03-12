@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback } from 'react'
-import { ProjectsSection } from '@/components/sections/ProjectsSection'
+import { ProjectsCarouselSection } from '@/components/sections/ProjectsCarouselSection'
 import { FURNISH_PROJECTS, ROOM_CATEGORIES } from '@/lib/constants/furnish'
 import type { ProjectCardData } from '@/components/ui/ProjectCard'
 
@@ -34,13 +34,12 @@ export function FurnishProjectsWrapper() {
   )
 
   return (
-    <ProjectsSection
+    <ProjectsCarouselSection
       items={FURNISH_ITEMS}
       tabs={FURNISH_TABS}
       heading="Our Projects"
       subtitle="Browse our portfolio of furnished interiors"
       sectionId="furnish-projects"
-      viewAllHref={null}
       matchesTab={matchesTab}
     />
   )
