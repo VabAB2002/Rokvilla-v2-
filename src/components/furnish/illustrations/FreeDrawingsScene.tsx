@@ -7,7 +7,7 @@ export function FreeDrawingsScene() {
       alt="Interior design drawings and 3D renders spread on a desk with a signed contract"
       width={480}
       height={480}
-      sizes="(max-width: 768px) 240px, 320px"
+      sizes="(max-width: 768px) 240px, 200px"
       className="h-auto w-full"
     />
   )

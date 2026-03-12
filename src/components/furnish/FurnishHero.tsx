@@ -24,7 +24,6 @@ export function FurnishHero() {
           alt="Interior design sketch — living room with sofa, dining table, and shelving"
           fill
           priority
-          fetchPriority="high"
           quality={90}
           placeholder="blur"
           className="object-contain object-[center_bottom] md:object-[right_center]"

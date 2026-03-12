@@ -7,7 +7,7 @@ export function HingesScene() {
       alt="HETTICH soft-close hinge mounted inside a cabinet door, with a smooth opening motion indicated"
       width={480}
       height={480}
-      sizes="(max-width: 768px) 240px, 320px"
+      sizes="(max-width: 768px) 240px, 180px"
       className="h-auto w-full"
     />
   )

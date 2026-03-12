@@ -7,7 +7,7 @@ export function VastuScene() {
       alt="Floor plan layout with Vastu compass overlay showing directional alignment for rooms"
       width={480}
       height={480}
-      sizes="(max-width: 768px) 240px, 320px"
+      sizes="(max-width: 768px) 240px, 200px"
       className="h-auto w-full"
     />
   )

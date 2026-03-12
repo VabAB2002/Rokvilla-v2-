@@ -7,7 +7,7 @@ export function DryAreasScene() {
       alt="Stylish wardrobe with open doors revealing MR plywood shelves and a TV unit with smooth MDF panels"
       width={480}
       height={480}
-      sizes="(max-width: 768px) 240px, 320px"
+      sizes="(max-width: 768px) 240px, 180px"
       className="h-auto w-full"
     />
   )

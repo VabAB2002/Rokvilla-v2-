@@ -8,7 +8,7 @@ export function ConnectBuildScene() {
       width={480}
       height={480}
       className="h-auto w-full"
-      sizes="(max-width: 768px) 240px, 320px"
+      sizes="(max-width: 768px) 240px, 240px"
     />
   )
 }

@@ -7,7 +7,7 @@ export function InhouseTeamBuildScene() {
       alt="In-house architects, designers, and project coordinators collaborating over construction blueprints"
       width={480}
       height={480}
-      sizes="(max-width: 768px) 240px, 320px"
+      sizes="(max-width: 768px) 240px, 200px"
       className="h-auto w-full"
     />
   )

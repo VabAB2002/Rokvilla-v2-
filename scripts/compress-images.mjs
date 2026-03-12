@@ -15,7 +15,7 @@
  */
 
 import sharp from 'sharp'
-import { readdir, stat, writeFile, readFile } from 'node:fs/promises'
+import { readdir, stat, writeFile, readFile, access } from 'node:fs/promises'
 import { join, extname } from 'node:path'
 
 const ROOT = new URL('../public/images', import.meta.url).pathname
@@ -43,6 +43,11 @@ function formatBytes(bytes) {
 }
 
 async function main() {
+  await access(ROOT).catch(() => {
+    console.error(`Directory not found: ${ROOT}`)
+    process.exit(1)
+  })
+
   const pngs = await collectPngs(ROOT)
   console.log(`Found ${pngs.length} PNG file(s) in ${ROOT}\n`)
 
@@ -60,24 +65,29 @@ async function main() {
       continue
     }
 
-    const input = await readFile(filepath)
-    const output = await sharp(input)
-      .png({ quality: 85, compressionLevel: 9 })
-      .toBuffer()
+    try {
+      const input = await readFile(filepath)
+      const output = await sharp(input)
+        .png({ quality: 85, compressionLevel: 9 })
+        .toBuffer()
 
-    const sizeAfter = output.length
-    const saved = sizeBefore - sizeAfter
-    const pct = ((saved / sizeBefore) * 100).toFixed(1)
+      const sizeAfter = output.length
+      const saved = sizeBefore - sizeAfter
+      const pct = ((saved / sizeBefore) * 100).toFixed(1)
 
-    await writeFile(filepath, output)
+      await writeFile(filepath, output)
 
-    totalBefore += sizeBefore
-    totalAfter += sizeAfter
-    processed++
+      totalBefore += sizeBefore
+      totalAfter += sizeAfter
+      processed++
 
-    console.log(
-      `  OK    ${filepath.replace(ROOT, '')} — ${formatBytes(sizeBefore)} → ${formatBytes(sizeAfter)} (saved ${formatBytes(saved)}, ${pct}%)`
-    )
+      console.log(
+        `  OK    ${filepath.replace(ROOT, '')} — ${formatBytes(sizeBefore)} → ${formatBytes(sizeAfter)} (saved ${formatBytes(saved)}, ${pct}%)`
+      )
+    } catch (err) {
+      console.warn(`  FAIL  ${filepath.replace(ROOT, '')} — ${err.message}`)
+      skipped++
+    }
   }
 
   console.log('\n─────────────────────────────────────────')

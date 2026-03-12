@@ -7,7 +7,7 @@ export function ConnectScene() {
       alt="Consultation table with floor plan notebook, coffee, and material swatches"
       width={480}
       height={480}
-      sizes="(max-width: 768px) 240px, 320px"
+      sizes="(max-width: 768px) 240px, 240px"
       className="h-auto w-full"
     />
   )
