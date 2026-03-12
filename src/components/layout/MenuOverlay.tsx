@@ -66,7 +66,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
         >
           {/* Dark glass background — click to close */}
           <div
-            className="absolute inset-0 bg-void/70 backdrop-blur-[48px] backdrop-saturate-150"
+            className="absolute inset-0 bg-void/70 backdrop-blur-[16px] backdrop-saturate-150 lg:backdrop-blur-[48px]"
             onClick={onClose}
             aria-hidden="true"
           />
@@ -112,7 +112,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                                 <Link
                                   href={child.href}
                                   onClick={onClose}
-                                  className="group inline-flex items-baseline gap-3 py-1"
+                                  className="group inline-flex min-h-[44px] items-center gap-3"
                                 >
                                   <span className="h-px w-3 bg-bone/20 transition-colors duration-300 group-hover:bg-terracotta/50" aria-hidden="true" />
                                   <span className="font-body text-sm font-light tracking-wide text-bone/50 transition-colors duration-300 group-hover:text-bone/90 lg:text-base">
@@ -197,7 +197,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                           key={social.label}
                           href={social.href}
                           aria-label={social.label}
-                          className="-m-2 p-2 text-bone/50 transition-colors duration-300 hover:text-terracotta"
+                          className="flex min-h-[44px] min-w-[44px] items-center justify-center text-bone/50 transition-colors duration-300 hover:text-terracotta"
                         >
                           <svg
                             className="h-5 w-5"

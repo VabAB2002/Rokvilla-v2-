@@ -191,8 +191,8 @@ export function Navigation() {
           <div className="w-11 shrink-0" aria-hidden="true" />
         </div>
 
-        {/* Mobile: hamburger left + wordmark right */}
-        <div className="flex items-center justify-between px-4 py-3 lg:hidden">
+        {/* Mobile: hamburger left + centered wordmark */}
+        <div className="relative flex h-14 items-center px-4 lg:hidden">
           <button
             type="button"
             onClick={toggleMenu}
@@ -206,7 +206,7 @@ export function Navigation() {
 
           <Link
             href="/"
-            className={`font-accent text-[15px] uppercase tracking-[0.2em] transition-colors duration-300 ${useDarkText ? 'text-charcoal' : 'text-bone'}`}
+            className={`absolute left-1/2 -translate-x-1/2 font-accent text-[15px] uppercase tracking-[0.2em] transition-colors duration-300 ${useDarkText ? 'text-charcoal' : 'text-bone'}`}
           >
             RokVilla
           </Link>
