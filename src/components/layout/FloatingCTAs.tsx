@@ -1,24 +1,25 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useScrollPosition } from '@/hooks/useScrollPosition'
+import { useScrollState } from '@/hooks/useScrollState'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { floatUpVariants } from '@/lib/motion'
+import { WHATSAPP_URL, CALL_URL } from '@/lib/constants/contact'
 
-// REPLACE_ME: Update with actual phone number
-const PHONE_NUMBER = '+910000000000'
-const WHATSAPP_URL = `https://wa.me/${PHONE_NUMBER.replace('+', '')}`
-const CALL_URL = `tel:${PHONE_NUMBER}`
+const VISIBLE_THRESHOLD = 400
 
 export function FloatingCTAs() {
-  const isVisible = useScrollPosition(400)
+  const { scrollY } = useScrollState()
+  const isVisible = scrollY >= VISIBLE_THRESHOLD
   const reducedMotion = useReducedMotion()
 
   return (
     <motion.div
-      className="fixed bottom-6 right-6 z-50 hidden flex-col gap-3 md:bottom-8 md:right-8 xl:bottom-10 xl:right-10 lg:flex lg:flex-col"
+      data-floating-ctas
+      className="fixed z-50 hidden lg:flex lg:flex-col gap-3 lg:bottom-8 lg:right-8 xl:bottom-10 xl:right-10"
       initial="hidden"
       animate={isVisible ? 'visible' : 'hidden'}
+      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
       variants={
         reducedMotion
           ? {

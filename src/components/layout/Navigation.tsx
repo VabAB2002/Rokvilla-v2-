@@ -4,8 +4,7 @@ import { useState, useCallback, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { useScrollDirection } from '@/hooks/useScrollDirection'
-import { useScrollPosition } from '@/hooks/useScrollPosition'
+import { useScrollState } from '@/hooks/useScrollState'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import dynamic from 'next/dynamic'
 
@@ -40,8 +39,8 @@ const DIVIDER = 'h-4 w-px bg-bone/20'
 export function Navigation() {
   const pathname = usePathname()
   const isLightBg = LIGHT_BG_ROUTES.some((r) => pathname === r)
-  const isHidden = useScrollDirection(80, 10)
-  const isScrolled = useScrollPosition(80)
+  const { direction, isScrolled } = useScrollState()
+  const isHidden = direction === 'down' && isScrolled
   const reducedMotion = useReducedMotion()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -55,19 +54,19 @@ export function Navigation() {
 
   // Body scroll lock when menu overlay is open (with scrollbar compensation)
   useEffect(() => {
-    if (isMenuOpen) {
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
-      document.body.style.overflow = 'hidden'
-      if (scrollbarWidth > 0) {
-        document.body.style.paddingRight = `${scrollbarWidth}px`
-      }
-    } else {
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
+    if (!isMenuOpen) return
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+    const prev = {
+      overflow: document.body.style.overflow,
+      paddingRight: document.body.style.paddingRight,
+    }
+    document.body.style.overflow = 'hidden'
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`
     }
     return () => {
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
+      document.body.style.overflow = prev.overflow
+      document.body.style.paddingRight = prev.paddingRight
     }
   }, [isMenuOpen])
 

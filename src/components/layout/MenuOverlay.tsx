@@ -1,9 +1,11 @@
 'use client'
 
 import Link from 'next/link'
+import { useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { EASE_OUT_EXPO } from '@/lib/motion'
+import { SOCIAL_LINKS, PHONE_DISPLAY, EMAIL, ADDRESS } from '@/lib/constants/contact'
 
 const MENU_LINKS = [
   { label: 'Home', href: '/' },
@@ -20,29 +22,10 @@ const MENU_LINKS = [
   { label: 'Locations', href: '/#locations' },
 ] as const
 
-const SOCIAL_LINKS = [
-  {
-    label: 'Instagram',
-    href: '#',
-    icon: 'M16 4H8a4 4 0 00-4 4v8a4 4 0 004 4h8a4 4 0 004-4V8a4 4 0 00-4-4z M12 15a3 3 0 110-6 3 3 0 010 6z M16.5 7.5h.01',
-  },
-  {
-    label: 'Facebook',
-    href: '#',
-    icon: 'M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z',
-  },
-  {
-    label: 'LinkedIn',
-    href: '#',
-    icon: 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z M2 9h4v12H2z M4 6a2 2 0 110-4 2 2 0 010 4z',
-  },
-] as const
-
-// REPLACE_ME: Update with actual contact info
 const CONTACT = {
-  phone: '+91 000 000 0000',
-  email: 'hello@rokvilla.com',
-  address: 'Hubballi, Karnataka',
+  phone: PHONE_DISPLAY,
+  email: EMAIL,
+  address: ADDRESS,
 } as const
 
 interface MenuOverlayProps {
@@ -52,6 +35,34 @@ interface MenuOverlayProps {
 
 export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
   const reducedMotion = useReducedMotion()
+  const firstLinkRef = useRef<HTMLAnchorElement>(null)
+
+  // Set inert on all content outside the nav when overlay is open to trap focus
+  useEffect(() => {
+    if (!isOpen) return
+    const main = document.querySelector('main')
+    const footer = document.querySelector('footer')
+    const targets = [
+      main,
+      footer,
+      ...Array.from(document.querySelectorAll('[data-bottom-strip], [data-floating-ctas]')),
+    ].filter((el): el is Element => el !== null)
+
+    targets.forEach((el) => el.setAttribute('inert', ''))
+    return () => {
+      targets.forEach((el) => el.removeAttribute('inert'))
+    }
+  }, [isOpen])
+
+  // Fix 6: Auto-focus first menu link when overlay opens
+  useEffect(() => {
+    if (!isOpen) return
+    // Small delay to let the animation start before stealing focus
+    const id = setTimeout(() => {
+      firstLinkRef.current?.focus()
+    }, 50)
+    return () => clearTimeout(id)
+  }, [isOpen])
 
   return (
     <AnimatePresence>
@@ -91,6 +102,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                         }}
                       >
                         <Link
+                          ref={i === 0 ? firstLinkRef : undefined}
                           href={link.href}
                           onClick={onClose}
                           className="group inline-flex items-baseline gap-4 py-2 lg:py-3"
