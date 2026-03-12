@@ -137,13 +137,20 @@ export function FAQSection({
 
         {/* Category tabs */}
         <AnimatedSection delay={0.15} className="mt-12">
-          <div className="flex justify-center gap-2 overflow-x-auto no-scrollbar">
+          <div className="flex justify-start gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar px-1 sm:justify-center sm:px-0">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 type="button"
-                onClick={() => handleCategoryChange(cat.id)}
-                className={`shrink-0 rounded-[2px] border px-5 min-h-[44px] inline-flex items-center font-body text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
+                onClick={(e) => {
+                  handleCategoryChange(cat.id)
+                  ;(e.currentTarget as HTMLButtonElement).scrollIntoView({
+                    behavior: 'smooth',
+                    inline: 'nearest',
+                    block: 'nearest',
+                  })
+                }}
+                className={`snap-start shrink-0 rounded-[2px] border px-5 min-h-[44px] inline-flex items-center font-body text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
                   activeCategory === cat.id
                     ? 'border-terracotta bg-terracotta text-bone'
                     : 'border-limestone text-slate hover:border-obsidian/30 hover:text-obsidian active:text-obsidian'

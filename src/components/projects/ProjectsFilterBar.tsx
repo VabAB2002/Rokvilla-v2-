@@ -70,14 +70,14 @@ export function ProjectsFilterBar({
         </div>
 
         {/* Dropdowns */}
-        <div className="flex gap-3">
-          <div className="relative">
+        <div className="flex flex-1 gap-3">
+          <div className="relative flex-1 min-w-0">
             <select
               value={category}
               onChange={(e) =>
                 onCategoryChange(e.target.value as FilterCategory)
               }
-              className="min-h-[44px] appearance-none rounded-[2px] border border-limestone bg-white py-3 pl-4 pr-10 font-body text-[13px] uppercase tracking-[0.08em] text-slate transition-colors duration-200 focus:border-terracotta focus:outline-none"
+              className="min-h-[44px] w-full flex-1 min-w-0 appearance-none rounded-[2px] border border-limestone bg-white py-3 pl-4 pr-10 font-body text-[13px] uppercase tracking-[0.08em] text-slate transition-colors duration-200 focus:border-terracotta focus:outline-none"
             >
               {CATEGORY_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -91,13 +91,13 @@ export function ProjectsFilterBar({
             />
           </div>
 
-          <div className="relative">
+          <div className="relative flex-1 min-w-0">
             <select
               value={location}
               onChange={(e) =>
                 onLocationChange(e.target.value as FilterLocation)
               }
-              className="min-h-[44px] appearance-none rounded-[2px] border border-limestone bg-white py-3 pl-4 pr-10 font-body text-[13px] uppercase tracking-[0.08em] text-slate transition-colors duration-200 focus:border-terracotta focus:outline-none"
+              className="min-h-[44px] w-full flex-1 min-w-0 appearance-none rounded-[2px] border border-limestone bg-white py-3 pl-4 pr-10 font-body text-[13px] uppercase tracking-[0.08em] text-slate transition-colors duration-200 focus:border-terracotta focus:outline-none"
             >
               {LOCATION_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>

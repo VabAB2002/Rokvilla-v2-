@@ -11,6 +11,7 @@ import {
   PRICING_RATES,
   type PricingUnit,
 } from '@/lib/constants/design'
+import { MobilePricingList } from './MobilePricingList'
 
 /* ── Row stagger variants ── */
 
@@ -73,8 +74,15 @@ export function DocketsSection() {
           </p>
         </AnimatedSection>
 
-        {/* Comparison Table */}
+        {/* Comparison — mobile list + desktop table */}
         <AnimatedSection delay={0.15} className="mt-12">
+          {/* Mobile: vertical card list */}
+          <div className="sm:hidden">
+            <MobilePricingList />
+          </div>
+
+          {/* Desktop: full table */}
+          <div className="hidden sm:block">
           <div className="mx-auto max-w-5xl overflow-x-auto rounded-[4px] border border-limestone/40 bg-white shadow-card no-scrollbar">
             <table className="w-full min-w-[640px]">
               {/* Column Headers */}
@@ -163,6 +171,7 @@ export function DocketsSection() {
                 })}
               </motion.tbody>
             </table>
+          </div>
           </div>
         </AnimatedSection>
 

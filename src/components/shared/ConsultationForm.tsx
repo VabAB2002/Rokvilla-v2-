@@ -126,6 +126,8 @@ function FormInput({
         aria-describedby={error ? errorId : undefined}
         autoComplete={autoComplete}
         aria-required={required}
+        inputMode={name === 'phone' ? 'tel' : undefined}
+        autoCapitalize={type === 'email' ? 'none' : undefined}
         className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:outline-none focus:ring-1 ${
           error
             ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
@@ -333,7 +335,7 @@ export function ConsultationForm({
                     transition={{ duration: 0.2 }}
                     onSubmit={handleSubmit}
                     noValidate
-                    className="rounded-[10px] border border-limestone/20 bg-white p-7 shadow-[0_1px_3px_rgba(0,0,0,0.03),0_8px_32px_rgba(0,0,0,0.05)] md:p-10"
+                    className="rounded-[10px] border border-limestone/20 bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.03),0_8px_32px_rgba(0,0,0,0.05)] sm:p-7 md:p-10"
                   >
                     <h3 className="mb-5 font-display text-lg text-obsidian">
                       Get in Touch
@@ -618,7 +620,7 @@ export function ConsultationForm({
                 transition={{ duration: 0.2 }}
                 onSubmit={handleSubmit}
                 noValidate
-                className="mx-auto max-w-3xl rounded-[4px] border border-limestone/60 bg-parchment p-8 md:p-12"
+                className="mx-auto max-w-3xl rounded-[4px] border border-limestone/60 bg-parchment p-5 sm:p-8 md:p-12"
               >
                 {/* Row 1: Name, Email, Phone */}
                 <div className="grid gap-5 md:grid-cols-3">

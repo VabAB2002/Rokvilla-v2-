@@ -55,7 +55,7 @@ function FeatureRow({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-80px' }}
-      className="grid gap-16 md:grid-cols-3 md:gap-8"
+      className="grid grid-cols-2 gap-8 md:grid-cols-3"
     >
       {features.map((feature, i) => {
         const Scene = scenes[i]

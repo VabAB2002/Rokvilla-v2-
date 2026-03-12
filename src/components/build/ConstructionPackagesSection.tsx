@@ -14,6 +14,7 @@ import {
   type ComparisonCategory,
   type PackageTier,
 } from '@/lib/constants/build-packages'
+import { PackageCardView } from './PackageCardView'
 import {
   ShieldCheck,
   Hammer,
@@ -460,7 +461,7 @@ export function ConstructionPackagesSection() {
           </div>
         </AnimatedSection>
 
-        {/* Comparison Table — keyed by type for clean re-mount */}
+        {/* Comparison — keyed by type for clean re-mount */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTypeId}
@@ -470,31 +471,43 @@ export function ConstructionPackagesSection() {
             transition={{ duration: reduced ? 0.1 : 0.3, ease: EASE_OUT_QUART }}
             className="mt-12"
           >
-            <div className="mx-auto overflow-x-auto rounded-[4px] border border-limestone/40 bg-white shadow-card no-scrollbar">
-              <table
-                className="w-full min-w-[800px]"
-                aria-label={`${activeType.label} package comparison`}
-              >
-                <TierHeaders tiers={tiers} />
+            {/* Mobile: swipeable card view */}
+            <div className="sm:hidden">
+              <PackageCardView
+                tiers={tiers}
+                categories={categories}
+                activeLabel={activeType.label}
+              />
+            </div>
 
-                {/* Per-category tbody for viewport-based stagger animation */}
-                {categories.map((category) => (
-                  <motion.tbody
-                    key={category.id}
-                    variants={rowContainerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: '-60px' }}
-                  >
-                    <CategoryBlock
-                      category={category}
-                      colCount={colCount}
-                      rowItemVariants={rowItemVariants}
-                      highlightDiffs={highlightDiffs}
-                    />
-                  </motion.tbody>
-                ))}
-              </table>
+            {/* Desktop: full comparison table */}
+            <div className="hidden sm:block">
+              <div className="mx-auto overflow-x-auto rounded-[4px] border border-limestone/40 bg-white shadow-card no-scrollbar">
+                <table
+                  className="w-full min-w-[800px]"
+                  aria-label={`${activeType.label} package comparison`}
+                >
+                  <TierHeaders tiers={tiers} />
+
+                  {/* Per-category tbody for viewport-based stagger animation */}
+                  {categories.map((category) => (
+                    <motion.tbody
+                      key={category.id}
+                      variants={rowContainerVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, margin: '-60px' }}
+                    >
+                      <CategoryBlock
+                        category={category}
+                        colCount={colCount}
+                        rowItemVariants={rowItemVariants}
+                        highlightDiffs={highlightDiffs}
+                      />
+                    </motion.tbody>
+                  ))}
+                </table>
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>

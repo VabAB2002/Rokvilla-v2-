@@ -55,7 +55,7 @@ export function MaterialFeaturesSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}
-            className="relative grid gap-16 md:grid-cols-4 md:gap-8"
+            className="relative grid grid-cols-2 gap-8 md:grid-cols-4"
           >
             {MATERIAL_FEATURES.map((mat, i) => {
               const Scene = SCENES[i]
