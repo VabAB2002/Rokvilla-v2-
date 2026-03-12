@@ -1,9 +1,7 @@
-'use client'
-
-import { LazyMotion, domAnimation } from 'framer-motion'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
 import { FloatingCTAs } from '@/components/layout/FloatingCTAs'
+import { MotionProvider } from '@/components/layout/MotionProvider'
 
 export default function MainLayout({
   children,
@@ -11,11 +9,11 @@ export default function MainLayout({
   children: React.ReactNode
 }>) {
   return (
-    <LazyMotion features={domAnimation} strict>
+    <MotionProvider>
       <Navigation />
       {children}
       <Footer />
       <FloatingCTAs />
-    </LazyMotion>
+    </MotionProvider>
   )
 }
