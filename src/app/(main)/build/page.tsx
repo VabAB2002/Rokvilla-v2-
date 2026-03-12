@@ -44,7 +44,7 @@ export default function BuildPage() {
         <ConsultationForm
           layout="split"
           illustration={<ConsultationPhoto />}
-          sectionClassName="relative overflow-hidden bg-white py-24 md:py-32 lg:py-36"
+          sectionClassName="relative overflow-hidden bg-white py-12 md:py-32 lg:py-36"
         />
       </Suspense>
       <TestimonialsSection testimonials={BUILD_TESTIMONIALS} />
@@ -54,7 +54,7 @@ export default function BuildPage() {
           faqs={BUILD_FAQS}
           categories={BUILD_FAQ_CATEGORIES}
           subtitle="Everything you need to know about our construction services"
-          sectionClassName="bg-white py-24 md:py-32 lg:py-36"
+          sectionClassName="bg-white py-12 md:py-32 lg:py-36"
         />
       </Suspense>
     </>

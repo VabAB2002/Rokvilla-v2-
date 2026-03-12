@@ -31,7 +31,7 @@ export default function DesignPage() {
         <ConsultationForm
           layout="split"
           illustration={<ConsultationPhoto />}
-          sectionClassName="relative overflow-hidden bg-white py-24 md:py-32 lg:py-36"
+          sectionClassName="relative overflow-hidden bg-white py-12 md:py-32 lg:py-36"
         />
       </Suspense>
       <DocketsSection />
@@ -41,7 +41,7 @@ export default function DesignPage() {
           faqs={DESIGN_FAQS}
           categories={FAQ_CATEGORIES}
           subtitle="Everything you need to know about our design services"
-          sectionClassName="bg-white py-24 md:py-32 lg:py-36"
+          sectionClassName="bg-white py-12 md:py-32 lg:py-36"
         />
       </Suspense>
     </>

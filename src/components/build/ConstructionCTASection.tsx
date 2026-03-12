@@ -65,7 +65,7 @@ export function ConstructionCTASection() {
   return (
     <section
       aria-labelledby="build-cta-heading"
-      className="bg-obsidian py-24 md:py-32 lg:py-36"
+      className="bg-obsidian py-12 md:py-32 lg:py-36"
     >
       <div className="mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">

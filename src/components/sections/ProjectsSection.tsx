@@ -33,7 +33,7 @@ export function ProjectsSection() {
   )
 
   return (
-    <section id="projects" aria-labelledby="projects-heading" className="bg-white py-24 md:py-32 lg:py-36">
+    <section id="projects" aria-labelledby="projects-heading" className="bg-white py-12 md:py-32 lg:py-36">
       {/* Header + tabs — contained */}
       <div className="mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
         <AnimatedSection className="text-center">

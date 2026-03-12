@@ -13,23 +13,25 @@ export function DesignHero() {
   const itemVariants = makeHeroItemVariants(reducedMotion)
 
   return (
-    <section aria-label="Design hero" className="relative h-dvh min-h-[600px] overflow-hidden bg-white">
-      {/* Blueprint background image — pushed right so text has clear space */}
-      <div className="absolute inset-y-0 -right-[10%] left-[35%] md:left-[40%]">
+    <section aria-label="Design hero" className="relative overflow-hidden bg-white md:h-dvh md:min-h-[600px]">
+      {/* Blueprint image — stacked on mobile, absolute-right on desktop */}
+      <div className="relative h-[45vh] min-h-[260px] md:absolute md:inset-y-0 md:-right-[10%] md:left-[40%] md:h-auto md:min-h-0">
         <Image
           src={designBlueprintImage}
           alt=""
           fill
           priority
           placeholder="blur"
-          className="object-contain object-right"
-          sizes="75vw"
+          className="object-contain object-center md:object-right"
+          sizes="(max-width: 768px) 100vw, 75vw"
         />
+        {/* Soft fade at image bottom — mobile only */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent md:hidden" />
       </div>
 
-      {/* Gradient overlay for text readability */}
+      {/* Gradient overlay for text readability — desktop only */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 hidden md:block"
         style={{
           background:
             'linear-gradient(to right, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.75) 35%, rgba(255,255,255,0.2) 65%, rgba(255,255,255,0) 100%)',
@@ -37,8 +39,8 @@ export function DesignHero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 flex h-full items-end pb-24 md:items-center md:pb-0">
-        <div className="mx-auto w-full max-w-7xl px-6 md:px-12">
+      <div className="relative z-10 -mt-16 px-6 pb-12 md:mt-0 md:flex md:h-full md:items-center md:px-12 md:pb-0">
+        <div className="mx-auto w-full max-w-7xl">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -91,7 +93,7 @@ export function DesignHero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: reducedMotion ? 0 : 1.2, duration: reducedMotion ? 0.2 : 0.6 }}
-        className="absolute inset-x-0 bottom-8 z-10 flex justify-center"
+        className="absolute inset-x-0 bottom-8 z-10 hidden justify-center md:flex"
       >
         <svg
           width="24"

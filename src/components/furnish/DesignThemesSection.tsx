@@ -62,7 +62,7 @@ export function DesignThemesSection() {
     <section
       id="design-themes"
       aria-labelledby="design-themes-heading"
-      className="bg-white py-24 md:py-32 lg:py-36"
+      className="bg-white py-12 md:py-32 lg:py-36"
     >
       <div className="mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
         <AnimatedSection className="text-center">

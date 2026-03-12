@@ -13,7 +13,7 @@ export function ServicesSection() {
   const fadeVariants = makeFadeUpVariants(reducedMotion)
 
   return (
-    <section id="services" aria-labelledby="services-heading" className="bg-white py-24 md:py-32 lg:py-36">
+    <section id="services" aria-labelledby="services-heading" className="bg-white py-12 md:py-32 lg:py-36">
       {/* Section header — contained */}
       <div className="mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
         <AnimatedSection className="text-center">

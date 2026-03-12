@@ -69,7 +69,7 @@ export function ProjectsCarouselSection({
   const headingId = `${sectionId}-heading`
 
   return (
-    <section id={sectionId} aria-labelledby={headingId} className="bg-white py-24 md:py-32 lg:py-36">
+    <section id={sectionId} aria-labelledby={headingId} className="bg-white py-12 md:py-32 lg:py-36">
       {/* Header + tabs */}
       <div className="mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
         <AnimatedSection className="text-center">

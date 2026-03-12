@@ -27,7 +27,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       whileHover={reducedMotion || isTouch ? undefined : 'hover'}
       whileTap={reducedMotion ? undefined : 'hover'}
     >
-      <div className="relative h-64 overflow-hidden sm:h-80">
+      <div className="relative h-56 overflow-hidden md:h-auto md:aspect-[3/2]">
         {/* Image with scale on hover/tap */}
         <motion.div
           className="h-full w-full"

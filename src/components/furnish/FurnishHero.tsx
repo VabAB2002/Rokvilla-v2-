@@ -15,10 +15,10 @@ export function FurnishHero() {
   return (
     <section
       aria-label="Furnish hero"
-      className="relative h-dvh min-h-[600px] overflow-hidden bg-white"
+      className="relative overflow-hidden bg-white md:h-dvh md:min-h-[600px]"
     >
-      {/* Background illustration — anchored right, full height */}
-      <div className="absolute inset-0">
+      {/* Background illustration — stacked on mobile, absolute on desktop */}
+      <div className="relative h-[45vh] min-h-[260px] md:absolute md:inset-0 md:h-auto md:min-h-0">
         <Image
           src={furnishHeroImage}
           alt="Interior design sketch — living room with sofa, dining table, and shelving"
@@ -26,14 +26,16 @@ export function FurnishHero() {
           priority
           quality={90}
           placeholder="blur"
-          className="object-contain object-[center_bottom] md:object-[right_center]"
-          sizes="100vw"
+          className="object-contain object-center md:object-[right_center]"
+          sizes="(max-width: 768px) 100vw, 100vw"
         />
+        {/* Soft fade at image bottom — mobile only */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent md:hidden" />
       </div>
 
-      {/* Text — left-aligned, vertically centered */}
-      <div className="relative z-10 flex h-full items-center">
-        <div className="mx-auto w-full max-w-7xl px-6 md:px-12">
+      {/* Content */}
+      <div className="relative z-10 -mt-16 px-6 pb-12 md:mt-0 md:flex md:h-full md:items-center md:px-12 md:pb-0">
+        <div className="mx-auto w-full max-w-7xl">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -83,7 +85,7 @@ export function FurnishHero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: reducedMotion ? 0 : 1.5, duration: reducedMotion ? 0.2 : 0.6 }}
-        className="absolute inset-x-0 bottom-8 z-10 flex justify-center"
+        className="absolute inset-x-0 bottom-8 z-10 hidden justify-center md:flex"
       >
         <svg
           width="24"

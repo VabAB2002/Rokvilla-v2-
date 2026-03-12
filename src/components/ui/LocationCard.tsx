@@ -24,8 +24,8 @@ export function LocationCard({ location }: LocationCardProps) {
         whileHover={reducedMotion || isTouch ? undefined : 'hover'}
         whileTap={reducedMotion ? undefined : 'hover'}
       >
-        {/* Map — same height as before: h-52 mobile, h-60 desktop */}
-        <div className="relative h-64 overflow-hidden sm:h-80">
+        {/* Map — compact on mobile, proportional on desktop */}
+        <div className="relative h-56 overflow-hidden md:h-auto md:aspect-[3/2]">
           <motion.div
             className="h-full w-full"
             variants={{

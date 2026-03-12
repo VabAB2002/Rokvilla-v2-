@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { useScrollState } from '@/hooks/useScrollState'
@@ -96,9 +97,7 @@ export function Navigation() {
     ? 'font-body text-[11px] font-semibold uppercase tracking-[0.12em] text-charcoal/80 transition-colors duration-300 hover:text-terracotta'
     : LINK_CLASS
   const dividerClass = useDarkText ? 'h-4 w-px bg-charcoal/20' : DIVIDER
-  const wordmarkClass = useDarkText
-    ? 'font-accent text-[15px] uppercase tracking-[0.2em] text-charcoal transition-colors duration-300 hover:text-terracotta'
-    : 'font-accent text-[15px] uppercase tracking-[0.2em] text-bone transition-colors duration-300 hover:text-terracotta'
+
 
   const hamburgerLines = (
     <div className="flex flex-col gap-1.5">
@@ -148,7 +147,7 @@ export function Navigation() {
               isMenuOpen ? 'pointer-events-none opacity-0' : 'opacity-100'
             }`}
           >
-            <div className="flex items-baseline gap-5">
+            <div className="flex items-center gap-5">
               {LEFT_LINKS.map((link) => (
                 <Link key={link.href} href={link.href} className={linkClass}>
                   {link.label}
@@ -220,8 +219,15 @@ export function Navigation() {
               </div>
 
               <span className={dividerClass} aria-hidden="true" />
-              <Link href="/" className={wordmarkClass}>
-                RokVilla
+              <Link href="/" className="relative flex h-8 w-16 shrink-0 items-center transition-opacity duration-300 hover:opacity-70">
+                <Image
+                  src={useDarkText ? '/logo/rok-logo-black.png' : '/logo/rok-logo-white.png'}
+                  alt="RokVilla"
+                  width={1024}
+                  height={576}
+                  className="h-full w-full scale-[1.7] object-contain"
+                  priority
+                />
               </Link>
               <span className={dividerClass} aria-hidden="true" />
 
@@ -252,9 +258,16 @@ export function Navigation() {
 
           <Link
             href="/"
-            className={`absolute left-1/2 -translate-x-1/2 font-accent text-[15px] uppercase tracking-[0.2em] transition-colors duration-300 ${useDarkText ? 'text-charcoal' : 'text-bone'}`}
+            className="absolute left-1/2 flex h-7 w-14 -translate-x-1/2 items-center transition-opacity duration-300"
           >
-            RokVilla
+            <Image
+              src={useDarkText ? '/logo/rok-logo-black.png' : '/logo/rok-logo-white.png'}
+              alt="RokVilla"
+              width={1024}
+              height={576}
+              className="h-full w-full scale-[1.7] object-contain"
+              priority
+            />
           </Link>
         </div>
       </nav>

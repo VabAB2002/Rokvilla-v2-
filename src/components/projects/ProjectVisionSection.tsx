@@ -11,7 +11,7 @@ function capitalize(str: string): string {
 
 export function ProjectVisionSection({ project }: ProjectVisionSectionProps) {
   return (
-    <section className="bg-parchment py-24 md:py-32 lg:py-36">
+    <section className="bg-parchment py-12 md:py-32 lg:py-36">
       <div className="mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-[2fr_1fr] lg:gap-20">
           {/* Vision text */}

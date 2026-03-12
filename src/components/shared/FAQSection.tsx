@@ -149,7 +149,7 @@ export function FAQSection({
     <section
       id="faq"
       aria-labelledby="faq-heading"
-      className={sectionClassName ?? "bg-parchment py-24 md:py-32 lg:py-36"}
+      className={sectionClassName ?? "bg-parchment py-12 md:py-32 lg:py-36"}
     >
       <div className="mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
         {/* Header */}
@@ -193,10 +193,10 @@ export function FAQSection({
                   })
                 }}
                 onKeyDown={handleTabKeyDown}
-                className={`snap-start shrink-0 rounded-[2px] border px-5 min-h-[44px] inline-flex items-center font-body text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
+                className={`snap-start shrink-0 rounded-full md:rounded-[2px] border px-3 md:px-5 min-h-[36px] md:min-h-[44px] inline-flex items-center font-body text-[11px] md:text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
                   activeCategory === cat.id
-                    ? 'border-terracotta bg-terracotta text-bone'
-                    : 'border-limestone text-slate hover:border-obsidian/30 hover:text-obsidian active:text-obsidian'
+                    ? 'border-terracotta bg-terracotta text-bone shadow-sm'
+                    : 'border-limestone/80 bg-white text-slate hover:border-obsidian/30 hover:text-obsidian active:text-obsidian'
                 }`}
               >
                 {cat.label}

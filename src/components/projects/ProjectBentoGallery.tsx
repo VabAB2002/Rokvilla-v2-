@@ -87,7 +87,7 @@ export function ProjectBentoGallery({
   }, [])
 
   return (
-    <section className="bg-white py-24 md:py-32 lg:py-36">
+    <section className="bg-white py-12 md:py-32 lg:py-36">
       <div className="mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
         <AnimatedSection>
           <span className="font-accent text-[13px] uppercase tracking-[0.18em] text-terracotta">

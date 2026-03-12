@@ -1,6 +1,6 @@
 'use client'
 
-import { type ReactNode, useState, useCallback, useId } from 'react'
+import { type ReactNode, useState, useCallback, useId, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Button } from '@/components/ui/Button'
@@ -141,6 +141,188 @@ function FormInput({
   )
 }
 
+/* ── Custom select component ── */
+
+interface SelectOption {
+  readonly value: string
+  readonly label: string
+}
+
+function FormSelect({
+  label,
+  name,
+  value,
+  error,
+  placeholder,
+  options,
+  onChange,
+  required,
+  idPrefix,
+}: {
+  readonly label: string
+  readonly name: string
+  readonly value: string
+  readonly error?: string
+  readonly placeholder: string
+  readonly options: ReadonlyArray<SelectOption>
+  readonly onChange: (name: string, value: string) => void
+  readonly required?: boolean
+  readonly idPrefix: string
+}) {
+  const [open, setOpen] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const listRef = useRef<HTMLUListElement>(null)
+  const triggerId = `${idPrefix}-${name}`
+  const listboxId = `${triggerId}-listbox`
+  const errorId = `${triggerId}-error`
+
+  const selectedLabel = options.find((o) => o.value === value)?.label ?? ''
+
+  // Close on outside click
+  useEffect(() => {
+    if (!open) return
+    function handleClick(e: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [open])
+
+  // Keyboard navigation
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOpen(false)
+        return
+      }
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        setOpen((prev) => !prev)
+        return
+      }
+      if (!open) return
+      const currentIndex = options.findIndex((o) => o.value === value)
+      if (e.key === 'ArrowDown') {
+        e.preventDefault()
+        const next = Math.min(currentIndex + 1, options.length - 1)
+        onChange(name, options[next].value)
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault()
+        const prev = Math.max(currentIndex - 1, 0)
+        onChange(name, options[prev].value)
+      }
+    },
+    [open, value, options, onChange, name],
+  )
+
+  return (
+    <div ref={containerRef}>
+      <label
+        htmlFor={triggerId}
+        className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
+      >
+        {label}
+      </label>
+      <div className="relative">
+        {/* Trigger button */}
+        <button
+          id={triggerId}
+          type="button"
+          role="combobox"
+          aria-expanded={open}
+          aria-haspopup="listbox"
+          aria-controls={listboxId}
+          aria-invalid={!!error}
+          aria-describedby={error ? errorId : undefined}
+          aria-required={required}
+          onClick={() => setOpen((prev) => !prev)}
+          onKeyDown={handleKeyDown}
+          className={`flex min-h-[52px] w-full items-center justify-between rounded-[2px] border bg-white px-4 py-3 text-left font-body text-base transition-colors duration-200 focus:outline-none focus:ring-1 ${
+            error
+              ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
+              : open
+                ? 'border-terracotta ring-1 ring-terracotta/30'
+                : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
+          }`}
+        >
+          <span className={selectedLabel ? 'text-obsidian' : 'text-stone/50'}>
+            {selectedLabel || placeholder}
+          </span>
+          {/* Chevron */}
+          <svg
+            className={`ml-2 h-4 w-4 shrink-0 text-stone transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+
+        {/* Dropdown panel */}
+        <AnimatePresence>
+          {open && (
+            <motion.ul
+              ref={listRef}
+              id={listboxId}
+              role="listbox"
+              aria-label={label}
+              initial={{ opacity: 0, y: -4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.15 }}
+              className="absolute z-50 mt-1 w-full overflow-hidden rounded-md border border-limestone/40 bg-white shadow-lg"
+            >
+              {options.map((option) => {
+                const isSelected = option.value === value
+                return (
+                  <li
+                    key={option.value}
+                    role="option"
+                    aria-selected={isSelected}
+                    onClick={() => {
+                      onChange(name, option.value)
+                      setOpen(false)
+                    }}
+                    className={`flex min-h-[48px] cursor-pointer items-center px-4 py-3 font-body text-base transition-colors duration-150 ${
+                      isSelected
+                        ? 'bg-terracotta/10 font-medium text-terracotta'
+                        : 'text-obsidian hover:bg-parchment'
+                    }`}
+                  >
+                    {option.label}
+                    {isSelected && (
+                      <svg
+                        className="ml-auto h-5 w-5 shrink-0 text-terracotta"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg>
+                    )}
+                  </li>
+                )
+              })}
+            </motion.ul>
+          )}
+        </AnimatePresence>
+      </div>
+      {error && (
+        <p id={errorId} role="alert" className="mt-1 font-body text-xs text-terracotta-deep">{error}</p>
+      )}
+    </div>
+  )
+}
+
 /* ── Main component ── */
 
 /* ── Blueprint grid background for split layout ── */
@@ -208,7 +390,7 @@ export function ConsultationForm({
       <section
         id="consultation"
         aria-labelledby="consultation-heading"
-        className={sectionClassName ?? "relative overflow-hidden bg-parchment py-24 md:py-32 lg:py-36"}
+        className={sectionClassName ?? "relative overflow-hidden bg-parchment py-12 md:py-32 lg:py-36"}
       >
         <BlueprintGrid />
         {/* Faint construction guide lines */}
@@ -337,7 +519,7 @@ export function ConsultationForm({
                     noValidate
                     className="rounded-[10px] border border-limestone/20 bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.03),0_8px_32px_rgba(0,0,0,0.05)] sm:p-7 md:p-10"
                   >
-                    <h3 className="mb-5 font-display text-lg text-obsidian">
+                    <h3 className="mb-5 font-display text-lg text-terracotta">
                       Get in Touch
                     </h3>
 
@@ -382,80 +564,32 @@ export function ConsultationForm({
                         required
                         idPrefix={uid}
                       />
-                      <div>
-                        <label
-                          htmlFor={`${uid}-category`}
-                          className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
-                        >
-                          Category
-                        </label>
-                        <select
-                          id={`${uid}-category`}
-                          name="category"
-                          value={fields.category}
-                          onChange={(e) => handleChange('category', e.target.value)}
-                          aria-invalid={!!errors.category}
-                          aria-describedby={errors.category ? `${uid}-category-error` : undefined}
-                          aria-required="true"
-                          className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-base text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
-                            errors.category
-                              ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
-                              : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
-                          }`}
-                        >
-                          <option value="">Select a category</option>
-                          {categories.map((cat) => (
-                            <option key={cat.value} value={cat.value}>
-                              {cat.label}
-                            </option>
-                          ))}
-                        </select>
-                        {errors.category && (
-                          <p
-                            id={`${uid}-category-error`}
-                            role="alert"
-                            className="mt-1 font-body text-xs text-terracotta-deep"
-                          >
-                            {errors.category}
-                          </p>
-                        )}
-                      </div>
+                      <FormSelect
+                        label="Category"
+                        name="category"
+                        value={fields.category}
+                        error={errors.category}
+                        placeholder="Select a category"
+                        options={categories as SelectOption[]}
+                        onChange={handleChange}
+                        required
+                        idPrefix={uid}
+                      />
                     </div>
 
                     {/* Row 3: Consultation Type + Location */}
                     <div className="mt-4 grid gap-4 md:grid-cols-2">
-                      <div>
-                        <label
-                          htmlFor={`${uid}-consultationType`}
-                          className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
-                        >
-                          Consultation Type
-                        </label>
-                        <select
-                          id={`${uid}-consultationType`}
-                          name="consultationType"
-                          value={fields.consultationType}
-                          onChange={(e) => handleChange('consultationType', e.target.value)}
-                          aria-invalid={!!errors.consultationType}
-                          aria-describedby={errors.consultationType ? `${uid}-consultationType-error` : undefined}
-                          aria-required="true"
-                          className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-base text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
-                            errors.consultationType
-                              ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
-                              : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
-                          }`}
-                        >
-                          <option value="">Select type</option>
-                          {CONSULTATION_TYPES.map((ct) => (
-                            <option key={ct.value} value={ct.value}>{ct.label}</option>
-                          ))}
-                        </select>
-                        {errors.consultationType && (
-                          <p id={`${uid}-consultationType-error`} role="alert" className="mt-1 font-body text-xs text-terracotta-deep">
-                            {errors.consultationType}
-                          </p>
-                        )}
-                      </div>
+                      <FormSelect
+                        label="Consultation Type"
+                        name="consultationType"
+                        value={fields.consultationType}
+                        error={errors.consultationType}
+                        placeholder="Select type"
+                        options={CONSULTATION_TYPES as unknown as SelectOption[]}
+                        onChange={handleChange}
+                        required
+                        idPrefix={uid}
+                      />
                       <FormInput
                         label="Location"
                         name="location"
@@ -554,7 +688,7 @@ export function ConsultationForm({
     <section
       id="consultation"
       aria-labelledby="consultation-heading"
-      className={sectionClassName ?? "bg-white py-24 md:py-32 lg:py-36"}
+      className={sectionClassName ?? "bg-white py-12 md:py-32 lg:py-36"}
     >
       <div className="mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
         {/* Header */}
@@ -663,72 +797,32 @@ export function ConsultationForm({
 
                 {/* Row 2: Category */}
                 <div className="mt-5">
-                  <label
-                    htmlFor={`${uid}-category`}
-                    className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
-                  >
-                    Category
-                  </label>
-                  <select
-                    id={`${uid}-category`}
+                  <FormSelect
+                    label="Category"
                     name="category"
                     value={fields.category}
-                    onChange={(e) => handleChange('category', e.target.value)}
-                    aria-invalid={!!errors.category}
-                    aria-describedby={errors.category ? `${uid}-category-error` : undefined}
-                    aria-required="true"
-                    className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-base text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
-                      errors.category
-                        ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
-                        : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
-                    }`}
-                  >
-                    <option value="">Select a category</option>
-                    {categories.map((cat) => (
-                      <option key={cat.value} value={cat.value}>{cat.label}</option>
-                    ))}
-                  </select>
-                  {errors.category && (
-                    <p id={`${uid}-category-error`} role="alert" className="mt-1 font-body text-xs text-terracotta-deep">
-                      {errors.category}
-                    </p>
-                  )}
+                    error={errors.category}
+                    placeholder="Select a category"
+                    options={categories as SelectOption[]}
+                    onChange={handleChange}
+                    required
+                    idPrefix={uid}
+                  />
                 </div>
 
                 {/* Row 3: Consultation Type + Location */}
                 <div className="mt-5 grid gap-5 md:grid-cols-2">
-                  <div>
-                    <label
-                      htmlFor={`${uid}-consultationType`}
-                      className="mb-1.5 block font-body text-[13px] font-medium uppercase tracking-[0.06em] text-slate"
-                    >
-                      Consultation Type
-                    </label>
-                    <select
-                      id={`${uid}-consultationType`}
-                      name="consultationType"
-                      value={fields.consultationType}
-                      onChange={(e) => handleChange('consultationType', e.target.value)}
-                      aria-invalid={!!errors.consultationType}
-                      aria-describedby={errors.consultationType ? `${uid}-consultationType-error` : undefined}
-                      aria-required="true"
-                      className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-base text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
-                        errors.consultationType
-                          ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
-                          : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
-                      }`}
-                    >
-                      <option value="">Select type</option>
-                      {CONSULTATION_TYPES.map((ct) => (
-                        <option key={ct.value} value={ct.value}>{ct.label}</option>
-                      ))}
-                    </select>
-                    {errors.consultationType && (
-                      <p id={`${uid}-consultationType-error`} role="alert" className="mt-1 font-body text-xs text-terracotta-deep">
-                        {errors.consultationType}
-                      </p>
-                    )}
-                  </div>
+                  <FormSelect
+                    label="Consultation Type"
+                    name="consultationType"
+                    value={fields.consultationType}
+                    error={errors.consultationType}
+                    placeholder="Select type"
+                    options={CONSULTATION_TYPES as unknown as SelectOption[]}
+                    onChange={handleChange}
+                    required
+                    idPrefix={uid}
+                  />
                   <FormInput
                     label="Location"
                     name="location"
