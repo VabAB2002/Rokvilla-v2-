@@ -82,12 +82,12 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
             aria-hidden="true"
           />
 
-          {/* Content */}
-          <div className="relative flex min-h-full flex-col pt-24 lg:pt-28">
+          {/* Content – pointer-events-none so background clicks reach the backdrop */}
+          <div className="pointer-events-none relative flex min-h-full flex-col pt-24 lg:pt-28">
             {/* Main content: links left, contact right */}
             <div className="flex flex-1 flex-col px-8 md:px-12 lg:flex-row lg:px-20">
               {/* Navigation links */}
-              <div className="flex flex-col justify-center lg:flex-1">
+              <div className="pointer-events-auto flex flex-col justify-center lg:flex-1">
                 <nav aria-label="Menu navigation">
                   <ul className="flex flex-col gap-1 lg:gap-2">
                     {MENU_LINKS.map((link, i) => (
@@ -164,7 +164,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
 
               {/* Contact + Social */}
               <motion.div
-                className="flex flex-col justify-center lg:flex-1"
+                className="pointer-events-auto flex flex-col justify-center lg:flex-1"
                 initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -232,7 +232,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
 
             {/* Bottom bar */}
             <motion.div
-              className="flex items-center justify-between px-8 py-8 md:px-12 lg:px-20"
+              className="pointer-events-auto flex items-center justify-between px-8 py-8 md:px-12 lg:px-20"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.4 }}

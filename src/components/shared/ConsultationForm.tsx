@@ -128,7 +128,7 @@ function FormInput({
         aria-required={required}
         inputMode={name === 'phone' ? 'tel' : undefined}
         autoCapitalize={type === 'email' ? 'none' : undefined}
-        className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:outline-none focus:ring-1 ${
+        className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-base text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:outline-none focus:ring-1 ${
           error
             ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
             : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
@@ -397,7 +397,7 @@ export function ConsultationForm({
                           aria-invalid={!!errors.category}
                           aria-describedby={errors.category ? `${uid}-category-error` : undefined}
                           aria-required="true"
-                          className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
+                          className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-base text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
                             errors.category
                               ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
                               : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
@@ -439,7 +439,7 @@ export function ConsultationForm({
                           aria-invalid={!!errors.consultationType}
                           aria-describedby={errors.consultationType ? `${uid}-consultationType-error` : undefined}
                           aria-required="true"
-                          className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
+                          className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-base text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
                             errors.consultationType
                               ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
                               : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
@@ -483,7 +483,7 @@ export function ConsultationForm({
                         value={fields.message}
                         onChange={(e) => handleChange('message', e.target.value)}
                         placeholder="Tell us about your project..."
-                        className="w-full resize-none rounded-[2px] border border-limestone bg-white px-4 py-3 font-body text-sm text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta/30"
+                        className="w-full resize-none rounded-[2px] border border-limestone bg-white px-4 py-3 font-body text-base text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta/30"
                       />
                     </div>
 
@@ -677,7 +677,7 @@ export function ConsultationForm({
                     aria-invalid={!!errors.category}
                     aria-describedby={errors.category ? `${uid}-category-error` : undefined}
                     aria-required="true"
-                    className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
+                    className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-base text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
                       errors.category
                         ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
                         : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
@@ -712,7 +712,7 @@ export function ConsultationForm({
                       aria-invalid={!!errors.consultationType}
                       aria-describedby={errors.consultationType ? `${uid}-consultationType-error` : undefined}
                       aria-required="true"
-                      className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-sm text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
+                      className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-base text-obsidian transition-colors duration-200 focus:outline-none focus:ring-1 ${
                         errors.consultationType
                           ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
                           : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
@@ -756,7 +756,7 @@ export function ConsultationForm({
                     value={fields.message}
                     onChange={(e) => handleChange('message', e.target.value)}
                     placeholder="Tell us about your project..."
-                    className="w-full resize-none rounded-[2px] border border-limestone bg-white px-4 py-3 font-body text-sm text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta/30"
+                    className="w-full resize-none rounded-[2px] border border-limestone bg-white px-4 py-3 font-body text-base text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta/30"
                   />
                 </div>
 

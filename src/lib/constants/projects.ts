@@ -322,6 +322,20 @@ export const PROJECTS: ReadonlyArray<Project> = [
   },
 ] as const
 
+/** Curated 6 projects for the homepage: 2 residential, 2 commercial, 2 interior */
+const HOMEPAGE_IDS = [
+  'sripradha',
+  'sri-ganesha-residence',
+  'cedar-homestore',
+  'junior-toes',
+  'pavan-vj',
+  'shivprasad-residence',
+] as const
+
+export const HOMEPAGE_PROJECTS: ReadonlyArray<Project> = HOMEPAGE_IDS.map(
+  (id) => PROJECTS.find((p) => p.id === id)!,
+)
+
 export function getProjectBySlug(slug: string): Project | undefined {
   return PROJECTS.find((p) => p.slug === slug)
 }

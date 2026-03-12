@@ -6,12 +6,7 @@ import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { useScrollState } from '@/hooks/useScrollState'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import dynamic from 'next/dynamic'
-
-const MenuOverlay = dynamic(
-  () => import('@/components/layout/MenuOverlay').then(m => m.MenuOverlay),
-  { loading: () => null }
-)
+import { MenuOverlay } from '@/components/layout/MenuOverlay'
 
 /* Routes with light (white) backgrounds — navbar uses dark text */
 const LIGHT_BG_ROUTES = ['/design', '/furnish', '/build', '/projects'] as const

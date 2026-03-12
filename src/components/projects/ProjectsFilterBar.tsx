@@ -77,7 +77,7 @@ export function ProjectsFilterBar({
               onChange={(e) =>
                 onCategoryChange(e.target.value as FilterCategory)
               }
-              className="min-h-[44px] w-full flex-1 min-w-0 appearance-none rounded-[2px] border border-limestone bg-white py-3 pl-4 pr-10 font-body text-[13px] uppercase tracking-[0.08em] text-slate transition-colors duration-200 focus:border-terracotta focus:outline-none"
+              className="min-h-[44px] w-full flex-1 min-w-0 appearance-none rounded-[2px] border border-limestone bg-white py-3 pl-4 pr-10 font-body text-base md:text-[13px] uppercase tracking-[0.08em] text-slate transition-colors duration-200 focus:border-terracotta focus:outline-none"
             >
               {CATEGORY_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -97,7 +97,7 @@ export function ProjectsFilterBar({
               onChange={(e) =>
                 onLocationChange(e.target.value as FilterLocation)
               }
-              className="min-h-[44px] w-full flex-1 min-w-0 appearance-none rounded-[2px] border border-limestone bg-white py-3 pl-4 pr-10 font-body text-[13px] uppercase tracking-[0.08em] text-slate transition-colors duration-200 focus:border-terracotta focus:outline-none"
+              className="min-h-[44px] w-full flex-1 min-w-0 appearance-none rounded-[2px] border border-limestone bg-white py-3 pl-4 pr-10 font-body text-base md:text-[13px] uppercase tracking-[0.08em] text-slate transition-colors duration-200 focus:border-terracotta focus:outline-none"
             >
               {LOCATION_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>

@@ -74,8 +74,10 @@ function getSnapshot() {
   return state
 }
 
+const SERVER_SNAPSHOT: ScrollState = { scrollY: 0, direction: null, isScrolled: false }
+
 function getServerSnapshot(): ScrollState {
-  return { scrollY: 0, direction: null, isScrolled: false }
+  return SERVER_SNAPSHOT
 }
 
 export function useScrollState() {
