@@ -1,11 +1,13 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
+import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
 import { ProjectLightbox } from '@/components/projects/ProjectLightbox'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useScrollProgress } from '@/hooks/useScrollProgress'
 import { EASE_OUT_QUART } from '@/lib/motion'
 
 interface ProjectBentoGalleryProps {
@@ -52,6 +54,8 @@ export function ProjectBentoGallery({
 }: ProjectBentoGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const reducedMotion = useReducedMotion()
+  const mobileScrollRef = useRef<HTMLDivElement>(null)
+  const { activeIndex } = useScrollProgress(mobileScrollRef)
 
   const bentoImages = images.slice(0, 5)
 
@@ -74,6 +78,13 @@ export function ProjectBentoGallery({
       prev === null ? null : prev === images.length - 1 ? 0 : prev + 1,
     )
   }, [images.length])
+
+  const scrollToIndex = useCallback((index: number) => {
+    const container = mobileScrollRef.current
+    if (!container) return
+    const child = container.children[index] as HTMLElement | undefined
+    child?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+  }, [])
 
   return (
     <section className="bg-white py-24 md:py-32 lg:py-36">
@@ -126,18 +137,34 @@ export function ProjectBentoGallery({
             </div>
           </div>
 
-          {/* Mobile stack */}
-          <div className="mt-8 flex flex-col gap-3 sm:hidden">
-            {bentoImages.map((img, i) => (
-              <div key={img} className="aspect-[4/3]">
-                <BentoImage
-                  src={img}
-                  alt={`${projectName} ${i + 1}`}
-                  onClick={() => openLightbox(i)}
-                  reducedMotion={reducedMotion}
-                />
-              </div>
-            ))}
+          {/* Mobile horizontal scroll carousel */}
+          <div className="mt-8 sm:hidden">
+            <div
+              ref={mobileScrollRef}
+              role="region"
+              aria-label={`${projectName} gallery`}
+              className="flex snap-x snap-mandatory overflow-x-auto gap-3 no-scrollbar pb-2"
+            >
+              {bentoImages.map((img, i) => (
+                <div
+                  key={img}
+                  className="relative w-[80vw] shrink-0 snap-start aspect-[4/3]"
+                >
+                  <BentoImage
+                    src={img}
+                    alt={`${projectName} ${i + 1}`}
+                    onClick={() => openLightbox(i)}
+                    reducedMotion={reducedMotion}
+                  />
+                </div>
+              ))}
+            </div>
+            <ScrollIndicatorDots
+              count={bentoImages.length}
+              activeIndex={activeIndex}
+              onDotClick={scrollToIndex}
+              className="mt-4"
+            />
           </div>
         </AnimatedSection>
       </div>

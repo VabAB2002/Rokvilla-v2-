@@ -1,16 +1,28 @@
 'use client'
 
+import { useRef, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ServiceCard } from '@/components/ui/ServiceCard'
+import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
 import { SERVICES } from '@/lib/constants/services'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useScrollProgress } from '@/hooks/useScrollProgress'
 import { makeStaggerContainerVariants, makeFadeUpVariants, TRANSITION_SMOOTH } from '@/lib/motion'
 
 export function ServicesSection() {
   const reducedMotion = useReducedMotion()
   const staggerVariants = makeStaggerContainerVariants(reducedMotion)
   const fadeVariants = makeFadeUpVariants(reducedMotion)
+  const mobileScrollRef = useRef<HTMLDivElement>(null)
+  const { activeIndex } = useScrollProgress(mobileScrollRef)
+
+  const scrollToIndex = useCallback((index: number) => {
+    const container = mobileScrollRef.current
+    if (!container) return
+    const child = container.children[index] as HTMLElement | undefined
+    child?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+  }, [])
 
   return (
     <section id="services" aria-labelledby="services-heading" className="bg-white py-24 md:py-32 lg:py-36">
@@ -30,13 +42,24 @@ export function ServicesSection() {
       <div className="mt-16">
         {/* Mobile: horizontal scroll carousel */}
         <div className="md:hidden">
-          <div role="region" aria-label="Services" className="flex overflow-x-auto scroll-snap-x no-scrollbar">
+          <div
+            ref={mobileScrollRef}
+            role="region"
+            aria-label="Services"
+            className="flex snap-x snap-mandatory overflow-x-auto no-scrollbar"
+          >
             {SERVICES.map((service) => (
-              <div key={service.id} className="w-[85vw] shrink-0 scroll-snap-start">
+              <div key={service.id} className="w-[85vw] shrink-0 snap-start">
                 <ServiceCard service={service} />
               </div>
             ))}
           </div>
+          <ScrollIndicatorDots
+            count={SERVICES.length}
+            activeIndex={activeIndex}
+            onDotClick={scrollToIndex}
+            className="mt-4"
+          />
         </div>
 
         {/* Desktop: staggered grid — no gaps */}

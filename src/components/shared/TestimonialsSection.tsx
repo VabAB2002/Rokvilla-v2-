@@ -1,6 +1,9 @@
 'use client'
 
+import { useRef, useCallback } from 'react'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
+import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
+import { useScrollProgress } from '@/hooks/useScrollProgress'
 import type { Testimonial } from '@/lib/constants/design'
 
 /* ── Props ── */
@@ -33,7 +36,7 @@ function TestimonialCard({
   readonly testimonial: Testimonial
 }) {
   return (
-    <div className="w-[85vw] max-w-[360px] shrink-0 scroll-snap-start rounded-[4px] border border-limestone/60 bg-white p-6 shadow-card md:p-8">
+    <div className="w-[85vw] max-w-[360px] shrink-0 snap-start rounded-[4px] border border-limestone/60 bg-white p-6 shadow-card md:p-8">
       {/* Avatar + meta */}
       <div className="flex items-center gap-4">
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-limestone/40">
@@ -72,6 +75,16 @@ export function TestimonialsSection({
   title,
   subtitle = 'What our clients say about working with us',
 }: TestimonialsSectionProps) {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const { activeIndex } = useScrollProgress(scrollRef)
+
+  const scrollToIndex = useCallback((index: number) => {
+    const container = scrollRef.current
+    if (!container) return
+    const child = container.children[index] as HTMLElement | undefined
+    child?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+  }, [])
+
   return (
     <section
       id="testimonials"
@@ -100,14 +113,21 @@ export function TestimonialsSection({
       {/* Horizontal scroll carousel */}
       <AnimatedSection delay={0.15} className="mt-14">
         <div
+          ref={scrollRef}
           role="region"
           aria-label="Client testimonials"
-          className="flex gap-4 overflow-x-auto scroll-snap-x no-scrollbar px-6 pb-4 md:gap-6 md:px-12 xl:px-16"
+          className="flex gap-4 snap-x snap-mandatory overflow-x-auto no-scrollbar px-6 pb-4 md:gap-6 md:px-12 xl:px-16"
         >
           {testimonials.map((t) => (
             <TestimonialCard key={t.id} testimonial={t} />
           ))}
         </div>
+        <ScrollIndicatorDots
+          count={testimonials.length}
+          activeIndex={activeIndex}
+          onDotClick={scrollToIndex}
+          className="mt-4 md:hidden"
+        />
       </AnimatedSection>
     </section>
   )

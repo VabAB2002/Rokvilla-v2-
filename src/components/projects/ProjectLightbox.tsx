@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -27,11 +27,17 @@ export function ProjectLightbox({
 }: ProjectLightboxProps) {
   const reducedMotion = useReducedMotion()
   const closeRef = useRef<HTMLButtonElement>(null)
+  const [mounted, setMounted] = useState(false)
+
+  // SSR guard — createPortal needs document.body which only exists client-side
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // Focus close button on mount
   useEffect(() => {
-    closeRef.current?.focus()
-  }, [])
+    if (mounted) closeRef.current?.focus()
+  }, [mounted])
 
   // Body scroll lock
   useEffect(() => {
@@ -71,6 +77,8 @@ export function ProjectLightbox({
   }, [handleKeyDown])
 
   const duration = reducedMotion ? 0.05 : 0.2
+
+  if (!mounted) return null
 
   return createPortal(
     <motion.div
@@ -121,7 +129,7 @@ export function ProjectLightbox({
         <ChevronRight className="h-6 w-6" />
       </button>
 
-      {/* Image */}
+      {/* Image with swipe gesture support */}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -132,6 +140,15 @@ export function ProjectLightbox({
           animate={{ opacity: 1, scale: 1 }}
           exit={reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.97 }}
           transition={{ duration: reducedMotion ? 0.1 : 0.3, ease: EASE_OUT_EXPO }}
+          drag={reducedMotion ? false : 'x'}
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.1}
+          onDragEnd={(_, info) => {
+            if (Math.abs(info.offset.x) > 60) {
+              if (info.offset.x < 0) onNext()
+              else onPrev()
+            }
+          }}
           onClick={(e) => e.stopPropagation()}
         >
           <Image
