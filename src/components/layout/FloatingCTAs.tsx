@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useScrollState } from '@/hooks/useScrollState'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useTouchDevice } from '@/hooks/useTouchDevice'
 import { floatUpVariants } from '@/lib/motion'
 import { WHATSAPP_URL, CALL_URL } from '@/lib/constants/contact'
 
@@ -12,6 +13,7 @@ export function FloatingCTAs() {
   const { scrollY } = useScrollState()
   const isVisible = scrollY >= VISIBLE_THRESHOLD
   const reducedMotion = useReducedMotion()
+  const isTouch = useTouchDevice()
 
   return (
     <motion.div
@@ -40,8 +42,8 @@ export function FloatingCTAs() {
       <motion.a
         href={CALL_URL}
         variants={reducedMotion ? undefined : floatUpVariants}
-        whileHover={{ scale: 1.05, y: -2 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={reducedMotion || isTouch ? undefined : { scale: 1.05, y: -2 }}
+        whileTap={reducedMotion ? undefined : { scale: 0.95 }}
         className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-terracotta text-bone shadow-accent transition-shadow hover:shadow-[0_6px_24px_rgba(238,119,7,0.45)] md:h-14 md:w-14 xl:h-16 xl:w-16"
         aria-label="Call us"
       >
@@ -65,8 +67,8 @@ export function FloatingCTAs() {
         target="_blank"
         rel="noopener noreferrer"
         variants={reducedMotion ? undefined : floatUpVariants}
-        whileHover={{ scale: 1.05, y: -2 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={reducedMotion || isTouch ? undefined : { scale: 1.05, y: -2 }}
+        whileTap={reducedMotion ? undefined : { scale: 0.95 }}
         className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-[#25D366] text-bone shadow-[0_4px_16px_rgba(37,211,102,0.3)] transition-shadow hover:shadow-[0_6px_24px_rgba(37,211,102,0.45)] md:h-14 md:w-14 xl:h-16 xl:w-16"
         aria-label="Chat on WhatsApp"
       >

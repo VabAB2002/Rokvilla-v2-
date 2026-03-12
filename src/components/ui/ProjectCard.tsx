@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { EASE_OUT_QUART } from '@/lib/motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useTouchDevice } from '@/hooks/useTouchDevice'
 
 export interface ProjectCardData {
   readonly name: string
@@ -17,12 +18,13 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const reducedMotion = useReducedMotion()
+  const isTouch = useTouchDevice()
 
   return (
     <motion.div
       className="group relative cursor-pointer overflow-hidden rounded-sm"
       initial="rest"
-      whileHover={reducedMotion ? undefined : 'hover'}
+      whileHover={reducedMotion || isTouch ? undefined : 'hover'}
       whileTap={reducedMotion ? undefined : 'hover'}
     >
       <div className="relative h-64 overflow-hidden sm:h-80">

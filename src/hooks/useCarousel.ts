@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import type { PanInfo } from 'framer-motion'
 
 /* ── Constants ── */
@@ -11,6 +11,7 @@ const VELOCITY_THRESHOLD = 300
 
 export function useVisibleCount(): number {
   const [count, setCount] = useState(3)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     const update = () => {
@@ -18,9 +19,18 @@ export function useVisibleCount(): number {
       else if (window.innerWidth < 1024) setCount(2)
       else setCount(3)
     }
+
+    const handleResize = () => {
+      if (timerRef.current !== null) clearTimeout(timerRef.current)
+      timerRef.current = setTimeout(update, 100)
+    }
+
     update()
-    window.addEventListener('resize', update, { passive: true })
-    return () => window.removeEventListener('resize', update)
+    window.addEventListener('resize', handleResize, { passive: true })
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      if (timerRef.current !== null) clearTimeout(timerRef.current)
+    }
   }, [])
 
   return count

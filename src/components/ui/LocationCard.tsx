@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { LocationMiniMap } from '@/components/ui/LocationMiniMap'
 import { EASE_OUT_QUART } from '@/lib/motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useTouchDevice } from '@/hooks/useTouchDevice'
 import type { Location } from '@/types/location'
 
 interface LocationCardProps {
@@ -12,6 +13,7 @@ interface LocationCardProps {
 
 export function LocationCard({ location }: LocationCardProps) {
   const reducedMotion = useReducedMotion()
+  const isTouch = useTouchDevice()
   const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.address)}`
 
   return (
@@ -19,7 +21,7 @@ export function LocationCard({ location }: LocationCardProps) {
       <motion.div
         className="group relative cursor-pointer overflow-hidden rounded-sm"
         initial="rest"
-        whileHover={reducedMotion ? undefined : 'hover'}
+        whileHover={reducedMotion || isTouch ? undefined : 'hover'}
         whileTap={reducedMotion ? undefined : 'hover'}
       >
         {/* Map — same height as before: h-52 mobile, h-60 desktop */}

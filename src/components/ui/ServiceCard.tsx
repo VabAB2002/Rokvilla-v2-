@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import type { Service } from '@/types/service'
 import { EASE_OUT_QUART } from '@/lib/motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useTouchDevice } from '@/hooks/useTouchDevice'
 
 interface ServiceCardProps {
   readonly service: Service
@@ -13,13 +14,14 @@ interface ServiceCardProps {
 
 export function ServiceCard({ service }: ServiceCardProps) {
   const reducedMotion = useReducedMotion()
+  const isTouch = useTouchDevice()
 
   return (
     <Link href={service.href}>
       <motion.div
         className="group relative cursor-pointer overflow-hidden rounded-sm"
         initial="rest"
-        whileHover={reducedMotion ? undefined : 'hover'}
+        whileHover={reducedMotion || isTouch ? undefined : 'hover'}
         whileTap={reducedMotion ? undefined : 'hover'}
       >
         <div className="relative h-64 overflow-hidden sm:h-80">
