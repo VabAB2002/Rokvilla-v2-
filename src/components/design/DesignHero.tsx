@@ -91,11 +91,7 @@ export function DesignHero() {
         transition={{ delay: reducedMotion ? 0 : 1.2, duration: reducedMotion ? 0.2 : 0.6 }}
         className="absolute inset-x-0 bottom-8 z-10 flex justify-center"
       >
-        <motion.svg
-          animate={reducedMotion ? undefined : { y: [0, 6, 0] }}
-          transition={
-            reducedMotion ? undefined : { duration: 1.2, repeat: Infinity, ease: 'easeInOut' }
-          }
+        <svg
           width="24"
           height="24"
           viewBox="0 0 24 24"
@@ -104,10 +100,11 @@ export function DesignHero() {
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-stone"
+          className="animate-bounce-gentle text-stone"
+          aria-hidden="true"
         >
           <path d="M12 5v14M5 12l7 7 7-7" />
-        </motion.svg>
+        </svg>
       </motion.div>
     </section>
   )
