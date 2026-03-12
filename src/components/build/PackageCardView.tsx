@@ -1,6 +1,6 @@
 'use client'
 
-import { Check, X, Minus, Circle, type LucideIcon } from 'lucide-react'
+import { Check, X, Minus } from 'lucide-react'
 import type {
   PackageTier,
   ComparisonCategory,
@@ -23,13 +23,25 @@ const INR_FORMAT = new Intl.NumberFormat('en-IN')
 
 function CellValue({ value }: { readonly value: ComparisonCellValue }) {
   if (value === true) {
-    return <Check size={16} className="text-green-600" strokeWidth={2.5} aria-label="Included" />
+    return (
+      <span role="img" aria-label="Included">
+        <Check size={16} className="text-green-600" strokeWidth={2.5} aria-hidden="true" />
+      </span>
+    )
   }
   if (value === false) {
-    return <X size={14} className="text-stone/40" strokeWidth={2} aria-label="Not included" />
+    return (
+      <span role="img" aria-label="Not included">
+        <X size={14} className="text-stone/40" strokeWidth={2} aria-hidden="true" />
+      </span>
+    )
   }
   if (value === null) {
-    return <Minus size={12} className="text-stone/25" aria-label="Not applicable" />
+    return (
+      <span role="img" aria-label="Not applicable">
+        <Minus size={12} className="text-stone/25" aria-hidden="true" />
+      </span>
+    )
   }
   return (
     <span className="font-body text-[12px] leading-snug text-slate">

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -110,10 +110,40 @@ export function FAQSection({
     setOpenId((prev) => (prev === id ? null : id))
   }, [])
 
+  const tabRefs = useRef<Map<string, HTMLButtonElement>>(new Map())
+
   const handleCategoryChange = useCallback((cat: string) => {
     setActiveCategory(cat)
     setOpenId(null)
   }, [])
+
+  const handleTabKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLButtonElement>) => {
+      const ids = categories.map((c) => c.id)
+      const currentIdx = ids.indexOf(activeCategory)
+      let nextIdx = -1
+
+      if (e.key === 'ArrowRight') {
+        nextIdx = (currentIdx + 1) % ids.length
+      } else if (e.key === 'ArrowLeft') {
+        nextIdx = (currentIdx - 1 + ids.length) % ids.length
+      } else if (e.key === 'Home') {
+        nextIdx = 0
+      } else if (e.key === 'End') {
+        nextIdx = ids.length - 1
+      }
+
+      if (nextIdx >= 0) {
+        e.preventDefault()
+        const nextId = ids[nextIdx]
+        handleCategoryChange(nextId)
+        const btn = tabRefs.current.get(nextId)
+        btn?.focus()
+        btn?.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' })
+      }
+    },
+    [categories, activeCategory, handleCategoryChange],
+  )
 
   return (
     <section
@@ -137,19 +167,32 @@ export function FAQSection({
 
         {/* Category tabs */}
         <AnimatedSection delay={0.15} className="mt-12">
-          <div className="flex justify-start gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar px-1 sm:justify-center sm:px-0">
+          <div
+            role="tablist"
+            aria-label="FAQ categories"
+            className="flex justify-start gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar px-1 sm:justify-center sm:px-0"
+          >
             {categories.map((cat) => (
               <button
                 key={cat.id}
+                ref={(el) => {
+                  if (el) tabRefs.current.set(cat.id, el)
+                }}
                 type="button"
+                role="tab"
+                aria-selected={activeCategory === cat.id}
+                aria-controls="faq-panel"
+                id={`faq-tab-${cat.id}`}
+                tabIndex={activeCategory === cat.id ? 0 : -1}
                 onClick={(e) => {
                   handleCategoryChange(cat.id)
-                  ;(e.currentTarget as HTMLButtonElement).scrollIntoView({
+                  e.currentTarget.scrollIntoView({
                     behavior: 'smooth',
                     inline: 'nearest',
                     block: 'nearest',
                   })
                 }}
+                onKeyDown={handleTabKeyDown}
                 className={`snap-start shrink-0 rounded-[2px] border px-5 min-h-[44px] inline-flex items-center font-body text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
                   activeCategory === cat.id
                     ? 'border-terracotta bg-terracotta text-bone'
@@ -164,7 +207,12 @@ export function FAQSection({
 
         {/* FAQ accordion */}
         <AnimatedSection delay={0.25} className="mt-10">
-          <div className="mx-auto max-w-3xl rounded-[4px] border border-limestone/60 bg-white px-6 md:px-10">
+          <div
+            id="faq-panel"
+            role="tabpanel"
+            aria-labelledby={`faq-tab-${activeCategory}`}
+            className="mx-auto max-w-3xl rounded-[4px] border border-limestone/60 bg-white px-6 md:px-10"
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeCategory}

@@ -5,6 +5,7 @@ import {
   PRICING_SERVICES,
   PRICING_RATES,
   type PricingUnit,
+  type PricingServiceId,
 } from '@/lib/constants/design'
 
 /* ── Formatting ── */
@@ -39,7 +40,7 @@ function PriceChip({ label, rate, unit }: PriceChipProps) {
 /* ── Service card ── */
 
 interface ServiceCardProps {
-  readonly serviceId: string
+  readonly serviceId: PricingServiceId
   readonly serviceName: string
   readonly unit: PricingUnit
 }
@@ -55,7 +56,7 @@ function ServiceCard({ serviceId, serviceName, unit }: ServiceCardProps) {
       {/* Price chips per category */}
       <div className="mt-2.5 flex flex-wrap gap-2">
         {PRICING_CATEGORIES.map((cat) => {
-          const rate = PRICING_RATES[cat.id][serviceId as keyof (typeof PRICING_RATES)[typeof cat.id]] ?? 0
+          const rate = PRICING_RATES[cat.id][serviceId] ?? 0
           return (
             <PriceChip
               key={cat.id}

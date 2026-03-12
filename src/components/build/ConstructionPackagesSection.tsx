@@ -212,11 +212,13 @@ function makeRowItemVariants(reduced: boolean): Variants {
 function CategoryBlock({
   category,
   colCount,
+  tiers,
   rowItemVariants,
   highlightDiffs,
 }: {
   readonly category: ComparisonCategory
   readonly colCount: number
+  readonly tiers: ReadonlyArray<PackageTier>
   readonly rowItemVariants: Variants
   readonly highlightDiffs: boolean
 }) {
@@ -244,6 +246,7 @@ function CategoryBlock({
         <ComparisonTableRow
           key={row.id}
           row={row}
+          tiers={tiers}
           isLast={i === category.rows.length - 1 && !category.footnote}
           variants={rowItemVariants}
           highlightDiffs={highlightDiffs}
@@ -271,11 +274,13 @@ function CategoryBlock({
 
 function ComparisonTableRow({
   row,
+  tiers,
   isLast,
   variants,
   highlightDiffs,
 }: {
   readonly row: ComparisonRow
+  readonly tiers: ReadonlyArray<PackageTier>
   readonly isLast: boolean
   readonly variants: Variants
   readonly highlightDiffs: boolean
@@ -311,10 +316,10 @@ function ComparisonTableRow({
         </div>
       </td>
 
-      {/* Package value cells — dynamic from values array */}
-      {row.values.map((val, i) => (
-        <td key={i} className="px-3 py-3 text-center align-middle md:px-5">
-          <CellValue value={val} />
+      {/* Package value cells — keyed by tier for stable reconciliation */}
+      {tiers.map((tier, i) => (
+        <td key={tier.id} className="px-3 py-3 text-center align-middle md:px-5">
+          <CellValue value={row.values[i] ?? null} />
         </td>
       ))}
     </motion.tr>
@@ -501,6 +506,7 @@ export function ConstructionPackagesSection() {
                       <CategoryBlock
                         category={category}
                         colCount={colCount}
+                        tiers={tiers}
                         rowItemVariants={rowItemVariants}
                         highlightDiffs={highlightDiffs}
                       />
