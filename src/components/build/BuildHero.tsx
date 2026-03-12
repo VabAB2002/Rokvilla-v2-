@@ -100,7 +100,7 @@ export function BuildHero() {
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="animate-bounce-gentle text-obsidian/30"
+          className={`${reducedMotion ? '' : 'animate-bounce-gentle'} text-obsidian/30`}
           aria-hidden="true"
         >
           <path d="M12 5v14M5 12l7 7 7-7" />
