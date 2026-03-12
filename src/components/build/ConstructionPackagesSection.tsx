@@ -227,7 +227,7 @@ function CategoryBlock({
           colSpan={colCount}
           className="border-b border-limestone/30 bg-parchment px-6 py-4 md:px-8"
         >
-          <h3 className="font-display text-base font-semibold uppercase tracking-wide text-obsidian md:text-lg">
+          <h3 className="font-display text-base font-medium uppercase tracking-wide text-obsidian md:text-lg">
             {category.name}
           </h3>
           {category.subtitle && (
@@ -378,7 +378,7 @@ function TierHeaders({ tiers }: { readonly tiers: ReadonlyArray<PackageTier> }) 
         </th>
         {tiers.map((tier) => (
           <th key={tier.id} scope="col" className="px-3 py-5 text-center md:px-5">
-            <span className="block font-display text-lg font-semibold text-obsidian md:text-xl">
+            <span className="block font-display text-lg font-medium text-obsidian md:text-xl">
               {tier.name}
             </span>
             <span className="mt-1 block font-body text-xs text-stone md:text-sm">

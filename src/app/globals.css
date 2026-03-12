@@ -74,10 +74,6 @@
   50% { transform: translateY(6px); }
 }
 
-.animate-bounce-gentle {
-  animation: bounce-gentle 1.2s ease-in-out infinite;
-}
-
 /* ── Base Styles ── */
 @layer base {
   html {
@@ -128,6 +124,10 @@
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  .animate-bounce-gentle {
+    animation: bounce-gentle 1.2s ease-in-out infinite;
   }
 
   /* Content-visibility for below-fold sections */
