@@ -32,42 +32,31 @@ export function ProjectVisionSection({ project }: ProjectVisionSectionProps) {
             <span className="font-accent text-[13px] uppercase tracking-[0.18em] text-terracotta">
               Facts &amp; Figures
             </span>
-            <div className="mt-6 grid grid-cols-2 gap-8">
-              <div>
-                <span className="font-accent text-[11px] uppercase tracking-[0.15em] text-stone">
-                  Category
-                </span>
-                <p className="mt-1 font-display text-xl text-obsidian">
-                  {capitalize(project.category)}
-                </p>
-              </div>
-              <div>
-                <span className="font-accent text-[11px] uppercase tracking-[0.15em] text-stone">
-                  Location
-                </span>
-                <p className="mt-1 font-display text-xl text-obsidian">
-                  {capitalize(project.location)}
-                </p>
-              </div>
-              <div>
-                <span className="font-accent text-[11px] uppercase tracking-[0.15em] text-stone">
-                  Year
-                </span>
-                <p className="mt-1 font-display text-xl text-obsidian">
-                  {project.year}
-                </p>
-              </div>
-              {project.builtUpArea && (
-                <div>
-                  <span className="font-accent text-[11px] uppercase tracking-[0.15em] text-stone">
-                    Built-up Area
-                  </span>
-                  <p className="mt-1 font-display text-xl text-obsidian">
-                    {project.builtUpArea}
-                  </p>
-                </div>
-              )}
-            </div>
+            <dl className="mt-6 flex flex-col">
+              {[
+                { label: 'Category', value: capitalize(project.category) },
+                { label: 'Location', value: capitalize(project.location) },
+                { label: 'Year', value: String(project.year) },
+                { label: 'Built-up Area', value: project.builtUpArea },
+                { label: 'Plot Size', value: project.plotSize },
+                { label: 'Floors', value: project.floors },
+                { label: 'Style', value: project.style },
+              ]
+                .filter((f) => f.value)
+                .map((fact) => (
+                  <div
+                    key={fact.label}
+                    className="border-b border-obsidian/8 py-4 first:pt-0"
+                  >
+                    <dt className="font-accent text-[11px] uppercase tracking-[0.15em] text-stone">
+                      {fact.label}
+                    </dt>
+                    <dd className="mt-1 font-display text-xl text-obsidian">
+                      {fact.value}
+                    </dd>
+                  </div>
+                ))}
+            </dl>
           </AnimatedSection>
         </div>
       </div>

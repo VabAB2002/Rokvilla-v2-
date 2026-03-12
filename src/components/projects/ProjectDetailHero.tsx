@@ -59,19 +59,8 @@ export function ProjectDetailHero({ project }: ProjectDetailHeroProps) {
         aria-hidden="true"
       />
 
-      {/* Back link */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-28 md:px-12 md:pt-32 xl:px-16">
-        <Link
-          href="/projects"
-          className="inline-flex items-center gap-2 font-body text-[12px] uppercase tracking-[0.12em] text-bone/60 transition-colors duration-300 hover:text-bone"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to Projects
-        </Link>
-      </div>
-
-      {/* Hero content */}
-      <div className="relative z-10 flex h-full items-end pb-20 md:pb-24">
+      {/* Hero content — full height flex, content anchored to bottom */}
+      <div className="relative z-10 flex h-full items-end pb-16 md:pb-20 lg:pb-24">
         <div className="mx-auto w-full max-w-7xl px-6 md:px-12 xl:px-16">
           <motion.div
             variants={containerVariants}
@@ -89,17 +78,27 @@ export function ProjectDetailHero({ project }: ProjectDetailHeroProps) {
 
             <motion.h1
               variants={itemVariants}
-              className="mt-4 font-display text-[clamp(2.5rem,6vw,6rem)] font-light leading-[0.95] text-bone"
+              className="mt-4 font-display text-[clamp(2.5rem,6vw,5.5rem)] font-light leading-[0.95] text-bone"
             >
               {project.name}
             </motion.h1>
 
-            <motion.p
+            <motion.div
               variants={itemVariants}
-              className="mt-4 font-body text-sm tracking-wide text-bone/50"
+              className="mt-6 flex items-center gap-6"
             >
-              {project.year}
-            </motion.p>
+              <span className="font-body text-sm tracking-wide text-bone/50">
+                {project.year}
+              </span>
+              <span className="h-px w-6 bg-bone/20" aria-hidden="true" />
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-2 font-body text-[12px] uppercase tracking-[0.1em] text-bone/40 transition-colors duration-300 hover:text-bone"
+              >
+                <ArrowLeft className="h-3.5 w-3.5" />
+                All Projects
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </div>

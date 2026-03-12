@@ -28,7 +28,7 @@ function BentoImage({
     <motion.button
       type="button"
       onClick={onClick}
-      className="relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-sm"
+      className="relative h-full w-full cursor-pointer overflow-hidden rounded-sm"
       whileHover={
         reducedMotion ? undefined : { scale: 1.03, transition: { duration: 0.5, ease: EASE_OUT_QUART } }
       }
@@ -87,8 +87,8 @@ export function ProjectBentoGallery({
         <AnimatedSection delay={0.15}>
           {/* Bento grid — desktop */}
           <div className="mt-8 hidden flex-col gap-2 sm:flex md:gap-3">
-            {/* Top row: 60/40 split */}
-            <div className="grid grid-cols-5 gap-2 md:gap-3">
+            {/* Top row: 60/40 split, shared row height */}
+            <div className="grid aspect-[5/2] grid-cols-5 gap-2 md:gap-3">
               {bentoImages[0] && (
                 <div className="col-span-3">
                   <BentoImage
@@ -114,13 +114,14 @@ export function ProjectBentoGallery({
             {/* Bottom row: equal thirds */}
             <div className="grid grid-cols-3 gap-2 md:gap-3">
               {bentoImages.slice(2, 5).map((img, i) => (
-                <BentoImage
-                  key={img}
-                  src={img}
-                  alt={`${projectName} ${i + 3}`}
-                  onClick={() => openLightbox(i + 2)}
-                  reducedMotion={reducedMotion}
-                />
+                <div key={img} className="aspect-[4/3]">
+                  <BentoImage
+                    src={img}
+                    alt={`${projectName} ${i + 3}`}
+                    onClick={() => openLightbox(i + 2)}
+                    reducedMotion={reducedMotion}
+                  />
+                </div>
               ))}
             </div>
           </div>
@@ -128,13 +129,14 @@ export function ProjectBentoGallery({
           {/* Mobile stack */}
           <div className="mt-8 flex flex-col gap-3 sm:hidden">
             {bentoImages.map((img, i) => (
-              <BentoImage
-                key={img}
-                src={img}
-                alt={`${projectName} ${i + 1}`}
-                onClick={() => openLightbox(i)}
-                reducedMotion={reducedMotion}
-              />
+              <div key={img} className="aspect-[4/3]">
+                <BentoImage
+                  src={img}
+                  alt={`${projectName} ${i + 1}`}
+                  onClick={() => openLightbox(i)}
+                  reducedMotion={reducedMotion}
+                />
+              </div>
             ))}
           </div>
         </AnimatedSection>

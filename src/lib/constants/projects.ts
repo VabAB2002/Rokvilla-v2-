@@ -23,6 +23,9 @@ export const PROJECTS: ReadonlyArray<Project> = [
     vision:
       'Sripradha is a bold expression of contemporary tropical living. Double-height atriums flood every floor with natural light, while wooden-framed skylights and cascading indoor greenery blur the boundary between architecture and landscape. The design embraces open volumes and layered terraces, creating a residence that breathes.',
     builtUpArea: '4,200 sq ft',
+    plotSize: '2,400 sq ft',
+    floors: 'G + 2',
+    style: 'Contemporary Tropical',
   },
   {
     id: 'sri-ganesha-residence',
@@ -50,6 +53,9 @@ export const PROJECTS: ReadonlyArray<Project> = [
     vision:
       'Sri Ganesha Residence draws from the timeless proportions of traditional Indian architecture while embracing a thoroughly modern plan. Natural stone detailing and deep overhangs provide texture and shade, while generous internal courtyards invite light and breeze into the heart of the home.',
     builtUpArea: '3,800 sq ft',
+    plotSize: '2,000 sq ft',
+    floors: 'G + 2',
+    style: 'Traditional Modern',
   },
   {
     id: 'mig265',
@@ -77,6 +83,9 @@ export const PROJECTS: ReadonlyArray<Project> = [
     vision:
       'MIG 265 reimagines a compact urban plot as a vertical garden. Cascading flower planters weave colour across every storey, transforming the facade into a living canvas. Behind the greenery, clean modern interiors maximise every square foot with clever split-level planning.',
     builtUpArea: '2,400 sq ft',
+    plotSize: '1,200 sq ft',
+    floors: 'G + 3',
+    style: 'Modern Vertical Garden',
   },
   {
     id: 'vanitha-residence',
@@ -100,6 +109,9 @@ export const PROJECTS: ReadonlyArray<Project> = [
     vision:
       'Vanitha Residence is a study in warmth and craft. Rich wood tones frame every room, while textured feature walls add depth without clutter. The spatial sequence unfolds gradually — from an inviting entrance courtyard to layered living zones that feel both expansive and intimate.',
     builtUpArea: '3,000 sq ft',
+    plotSize: '1,800 sq ft',
+    floors: 'G + 1',
+    style: 'Warm Contemporary',
   },
   {
     id: 'shivprasad-residence',
@@ -122,6 +134,9 @@ export const PROJECTS: ReadonlyArray<Project> = [
     vision:
       'Shivprasad Residence showcases the art of considered interiors. Every surface — from fluted panelling to backlit stone counters — is chosen to work in concert. Custom joinery threads through the home, giving each room its own character while maintaining a unified, contemporary rhythm.',
     builtUpArea: '3,500 sq ft',
+    plotSize: '2,000 sq ft',
+    floors: 'G + 1',
+    style: 'Contemporary Minimal',
   },
   {
     id: 'pavan-vj',
@@ -144,6 +159,9 @@ export const PROJECTS: ReadonlyArray<Project> = [
     vision:
       'Pavan VJ Residence is designed around drama and contrast. A soaring double-height living volume is anchored by a glass-railed staircase that becomes a sculptural centrepiece. Arched niches, veined marble, and warm timber panelling create a material dialogue that is bold yet inviting.',
     builtUpArea: '4,500 sq ft',
+    plotSize: '2,800 sq ft',
+    floors: 'G + 2',
+    style: 'Luxury Contemporary',
   },
   {
     id: 'raj-residence',
@@ -169,6 +187,9 @@ export const PROJECTS: ReadonlyArray<Project> = [
     vision:
       'Raj Residence elevates everyday living into a curated experience. A signature gold arch frames the kitchen as a stage, while veined marble surfaces and warm wood tones flow through interconnected spaces. Every detail — from concealed lighting coves to custom hardware — reinforces an atmosphere of quiet luxury.',
     builtUpArea: '3,200 sq ft',
+    plotSize: '1,600 sq ft',
+    floors: 'G + 1',
+    style: 'Art Deco Fusion',
   },
   {
     id: 'cedar-homestore',
@@ -193,6 +214,9 @@ export const PROJECTS: ReadonlyArray<Project> = [
     vision:
       'Cedar Homestore transforms a commercial brief into an architectural landmark. A sweeping canopy shelters the entrance while living green walls soften the scale. At dusk, integrated lighting turns the facade into a glowing beacon — announcing the brand to the streetscape from hundreds of metres away.',
     builtUpArea: '8,000 sq ft',
+    plotSize: '5,000 sq ft',
+    floors: 'G + 1',
+    style: 'Modern Commercial',
   },
   {
     id: 'rokvilla-office',
@@ -215,6 +239,9 @@ export const PROJECTS: ReadonlyArray<Project> = [
     vision:
       'The RokVilla Office is where the practice meets its own principles. An open studio fosters creative collaboration, while acoustically treated alcoves provide space for focused work. Exposed brick, warm timber, and curated material samples double as both finish and inspiration.',
     builtUpArea: '1,800 sq ft',
+    plotSize: '900 sq ft',
+    floors: 'G + 1',
+    style: 'Industrial Warm',
   },
   {
     id: 'junior-toes',
@@ -237,6 +264,9 @@ export const PROJECTS: ReadonlyArray<Project> = [
     vision:
       'Junior Toes proves that commercial design can be joyful. Rounded forms, pastel palettes, and playful display niches create a world scaled to children without sacrificing retail efficiency. The storefront draws families in with warmth and colour, turning shopping into an experience.',
     builtUpArea: '1,200 sq ft',
+    plotSize: '800 sq ft',
+    floors: 'G',
+    style: 'Playful Modern',
   },
   {
     id: 'spectrum-industry',
@@ -262,6 +292,9 @@ export const PROJECTS: ReadonlyArray<Project> = [
     vision:
       'Spectrum Industry demonstrates that industrial architecture deserves the same design attention as any residence. A bold louvered facade manages solar gain and ventilation while projecting strength. Inside, clear-span volumes and a rational logistics grid ensure operational efficiency at scale.',
     builtUpArea: '25,000 sq ft',
+    plotSize: '40,000 sq ft',
+    floors: 'G + 1',
+    style: 'Industrial Modern',
   },
   {
     id: 'devi-gudi',
@@ -283,6 +316,9 @@ export const PROJECTS: ReadonlyArray<Project> = [
     vision:
       'Devi Gudi bridges the sacred and the contemporary. Stone, water, and natural light converge to create an atmosphere of serene devotion. Modern construction techniques allow traditional proportions and detailing to be expressed with precision, resulting in a space that honours heritage while standing firmly in the present.',
     builtUpArea: '2,000 sq ft',
+    plotSize: '1,500 sq ft',
+    floors: 'G',
+    style: 'Sacred Contemporary',
   },
 ] as const
 
