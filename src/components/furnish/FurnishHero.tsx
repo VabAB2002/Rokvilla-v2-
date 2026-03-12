@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import furnishHeroImage from '../../../public/images/furnish/furnish-hero-bg.png'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -19,12 +20,13 @@ export function FurnishHero() {
       {/* Background illustration — anchored right, full height */}
       <div className="absolute inset-0">
         <Image
-          src="/images/furnish/furnish-hero-bg.png"
+          src={furnishHeroImage}
           alt="Interior design sketch — living room with sofa, dining table, and shelving"
           fill
           priority
           fetchPriority="high"
           quality={90}
+          placeholder="blur"
           className="object-contain object-[center_bottom] md:object-[right_center]"
           sizes="100vw"
         />

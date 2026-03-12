@@ -7,6 +7,7 @@ export function WetAreasScene() {
       alt="Cross-section of a kitchen cabinet showing BWP plywood layers resisting water splashes near a sink"
       width={480}
       height={480}
+      sizes="(max-width: 768px) 240px, 320px"
       className="h-auto w-full"
     />
   )

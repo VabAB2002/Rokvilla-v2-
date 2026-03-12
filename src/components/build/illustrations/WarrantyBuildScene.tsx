@@ -7,6 +7,7 @@ export function WarrantyBuildScene() {
       alt="10-year warranty certificate with a gold badge beside a sturdy concrete and steel structure"
       width={480}
       height={480}
+      sizes="(max-width: 768px) 240px, 320px"
       className="h-auto w-full"
     />
   )

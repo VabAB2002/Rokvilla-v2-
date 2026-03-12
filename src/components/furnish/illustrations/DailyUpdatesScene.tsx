@@ -7,6 +7,7 @@ export function DailyUpdatesScene() {
       alt="Smartphone showing daily site progress photos and update notifications"
       width={480}
       height={480}
+      sizes="(max-width: 768px) 240px, 320px"
       className="h-auto w-full"
     />
   )

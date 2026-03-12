@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import designBlueprintImage from '../../../public/images/design/design-blueprint.jpg'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -16,10 +17,11 @@ export function DesignHero() {
       {/* Blueprint background image — pushed right so text has clear space */}
       <div className="absolute inset-y-0 -right-[10%] left-[35%] md:left-[40%]">
         <Image
-          src="/images/design/design-blueprint.jpg"
+          src={designBlueprintImage}
           alt=""
           fill
           priority
+          placeholder="blur"
           className="object-contain object-right"
           sizes="75vw"
         />

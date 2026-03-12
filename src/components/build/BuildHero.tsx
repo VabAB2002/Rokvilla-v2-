@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import buildHeroImage from '../../../public/images/build/build-hero.png'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -16,10 +17,11 @@ export function BuildHero() {
       {/* Background illustration */}
       <div className="absolute inset-0">
         <Image
-          src="/images/build/build-hero.png"
+          src={buildHeroImage}
           alt="Construction illustration showing a building in progress"
           fill
           priority
+          placeholder="blur"
           className="object-contain object-right-bottom"
           sizes="100vw"
         />

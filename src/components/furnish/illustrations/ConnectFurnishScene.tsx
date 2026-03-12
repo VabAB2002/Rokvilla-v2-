@@ -7,6 +7,7 @@ export function ConnectFurnishScene() {
       alt="Consultation desk with a furnishing plan booklet, coffee cup, and material sample box"
       width={480}
       height={480}
+      sizes="(max-width: 768px) 240px, 320px"
       className="h-auto w-full"
     />
   )

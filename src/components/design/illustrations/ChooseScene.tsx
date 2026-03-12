@@ -7,6 +7,7 @@ export function ChooseScene() {
       alt="Hand selecting from design service folders — floor plans, interiors, and elevations"
       width={480}
       height={480}
+      sizes="(max-width: 768px) 240px, 320px"
       className="h-auto w-full"
     />
   )
