@@ -74,15 +74,29 @@
   50% { transform: translateY(6px); }
 }
 
+/* ── Viewport overflow containment ──
+   Placed OUTSIDE @layer so these rules beat every layered style.
+   - `hidden` is more universally supported than `clip` on root elements
+   - `overscroll-behavior-x` kills iOS rubber-band wobble
+   - `max-width: 100%` on body prevents any child from pushing it wider */
+html {
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+}
+
+body {
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+  max-width: 100vw;
+}
+
 /* ── Base Styles ── */
 @layer base {
   html {
     scroll-behavior: smooth;
-    overflow-x: clip;
   }
 
   body {
-    overflow-x: clip;
     background-color: var(--color-bone);
     color: var(--color-obsidian);
     font-family: var(--font-body);

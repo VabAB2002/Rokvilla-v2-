@@ -69,7 +69,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
       {isOpen && (
         <motion.div
           id="menu-overlay"
-          className="fixed inset-0 z-[55] overflow-y-auto"
+          className="fixed inset-0 z-[55] touch-none overflow-hidden overscroll-none"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -83,9 +83,9 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
           />
 
           {/* Content – pointer-events-none so background clicks reach the backdrop */}
-          <div className="pointer-events-none relative flex min-h-full flex-col pt-24 lg:pt-28">
+          <div className="pointer-events-none relative flex h-full flex-col pt-16 lg:pt-28">
             {/* Main content: links left, contact right */}
-            <div className="flex flex-1 flex-col px-8 md:px-12 lg:flex-row lg:px-20">
+            <div className="flex min-h-0 flex-1 flex-col px-8 md:px-12 lg:flex-row lg:px-20">
               {/* Navigation links */}
               <div className="pointer-events-auto flex flex-col justify-center lg:flex-1">
                 <nav aria-label="Menu navigation">
@@ -153,7 +153,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
 
               {/* Horizontal divider — mobile */}
               <motion.div
-                className="my-8 lg:hidden"
+                className="my-4 lg:hidden"
                 initial={{ opacity: 0, scaleX: 0 }}
                 animate={{ opacity: 1, scaleX: 1 }}
                 transition={{ delay: 0.3, duration: 0.4, ease: EASE_OUT_EXPO }}
@@ -173,13 +173,13 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                   ease: EASE_OUT_EXPO,
                 }}
               >
-                <div className="flex flex-col gap-10">
+                <div className="flex flex-col gap-6 lg:gap-10">
                   {/* Contact info */}
                   <div>
                     <h3 className="font-accent text-[11px] font-medium uppercase tracking-[0.18em] text-stone">
                       Get in Touch
                     </h3>
-                    <div className="mt-5 flex flex-col gap-3">
+                    <div className="mt-3 flex flex-col gap-2 lg:mt-5 lg:gap-3">
                       <a
                         href={`tel:${CONTACT.phone.replace(/\s/g, '')}`}
                         className="font-body text-base text-bone/70 transition-colors duration-300 hover:text-terracotta lg:text-lg"
@@ -232,7 +232,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
 
             {/* Bottom bar */}
             <motion.div
-              className="pointer-events-auto flex items-center justify-between px-8 py-8 md:px-12 lg:px-20"
+              className="pointer-events-auto flex items-center justify-between px-8 py-4 md:px-12 lg:px-20 lg:py-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.4 }}
