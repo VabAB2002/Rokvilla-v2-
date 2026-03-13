@@ -134,6 +134,9 @@ body {
   .scroll-snap-start {
     scroll-snap-align: start;
   }
+  .scroll-snap-center {
+    scroll-snap-align: center;
+  }
   .no-scrollbar {
     scrollbar-width: none;
     -ms-overflow-style: none;

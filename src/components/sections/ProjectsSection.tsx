@@ -1,12 +1,14 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ProjectCardLink } from '@/components/projects/ProjectCardLink'
+import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
 import { HOMEPAGE_PROJECTS } from '@/lib/constants/projects'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useScrollProgress } from '@/hooks/useScrollProgress'
 import { makeFadeUpVariants, TRANSITION_SMOOTH, EASE_OUT_EXPO } from '@/lib/motion'
 import type { ProjectCategory } from '@/types/questionnaire'
 
@@ -23,6 +25,15 @@ export function ProjectsSection() {
   const [activeTab, setActiveTab] = useState<FilterTab>('all')
   const reducedMotion = useReducedMotion()
   const fadeVariants = makeFadeUpVariants(reducedMotion)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const { activeIndex } = useScrollProgress(scrollRef)
+
+  const handleDotClick = useCallback((index: number) => {
+    const container = scrollRef.current
+    if (!container) return
+    const child = container.children[index] as HTMLElement | undefined
+    child?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+  }, [])
 
   const filteredProjects = useMemo(
     () =>
@@ -66,27 +77,27 @@ export function ProjectsSection() {
         </AnimatedSection>
       </div>
 
-      {/* Mobile project cards — stacked column, shows all projects (no filter) */}
-      <div className="mx-auto mt-10 max-w-7xl px-6 md:hidden">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          className="flex flex-col gap-4"
+      {/* Mobile project cards — horizontal scroll snap */}
+      <div className="mt-10 md:hidden">
+        <div
+          ref={scrollRef}
+          className="flex gap-3 overflow-x-auto scroll-snap-x no-scrollbar px-[10vw] pb-2"
         >
-          {HOMEPAGE_PROJECTS.map((project, i) => (
-            <motion.div
+          {HOMEPAGE_PROJECTS.map((project) => (
+            <div
               key={project.id}
-              variants={fadeVariants}
-              initial="hidden"
-              animate="visible"
-              transition={{ ...TRANSITION_SMOOTH, delay: reducedMotion ? 0 : i * 0.08 }}
-              className="w-full"
+              className="w-[78vw] max-w-[340px] shrink-0 scroll-snap-center"
             >
               <ProjectCardLink project={project} heightClass="h-56" />
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
+        <ScrollIndicatorDots
+          count={HOMEPAGE_PROJECTS.length}
+          activeIndex={activeIndex}
+          onDotClick={handleDotClick}
+          className="mt-4"
+        />
       </div>
 
       {/* Desktop project cards — flex wrap grid */}
