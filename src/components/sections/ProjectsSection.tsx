@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
-import { ProjectCard } from '@/components/ui/ProjectCard'
+import { ProjectCardLink } from '@/components/projects/ProjectCardLink'
 import { HOMEPAGE_PROJECTS } from '@/lib/constants/projects'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { makeFadeUpVariants, TRANSITION_SMOOTH, EASE_OUT_EXPO } from '@/lib/motion'
@@ -83,7 +83,7 @@ export function ProjectsSection() {
               transition={{ ...TRANSITION_SMOOTH, delay: reducedMotion ? 0 : i * 0.08 }}
               className="w-full"
             >
-              <ProjectCard project={project} heightClass="h-56" />
+              <ProjectCardLink project={project} heightClass="h-56" />
             </motion.div>
           ))}
         </motion.div>
@@ -109,7 +109,7 @@ export function ProjectsSection() {
                 transition={{ ...TRANSITION_SMOOTH, delay: reducedMotion ? 0 : i * 0.08 }}
                 className="w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)]"
               >
-                <ProjectCard project={project} heightClass="h-80" />
+                <ProjectCardLink project={project} heightClass="h-80" />
               </motion.div>
             ))}
           </motion.div>

@@ -2,6 +2,7 @@
 
 import { useRef, useCallback } from 'react'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
+import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
 import { useScrollProgress } from '@/hooks/useScrollProgress'
 import type { Testimonial } from '@/lib/constants/design'
@@ -113,16 +114,16 @@ export function TestimonialsSection({
       {/* Horizontal scroll carousel */}
       <AnimatedSection delay={0.15} className="mt-14">
         <div className="overflow-hidden">
-          <div
-            ref={scrollRef}
+          <ScrollFadeContainer
+            scrollRef={scrollRef}
+            scrollClassName="flex gap-4 snap-x snap-mandatory overflow-x-auto no-scrollbar px-6 pb-4 md:gap-6 md:px-12 xl:px-16"
             role="region"
-            aria-label="Client testimonials"
-            className="flex gap-4 snap-x snap-mandatory overflow-x-auto no-scrollbar px-6 pb-4 md:gap-6 md:px-12 xl:px-16"
+            ariaLabel="Client testimonials"
           >
             {testimonials.map((t) => (
               <TestimonialCard key={t.id} testimonial={t} />
             ))}
-          </div>
+          </ScrollFadeContainer>
         </div>
         <ScrollIndicatorDots
           count={testimonials.length}

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
+import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { motion, AnimatePresence, type Transition } from 'framer-motion'
 import { Check, X, Minus, ChevronDown } from 'lucide-react'
 import type {
@@ -217,10 +218,10 @@ export function PackageCardView({
     <div>
       {/* Scrollable card strip */}
       <div className="overflow-hidden">
-        <div
-          className="flex items-start gap-4 overflow-x-auto snap-x snap-mandatory pb-2 no-scrollbar"
+        <ScrollFadeContainer
+          scrollClassName="flex items-start gap-4 overflow-x-auto snap-x snap-mandatory pb-2 no-scrollbar"
           role="group"
-          aria-label={`${activeLabel} package comparison cards`}
+          ariaLabel={`${activeLabel} package comparison cards`}
         >
           {tiers.map((tier, index) => (
             <PackageCard
@@ -230,7 +231,7 @@ export function PackageCardView({
               categories={categories}
             />
           ))}
-        </div>
+        </ScrollFadeContainer>
       </div>
 
       {/* Swipe hint */}

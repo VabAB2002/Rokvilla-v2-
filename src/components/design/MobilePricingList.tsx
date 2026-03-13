@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { EASE_OUT_QUART } from '@/lib/motion'
 import {
@@ -168,10 +169,10 @@ export function MobilePricingList() {
   return (
     <div>
       {/* Category tabs */}
-      <div
+      <ScrollFadeContainer
+        scrollClassName="flex gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-1"
         role="tablist"
-        aria-label="Pricing category"
-        className="flex gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-1"
+        ariaLabel="Pricing category"
       >
         {PRICING_CATEGORIES.map((cat) => {
           const isActive = activeCategoryId === cat.id
@@ -215,7 +216,7 @@ export function MobilePricingList() {
             </button>
           )
         })}
-      </div>
+      </ScrollFadeContainer>
 
       {/* Service list panel */}
       <div

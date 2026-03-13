@@ -3,6 +3,7 @@
 import { useState, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
+import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { EASE_OUT_QUART } from '@/lib/motion'
 
@@ -167,10 +168,11 @@ export function FAQSection({
 
         {/* Category tabs */}
         <AnimatedSection delay={0.15} className="mt-12">
-          <div
+          <ScrollFadeContainer
+            scrollClassName="flex justify-start gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar px-1 sm:justify-center sm:px-0"
+            fadeColorClass="from-parchment"
             role="tablist"
-            aria-label="FAQ categories"
-            className="flex justify-start gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar px-1 sm:justify-center sm:px-0"
+            ariaLabel="FAQ categories"
           >
             {categories.map((cat) => (
               <button
@@ -202,7 +204,7 @@ export function FAQSection({
                 {cat.label}
               </button>
             ))}
-          </div>
+          </ScrollFadeContainer>
         </AnimatedSection>
 
         {/* FAQ accordion */}

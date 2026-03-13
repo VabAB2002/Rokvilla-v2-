@@ -4,6 +4,7 @@ import { useState, useMemo, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
+import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { EASE_OUT_QUART } from '@/lib/motion'
 import { ROOM_CATEGORIES, FURNISH_PROJECTS } from '@/lib/constants/furnish'
@@ -88,7 +89,9 @@ export function ProjectsGallerySection() {
               animate={{ opacity: 1, y: 0 }}
               exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
               transition={{ duration: reducedMotion ? 0.1 : 0.25, ease: EASE_OUT_QUART }}
-              className="flex gap-3 overflow-x-auto scroll-snap-x no-scrollbar px-3 pb-4 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-4"
+            >
+            <ScrollFadeContainer
+              scrollClassName="flex gap-3 overflow-x-auto scroll-snap-x no-scrollbar px-3 pb-4 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-4"
             >
             {filteredProjects.map((project) => (
               <div
@@ -125,6 +128,7 @@ export function ProjectsGallerySection() {
                 </div>
               </div>
             ))}
+            </ScrollFadeContainer>
             </motion.div>
           </AnimatePresence>
         </div>

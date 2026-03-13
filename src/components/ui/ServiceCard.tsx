@@ -49,14 +49,22 @@ export function ServiceCard({ service, heightClass }: ServiceCardProps) {
             aria-hidden="true"
           />
 
-          {/* Bottom gradient overlay with text */}
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent p-6 pt-16">
-            <h3 className="font-display text-xl font-medium text-bone md:text-2xl">
-              {service.title}
-            </h3>
-            <p className="mt-2 line-clamp-1 font-body text-[15px] leading-relaxed text-bone/90">
-              {service.description}
-            </p>
+          {/* Bottom gradient overlay with text and arrow */}
+          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent p-6 pt-16">
+            <div>
+              <h3 className="font-display text-xl font-medium text-bone md:text-2xl">
+                {service.title}
+              </h3>
+              <p className="mt-1 font-body text-[15px] leading-relaxed text-bone/90">
+                {service.description}
+              </p>
+            </div>
+            <span
+              className="mb-1 text-xl text-bone transition-transform duration-300 ease-out group-hover:translate-x-1"
+              aria-hidden="true"
+            >
+              &rarr;
+            </span>
           </div>
         </div>
       </motion.div>
