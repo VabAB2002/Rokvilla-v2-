@@ -58,21 +58,32 @@ export function Navigation() {
     setIsServicesOpen(false)
   }, [])
 
-  // Body scroll lock when menu overlay is open (with scrollbar compensation)
+  // Body scroll lock when menu overlay is open (iOS-safe: position fixed pattern)
   useEffect(() => {
     if (!isMenuOpen) return
+    const scrollY = window.scrollY
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
     const prev = {
       overflow: document.body.style.overflow,
+      position: document.body.style.position,
+      top: document.body.style.top,
+      width: document.body.style.width,
       paddingRight: document.body.style.paddingRight,
     }
     document.body.style.overflow = 'hidden'
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollY}px`
+    document.body.style.width = '100%'
     if (scrollbarWidth > 0) {
       document.body.style.paddingRight = `${scrollbarWidth}px`
     }
     return () => {
       document.body.style.overflow = prev.overflow
+      document.body.style.position = prev.position
+      document.body.style.top = prev.top
+      document.body.style.width = prev.width
       document.body.style.paddingRight = prev.paddingRight
+      window.scrollTo(0, scrollY)
     }
   }, [isMenuOpen])
 

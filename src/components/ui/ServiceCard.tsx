@@ -50,7 +50,7 @@ export function ServiceCard({ service, heightClass }: ServiceCardProps) {
           />
 
           {/* Bottom gradient overlay with text and arrow */}
-          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent p-6 pt-16">
+          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent px-6 pb-3 pt-16">
             <div>
               <h3 className="font-display text-xl font-medium text-bone md:text-2xl">
                 {service.title}
