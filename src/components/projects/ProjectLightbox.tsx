@@ -110,7 +110,7 @@ export function ProjectLightbox({
           e.stopPropagation()
           onPrev()
         }}
-        className="absolute left-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-bone/10 text-bone/60 backdrop-blur-sm transition-colors duration-200 hover:bg-bone/20 hover:text-bone md:left-6"
+        className="absolute left-1 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-bone/10 text-bone/60 backdrop-blur-sm transition-colors duration-200 hover:bg-bone/20 hover:text-bone md:left-6"
         aria-label="Previous image"
       >
         <ChevronLeft className="h-6 w-6" />
@@ -123,7 +123,7 @@ export function ProjectLightbox({
           e.stopPropagation()
           onNext()
         }}
-        className="absolute right-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-bone/10 text-bone/60 backdrop-blur-sm transition-colors duration-200 hover:bg-bone/20 hover:text-bone md:right-6"
+        className="absolute right-1 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-bone/10 text-bone/60 backdrop-blur-sm transition-colors duration-200 hover:bg-bone/20 hover:text-bone md:right-6"
         aria-label="Next image"
       >
         <ChevronRight className="h-6 w-6" />
@@ -133,7 +133,7 @@ export function ProjectLightbox({
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
-          className="relative mx-16 h-[70vh] w-full max-w-5xl md:mx-20"
+          className="relative mx-4 h-[70vh] w-full max-w-5xl md:mx-20"
           initial={
             reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.97 }
           }

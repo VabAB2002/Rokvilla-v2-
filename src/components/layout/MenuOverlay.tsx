@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 import { EASE_OUT_EXPO } from '@/lib/motion'
 import { SOCIAL_LINKS, PHONE_DISPLAY, EMAIL, ADDRESS } from '@/lib/constants/contact'
 
@@ -35,6 +36,7 @@ interface MenuOverlayProps {
 
 export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
   const reducedMotion = useReducedMotion()
+  const isLowPower = useIsLowPowerDevice()
   const firstLinkRef = useRef<HTMLAnchorElement>(null)
 
   // Set inert on all content outside the nav when overlay is open to trap focus
@@ -93,7 +95,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
         >
           {/* Dark glass background — click to close */}
           <div
-            className="absolute inset-0 bg-void/70 backdrop-blur-[16px] backdrop-saturate-150 lg:backdrop-blur-[48px]"
+            className={`absolute inset-0 ${isLowPower ? 'bg-void/90' : 'bg-void/70 backdrop-blur-[16px] backdrop-saturate-150 lg:backdrop-blur-[48px]'}`}
             onClick={onClose}
             aria-hidden="true"
           />

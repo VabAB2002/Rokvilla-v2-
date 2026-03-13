@@ -177,7 +177,7 @@ function PackageCard({ tier, tierIndex, categories }: PackageCardProps) {
 
   return (
     <article
-      className="w-[85vw] max-w-[340px] shrink-0 scroll-snap-align-start snap-start rounded-[8px] border border-limestone/30 bg-white shadow-card"
+      className="w-[85vw] max-w-[340px] shrink-0 snap-start rounded-[8px] border border-limestone/30 bg-white shadow-card"
       aria-label={`${tier.name} package`}
     >
       {/* Card header */}

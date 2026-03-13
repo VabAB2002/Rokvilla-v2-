@@ -7,6 +7,7 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useTouchDevice } from '@/hooks/useTouchDevice'
 import { useScrollProgress } from '@/hooks/useScrollProgress'
 import { makeStaggerContainerVariants, EASE_OUT_QUART } from '@/lib/motion'
 import { DESIGN_THEMES } from '@/lib/constants/furnish'
@@ -15,14 +16,16 @@ import { DESIGN_THEMES } from '@/lib/constants/furnish'
 function ThemeCardContent({
   theme,
   reducedMotion,
+  isTouch,
 }: {
   readonly theme: (typeof DESIGN_THEMES)[number]
   readonly reducedMotion: boolean
+  readonly isTouch: boolean
 }) {
   return (
     <div className="relative aspect-[4/3] overflow-hidden">
       <motion.div
-        whileHover={reducedMotion ? undefined : { scale: 1.04 }}
+        whileHover={isTouch || reducedMotion ? undefined : { scale: 1.04 }}
         transition={{ duration: 0.6, ease: EASE_OUT_QUART }}
         className="h-full w-full"
       >
@@ -48,6 +51,7 @@ function ThemeCardContent({
 
 export function DesignThemesSection() {
   const reducedMotion = useReducedMotion()
+  const isTouch = useTouchDevice()
   const containerVariants = makeStaggerContainerVariants(reducedMotion)
   const mobileScrollRef = useRef<HTMLDivElement>(null)
   const { activeIndex } = useScrollProgress(mobileScrollRef)
@@ -94,7 +98,7 @@ export function DesignThemesSection() {
                 key={theme.id}
                 className="group relative w-[85vw] max-w-[400px] shrink-0 snap-start overflow-hidden rounded-[4px]"
               >
-                <ThemeCardContent theme={theme} reducedMotion={reducedMotion} />
+                <ThemeCardContent theme={theme} reducedMotion={reducedMotion} isTouch={isTouch} />
               </div>
             ))}
           </ScrollFadeContainer>
@@ -112,7 +116,7 @@ export function DesignThemesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          className="hidden md:grid md:grid-cols-3 md:gap-4 md:px-4"
+          className="mx-auto hidden max-w-7xl md:grid md:grid-cols-3 md:gap-4 md:px-12 xl:px-16"
         >
           {DESIGN_THEMES.map((theme) => (
             <motion.div
@@ -123,7 +127,7 @@ export function DesignThemesSection() {
               }}
               className="group relative overflow-hidden rounded-[4px]"
             >
-              <ThemeCardContent theme={theme} reducedMotion={reducedMotion} />
+              <ThemeCardContent theme={theme} reducedMotion={reducedMotion} isTouch={isTouch} />
             </motion.div>
           ))}
         </motion.div>

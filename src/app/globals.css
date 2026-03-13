@@ -21,14 +21,14 @@
 
   /* ── Earth Accent — Karnataka laterite ── */
   --color-terracotta: #ee7707;
-  --color-terracotta-deep: #ee7707;
-  --color-terracotta-pale: #ee7707;
-  --color-terracotta-muted: #ee7707;
+  --color-terracotta-deep: #d56a06;
+  --color-terracotta-pale: #f5a04d;
+  --color-terracotta-muted: #c4873e;
 
   /* ── Brass Accent — premium metallic ── */
   --color-brass: #ee7707;
-  --color-brass-light: #ee7707;
-  --color-brass-pale: #ee7707;
+  --color-brass-light: #f5a623;
+  --color-brass-pale: #f7c675;
 
   /* ── Dark sections ── */
   --color-void: #0F0D0B;
@@ -87,7 +87,7 @@ html {
 body {
   overflow-x: hidden;
   overscroll-behavior-x: none;
-  max-width: 100vw;
+  max-width: 100%;
 }
 
 /* ── Base Styles ── */
@@ -127,16 +127,6 @@ body {
 
 /* ── Scroll & Mobile Utilities ── */
 @layer utilities {
-  .scroll-snap-x {
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
-  .scroll-snap-start {
-    scroll-snap-align: start;
-  }
-  .scroll-snap-center {
-    scroll-snap-align: center;
-  }
   .no-scrollbar {
     scrollbar-width: none;
     -ms-overflow-style: none;

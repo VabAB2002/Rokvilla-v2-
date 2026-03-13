@@ -31,7 +31,7 @@ const LINK_GROUPS: ReadonlyArray<{ readonly key: LinkGroup; readonly title: stri
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-void" aria-label="Site footer">
-      <div className="relative mx-auto max-w-[1440px] px-6 pt-12 pb-8 md:px-10 md:pt-20 md:pb-10 lg:px-16">
+      <div className="relative mx-auto max-w-[1440px] px-6 pt-12 pb-24 md:px-10 md:pt-20 md:pb-10 lg:px-16">
         {/* ─── Mobile layout ─── */}
         <div className="md:hidden">
           {/* Brand — centered */}
@@ -72,7 +72,7 @@ export function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="inline-flex min-h-[38px] items-center font-body text-[12px] text-stone/80 transition-colors duration-200 hover:text-brass-light active:text-brass-light"
+                        className="inline-flex min-h-[44px] items-center font-body text-[12px] text-stone/80 transition-colors duration-200 hover:text-brass-light active:text-brass-light"
                       >
                         {link.label}
                       </Link>
@@ -94,7 +94,7 @@ export function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-bone/[0.06] text-stone/60 transition-colors duration-200 hover:border-brass-light/30 hover:text-brass-light active:text-brass-light"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-bone/[0.06] text-stone/60 transition-colors duration-200 hover:border-brass-light/30 hover:text-brass-light active:text-brass-light"
                 >
                   <svg
                     className="h-[18px] w-[18px]"

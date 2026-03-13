@@ -64,7 +64,7 @@ export function ProjectsSection() {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`shrink-0 rounded-full border px-4 md:px-5 min-h-[40px] md:min-h-[44px] inline-flex items-center font-body text-[12px] md:text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
+                className={`shrink-0 rounded-full border px-4 md:px-5 min-h-[44px] inline-flex items-center font-body text-[12px] md:text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
                   activeTab === tab.id
                     ? 'border-2 border-terracotta/40 bg-terracotta/[0.15] backdrop-blur-sm text-terracotta font-semibold shadow-sm'
                     : 'border-terracotta/20 bg-terracotta/[0.06] backdrop-blur-sm text-slate font-normal hover:border-terracotta/[0.35] hover:bg-terracotta/10 hover:text-obsidian'
@@ -81,12 +81,12 @@ export function ProjectsSection() {
       <div className="mt-10 md:hidden">
         <div
           ref={scrollRef}
-          className="flex gap-3 overflow-x-auto scroll-snap-x no-scrollbar px-[10vw] pb-2"
+          className="flex gap-3 overflow-x-auto snap-x snap-mandatory no-scrollbar px-[10vw] pb-2"
         >
           {HOMEPAGE_PROJECTS.map((project) => (
             <div
               key={project.id}
-              className="w-[78vw] max-w-[340px] shrink-0 scroll-snap-center"
+              className="w-[78vw] max-w-[340px] shrink-0 snap-center"
             >
               <ProjectCardLink project={project} heightClass="h-56" />
             </div>

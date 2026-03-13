@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { useScrollState } from '@/hooks/useScrollState'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 import { MenuOverlay } from '@/components/layout/MenuOverlay'
 
 /* Routes with light (white) backgrounds — navbar uses dark text */
@@ -38,6 +39,7 @@ export function Navigation() {
   const { direction, isScrolled } = useScrollState()
   const isHidden = direction === 'down' && isScrolled
   const reducedMotion = useReducedMotion()
+  const isLowPower = useIsLowPowerDevice()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
   const servicesBtnRef = useRef<HTMLButtonElement>(null)
@@ -141,7 +143,7 @@ export function Navigation() {
       <nav
         className={`fixed left-0 top-0 z-[60] w-full transition-all duration-300 ${
           shouldHide ? '-translate-y-full' : 'translate-y-0'
-        } ${isScrolled && !isMenuOpen ? 'bg-white/95 shadow-sm backdrop-blur-md' : ''}`}
+        } ${isScrolled && !isMenuOpen ? (isLowPower ? 'bg-white shadow-sm' : 'bg-white/95 shadow-sm backdrop-blur-md') : ''}`}
         aria-label="Main navigation"
       >
         {/* Desktop: hamburger left + centered links + spacer right */}

@@ -69,7 +69,7 @@ export function HowItWorksSection() {
                   className="relative flex flex-col items-center text-center"
                 >
                   {/* Illustration */}
-                  <div className="mb-6 w-full max-w-[240px]">
+                  <div className="mb-6 w-full max-w-[320px] md:max-w-[240px]">
                     <Scene />
                   </div>
 

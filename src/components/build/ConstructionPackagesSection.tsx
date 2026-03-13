@@ -477,7 +477,7 @@ export function ConstructionPackagesSection() {
             className="mt-12"
           >
             {/* Mobile: swipeable card view */}
-            <div className="sm:hidden">
+            <div className="md:hidden">
               <PackageCardView
                 tiers={tiers}
                 categories={categories}
@@ -486,7 +486,7 @@ export function ConstructionPackagesSection() {
             </div>
 
             {/* Desktop: full comparison table */}
-            <div className="hidden sm:block">
+            <div className="hidden md:block">
               <div className="mx-auto overflow-x-auto rounded-[4px] border border-limestone/40 bg-white shadow-card no-scrollbar">
                 <table
                   className="w-full min-w-[800px]"
