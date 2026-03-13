@@ -14,9 +14,10 @@ export interface ProjectCardData {
 
 interface ProjectCardProps {
   readonly project: ProjectCardData
+  readonly heightClass: string
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, heightClass }: ProjectCardProps) {
   const reducedMotion = useReducedMotion()
   const isTouch = useTouchDevice()
 
@@ -27,7 +28,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       whileHover={reducedMotion || isTouch ? undefined : 'hover'}
       whileTap={reducedMotion ? undefined : 'hover'}
     >
-      <div className="relative h-56 overflow-hidden md:h-auto md:aspect-[3/2]">
+      <div className={`relative overflow-hidden ${heightClass}`}>
         {/* Image with scale on hover/tap */}
         <motion.div
           className="h-full w-full"

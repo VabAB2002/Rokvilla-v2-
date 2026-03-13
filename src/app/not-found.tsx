@@ -20,13 +20,13 @@ export default function NotFound() {
       <div className="mt-10 flex flex-wrap justify-center gap-4">
         <Link
           href="/"
-          className="inline-flex items-center justify-center gap-2 rounded-[2px] border-[1.5px] border-transparent bg-terracotta px-8 py-3.5 font-body text-[13px] font-medium uppercase tracking-[0.12em] text-bone transition-all duration-200 hover:bg-terracotta-deep"
+          className="inline-flex items-center justify-center gap-2 rounded-full border-[1.5px] border-transparent bg-terracotta px-8 py-3.5 font-body text-[13px] font-medium uppercase tracking-[0.12em] text-bone transition-all duration-200 hover:bg-terracotta-deep"
         >
           Back to Home
         </Link>
         <Link
           href="/#services"
-          className="inline-flex items-center justify-center gap-2 rounded-[2px] border-[1.5px] border-obsidian bg-transparent px-8 py-3.5 font-body text-[13px] font-medium uppercase tracking-[0.12em] text-obsidian transition-all duration-200 hover:bg-obsidian hover:text-bone"
+          className="inline-flex items-center justify-center gap-2 rounded-full border-[1.5px] border-terracotta/30 bg-terracotta/[0.07] backdrop-blur-sm px-8 py-3.5 font-body text-[13px] font-medium uppercase tracking-[0.12em] text-terracotta transition-all duration-200 hover:border-terracotta/50 hover:bg-terracotta/[0.12]"
         >
           Our Services
         </Link>

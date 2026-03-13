@@ -4,6 +4,7 @@ import { useState, useMemo, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
+import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { EASE_OUT_QUART } from '@/lib/motion'
 import { ROOM_CATEGORIES, FURNISH_PROJECTS } from '@/lib/constants/furnish'
@@ -52,10 +53,10 @@ export function ProjectsGallerySection() {
                 key={cat.id}
                 type="button"
                 onClick={() => handleFilter(cat.id)}
-                className={`inline-flex items-center gap-2 rounded-[2px] border px-4 min-h-[44px] font-body text-[12px] uppercase tracking-[0.08em] transition-all duration-200 ${
+                className={`inline-flex items-center gap-2 rounded-full border px-4 min-h-[44px] font-body text-[12px] uppercase tracking-[0.08em] transition-all duration-200 ${
                   activeFilter === cat.id
-                    ? 'border-terracotta bg-terracotta text-bone'
-                    : 'border-limestone text-slate hover:border-obsidian/30 hover:text-obsidian'
+                    ? 'border-2 border-terracotta/40 bg-terracotta/[0.15] backdrop-blur-sm text-terracotta font-semibold shadow-sm'
+                    : 'border-terracotta/20 bg-terracotta/[0.06] backdrop-blur-sm text-slate font-normal hover:border-terracotta/[0.35] hover:bg-terracotta/10 hover:text-obsidian'
                 }`}
               >
                 <svg
@@ -88,7 +89,9 @@ export function ProjectsGallerySection() {
               animate={{ opacity: 1, y: 0 }}
               exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
               transition={{ duration: reducedMotion ? 0.1 : 0.25, ease: EASE_OUT_QUART }}
-              className="flex gap-3 overflow-x-auto scroll-snap-x no-scrollbar px-3 pb-4 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-4"
+            >
+            <ScrollFadeContainer
+              scrollClassName="flex gap-3 overflow-x-auto scroll-snap-x no-scrollbar px-3 pb-4 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-4"
             >
             {filteredProjects.map((project) => (
               <div
@@ -125,6 +128,7 @@ export function ProjectsGallerySection() {
                 </div>
               </div>
             ))}
+            </ScrollFadeContainer>
             </motion.div>
           </AnimatePresence>
         </div>

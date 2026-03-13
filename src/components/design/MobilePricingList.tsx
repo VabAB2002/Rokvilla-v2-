@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { EASE_OUT_QUART } from '@/lib/motion'
 import {
@@ -168,10 +169,10 @@ export function MobilePricingList() {
   return (
     <div>
       {/* Category tabs */}
-      <div
+      <ScrollFadeContainer
+        scrollClassName="flex gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-1"
         role="tablist"
-        aria-label="Pricing category"
-        className="flex gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-1"
+        ariaLabel="Pricing category"
       >
         {PRICING_CATEGORIES.map((cat) => {
           const isActive = activeCategoryId === cat.id
@@ -196,10 +197,10 @@ export function MobilePricingList() {
                 })
               }}
               onKeyDown={handleTabKeyDown}
-              className={`snap-start shrink-0 rounded-[8px] min-h-[52px] px-4 py-2 inline-flex flex-col items-center justify-center text-center transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta ${
+              className={`snap-start shrink-0 rounded-2xl min-h-[52px] px-4 py-2 inline-flex flex-col items-center justify-center text-center transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta ${
                 isActive
-                  ? 'border-2 border-terracotta bg-terracotta/10 font-semibold'
-                  : 'border border-limestone/80 bg-white font-normal hover:border-obsidian/30 active:bg-parchment/40'
+                  ? 'border-2 border-terracotta/40 bg-terracotta/[0.15] backdrop-blur-sm text-terracotta font-semibold shadow-sm'
+                  : 'border border-terracotta/20 bg-terracotta/[0.06] backdrop-blur-sm text-slate font-normal hover:border-terracotta/[0.35] hover:bg-terracotta/10'
               }`}
             >
               <span className={`font-body text-[12px] uppercase tracking-[0.06em] leading-tight ${
@@ -215,7 +216,7 @@ export function MobilePricingList() {
             </button>
           )
         })}
-      </div>
+      </ScrollFadeContainer>
 
       {/* Service list panel */}
       <div

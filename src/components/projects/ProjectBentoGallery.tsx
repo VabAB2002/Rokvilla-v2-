@@ -4,6 +4,7 @@ import { useState, useCallback, useRef } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
+import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
 import { ProjectLightbox } from '@/components/projects/ProjectLightbox'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -139,11 +140,11 @@ export function ProjectBentoGallery({
 
           {/* Mobile horizontal scroll carousel */}
           <div className="mt-8 overflow-hidden sm:hidden">
-            <div
-              ref={mobileScrollRef}
+            <ScrollFadeContainer
+              scrollRef={mobileScrollRef}
+              scrollClassName="flex snap-x snap-mandatory overflow-x-auto gap-3 no-scrollbar pb-2"
               role="region"
-              aria-label={`${projectName} gallery`}
-              className="flex snap-x snap-mandatory overflow-x-auto gap-3 no-scrollbar pb-2"
+              ariaLabel={`${projectName} gallery`}
             >
               {bentoImages.map((img, i) => (
                 <div
@@ -158,7 +159,7 @@ export function ProjectBentoGallery({
                   />
                 </div>
               ))}
-            </div>
+            </ScrollFadeContainer>
             <ScrollIndicatorDots
               count={bentoImages.length}
               activeIndex={activeIndex}

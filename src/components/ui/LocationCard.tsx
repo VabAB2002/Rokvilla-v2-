@@ -9,9 +9,10 @@ import type { Location } from '@/types/location'
 
 interface LocationCardProps {
   readonly location: Location
+  readonly heightClass: string
 }
 
-export function LocationCard({ location }: LocationCardProps) {
+export function LocationCard({ location, heightClass }: LocationCardProps) {
   const reducedMotion = useReducedMotion()
   const isTouch = useTouchDevice()
   const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.address)}`
@@ -25,7 +26,7 @@ export function LocationCard({ location }: LocationCardProps) {
         whileTap={reducedMotion ? undefined : 'hover'}
       >
         {/* Map — compact on mobile, proportional on desktop */}
-        <div className="relative h-56 overflow-hidden md:h-auto md:aspect-[3/2]">
+        <div className={`relative overflow-hidden ${heightClass}`}>
           <motion.div
             className="h-full w-full"
             variants={{

@@ -15,7 +15,7 @@ export function ProjectsEmptyState({ onReset }: ProjectsEmptyStateProps) {
       <button
         type="button"
         onClick={onReset}
-        className="mt-8 rounded-[2px] border border-terracotta px-6 py-3 font-body text-[13px] font-medium uppercase tracking-[0.12em] text-terracotta transition-all duration-200 hover:bg-terracotta hover:text-bone"
+        className="mt-8 rounded-full border-[1.5px] border-terracotta/30 bg-terracotta/[0.07] backdrop-blur-sm px-6 py-3 font-body text-[13px] font-medium uppercase tracking-[0.12em] text-terracotta transition-all duration-200 hover:border-terracotta/50 hover:bg-terracotta/[0.12]"
       >
         Clear All Filters
       </button>

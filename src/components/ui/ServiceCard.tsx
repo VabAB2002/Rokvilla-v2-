@@ -10,9 +10,10 @@ import { useTouchDevice } from '@/hooks/useTouchDevice'
 
 interface ServiceCardProps {
   readonly service: Service
+  readonly heightClass: string
 }
 
-export function ServiceCard({ service }: ServiceCardProps) {
+export function ServiceCard({ service, heightClass }: ServiceCardProps) {
   const reducedMotion = useReducedMotion()
   const isTouch = useTouchDevice()
 
@@ -24,7 +25,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
         whileHover={reducedMotion || isTouch ? undefined : 'hover'}
         whileTap={reducedMotion ? undefined : 'hover'}
       >
-        <div className="relative h-56 overflow-hidden md:h-auto md:aspect-[3/2]">
+        <div className={`relative overflow-hidden ${heightClass}`}>
           {/* Image with scale on hover/tap */}
           <motion.div
             className="h-full w-full"
@@ -48,14 +49,22 @@ export function ServiceCard({ service }: ServiceCardProps) {
             aria-hidden="true"
           />
 
-          {/* Bottom gradient overlay with text */}
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent p-6 pt-16">
-            <h3 className="font-display text-xl font-medium text-bone md:text-2xl">
-              {service.title}
-            </h3>
-            <p className="mt-2 line-clamp-1 font-body text-[15px] leading-relaxed text-bone/90">
-              {service.description}
-            </p>
+          {/* Bottom gradient overlay with text and arrow */}
+          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent p-6 pt-16">
+            <div>
+              <h3 className="font-display text-xl font-medium text-bone md:text-2xl">
+                {service.title}
+              </h3>
+              <p className="mt-1 font-body text-[15px] leading-relaxed text-bone/90">
+                {service.description}
+              </p>
+            </div>
+            <span
+              className="mb-1 text-xl text-bone transition-transform duration-300 ease-out group-hover:translate-x-1"
+              aria-hidden="true"
+            >
+              &rarr;
+            </span>
           </div>
         </div>
       </motion.div>

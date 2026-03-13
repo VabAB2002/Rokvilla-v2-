@@ -89,10 +89,10 @@ export function ProjectsCarouselSection({
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`shrink-0 rounded-full md:rounded-[2px] border px-4 md:px-5 min-h-[40px] md:min-h-[44px] inline-flex items-center font-body text-[12px] md:text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
+                className={`shrink-0 rounded-full border px-4 md:px-5 min-h-[40px] md:min-h-[44px] inline-flex items-center font-body text-[12px] md:text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
                   activeTab === tab.id
-                    ? 'border-terracotta bg-terracotta text-bone shadow-sm'
-                    : 'border-limestone/80 bg-white text-slate hover:border-obsidian/30 hover:text-obsidian active:text-obsidian'
+                    ? 'border-2 border-terracotta/40 bg-terracotta/[0.15] backdrop-blur-sm text-terracotta font-semibold shadow-sm'
+                    : 'border-terracotta/20 bg-terracotta/[0.06] backdrop-blur-sm text-slate font-normal hover:border-terracotta/[0.35] hover:bg-terracotta/10 hover:text-obsidian'
                 }`}
               >
                 {tab.label}
@@ -133,7 +133,7 @@ export function ProjectsCarouselSection({
                     width: `calc((100% - ${(visibleCount - 1) * gap}px) / ${visibleCount})`,
                   }}
                 >
-                  <ProjectCard project={project} />
+                  <ProjectCard project={project} heightClass="h-56 md:h-80" />
                 </div>
               ))}
             </CarouselTrack>
@@ -145,7 +145,7 @@ export function ProjectsCarouselSection({
           <div className="mt-14 flex flex-col items-center gap-3">
             <Link
               href={viewAllHref}
-              className="group inline-flex items-center gap-3 border border-obsidian/15 px-8 py-3 font-accent text-[12px] uppercase tracking-[0.18em] text-obsidian/80 transition-all duration-300 hover:border-terracotta hover:text-terracotta"
+              className="group inline-flex items-center gap-3 rounded-full border-[1.5px] border-terracotta/30 bg-terracotta/[0.07] backdrop-blur-sm px-8 py-3 font-accent text-[12px] uppercase tracking-[0.18em] text-terracotta transition-all duration-300 hover:border-terracotta/50 hover:bg-terracotta/[0.12]"
             >
               View All Projects
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">

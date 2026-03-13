@@ -118,7 +118,7 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
                   }}
                   className="w-full sm:w-[calc(50%-6px)] lg:w-[calc(33.333%-11px)]"
                 >
-                  <ProjectCardLink project={project} />
+                  <ProjectCardLink project={project} heightClass="h-56 md:h-80" />
                 </motion.div>
               ))}
             </motion.div>

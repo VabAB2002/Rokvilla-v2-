@@ -4,6 +4,7 @@ import { useRef, useCallback } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
+import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useScrollProgress } from '@/hooks/useScrollProgress'
@@ -82,11 +83,11 @@ export function DesignThemesSection() {
       <AnimatedSection delay={0.15} className="mt-14">
         {/* Mobile: horizontal scroll carousel */}
         <div className="overflow-hidden md:hidden">
-          <div
-            ref={mobileScrollRef}
+          <ScrollFadeContainer
+            scrollRef={mobileScrollRef}
+            scrollClassName="flex gap-3 snap-x snap-mandatory overflow-x-auto no-scrollbar px-3 pb-4"
             role="region"
-            aria-label="Design themes"
-            className="flex gap-3 snap-x snap-mandatory overflow-x-auto no-scrollbar px-3 pb-4"
+            ariaLabel="Design themes"
           >
             {DESIGN_THEMES.map((theme) => (
               <div
@@ -96,7 +97,7 @@ export function DesignThemesSection() {
                 <ThemeCardContent theme={theme} reducedMotion={reducedMotion} />
               </div>
             ))}
-          </div>
+          </ScrollFadeContainer>
           <ScrollIndicatorDots
             count={DESIGN_THEMES.length}
             activeIndex={activeIndex}

@@ -3,6 +3,7 @@
 import { useState, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
+import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { EASE_OUT_QUART } from '@/lib/motion'
 
@@ -167,10 +168,11 @@ export function FAQSection({
 
         {/* Category tabs */}
         <AnimatedSection delay={0.15} className="mt-12">
-          <div
+          <ScrollFadeContainer
+            scrollClassName="flex justify-start gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar px-1 sm:justify-center sm:px-0"
+            fadeColorClass="from-parchment"
             role="tablist"
-            aria-label="FAQ categories"
-            className="flex justify-start gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar px-1 sm:justify-center sm:px-0"
+            ariaLabel="FAQ categories"
           >
             {categories.map((cat) => (
               <button
@@ -193,16 +195,16 @@ export function FAQSection({
                   })
                 }}
                 onKeyDown={handleTabKeyDown}
-                className={`snap-start shrink-0 rounded-full md:rounded-[2px] border px-3 md:px-5 min-h-[36px] md:min-h-[44px] inline-flex items-center font-body text-[11px] md:text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
+                className={`snap-start shrink-0 rounded-full border px-3 md:px-5 min-h-[44px] inline-flex items-center font-body text-[11px] md:text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
                   activeCategory === cat.id
-                    ? 'border-terracotta bg-terracotta text-bone shadow-sm'
-                    : 'border-limestone/80 bg-white text-slate hover:border-obsidian/30 hover:text-obsidian active:text-obsidian'
+                    ? 'border-2 border-terracotta/40 bg-terracotta/[0.15] backdrop-blur-sm text-terracotta font-semibold shadow-sm'
+                    : 'border-terracotta/20 bg-terracotta/[0.06] backdrop-blur-sm text-slate font-normal hover:border-terracotta/[0.35] hover:bg-terracotta/10 hover:text-obsidian'
                 }`}
               >
                 {cat.label}
               </button>
             ))}
-          </div>
+          </ScrollFadeContainer>
         </AnimatedSection>
 
         {/* FAQ accordion */}
