@@ -26,13 +26,13 @@ export function LocationsSection() {
         </AnimatedSection>
       </div>
 
-      {/* Cards */}
+      {/* Mobile cards — stacked column */}
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-80px' }}
         variants={staggerVariants}
-        className="mx-auto mt-16 flex max-w-7xl flex-col gap-4 px-6 md:grid md:grid-cols-3 md:gap-4 md:px-12 xl:px-16"
+        className="mx-auto mt-16 flex max-w-7xl flex-col gap-4 px-6 md:hidden"
       >
         {LOCATIONS.map((location, i) => (
           <motion.div
@@ -40,7 +40,26 @@ export function LocationsSection() {
             variants={fadeVariants}
             transition={{ ...TRANSITION_SMOOTH, delay: reducedMotion ? 0 : i * 0.12 }}
           >
-            <LocationCard location={location} />
+            <LocationCard location={location} heightClass="h-56" />
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Desktop cards — 3-column grid */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-80px' }}
+        variants={staggerVariants}
+        className="mt-16 hidden md:grid md:grid-cols-3 md:gap-4 md:px-4"
+      >
+        {LOCATIONS.map((location, i) => (
+          <motion.div
+            key={location.id}
+            variants={fadeVariants}
+            transition={{ ...TRANSITION_SMOOTH, delay: reducedMotion ? 0 : i * 0.12 }}
+          >
+            <LocationCard location={location} heightClass="h-80" />
           </motion.div>
         ))}
       </motion.div>

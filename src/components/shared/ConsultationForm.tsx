@@ -128,7 +128,7 @@ function FormInput({
         aria-required={required}
         inputMode={name === 'phone' ? 'tel' : undefined}
         autoCapitalize={type === 'email' ? 'none' : undefined}
-        className={`min-h-[52px] w-full rounded-[2px] border bg-white px-4 py-3 font-body text-base text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:outline-none focus:ring-1 ${
+        className={`min-h-[52px] w-full rounded-xl border bg-white px-4 py-3 font-body text-base text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:outline-none focus:ring-1 ${
           error
             ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
             : 'border-limestone focus:border-terracotta focus:ring-terracotta/30'
@@ -239,7 +239,7 @@ function FormSelect({
           aria-required={required}
           onClick={() => setOpen((prev) => !prev)}
           onKeyDown={handleKeyDown}
-          className={`flex min-h-[52px] w-full items-center justify-between rounded-[2px] border bg-white px-4 py-3 text-left font-body text-base transition-colors duration-200 focus:outline-none focus:ring-1 ${
+          className={`flex min-h-[52px] w-full items-center justify-between rounded-xl border bg-white px-4 py-3 text-left font-body text-base transition-colors duration-200 focus:outline-none focus:ring-1 ${
             error
               ? 'border-terracotta-deep focus:border-terracotta-deep focus:ring-terracotta-deep/30'
               : open
@@ -276,7 +276,7 @@ function FormSelect({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.15 }}
-              className="absolute z-50 mt-1 w-full overflow-hidden rounded-md border border-limestone/40 bg-white shadow-lg"
+              className="absolute z-50 mt-1 w-full overflow-hidden rounded-xl border border-limestone/40 bg-white shadow-lg"
             >
               {options.map((option) => {
                 const isSelected = option.value === value
@@ -617,7 +617,7 @@ export function ConsultationForm({
                         value={fields.message}
                         onChange={(e) => handleChange('message', e.target.value)}
                         placeholder="Tell us about your project..."
-                        className="w-full resize-none rounded-[2px] border border-limestone bg-white px-4 py-3 font-body text-base text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta/30"
+                        className="w-full resize-none rounded-xl border border-limestone bg-white px-4 py-3 font-body text-base text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta/30"
                       />
                     </div>
 
@@ -850,7 +850,7 @@ export function ConsultationForm({
                     value={fields.message}
                     onChange={(e) => handleChange('message', e.target.value)}
                     placeholder="Tell us about your project..."
-                    className="w-full resize-none rounded-[2px] border border-limestone bg-white px-4 py-3 font-body text-base text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta/30"
+                    className="w-full resize-none rounded-xl border border-limestone bg-white px-4 py-3 font-body text-base text-obsidian placeholder:text-stone/50 transition-colors duration-200 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta/30"
                   />
                 </div>
 

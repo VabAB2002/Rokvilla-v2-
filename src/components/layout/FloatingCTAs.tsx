@@ -44,7 +44,7 @@ export function FloatingCTAs() {
         variants={reducedMotion ? undefined : floatUpVariants}
         whileHover={reducedMotion || isTouch ? undefined : { scale: 1.05, y: -2 }}
         whileTap={reducedMotion ? undefined : { scale: 0.95 }}
-        className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-terracotta text-bone shadow-accent transition-shadow hover:shadow-[0_6px_24px_rgba(238,119,7,0.45)] md:h-14 md:w-14 xl:h-16 xl:w-16"
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-terracotta text-bone shadow-accent transition-shadow hover:shadow-[0_6px_24px_rgba(238,119,7,0.45)] md:h-14 md:w-14 xl:h-16 xl:w-16"
         aria-label="Call us"
       >
         <svg
@@ -69,7 +69,7 @@ export function FloatingCTAs() {
         variants={reducedMotion ? undefined : floatUpVariants}
         whileHover={reducedMotion || isTouch ? undefined : { scale: 1.05, y: -2 }}
         whileTap={reducedMotion ? undefined : { scale: 0.95 }}
-        className="flex h-12 w-12 items-center justify-center rounded-[2px] bg-[#25D366] text-bone shadow-[0_4px_16px_rgba(37,211,102,0.3)] transition-shadow hover:shadow-[0_6px_24px_rgba(37,211,102,0.45)] md:h-14 md:w-14 xl:h-16 xl:w-16"
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-bone shadow-[0_4px_16px_rgba(37,211,102,0.3)] transition-shadow hover:shadow-[0_6px_24px_rgba(37,211,102,0.45)] md:h-14 md:w-14 xl:h-16 xl:w-16"
         aria-label="Chat on WhatsApp"
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">

@@ -52,10 +52,10 @@ export function ProjectsGallerySection() {
                 key={cat.id}
                 type="button"
                 onClick={() => handleFilter(cat.id)}
-                className={`inline-flex items-center gap-2 rounded-[2px] border px-4 min-h-[44px] font-body text-[12px] uppercase tracking-[0.08em] transition-all duration-200 ${
+                className={`inline-flex items-center gap-2 rounded-full border px-4 min-h-[44px] font-body text-[12px] uppercase tracking-[0.08em] transition-all duration-200 ${
                   activeFilter === cat.id
-                    ? 'border-terracotta bg-terracotta text-bone'
-                    : 'border-limestone text-slate hover:border-obsidian/30 hover:text-obsidian'
+                    ? 'border-2 border-terracotta/40 bg-terracotta/[0.15] backdrop-blur-sm text-terracotta font-semibold shadow-sm'
+                    : 'border-terracotta/20 bg-terracotta/[0.06] backdrop-blur-sm text-slate font-normal hover:border-terracotta/[0.35] hover:bg-terracotta/10 hover:text-obsidian'
                 }`}
               >
                 <svg

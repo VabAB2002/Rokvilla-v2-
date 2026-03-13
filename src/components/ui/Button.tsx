@@ -33,19 +33,19 @@ const variantStyles: Record<ButtonVariant, { base: string; hover: string }> = {
     hover: 'hover:bg-terracotta-deep',
   },
   secondary: {
-    base: 'bg-transparent text-obsidian border-obsidian',
-    hover: 'hover:bg-obsidian hover:text-bone',
+    base: 'border-terracotta/30 bg-terracotta/[0.07] backdrop-blur-sm text-terracotta',
+    hover: 'hover:border-terracotta/50 hover:bg-terracotta/[0.12]',
   },
   ghost: {
-    base: 'bg-transparent text-slate border-limestone',
-    hover: 'hover:border-terracotta hover:text-terracotta',
+    base: 'border-limestone/60 bg-white/40 backdrop-blur-sm text-slate',
+    hover: 'hover:border-terracotta/30 hover:bg-terracotta/[0.06] hover:text-terracotta',
   },
 }
 
 const variantStylesDark: Record<ButtonVariant, string> = {
-  primary: 'bg-brass text-void',
-  secondary: 'bg-transparent text-bone border-bone/80',
-  ghost: 'bg-transparent text-stone border-stone/30',
+  primary: 'border-transparent bg-brass text-void',
+  secondary: 'border-bone/20 bg-white/10 backdrop-blur-sm text-bone',
+  ghost: 'border-stone/30 bg-white/5 backdrop-blur-sm text-stone',
 }
 
 export function Button({
@@ -61,7 +61,7 @@ export function Button({
 
   const baseClasses = `
     inline-flex items-center justify-center gap-2
-    rounded-[2px] border-[1.5px]
+    rounded-full border-[1.5px]
     px-6 py-3.5 md:px-8
     font-body text-[13px] font-medium uppercase tracking-[0.12em]
     transition-all duration-200
@@ -107,7 +107,7 @@ export function ButtonDark({
 
   const baseClasses = `
     inline-flex items-center justify-center gap-2
-    rounded-[2px] border-[1.5px] border-transparent
+    rounded-full border-[1.5px]
     px-6 py-3.5 md:px-8
     font-body text-[13px] font-medium uppercase tracking-[0.12em]
     transition-all duration-200

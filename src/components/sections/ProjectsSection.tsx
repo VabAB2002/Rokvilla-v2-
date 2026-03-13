@@ -45,18 +45,18 @@ export function ProjectsSection() {
           </p>
         </AnimatedSection>
 
-        {/* Filter tabs */}
-        <AnimatedSection delay={0.15} className="mt-10 md:mt-12">
+        {/* Filter tabs — desktop only */}
+        <AnimatedSection delay={0.15} className="mt-10 hidden md:block md:mt-12">
           <div className="flex justify-center gap-2 md:gap-3">
             {TABS.map((tab) => (
               <button
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`shrink-0 rounded-full md:rounded-[2px] border px-4 md:px-5 min-h-[40px] md:min-h-[44px] inline-flex items-center font-body text-[12px] md:text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
+                className={`shrink-0 rounded-full border px-4 md:px-5 min-h-[40px] md:min-h-[44px] inline-flex items-center font-body text-[12px] md:text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
                   activeTab === tab.id
-                    ? 'border-terracotta bg-terracotta text-bone shadow-sm'
-                    : 'border-limestone/80 bg-white text-slate hover:border-obsidian/30 hover:text-obsidian active:text-obsidian'
+                    ? 'border-2 border-terracotta/40 bg-terracotta/[0.15] backdrop-blur-sm text-terracotta font-semibold shadow-sm'
+                    : 'border-terracotta/20 bg-terracotta/[0.06] backdrop-blur-sm text-slate font-normal hover:border-terracotta/[0.35] hover:bg-terracotta/10 hover:text-obsidian'
                 }`}
               >
                 {tab.label}
@@ -66,8 +66,31 @@ export function ProjectsSection() {
         </AnimatedSection>
       </div>
 
-      {/* Project grid */}
-      <div className="mx-auto mt-10 max-w-7xl px-6 md:px-12 xl:px-16">
+      {/* Mobile project cards — stacked column, shows all projects (no filter) */}
+      <div className="mx-auto mt-10 max-w-7xl px-6 md:hidden">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          className="flex flex-col gap-4"
+        >
+          {HOMEPAGE_PROJECTS.map((project, i) => (
+            <motion.div
+              key={project.id}
+              variants={fadeVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ ...TRANSITION_SMOOTH, delay: reducedMotion ? 0 : i * 0.08 }}
+              className="w-full"
+            >
+              <ProjectCard project={project} heightClass="h-56" />
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Desktop project cards — flex wrap grid */}
+      <div className="mt-10 hidden md:block">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -75,7 +98,7 @@ export function ProjectsSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -16 }}
             transition={{ duration: reducedMotion ? 0.15 : 0.35, ease: EASE_OUT_EXPO }}
-            className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-3 md:gap-4"
+            className="flex flex-row flex-wrap justify-center gap-4"
           >
             {filteredProjects.map((project, i) => (
               <motion.div
@@ -84,26 +107,26 @@ export function ProjectsSection() {
                 initial="hidden"
                 animate="visible"
                 transition={{ ...TRANSITION_SMOOTH, delay: reducedMotion ? 0 : i * 0.08 }}
-                className="w-full sm:w-[calc(50%-6px)] lg:w-[calc(33.333%-11px)]"
+                className="w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)]"
               >
-                <ProjectCard project={project} />
+                <ProjectCard project={project} heightClass="h-80" />
               </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
+      </div>
 
-        {/* Show more */}
-        <div className="mt-14 flex flex-col items-center gap-3">
-          <Link
-            href="/projects"
-            className="group inline-flex items-center gap-3 border border-obsidian/15 px-8 py-3 font-accent text-[12px] uppercase tracking-[0.18em] text-obsidian/80 transition-all duration-300 hover:border-terracotta hover:text-terracotta"
-          >
-            View All Projects
-            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
-              &rarr;
-            </span>
-          </Link>
-        </div>
+      {/* Show more */}
+      <div className="mx-auto mt-14 flex max-w-7xl flex-col items-center gap-3 px-6 md:px-12 xl:px-16">
+        <Link
+          href="/projects"
+          className="group inline-flex items-center gap-3 rounded-full border-[1.5px] border-terracotta/30 bg-terracotta/[0.07] backdrop-blur-sm px-8 py-3 font-accent text-[12px] uppercase tracking-[0.18em] text-terracotta transition-all duration-300 hover:border-terracotta/50 hover:bg-terracotta/[0.12]"
+        >
+          View All Projects
+          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+            &rarr;
+          </span>
+        </Link>
       </div>
     </section>
   )

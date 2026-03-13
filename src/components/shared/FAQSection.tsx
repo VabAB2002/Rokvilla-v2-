@@ -193,10 +193,10 @@ export function FAQSection({
                   })
                 }}
                 onKeyDown={handleTabKeyDown}
-                className={`snap-start shrink-0 rounded-full md:rounded-[2px] border px-3 md:px-5 min-h-[36px] md:min-h-[44px] inline-flex items-center font-body text-[11px] md:text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
+                className={`snap-start shrink-0 rounded-full border px-3 md:px-5 min-h-[44px] inline-flex items-center font-body text-[11px] md:text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
                   activeCategory === cat.id
-                    ? 'border-terracotta bg-terracotta text-bone shadow-sm'
-                    : 'border-limestone/80 bg-white text-slate hover:border-obsidian/30 hover:text-obsidian active:text-obsidian'
+                    ? 'border-2 border-terracotta/40 bg-terracotta/[0.15] backdrop-blur-sm text-terracotta font-semibold shadow-sm'
+                    : 'border-terracotta/20 bg-terracotta/[0.06] backdrop-blur-sm text-slate font-normal hover:border-terracotta/[0.35] hover:bg-terracotta/10 hover:text-obsidian'
                 }`}
               >
                 {cat.label}

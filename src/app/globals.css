@@ -78,10 +78,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
+    overflow-x: clip;
     background-color: var(--color-bone);
     color: var(--color-obsidian);
     font-family: var(--font-body);

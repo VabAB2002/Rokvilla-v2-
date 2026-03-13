@@ -10,9 +10,10 @@ import { useTouchDevice } from '@/hooks/useTouchDevice'
 
 interface ServiceCardProps {
   readonly service: Service
+  readonly heightClass: string
 }
 
-export function ServiceCard({ service }: ServiceCardProps) {
+export function ServiceCard({ service, heightClass }: ServiceCardProps) {
   const reducedMotion = useReducedMotion()
   const isTouch = useTouchDevice()
 
@@ -24,7 +25,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
         whileHover={reducedMotion || isTouch ? undefined : 'hover'}
         whileTap={reducedMotion ? undefined : 'hover'}
       >
-        <div className="relative h-56 overflow-hidden md:h-auto md:aspect-[3/2]">
+        <div className={`relative overflow-hidden ${heightClass}`}>
           {/* Image with scale on hover/tap */}
           <motion.div
             className="h-full w-full"
