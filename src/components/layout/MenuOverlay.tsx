@@ -54,14 +54,30 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
     }
   }, [isOpen])
 
-  // Fix 6: Auto-focus first menu link when overlay opens
+  // Auto-focus first menu link when overlay opens
   useEffect(() => {
     if (!isOpen) return
-    // Small delay to let the animation start before stealing focus
     const id = setTimeout(() => {
       firstLinkRef.current?.focus()
     }, 50)
     return () => clearTimeout(id)
+  }, [isOpen])
+
+  // Block all scroll gestures on the overlay — touch (mobile), wheel (desktop trackpad/mouse)
+  useEffect(() => {
+    if (!isOpen) return
+    const overlay = document.getElementById('menu-overlay')
+    if (!overlay) return
+
+    const preventTouch = (e: TouchEvent) => { e.preventDefault() }
+    const preventWheel = (e: WheelEvent) => { e.preventDefault() }
+
+    overlay.addEventListener('touchmove', preventTouch, { passive: false })
+    overlay.addEventListener('wheel', preventWheel, { passive: false })
+    return () => {
+      overlay.removeEventListener('touchmove', preventTouch)
+      overlay.removeEventListener('wheel', preventWheel)
+    }
   }, [isOpen])
 
   return (
@@ -69,7 +85,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
       {isOpen && (
         <motion.div
           id="menu-overlay"
-          className="fixed inset-0 z-[55] touch-none overflow-hidden overscroll-none"
+          className="fixed inset-0 z-[55] overflow-hidden overscroll-none"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

@@ -58,31 +58,37 @@ export function Navigation() {
     setIsServicesOpen(false)
   }, [])
 
-  // Body scroll lock when menu overlay is open (iOS-safe: position fixed pattern)
+  // Body + html scroll lock when menu overlay is open (iOS-safe)
   useEffect(() => {
     if (!isMenuOpen) return
     const scrollY = window.scrollY
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+    const html = document.documentElement
+    const { body } = document
     const prev = {
-      overflow: document.body.style.overflow,
-      position: document.body.style.position,
-      top: document.body.style.top,
-      width: document.body.style.width,
-      paddingRight: document.body.style.paddingRight,
+      htmlOverflow: html.style.overflow,
+      bodyOverflow: body.style.overflow,
+      bodyPosition: body.style.position,
+      bodyTop: body.style.top,
+      bodyWidth: body.style.width,
+      bodyPaddingRight: body.style.paddingRight,
     }
-    document.body.style.overflow = 'hidden'
-    document.body.style.position = 'fixed'
-    document.body.style.top = `-${scrollY}px`
-    document.body.style.width = '100%'
+    // Lock both html and body — iOS Safari needs both
+    html.style.overflow = 'hidden'
+    body.style.overflow = 'hidden'
+    body.style.position = 'fixed'
+    body.style.top = `-${scrollY}px`
+    body.style.width = '100%'
     if (scrollbarWidth > 0) {
-      document.body.style.paddingRight = `${scrollbarWidth}px`
+      body.style.paddingRight = `${scrollbarWidth}px`
     }
     return () => {
-      document.body.style.overflow = prev.overflow
-      document.body.style.position = prev.position
-      document.body.style.top = prev.top
-      document.body.style.width = prev.width
-      document.body.style.paddingRight = prev.paddingRight
+      html.style.overflow = prev.htmlOverflow
+      body.style.overflow = prev.bodyOverflow
+      body.style.position = prev.bodyPosition
+      body.style.top = prev.bodyTop
+      body.style.width = prev.bodyWidth
+      body.style.paddingRight = prev.bodyPaddingRight
       window.scrollTo(0, scrollY)
     }
   }, [isMenuOpen])
@@ -230,7 +236,7 @@ export function Navigation() {
               </div>
 
               <span className={dividerClass} aria-hidden="true" />
-              <Link href="/" className="relative flex h-8 w-16 shrink-0 items-center transition-opacity duration-300 hover:opacity-70">
+              <Link href="/" className="relative flex h-10 w-20 shrink-0 items-center transition-opacity duration-300 hover:opacity-70">
                 <Image
                   src={useDarkText ? '/logo/rok-logo-black.png' : '/logo/rok-logo-white.png'}
                   alt="RokVilla"
@@ -269,7 +275,7 @@ export function Navigation() {
 
           <Link
             href="/"
-            className="absolute left-1/2 flex h-7 w-14 -translate-x-1/2 items-center transition-opacity duration-300"
+            className="absolute left-1/2 flex h-8 w-16 -translate-x-1/2 items-center transition-opacity duration-300"
           >
             <Image
               src={useDarkText ? '/logo/rok-logo-black.png' : '/logo/rok-logo-white.png'}
