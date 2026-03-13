@@ -275,7 +275,7 @@ export function Navigation() {
 
           <Link
             href="/"
-            className="absolute left-1/2 flex h-8 w-16 -translate-x-1/2 items-center transition-opacity duration-300"
+            className="absolute left-1/2 flex h-9 w-[72px] -translate-x-1/2 items-center transition-opacity duration-300"
           >
             <Image
               src={useDarkText ? '/logo/rok-logo-black.png' : '/logo/rok-logo-white.png'}
