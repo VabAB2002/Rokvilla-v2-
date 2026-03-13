@@ -28,8 +28,8 @@ export function PhaseGroup({ group, reversed }: PhaseGroupProps) {
         reversed ? 'md:flex-row-reverse' : ''
       }`}
     >
-      {/* Illustration side */}
-      <div className="flex justify-center md:w-[42%]">
+      {/* Illustration side — after content on mobile (order-2), before on desktop (md:order-none) */}
+      <div className="order-2 flex justify-center md:order-none md:w-[42%]">
         <div className="relative w-full max-w-[300px] lg:max-w-[400px]">
           {/* Parchment halo behind illustration */}
           <div
@@ -46,8 +46,8 @@ export function PhaseGroup({ group, reversed }: PhaseGroupProps) {
         </div>
       </div>
 
-      {/* Content side */}
-      <div className="md:w-[58%]">
+      {/* Content side — first on mobile (order-1) */}
+      <div className="order-1 md:order-none md:w-[58%]">
         {/* Phase overline */}
         <span className="font-accent text-[11px] uppercase tracking-[0.2em] text-terracotta">
           {group.phaseNumber}

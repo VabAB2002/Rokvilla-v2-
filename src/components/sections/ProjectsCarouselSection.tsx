@@ -82,17 +82,17 @@ export function ProjectsCarouselSection({
         </AnimatedSection>
 
         {/* Filter tabs */}
-        <AnimatedSection delay={0.15} className="mt-12">
-          <div className="flex justify-center gap-2 overflow-x-auto no-scrollbar">
+        <AnimatedSection delay={0.15} className="mt-10 md:mt-12">
+          <div className="flex justify-center gap-2 md:gap-3">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`shrink-0 rounded-[2px] border px-5 min-h-[44px] inline-flex items-center font-body text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
+                className={`shrink-0 rounded-full md:rounded-[2px] border px-4 md:px-5 min-h-[40px] md:min-h-[44px] inline-flex items-center font-body text-[12px] md:text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
                   activeTab === tab.id
-                    ? 'border-terracotta bg-terracotta text-bone'
-                    : 'border-limestone text-slate hover:border-obsidian/30 hover:text-obsidian active:text-obsidian'
+                    ? 'border-terracotta bg-terracotta text-bone shadow-sm'
+                    : 'border-limestone/80 bg-white text-slate hover:border-obsidian/30 hover:text-obsidian active:text-obsidian'
                 }`}
               >
                 {tab.label}

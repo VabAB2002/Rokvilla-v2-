@@ -81,7 +81,7 @@ export function DesignThemesSection() {
       {/* Theme cards */}
       <AnimatedSection delay={0.15} className="mt-14">
         {/* Mobile: horizontal scroll carousel */}
-        <div className="md:hidden">
+        <div className="overflow-hidden md:hidden">
           <div
             ref={mobileScrollRef}
             role="region"

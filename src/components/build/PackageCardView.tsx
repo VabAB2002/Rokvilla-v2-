@@ -216,19 +216,21 @@ export function PackageCardView({
   return (
     <div>
       {/* Scrollable card strip */}
-      <div
-        className="flex items-start gap-4 overflow-x-auto snap-x snap-mandatory pb-2 no-scrollbar"
-        role="group"
-        aria-label={`${activeLabel} package comparison cards`}
-      >
-        {tiers.map((tier, index) => (
-          <PackageCard
-            key={tier.id}
-            tier={tier}
-            tierIndex={index}
-            categories={categories}
-          />
-        ))}
+      <div className="overflow-hidden">
+        <div
+          className="flex items-start gap-4 overflow-x-auto snap-x snap-mandatory pb-2 no-scrollbar"
+          role="group"
+          aria-label={`${activeLabel} package comparison cards`}
+        >
+          {tiers.map((tier, index) => (
+            <PackageCard
+              key={tier.id}
+              tier={tier}
+              tierIndex={index}
+              categories={categories}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Swipe hint */}

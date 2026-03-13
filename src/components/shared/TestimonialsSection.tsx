@@ -112,15 +112,17 @@ export function TestimonialsSection({
 
       {/* Horizontal scroll carousel */}
       <AnimatedSection delay={0.15} className="mt-14">
-        <div
-          ref={scrollRef}
-          role="region"
-          aria-label="Client testimonials"
-          className="flex gap-4 snap-x snap-mandatory overflow-x-auto no-scrollbar px-6 pb-4 md:gap-6 md:px-12 xl:px-16"
-        >
-          {testimonials.map((t) => (
-            <TestimonialCard key={t.id} testimonial={t} />
-          ))}
+        <div className="overflow-hidden">
+          <div
+            ref={scrollRef}
+            role="region"
+            aria-label="Client testimonials"
+            className="flex gap-4 snap-x snap-mandatory overflow-x-auto no-scrollbar px-6 pb-4 md:gap-6 md:px-12 xl:px-16"
+          >
+            {testimonials.map((t) => (
+              <TestimonialCard key={t.id} testimonial={t} />
+            ))}
+          </div>
         </div>
         <ScrollIndicatorDots
           count={testimonials.length}

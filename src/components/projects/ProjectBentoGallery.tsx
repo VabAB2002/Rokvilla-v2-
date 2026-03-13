@@ -138,7 +138,7 @@ export function ProjectBentoGallery({
           </div>
 
           {/* Mobile horizontal scroll carousel */}
-          <div className="mt-8 sm:hidden">
+          <div className="mt-8 overflow-hidden sm:hidden">
             <div
               ref={mobileScrollRef}
               role="region"
