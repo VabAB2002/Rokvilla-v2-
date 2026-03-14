@@ -3,8 +3,6 @@
 import { type ReactNode, useState, useCallback, useId, useRef, useEffect } from 'react'
 import * as m from 'framer-motion/m'
 import { AnimatePresence } from 'framer-motion'
-import { useGSAP } from '@gsap/react'
-import { gsap } from '@/lib/gsap-config'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -317,32 +315,9 @@ export function ConsultationForm({
 }: ConsultationFormProps) {
   const reducedMotion = useReducedMotion()
   const uid = useId()
-  const formSectionRef = useRef<HTMLElement>(null)
   const [fields, setFields] = useState<FormFields>(INITIAL_FIELDS)
   const [errors, setErrors] = useState<FormErrors>({})
   const [submitted, setSubmitted] = useState(false)
-
-  useGSAP(() => {
-    const mm = gsap.matchMedia()
-    mm.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
-      const illustration = formSectionRef.current?.querySelector('.consultation-illustration')
-      if (illustration) {
-        gsap.fromTo(illustration, {
-          y: 30,
-        }, {
-          y: -30,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: illustration,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-          },
-        })
-      }
-    })
-    return () => mm.revert()
-  }, { scope: formSectionRef })
 
   const handleChange = useCallback((name: string, value: string) => {
     setFields((prev) => ({ ...prev, [name]: value }))
@@ -402,7 +377,6 @@ export function ConsultationForm({
   if (layout === 'split') {
     return (
       <section
-        ref={formSectionRef}
         id="consultation"
         aria-labelledby="consultation-heading"
         className={sectionClassName ?? "relative overflow-hidden bg-parchment py-12 md:py-32 lg:py-36"}
@@ -440,7 +414,7 @@ export function ConsultationForm({
               </p>
 
               {/* Illustration slot */}
-              {illustration && <div className="consultation-illustration mt-8 flex justify-center lg:justify-start">{illustration}</div>}
+              {illustration && <div className="mt-8 flex justify-center lg:justify-start">{illustration}</div>}
 
               {/* Contact info */}
               <div className="mt-6 flex flex-col gap-3">

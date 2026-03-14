@@ -1,7 +1,7 @@
 'use client'
 
 import * as m from 'framer-motion/m'
-import { VideoBackground } from '@/components/ui/VideoBackground'
+import { ImageComparisonSlider } from '@/components/ui/ImageComparisonSlider'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 import { makeHeroContainerVariants, makeHeroItemVariants } from '@/lib/motion'
@@ -14,13 +14,30 @@ export function HeroSection() {
 
   return (
     <section aria-label="Hero" className="relative h-dvh min-h-[600px] overflow-hidden">
-      <VideoBackground
-        imageSrc="/images/home/hero-fallback.jpg"
-        imageAlt="RokVilla architecture showcase — Cedar Homestore at dusk"
+      {/* Image comparison slider — fills viewport */}
+      <div className="absolute inset-0">
+        <ImageComparisonSlider
+          beforeSrc="/images/home/hero-real.jpg"
+          beforeAlt="Cedar Homestore at dusk — completed building"
+          afterSrc="/images/home/hero-sketch.png"
+          afterAlt="Architectural pencil sketch of Cedar Homestore"
+          initialPosition={50}
+          enableLerp={!reducedMotion && !isLowPower}
+        />
+      </div>
+
+      {/* Gradient overlay for text legibility */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[5]"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(15,13,11,0.3) 0%, rgba(15,13,11,0.55) 50%, rgba(15,13,11,0.82) 100%)',
+        }}
       />
 
-      {/* Content */}
-      <div className="relative z-10 flex h-full items-end pb-24 md:items-center md:pb-0">
+      {/* Content — pointer-events-none lets clicks pass through to slider; add pointer-events-auto on any future CTA buttons */}
+      <div className="pointer-events-none relative z-10 flex h-full items-end pb-24 md:items-center md:pb-0">
         <div className="mx-auto w-full max-w-7xl px-6 md:px-12">
           <m.div
             variants={containerVariants}
@@ -47,12 +64,10 @@ export function HeroSection() {
             {/* Body */}
             <m.p
               variants={itemVariants}
-              className="mt-6 max-w-md font-body text-base leading-relaxed text-obsidian/70 md:text-lg"
+              className="mt-6 max-w-md font-body text-base leading-relaxed text-bone md:text-lg"
             >
               Premium residential, commercial, and interior spaces — crafted with precision across Karnataka.
             </m.p>
-
-
           </m.div>
         </div>
       </div>
