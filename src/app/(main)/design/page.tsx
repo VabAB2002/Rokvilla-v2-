@@ -8,6 +8,9 @@ import { DocketsSection } from '@/components/design/DocketsSection'
 import { TestimonialsSection } from '@/components/shared/TestimonialsSection'
 import { SectionErrorBoundary } from '@/components/error/SectionErrorBoundary'
 import { DESIGN_TESTIMONIALS, DESIGN_FAQS, FAQ_CATEGORIES } from '@/lib/constants/design'
+import { JsonLd } from '@/components/seo/JsonLd'
+import { buildServiceSchema, buildBreadcrumbSchema } from '@/lib/seo/schemas'
+import { SITE_URL } from '@/lib/seo/constants'
 
 const ConsultationForm = dynamic(
   () => import('@/components/shared/ConsultationForm').then(m => m.ConsultationForm)
@@ -21,11 +24,25 @@ export const metadata: Metadata = {
   title: 'Design — RokVilla',
   description:
     'From concept to blueprint — architectural designs that balance aesthetics, function, and budget. Browse our projects, choose your service, and connect with us.',
+  openGraph: {
+    url: `${SITE_URL}/design`,
+    description:
+      'From concept to blueprint — architectural designs that balance aesthetics, function, and budget. Browse our projects, choose your service, and connect with us.',
+  },
 }
 
 export default function DesignPage() {
   return (
     <>
+      <JsonLd
+        schema={[
+          buildServiceSchema('Architectural Design', 'From concept to blueprint — architectural designs that balance aesthetics, function, and budget.', `${SITE_URL}/design`),
+          buildBreadcrumbSchema([
+            { name: 'Home', url: SITE_URL },
+            { name: 'Design', url: `${SITE_URL}/design` },
+          ]),
+        ]}
+      />
       <DesignHero />
       <div className="cv-auto"><ProcessSection /></div>
       <div className="cv-auto">

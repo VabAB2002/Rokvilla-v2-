@@ -2,6 +2,9 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import { BuildHero } from '@/components/build/BuildHero'
+import { JsonLd } from '@/components/seo/JsonLd'
+import { buildServiceSchema, buildBreadcrumbSchema } from '@/lib/seo/schemas'
+import { SITE_URL } from '@/lib/seo/constants'
 import { BuildHowItWorksSection } from '@/components/build/BuildHowItWorksSection'
 import { BuildKeyFeaturesSection } from '@/components/build/BuildKeyFeaturesSection'
 import { ConsultationPhoto } from '@/components/design/ConsultationPhoto'
@@ -30,11 +33,25 @@ export const metadata: Metadata = {
   title: 'Build — RokVilla',
   description:
     'From foundation to finish — construction packages with transparent pricing, daily site updates, and a 10-year warranty. Choose your package and build your dream home.',
+  openGraph: {
+    url: `${SITE_URL}/build`,
+    description:
+      'From foundation to finish — construction packages with transparent pricing, daily site updates, and a 10-year warranty. Choose your package and build your dream home.',
+  },
 }
 
 export default function BuildPage() {
   return (
     <>
+      <JsonLd
+        schema={[
+          buildServiceSchema('Construction', 'From foundation to finish — construction packages with transparent pricing, daily site updates, and a 10-year warranty.', `${SITE_URL}/build`),
+          buildBreadcrumbSchema([
+            { name: 'Home', url: SITE_URL },
+            { name: 'Build', url: `${SITE_URL}/build` },
+          ]),
+        ]}
+      />
       <BuildHero />
       <div className="cv-auto"><BuildHowItWorksSection /></div>
       <div className="cv-auto">

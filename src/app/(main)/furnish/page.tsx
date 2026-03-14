@@ -2,6 +2,9 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import { FurnishHero } from '@/components/furnish/FurnishHero'
+import { JsonLd } from '@/components/seo/JsonLd'
+import { buildServiceSchema, buildBreadcrumbSchema } from '@/lib/seo/schemas'
+import { SITE_URL } from '@/lib/seo/constants'
 import { HowItWorksSection } from '@/components/furnish/HowItWorksSection'
 import { FurnishProjectsWrapper } from '@/components/furnish/FurnishProjectsWrapper'
 import { InteriorSolutionsSection } from '@/components/furnish/InteriorSolutionsSection'
@@ -29,11 +32,25 @@ export const metadata: Metadata = {
   title: 'Furnish — RokVilla',
   description:
     'End-to-end interior furnishing with premium materials, expert craftsmanship, and a 10-year warranty. Browse projects, explore design themes, and book a free consultation.',
+  openGraph: {
+    url: `${SITE_URL}/furnish`,
+    description:
+      'End-to-end interior furnishing with premium materials, expert craftsmanship, and a 10-year warranty. Browse projects, explore design themes, and book a free consultation.',
+  },
 }
 
 export default function FurnishPage() {
   return (
     <>
+      <JsonLd
+        schema={[
+          buildServiceSchema('Interior Furnishing', 'End-to-end interior furnishing with premium materials, expert craftsmanship, and a 10-year warranty.', `${SITE_URL}/furnish`),
+          buildBreadcrumbSchema([
+            { name: 'Home', url: SITE_URL },
+            { name: 'Furnish', url: `${SITE_URL}/furnish` },
+          ]),
+        ]}
+      />
       <FurnishHero />
       <div className="cv-auto"><HowItWorksSection /></div>
       <div className="cv-auto"><FurnishProjectsWrapper /></div>
