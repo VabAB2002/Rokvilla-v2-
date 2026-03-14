@@ -5,10 +5,12 @@ import designBlueprintImage from '../../../public/images/design/design-blueprint
 import * as m from 'framer-motion/m'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 import { makeHeroContainerVariants, makeHeroItemVariants } from '@/lib/motion'
 
 export function DesignHero() {
   const reducedMotion = useReducedMotion()
+  const isLowPower = useIsLowPowerDevice()
   const containerVariants = makeHeroContainerVariants(reducedMotion)
   const itemVariants = makeHeroItemVariants(reducedMotion)
 
@@ -104,7 +106,7 @@ export function DesignHero() {
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className={`${reducedMotion ? '' : 'animate-bounce-gentle'} text-stone`}
+          className={`${!reducedMotion && !isLowPower ? 'animate-bounce-gentle' : ''} text-stone`}
           aria-hidden="true"
         >
           <path d="M12 5v14M5 12l7 7 7-7" />

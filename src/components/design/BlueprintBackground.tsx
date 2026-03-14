@@ -3,6 +3,8 @@
 import { useId } from 'react'
 import * as m from 'framer-motion/m'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useInView } from '@/hooks/useInView'
+import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 import { EASE_OUT_QUART } from '@/lib/motion'
 import type { Variants } from 'framer-motion'
 
@@ -76,18 +78,21 @@ export function BlueprintBackground() {
   const id = useId()
   const grainId = `blueprint-grain-${id}`
   const reduced = useReducedMotion()
+  const { ref: containerRef, inView } = useInView<HTMLDivElement>({ rootMargin: '-100px', once: true })
+  const isLowPower = useIsLowPowerDevice()
   const detailVariants = makeDetailVariants(reduced)
   const draw = makeDrawVariants(reduced)
+  const animateState = inView && !isLowPower ? 'visible' : 'hidden'
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    <div ref={containerRef} className="absolute inset-0 overflow-hidden">
       {/* ══ Background: Grid dots + Construction lines ══ */}
       <m.svg
         viewBox="0 0 1440 900"
         preserveAspectRatio="xMidYMid slice"
         className="absolute inset-0 h-full w-full"
         initial="hidden"
-        animate="visible"
+        animate={animateState}
         aria-hidden="true"
       >
         <m.g variants={makeLayerContainer(reduced, 0, 0.02)}>
@@ -134,7 +139,7 @@ export function BlueprintBackground() {
             strokeLinecap="round"
             fill="none"
             initial="hidden"
-            animate="visible"
+            animate={animateState}
             variants={makeLayerContainer(reduced, 0, 0.08)}
           >
             <m.path custom={0} variants={draw} d="M 30 395 L 690 395" strokeDasharray="4 6" />
@@ -152,7 +157,7 @@ export function BlueprintBackground() {
             strokeLinejoin="round"
             fill="none"
             initial="hidden"
-            animate="visible"
+            animate={animateState}
             variants={makeLayerContainer(reduced, reduced ? 0 : 0.4, 0.05)}
           >
             {/* Left block outline */}
@@ -180,7 +185,7 @@ export function BlueprintBackground() {
             strokeLinejoin="round"
             fill="none"
             initial="hidden"
-            animate="visible"
+            animate={animateState}
             variants={makeLayerContainer(reduced, reduced ? 0 : 0.9, 0.04)}
           >
             {/* GF — Large picture window (3 panes) */}
@@ -226,7 +231,7 @@ export function BlueprintBackground() {
             strokeLinecap="round"
             fill="none"
             initial="hidden"
-            animate="visible"
+            animate={animateState}
             variants={makeLayerContainer(reduced, reduced ? 0 : 1.4, 0.05)}
           >
             <m.path custom={3.5} variants={draw} d="M 135 174 L 405 174" strokeWidth={0.8} />
@@ -245,7 +250,7 @@ export function BlueprintBackground() {
             strokeLinejoin="round"
             fill="none"
             initial="hidden"
-            animate="visible"
+            animate={animateState}
             variants={makeLayerContainer(reduced, reduced ? 0 : 1.7, 0.04)}
           >
             {/* Left tree trunk */}
@@ -268,7 +273,7 @@ export function BlueprintBackground() {
           {/* Layer 6: Annotations */}
           <m.g
             initial="hidden"
-            animate="visible"
+            animate={animateState}
             variants={makeLayerContainer(reduced, reduced ? 0 : 2.3, 0.06)}
           >
             {/* Width dimension */}
