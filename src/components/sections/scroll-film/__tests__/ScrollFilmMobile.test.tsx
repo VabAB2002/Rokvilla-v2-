@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { ScrollFilmMobile } from '@/components/sections/scroll-film/ScrollFilmMobile'
 import React from 'react'
@@ -60,8 +60,8 @@ describe('ScrollFilmMobile', () => {
   })
 
   it('renders chapter images', () => {
-    render(<ScrollFilmMobile />)
-    const images = screen.getAllByRole('img')
+    const { container } = render(<ScrollFilmMobile />)
+    const images = container.querySelectorAll('img')
     expect(images.length).toBe(3)
   })
 

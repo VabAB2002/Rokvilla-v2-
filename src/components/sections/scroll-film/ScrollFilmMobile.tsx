@@ -15,7 +15,7 @@ export function ScrollFilmMobile() {
         <m.article
           key={chapter.id}
           initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 48 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          whileInView={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-10%' }}
           transition={{
             duration: reducedMotion ? 0.2 : 0.8,
@@ -30,7 +30,7 @@ export function ScrollFilmMobile() {
           </span>
 
           {/* Image */}
-          <Link href={chapter.href} className="block">
+          <Link href={chapter.href} className="block" aria-hidden="true" tabIndex={-1}>
             <div className="relative aspect-[4/3] overflow-hidden rounded-sm">
               <Image
                 src={chapter.image}
