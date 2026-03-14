@@ -176,25 +176,6 @@ export function makeSceneItemVariants(reduced: boolean): Variants {
   }
 }
 
-/* ── Ambient loop transitions (used in illustration scenes) ── */
-/* Typed as Record so per-property keys (scale, rotate, etc.) are accessible */
-export const AMBIENT_STEAM = {
-  y: { duration: 3, ease: 'easeInOut', repeat: Infinity },
-  opacity: { duration: 3, ease: 'easeInOut', repeat: Infinity },
-} satisfies Transition
-
-export const AMBIENT_PULSE = {
-  scale: { duration: 2, ease: 'easeInOut', repeat: Infinity },
-} satisfies Transition
-
-export const AMBIENT_WOBBLE = {
-  rotate: { duration: 2.5, ease: 'easeInOut', repeat: Infinity },
-} satisfies Transition
-
-export const AMBIENT_BLINK = {
-  opacity: { duration: 1.2, ease: 'easeInOut', repeat: Infinity },
-} satisfies Transition
-
 /* ── Carousel spring (track slide) ── */
 export const TRANSITION_SPRING_CAROUSEL: Transition = {
   type: 'spring',
