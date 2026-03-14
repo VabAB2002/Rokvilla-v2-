@@ -183,7 +183,7 @@ function PackageCard({ tier, tierIndex, categories }: PackageCardProps) {
     >
       {/* Card header */}
       <div className="border-b border-limestone/20 bg-parchment px-6 py-5 rounded-t-[8px]">
-        <h3 className="font-display text-xl font-medium text-obsidian">
+        <h3 className="font-display text-xl font-medium text-terracotta">
           {tier.name}
         </h3>
         <p className="mt-1 font-body text-sm text-terracotta">

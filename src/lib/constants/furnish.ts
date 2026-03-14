@@ -23,7 +23,7 @@ export const FURNISH_STEPS: ReadonlyArray<FurnishStep> = [
   },
   {
     number: '02',
-    title: 'Choose Design Themes You Like',
+    title: 'Choose Design Styles You Like',
     description:
       'Pick the aesthetic direction that resonates — from contemporary minimalism to rich traditional Indian styles.',
     href: '#design-themes',

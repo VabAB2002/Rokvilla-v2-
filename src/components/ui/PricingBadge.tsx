@@ -79,7 +79,7 @@ export function PricingBadge({
           />
 
           {/* Inner card */}
-          <div className="relative rounded-[14px] bg-white/95 px-7 py-5 backdrop-blur-lg md:px-9 md:py-6">
+          <div className="relative rounded-[14px] bg-white/95 px-5 py-3.5 backdrop-blur-lg md:px-7 md:py-5">
             {/* Spotlight overlay — desktop only */}
             {!skipEffects && (
               <div
@@ -96,7 +96,7 @@ export function PricingBadge({
             <div className="relative flex flex-col items-center" style={{ transformStyle: 'preserve-3d' }}>
               {/* Top label — depth layer 1 */}
               <span
-                className="font-accent text-[10px] uppercase tracking-[0.2em] text-obsidian/45 md:text-[11px]"
+                className="font-accent text-[9px] uppercase tracking-[0.2em] text-obsidian/45 md:text-[10px]"
                 style={skipEffects ? undefined : { transform: 'translateZ(20px)' }}
               >
                 Starting at just
@@ -104,7 +104,7 @@ export function PricingBadge({
 
               {/* Price — depth layer 2 (foremost) */}
               <span
-                className={`mt-1.5 font-display text-4xl font-semibold md:text-5xl ${
+                className={`mt-1 font-display text-3xl font-semibold md:text-4xl ${
                   skipEffects
                     ? 'text-terracotta'
                     : 'bg-gradient-to-r from-terracotta via-[#ff9a3c] to-terracotta bg-clip-text text-transparent animate-text-shimmer'
@@ -116,7 +116,7 @@ export function PricingBadge({
 
               {/* Bottom label — depth layer 1 */}
               <span
-                className="mt-1 font-accent text-[10px] uppercase tracking-[0.2em] text-obsidian/45 md:text-[11px]"
+                className="mt-0.5 font-accent text-[9px] uppercase tracking-[0.2em] text-obsidian/45 md:text-[10px]"
                 style={skipEffects ? undefined : { transform: 'translateZ(20px)' }}
               >
                 {label}

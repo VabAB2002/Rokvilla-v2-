@@ -4,7 +4,7 @@ import { Search, ChevronDown } from 'lucide-react'
 import type { ProjectCategory } from '@/types/questionnaire'
 
 type FilterCategory = 'all' | ProjectCategory
-type FilterLocation = 'all' | 'hubli' | 'dharwad' | 'ballari'
+type FilterLocation = 'all' | 'hubli' | 'dharwad' | 'ballari' | 'bengaluru' | 'vijayapur'
 type SortOrder = 'year-desc' | 'alpha'
 
 interface ProjectsFilterBarProps {
@@ -28,6 +28,7 @@ const CATEGORY_OPTIONS: ReadonlyArray<{
   { value: 'commercial', label: 'Commercial' },
   { value: 'interior', label: 'Interior' },
   { value: 'industry', label: 'Industry' },
+  { value: 'public', label: 'Public' },
 ]
 
 const LOCATION_OPTIONS: ReadonlyArray<{
@@ -38,6 +39,8 @@ const LOCATION_OPTIONS: ReadonlyArray<{
   { value: 'hubli', label: 'Hubli' },
   { value: 'dharwad', label: 'Dharwad' },
   { value: 'ballari', label: 'Ballari' },
+  { value: 'bengaluru', label: 'Bengaluru' },
+  { value: 'vijayapur', label: 'Vijayapur' },
 ]
 
 export function ProjectsFilterBar({

@@ -14,7 +14,7 @@ export interface Project {
   readonly galleryImages: ReadonlyArray<string>
   readonly vision: string
   readonly builtUpArea?: string
-  readonly plotSize?: string
   readonly floors?: string
   readonly style?: string
+  readonly categoryDisplay?: string
 }
