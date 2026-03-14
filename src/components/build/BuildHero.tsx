@@ -41,10 +41,10 @@ export function BuildHero() {
         }}
       />
 
-      {/* Pricing callout — top-right on desktop */}
+      {/* Pricing callout — bottom-right on desktop, above scroll indicator */}
       <PricingBadge
         price="1,900"
-        className="absolute right-8 top-24 z-20 hidden md:block lg:right-16"
+        className="absolute bottom-24 right-8 z-20 hidden md:block lg:right-16"
       />
 
       {/* Content */}
