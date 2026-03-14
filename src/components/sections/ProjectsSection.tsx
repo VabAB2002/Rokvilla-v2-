@@ -3,6 +3,8 @@
 import { useState, useMemo, useRef, useCallback } from 'react'
 import * as m from 'framer-motion/m'
 import { AnimatePresence } from 'framer-motion'
+import { useGSAP } from '@gsap/react'
+import { gsap } from '@/lib/gsap-config'
 import Link from 'next/link'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ProjectCardLink } from '@/components/projects/ProjectCardLink'
@@ -28,7 +30,27 @@ export function ProjectsSection() {
   const reducedMotion = useReducedMotion()
   const fadeVariants = makeFadeUpVariants(reducedMotion)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
   const { activeIndex } = useScrollProgress(scrollRef)
+
+  useGSAP(() => {
+    const mm = gsap.matchMedia()
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      gsap.fromTo('.projects-heading', {
+        y: 40,
+      }, {
+        y: -20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.projects-heading',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      })
+    })
+    return () => mm.revert()
+  }, { scope: sectionRef })
 
   const handleDotClick = useCallback((index: number) => {
     const container = scrollRef.current
@@ -46,17 +68,19 @@ export function ProjectsSection() {
   )
 
   return (
-    <section id="projects" aria-labelledby="projects-heading" className="bg-white py-12 md:py-32 lg:py-36">
+    <section ref={sectionRef} id="projects" aria-labelledby="projects-heading" className="bg-white py-12 md:py-32 lg:py-36">
       {/* Header + tabs — contained */}
       <div className="mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
-        <AnimatedSection className="text-center">
-          <h2 id="projects-heading" className="font-display text-3xl font-medium uppercase text-obsidian md:text-4xl lg:text-5xl">
-            Projects
-          </h2>
-          <p className="mt-3 font-body text-base tracking-wide text-slate md:text-lg">
-            From Home to Industries
-          </p>
-        </AnimatedSection>
+        <div className="projects-heading">
+          <AnimatedSection className="text-center">
+            <h2 id="projects-heading" className="font-display text-3xl font-medium uppercase text-obsidian md:text-4xl lg:text-5xl">
+              Projects
+            </h2>
+            <p className="mt-3 font-body text-base tracking-wide text-slate md:text-lg">
+              From Home to Industries
+            </p>
+          </AnimatedSection>
+        </div>
 
         {/* Filter tabs — desktop only */}
         <AnimatedSection delay={0.15} className="mt-10 hidden md:block md:mt-12">
