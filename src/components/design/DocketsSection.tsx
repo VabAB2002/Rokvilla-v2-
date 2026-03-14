@@ -71,7 +71,7 @@ export function DocketsSection() {
             Architectural &amp; Good for Construction Drawings
           </h2>
           <p className="mt-4 font-body text-base leading-relaxed text-slate md:text-lg">
-            Transparent, per-unit rates across all project types.
+            Transparent pricing per SQFT across every project.
           </p>
         </AnimatedSection>
 

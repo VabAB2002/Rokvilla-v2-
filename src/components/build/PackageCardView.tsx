@@ -131,7 +131,7 @@ function CategoryAccordion({ category, tierIndex, isOpen, onToggle }: CategoryAc
                       )}
                     </div>
                     {/* Value */}
-                    <span className="shrink-0 pt-0.5 text-right">
+                    <span className="min-w-0 max-w-[55%] pt-0.5 text-right">
                       <CellValue value={value} />
                     </span>
                   </div>
