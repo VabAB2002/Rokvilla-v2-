@@ -14,21 +14,12 @@ export function ScrollFilmDesktop() {
     () => {
       const mm = gsap.matchMedia()
 
-      mm.add(
-        {
-          isDesktop: '(min-width: 768px)',
-          reduceMotion: '(prefers-reduced-motion: reduce)',
-        },
-        (context) => {
-          const { reduceMotion } = context.conditions as {
-            isDesktop: boolean
-            reduceMotion: boolean
-          }
-
-          if (reduceMotion) return // Respect reduced motion — skip all animations
-
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
           const container = containerRef.current
           if (!container) return
+
+          const viewport = container.querySelector<HTMLElement>('.film-viewport')
+          if (!viewport) return
 
           const slides = container.querySelectorAll<HTMLElement>('.film-slide')
           if (slides.length === 0) return
@@ -36,13 +27,15 @@ export function ScrollFilmDesktop() {
           // Track SplitText instances for cleanup on unmount
           const splits: InstanceType<typeof SplitText>[] = []
 
+          const scrollDistance = () => `+=${window.innerHeight * 4}`
+
           // Master timeline scrubbed by scroll
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: container,
               start: 'top top',
-              end: () => `+=${window.innerHeight * 4}`,
-              pin: container.querySelector('.film-viewport'),
+              end: scrollDistance,
+              pin: viewport,
               scrub: 1,
               anticipatePin: 1,
             },
@@ -123,7 +116,7 @@ export function ScrollFilmDesktop() {
             }
           })
 
-          // Progress bar driven by the same ScrollTrigger
+          // Progress bar — separate ScrollTrigger tracking the same scroll range
           const progressBar = container.querySelector<HTMLElement>('.film-progress')
           if (progressBar) {
             gsap.to(progressBar, {
@@ -132,21 +125,28 @@ export function ScrollFilmDesktop() {
               scrollTrigger: {
                 trigger: container,
                 start: 'top top',
-                end: () => `+=${window.innerHeight * 4}`,
+                end: scrollDistance,
                 scrub: true,
               },
             })
           }
 
-          // Refresh after layout settles
-          ScrollTrigger.refresh()
-
           // Cleanup: revert SplitText instances on unmount
+          // (progress bar ScrollTrigger is cleaned up by mm.revert())
           return () => {
             splits.forEach(s => s.revert())
           }
         }
       )
+
+      // Reduced motion: clear inline clip-paths so all slides are visible
+      mm.add('(prefers-reduced-motion: reduce)', () => {
+        const container = containerRef.current
+        if (!container) return
+        container.querySelectorAll<HTMLElement>('.film-slide').forEach((slide) => {
+          slide.style.clipPath = ''
+        })
+      })
 
       // Also revert matchMedia on full unmount
       return () => {
