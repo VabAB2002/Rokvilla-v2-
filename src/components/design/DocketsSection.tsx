@@ -89,13 +89,13 @@ export function DocketsSection() {
               {/* Column Headers */}
               <thead>
                 <tr className="border-b border-limestone/30">
-                  <th className="sticky left-0 z-10 border-r border-limestone/20 bg-white py-4 pl-6 pr-4 text-left font-display text-sm font-medium text-stone md:pl-8 md:text-base">
+                  <th className="sticky left-0 z-10 border-r border-limestone/20 bg-white py-4 pl-6 pr-4 text-left font-display text-sm font-medium text-terracotta md:pl-8 md:text-base">
                     Service
                   </th>
                   {PRICING_CATEGORIES.map((cat) => (
                     <th
                       key={cat.id}
-                      className="px-3 py-4 text-center font-body text-xs uppercase tracking-[0.08em] text-slate md:px-4"
+                      className="px-3 py-4 text-center font-body text-xs uppercase tracking-[0.08em] text-terracotta md:px-4"
                     >
                       <span className="hidden lg:inline">{cat.label}</span>
                       <span className="lg:hidden">{cat.shortLabel}</span>

@@ -379,13 +379,13 @@ function TierHeaders({ tiers }: { readonly tiers: ReadonlyArray<PackageTier> }) 
           scope="col"
           className="sticky left-0 z-10 border-r border-limestone/20 bg-white py-5 pl-6 pr-4 text-left md:pl-8"
         >
-          <span className="font-body text-xs uppercase tracking-[0.08em] text-stone">
+          <span className="font-body text-xs uppercase tracking-[0.08em] text-terracotta">
             Feature
           </span>
         </th>
         {tiers.map((tier) => (
           <th key={tier.id} scope="col" className="px-3 py-5 text-center md:px-5">
-            <span className="block font-display text-lg font-medium text-obsidian md:text-xl">
+            <span className="block font-display text-lg font-medium text-terracotta md:text-xl">
               {tier.name}
             </span>
             <span className="mt-1 block font-body text-xs text-stone md:text-sm">

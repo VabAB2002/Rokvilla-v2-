@@ -217,7 +217,7 @@ export const BUILD_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     projectType: 'Luxury Villa',
     location: 'Bengaluru',
     quote:
-      'We chose the Magnolia package and every detail exceeded our expectations. The imported marble work, the smart home integration, the finish quality — it truly feels like a luxury build.',
+      'We chose the Signature package and every detail exceeded our expectations. The imported marble work, the smart home integration, the finish quality — it truly feels like a luxury build.',
     rating: 5,
   },
   {

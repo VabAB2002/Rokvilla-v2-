@@ -511,9 +511,9 @@ export const PACKAGE_TYPES: ReadonlyArray<PackageType> = [
     label: 'Luxury Homes',
     startingPrice: 3910,
     tiers: [
-      { id: 'freesia', name: 'Freesia', pricePerSqft: 3910 },
-      { id: 'dahlia', name: 'Dahlia', pricePerSqft: 5080 },
-      { id: 'magnolia', name: 'Magnolia', pricePerSqft: 6220 },
+      { id: 'freesia', name: 'Luxe', pricePerSqft: 3910 },
+      { id: 'dahlia', name: 'Elite', pricePerSqft: 5080 },
+      { id: 'magnolia', name: 'Signature', pricePerSqft: 6220 },
     ],
     categories: [
       /* ── STRUCTURE ── */

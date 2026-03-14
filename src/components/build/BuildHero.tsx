@@ -41,12 +41,6 @@ export function BuildHero() {
         }}
       />
 
-      {/* Pricing callout — top-right on desktop */}
-      <PricingBadge
-        price="1,900"
-        className="absolute right-8 top-24 z-20 hidden md:block lg:right-16"
-      />
-
       {/* Content */}
       <div className="relative z-10 -mt-16 px-6 pb-12 md:mt-0 md:flex md:h-full md:items-center md:px-12 md:pb-0">
         <div className="mx-auto w-full max-w-7xl">
@@ -56,6 +50,11 @@ export function BuildHero() {
             animate="visible"
             className="max-w-3xl lg:max-w-4xl"
           >
+            {/* Pricing callout — above overline on desktop */}
+            <m.div variants={itemVariants} className="mb-5 hidden w-fit md:block">
+              <PricingBadge price="1,900" />
+            </m.div>
+
             {/* Overline */}
             <m.span
               variants={itemVariants}
