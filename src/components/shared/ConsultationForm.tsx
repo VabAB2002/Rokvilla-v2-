@@ -53,6 +53,7 @@ interface ConsultationFormProps {
   readonly illustration?: ReactNode
   readonly contactEmail?: string
   readonly contactPhone?: string
+  readonly contactPhone2?: string
   readonly sectionClassName?: string
 }
 
@@ -350,8 +351,9 @@ export function ConsultationForm({
   categories = DEFAULT_CATEGORIES,
   layout = 'centered',
   illustration,
-  contactEmail = 'hello@rokvilla.com',
-  contactPhone = '+91 98765 43210',
+  contactEmail = 'home@rokvilla.com',
+  contactPhone = '+91 78992 32229',
+  contactPhone2 = '+91 78992 42229',
   sectionClassName,
 }: ConsultationFormProps) {
   const reducedMotion = useReducedMotion()
@@ -462,7 +464,10 @@ export function ConsultationForm({
                       <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.98.36 1.94.68 2.87a2 2 0 01-.45 2.11L8.09 9.91" />
                     </svg>
                   </div>
-                  <span className="font-body text-sm text-slate">{contactPhone}</span>
+                  <div className="flex flex-col">
+                    <span className="font-body text-sm text-slate">{contactPhone}</span>
+                    <span className="font-body text-sm text-slate">{contactPhone2}</span>
+                  </div>
                 </div>
               </div>
             </AnimatedSection>
@@ -558,7 +563,7 @@ export function ConsultationForm({
                         type="tel"
                         value={fields.phone}
                         error={errors.phone}
-                        placeholder="+91 98765 43210"
+                        placeholder="+91 78992 32229"
                         onChange={handleChange}
                         autoComplete="tel"
                         required
@@ -787,7 +792,7 @@ export function ConsultationForm({
                     type="tel"
                     value={fields.phone}
                     error={errors.phone}
-                    placeholder="+91 98765 43210"
+                    placeholder="+91 78992 32229"
                     onChange={handleChange}
                     autoComplete="tel"
                     required

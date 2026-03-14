@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 import { EASE_OUT_EXPO } from '@/lib/motion'
-import { SOCIAL_LINKS, PHONE_DISPLAY, EMAIL, ADDRESS } from '@/lib/constants/contact'
+import { SOCIAL_LINKS, PHONE_DISPLAY, PHONE_DISPLAY_2, EMAIL, ADDRESS } from '@/lib/constants/contact'
 
 const MENU_LINKS = [
   { label: 'Home', href: '/' },
@@ -25,6 +25,7 @@ const MENU_LINKS = [
 
 const CONTACT = {
   phone: PHONE_DISPLAY,
+  phone2: PHONE_DISPLAY_2,
   email: EMAIL,
   address: ADDRESS,
 } as const
@@ -203,6 +204,12 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                         className="font-body text-base text-bone/70 transition-colors duration-300 hover:text-terracotta lg:text-lg"
                       >
                         {CONTACT.phone}
+                      </a>
+                      <a
+                        href={`tel:${CONTACT.phone2.replace(/\s/g, '')}`}
+                        className="font-body text-base text-bone/70 transition-colors duration-300 hover:text-terracotta lg:text-lg"
+                      >
+                        {CONTACT.phone2}
                       </a>
                       <a
                         href={`mailto:${CONTACT.email}`}
