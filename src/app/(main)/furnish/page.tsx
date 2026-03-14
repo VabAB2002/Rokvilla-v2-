@@ -35,32 +35,36 @@ export default function FurnishPage() {
   return (
     <>
       <FurnishHero />
-      <HowItWorksSection />
-      <FurnishProjectsWrapper />
-      <InteriorSolutionsSection />
-      <DesignThemesSection />
-      <KeyFeaturesSection />
-      <MaterialFeaturesSection />
-      <SectionErrorBoundary name="furnish-consultation-form">
-        <Suspense fallback={<div className="min-h-[400px]" />}>
-          <ConsultationForm
-            layout="split"
-            illustration={<ConsultationPhoto />}
-            sectionClassName="relative overflow-hidden bg-white py-12 md:py-32 lg:py-36"
-          />
-        </Suspense>
-      </SectionErrorBoundary>
-      <TestimonialsSection testimonials={FURNISH_TESTIMONIALS} />
-      <SectionErrorBoundary name="furnish-faq">
-        <Suspense fallback={<div className="min-h-[300px]" />}>
-          <FAQSection
-            faqs={FURNISH_FAQS}
-            categories={FURNISH_FAQ_CATEGORIES}
-            subtitle="Everything you need to know about our furnishing services"
-            sectionClassName="bg-white py-12 md:py-32 lg:py-36"
-          />
-        </Suspense>
-      </SectionErrorBoundary>
+      <div className="cv-auto"><HowItWorksSection /></div>
+      <div className="cv-auto"><FurnishProjectsWrapper /></div>
+      <div className="cv-auto"><InteriorSolutionsSection /></div>
+      <div className="cv-auto"><DesignThemesSection /></div>
+      <div className="cv-auto"><KeyFeaturesSection /></div>
+      <div className="cv-auto"><MaterialFeaturesSection /></div>
+      <div className="cv-auto">
+        <SectionErrorBoundary name="furnish-consultation-form">
+          <Suspense fallback={<div className="min-h-[400px]" />}>
+            <ConsultationForm
+              layout="split"
+              illustration={<ConsultationPhoto />}
+              sectionClassName="relative overflow-hidden bg-white py-12 md:py-32 lg:py-36"
+            />
+          </Suspense>
+        </SectionErrorBoundary>
+      </div>
+      <div className="cv-auto"><TestimonialsSection testimonials={FURNISH_TESTIMONIALS} /></div>
+      <div className="cv-auto">
+        <SectionErrorBoundary name="furnish-faq">
+          <Suspense fallback={<div className="min-h-[300px]" />}>
+            <FAQSection
+              faqs={FURNISH_FAQS}
+              categories={FURNISH_FAQ_CATEGORIES}
+              subtitle="Everything you need to know about our furnishing services"
+              sectionClassName="bg-white py-12 md:py-32 lg:py-36"
+            />
+          </Suspense>
+        </SectionErrorBoundary>
+      </div>
     </>
   )
 }

@@ -36,34 +36,40 @@ export default function BuildPage() {
   return (
     <>
       <BuildHero />
-      <BuildHowItWorksSection />
-      <SectionErrorBoundary name="construction-packages">
-        <Suspense fallback={<div className="min-h-[600px]" />}>
-          <ConstructionPackagesSection />
-        </Suspense>
-      </SectionErrorBoundary>
-      <BuildKeyFeaturesSection />
-      <SectionErrorBoundary name="build-consultation-form">
-        <Suspense fallback={<div className="min-h-[400px]" />}>
-          <ConsultationForm
-            layout="split"
-            illustration={<ConsultationPhoto />}
-            sectionClassName="relative overflow-hidden bg-white py-12 md:py-32 lg:py-36"
-          />
-        </Suspense>
-      </SectionErrorBoundary>
-      <TestimonialsSection testimonials={BUILD_TESTIMONIALS} />
-      <BuildProjectsWrapper />
-      <SectionErrorBoundary name="build-faq">
-        <Suspense fallback={<div className="min-h-[300px]" />}>
-          <FAQSection
-            faqs={BUILD_FAQS}
-            categories={BUILD_FAQ_CATEGORIES}
-            subtitle="Everything you need to know about our construction services"
-            sectionClassName="bg-white py-12 md:py-32 lg:py-36"
-          />
-        </Suspense>
-      </SectionErrorBoundary>
+      <div className="cv-auto"><BuildHowItWorksSection /></div>
+      <div className="cv-auto">
+        <SectionErrorBoundary name="construction-packages">
+          <Suspense fallback={<div className="min-h-[600px]" />}>
+            <ConstructionPackagesSection />
+          </Suspense>
+        </SectionErrorBoundary>
+      </div>
+      <div className="cv-auto"><BuildKeyFeaturesSection /></div>
+      <div className="cv-auto">
+        <SectionErrorBoundary name="build-consultation-form">
+          <Suspense fallback={<div className="min-h-[400px]" />}>
+            <ConsultationForm
+              layout="split"
+              illustration={<ConsultationPhoto />}
+              sectionClassName="relative overflow-hidden bg-white py-12 md:py-32 lg:py-36"
+            />
+          </Suspense>
+        </SectionErrorBoundary>
+      </div>
+      <div className="cv-auto"><TestimonialsSection testimonials={BUILD_TESTIMONIALS} /></div>
+      <div className="cv-auto"><BuildProjectsWrapper /></div>
+      <div className="cv-auto">
+        <SectionErrorBoundary name="build-faq">
+          <Suspense fallback={<div className="min-h-[300px]" />}>
+            <FAQSection
+              faqs={BUILD_FAQS}
+              categories={BUILD_FAQ_CATEGORIES}
+              subtitle="Everything you need to know about our construction services"
+              sectionClassName="bg-white py-12 md:py-32 lg:py-36"
+            />
+          </Suspense>
+        </SectionErrorBoundary>
+      </div>
     </>
   )
 }

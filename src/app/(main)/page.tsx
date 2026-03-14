@@ -13,13 +13,15 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <ServicesSection />
-      <ProjectsSection />
-      <SectionErrorBoundary name="locations-map">
-        <Suspense fallback={<div className="min-h-[500px]" />}>
-          <LocationsSection />
-        </Suspense>
-      </SectionErrorBoundary>
+      <div className="cv-auto"><ServicesSection /></div>
+      <div className="cv-auto"><ProjectsSection /></div>
+      <div className="cv-auto">
+        <SectionErrorBoundary name="locations-map">
+          <Suspense fallback={<div className="min-h-[500px]" />}>
+            <LocationsSection />
+          </Suspense>
+        </SectionErrorBoundary>
+      </div>
     </>
   )
 }

@@ -27,28 +27,32 @@ export default function DesignPage() {
   return (
     <>
       <DesignHero />
-      <ProcessSection />
-      <SectionErrorBoundary name="design-consultation-form">
-        <Suspense fallback={<div className="min-h-[400px]" />}>
-          <ConsultationForm
-            layout="split"
-            illustration={<ConsultationPhoto />}
-            sectionClassName="relative overflow-hidden bg-white py-12 md:py-32 lg:py-36"
-          />
-        </Suspense>
-      </SectionErrorBoundary>
-      <DocketsSection />
-      <TestimonialsSection testimonials={DESIGN_TESTIMONIALS} />
-      <SectionErrorBoundary name="design-faq">
-        <Suspense fallback={<div className="min-h-[300px]" />}>
-          <FAQSection
-            faqs={DESIGN_FAQS}
-            categories={FAQ_CATEGORIES}
-            subtitle="Everything you need to know about our design services"
-            sectionClassName="bg-white py-12 md:py-32 lg:py-36"
-          />
-        </Suspense>
-      </SectionErrorBoundary>
+      <div className="cv-auto"><ProcessSection /></div>
+      <div className="cv-auto">
+        <SectionErrorBoundary name="design-consultation-form">
+          <Suspense fallback={<div className="min-h-[400px]" />}>
+            <ConsultationForm
+              layout="split"
+              illustration={<ConsultationPhoto />}
+              sectionClassName="relative overflow-hidden bg-white py-12 md:py-32 lg:py-36"
+            />
+          </Suspense>
+        </SectionErrorBoundary>
+      </div>
+      <div className="cv-auto"><DocketsSection /></div>
+      <div className="cv-auto"><TestimonialsSection testimonials={DESIGN_TESTIMONIALS} /></div>
+      <div className="cv-auto">
+        <SectionErrorBoundary name="design-faq">
+          <Suspense fallback={<div className="min-h-[300px]" />}>
+            <FAQSection
+              faqs={DESIGN_FAQS}
+              categories={FAQ_CATEGORIES}
+              subtitle="Everything you need to know about our design services"
+              sectionClassName="bg-white py-12 md:py-32 lg:py-36"
+            />
+          </Suspense>
+        </SectionErrorBoundary>
+      </div>
     </>
   )
 }
