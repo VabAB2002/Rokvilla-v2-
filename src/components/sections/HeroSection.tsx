@@ -47,7 +47,7 @@ export function HeroSection() {
             {/* Body */}
             <m.p
               variants={itemVariants}
-              className="mt-6 max-w-md font-body text-base leading-relaxed text-stone md:text-lg"
+              className="mt-6 max-w-md font-body text-base leading-relaxed text-obsidian/70 md:text-lg"
             >
               Premium residential, commercial, and interior spaces — crafted with precision across Karnataka.
             </m.p>

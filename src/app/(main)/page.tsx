@@ -2,6 +2,7 @@ import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { ServicesSection } from '@/components/sections/ServicesSection'
+import { ScrollFilmSection } from '@/components/sections/scroll-film/ScrollFilmSection'
 import { ProjectsSection } from '@/components/sections/ProjectsSection'
 import { ConsultationPhoto } from '@/components/design/ConsultationPhoto'
 import { SectionErrorBoundary } from '@/components/error/SectionErrorBoundary'
@@ -19,6 +20,7 @@ export default function Home() {
     <>
       <HeroSection />
       <div className="cv-auto"><ServicesSection /></div>
+      <ScrollFilmSection />
       <div className="cv-auto"><ProjectsSection /></div>
       <div className="cv-auto">
         <SectionErrorBoundary name="locations-map">

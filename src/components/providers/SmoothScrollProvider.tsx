@@ -9,21 +9,23 @@ export function SmoothScrollProvider({ children }: { readonly children: ReactNod
   const lenisRef = useRef<LenisRef>(null)
 
   useEffect(() => {
-    const lenis = lenisRef.current?.lenis
-    if (!lenis) return
+    const maybeLenis = lenisRef.current?.lenis
+    if (!maybeLenis) return
+    // After the guard, lenis is guaranteed non-null — capture for closures
+    const lenisInstance: NonNullable<typeof maybeLenis> = maybeLenis
 
     // Lenis scroll events keep ScrollTrigger positions in sync
     const onScroll = () => ScrollTrigger.update()
-    lenis.on('scroll', onScroll)
+    lenisInstance.on('scroll', onScroll)
 
     // Framer Motion's frame scheduler drives Lenis (single RAF loop)
     function update({ timestamp }: { timestamp: number }) {
-      lenis.raf(timestamp)
+      lenisInstance.raf(timestamp)
     }
     frame.update(update, true)
 
     return () => {
-      lenis.off('scroll', onScroll)
+      lenisInstance.off('scroll', onScroll)
       cancelFrame(update)
     }
   }, [])
