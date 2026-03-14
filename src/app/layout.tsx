@@ -79,6 +79,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css"
+          crossOrigin="anonymous"
+          integrity="sha384-GTsgKcJXGSkBp0M68qpxkz9XovzVH0PwSrjYONvkn3tXtySOSq+a14bG2gVJHwQG"
+        />
+      </head>
       <body
         className={`${cormorantGaramond.variable} ${cormorantSC.variable} ${dmSans.variable} ${spaceGrotesk.variable} antialiased`}
       >
