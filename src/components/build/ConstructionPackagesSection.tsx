@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, type ComponentType } from 'react'
-import { motion, AnimatePresence, type Variants } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence, type Variants } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -225,7 +226,7 @@ function CategoryBlock({
   return (
     <>
       {/* Category header */}
-      <motion.tr variants={rowItemVariants}>
+      <m.tr variants={rowItemVariants}>
         <td
           colSpan={colCount}
           className="border-b border-limestone/30 bg-parchment px-6 py-4 md:px-8"
@@ -239,7 +240,7 @@ function CategoryBlock({
             </p>
           )}
         </td>
-      </motion.tr>
+      </m.tr>
 
       {/* Rows */}
       {category.rows.map((row, i) => (
@@ -255,7 +256,7 @@ function CategoryBlock({
 
       {/* Footnote */}
       {category.footnote && (
-        <motion.tr variants={rowItemVariants}>
+        <m.tr variants={rowItemVariants}>
           <td
             colSpan={colCount}
             className="border-b border-limestone/30 px-6 py-2 md:px-8"
@@ -264,7 +265,7 @@ function CategoryBlock({
               {category.footnote}
             </p>
           </td>
-        </motion.tr>
+        </m.tr>
       )}
     </>
   )
@@ -289,7 +290,7 @@ function ComparisonTableRow({
   const isDimmed = highlightDiffs && !hasDistinctValues(row)
 
   return (
-    <motion.tr
+    <m.tr
       variants={variants}
       className={`group transition-all duration-200 hover:bg-parchment ${
         !isLast ? 'border-b border-limestone/15' : 'border-b border-limestone/30'
@@ -322,7 +323,7 @@ function ComparisonTableRow({
           <CellValue value={row.values[i] ?? null} />
         </td>
       ))}
-    </motion.tr>
+    </m.tr>
   )
 }
 
@@ -348,7 +349,7 @@ function PackageTypeToggle({
             }`}
           >
             {activeId === pt.id && (
-              <motion.span
+              <m.span
                 layoutId="pkg-pill"
                 className="absolute inset-0 rounded-full bg-terracotta shadow-md"
                 style={{ borderRadius: 9999 }}
@@ -456,7 +457,7 @@ export function ConstructionPackagesSection() {
                 highlightDiffs ? 'bg-terracotta' : 'bg-limestone/40'
               }`}
             >
-              <motion.span
+              <m.span
                 layout
                 className="pointer-events-none block h-5 w-5 rounded-full bg-white shadow-sm"
                 transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
@@ -468,7 +469,7 @@ export function ConstructionPackagesSection() {
 
         {/* Comparison — keyed by type for clean re-mount */}
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={activeTypeId}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -496,7 +497,7 @@ export function ConstructionPackagesSection() {
 
                   {/* Per-category tbody for viewport-based stagger animation */}
                   {categories.map((category) => (
-                    <motion.tbody
+                    <m.tbody
                       key={category.id}
                       variants={rowContainerVariants}
                       initial="hidden"
@@ -510,12 +511,12 @@ export function ConstructionPackagesSection() {
                         rowItemVariants={rowItemVariants}
                         highlightDiffs={highlightDiffs}
                       />
-                    </motion.tbody>
+                    </m.tbody>
                   ))}
                 </table>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </AnimatePresence>
 
         {/* Footer CTA */}

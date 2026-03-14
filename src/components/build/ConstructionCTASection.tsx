@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ButtonDark } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -95,7 +95,7 @@ export function ConstructionCTASection() {
           {/* Right column — rating badges */}
           <div className="flex-1 lg:max-w-md">
             <AnimatedSection delay={0.15}>
-              <motion.div
+              <m.div
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -103,7 +103,7 @@ export function ConstructionCTASection() {
                 className="grid grid-cols-2 gap-4"
               >
                 {PLATFORM_RATINGS.map((r) => (
-                  <motion.div
+                  <m.div
                     key={r.id}
                     variants={{
                       hidden: reducedMotion
@@ -117,9 +117,9 @@ export function ConstructionCTASection() {
                       rating={r.rating}
                       reviewCount={r.reviewCount}
                     />
-                  </motion.div>
+                  </m.div>
                 ))}
-              </motion.div>
+              </m.div>
             </AnimatedSection>
           </div>
         </div>

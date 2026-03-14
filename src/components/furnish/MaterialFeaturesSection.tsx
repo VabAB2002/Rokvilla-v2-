@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { makeStaggerContainerVariants } from '@/lib/motion'
@@ -50,7 +50,7 @@ export function MaterialFeaturesSection() {
 
         {/* Materials grid */}
         <AnimatedSection delay={0.15} className="mt-16 md:mt-20">
-          <motion.div
+          <m.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -61,7 +61,7 @@ export function MaterialFeaturesSection() {
               const Scene = SCENES[i]
 
               return (
-                <motion.div
+                <m.div
                   key={mat.id}
                   variants={itemVariants}
                   className="relative flex flex-col items-center text-center"
@@ -85,10 +85,10 @@ export function MaterialFeaturesSection() {
                   <p className="mt-2 max-w-xs font-body text-sm leading-relaxed text-slate">
                     {mat.description}
                   </p>
-                </motion.div>
+                </m.div>
               )
             })}
-          </motion.div>
+          </m.div>
         </AnimatedSection>
       </div>
     </section>

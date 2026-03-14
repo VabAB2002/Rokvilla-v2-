@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { EASE_OUT_QUART } from '@/lib/motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useTouchDevice } from '@/hooks/useTouchDevice'
@@ -22,7 +22,7 @@ export function ProjectCard({ project, heightClass }: ProjectCardProps) {
   const isTouch = useTouchDevice()
 
   return (
-    <motion.div
+    <m.div
       className="group relative cursor-pointer overflow-hidden rounded-sm"
       initial="rest"
       whileHover={reducedMotion || isTouch ? undefined : 'hover'}
@@ -30,7 +30,7 @@ export function ProjectCard({ project, heightClass }: ProjectCardProps) {
     >
       <div className={`relative overflow-hidden ${heightClass}`}>
         {/* Image with scale on hover/tap */}
-        <motion.div
+        <m.div
           className="h-full w-full"
           variants={{
             rest: { scale: 1 },
@@ -44,7 +44,7 @@ export function ProjectCard({ project, heightClass }: ProjectCardProps) {
             className="object-cover"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
-        </motion.div>
+        </m.div>
 
         {/* Vignette — darkened edges all around */}
         <div
@@ -70,6 +70,6 @@ export function ProjectCard({ project, heightClass }: ProjectCardProps) {
           </span>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   )
 }

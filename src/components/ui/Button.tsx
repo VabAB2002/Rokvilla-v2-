@@ -2,7 +2,7 @@
 
 import { type ReactNode } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost'
 
@@ -71,13 +71,13 @@ export function Button({
   `.trim()
 
   const inner = (
-    <motion.span
+    <m.span
       className="inline-flex items-center gap-2"
       whileTap={{ scale: 0.97 }}
       transition={{ duration: 0.08 }}
     >
       {children}
-    </motion.span>
+    </m.span>
   )
 
   if (href) {
@@ -117,13 +117,13 @@ export function ButtonDark({
   `.trim()
 
   const inner = (
-    <motion.span
+    <m.span
       className="inline-flex items-center gap-2"
       whileTap={{ scale: 0.97 }}
       transition={{ duration: 0.08 }}
     >
       {children}
-    </motion.span>
+    </m.span>
   )
 
   if (href) {

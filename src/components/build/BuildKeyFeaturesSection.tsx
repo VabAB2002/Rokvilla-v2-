@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -57,7 +57,7 @@ function FeatureRow({
   }
 
   return (
-    <motion.div
+    <m.div
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -68,7 +68,7 @@ function FeatureRow({
         const Scene = scenes[i]
 
         return (
-          <motion.div
+          <m.div
             key={feature.id}
             variants={itemVariants}
             className="flex flex-col items-center text-center"
@@ -87,10 +87,10 @@ function FeatureRow({
             <p className="mt-2 max-w-xs font-body text-sm leading-relaxed text-slate">
               {feature.description}
             </p>
-          </motion.div>
+          </m.div>
         )
       })}
-    </motion.div>
+    </m.div>
   )
 }
 
@@ -131,7 +131,7 @@ function MobileFeatureCarousel({ reduced }: { readonly reduced: boolean }) {
   return (
     <div className="mt-10 md:hidden" role="region" aria-label="Key features carousel">
       <div ref={viewportRef} className="overflow-hidden">
-        <motion.div
+        <m.div
           drag="x"
           dragConstraints={{ left: maxDrag, right: 0 }}
           dragElastic={reduced ? 0 : 0.08}
@@ -169,7 +169,7 @@ function MobileFeatureCarousel({ reduced }: { readonly reduced: boolean }) {
               </div>
             )
           })}
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Dot indicators */}

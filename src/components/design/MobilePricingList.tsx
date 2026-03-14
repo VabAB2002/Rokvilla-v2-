@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useCallback, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence } from 'framer-motion'
 import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { EASE_OUT_QUART } from '@/lib/motion'
@@ -226,7 +227,7 @@ export function MobilePricingList() {
         className="mt-5 rounded-[6px] border border-limestone/30 bg-white px-4"
       >
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={activeCategoryId}
             initial={reduced ? { opacity: 0 } : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -260,7 +261,7 @@ export function MobilePricingList() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
     </div>

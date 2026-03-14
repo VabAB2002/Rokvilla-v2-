@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 interface ScrollIndicatorDotsProps {
@@ -41,7 +41,7 @@ export function ScrollIndicatorDots({
           onClick={() => onDotClick(i)}
           className="flex min-h-[44px] min-w-[44px] items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:rounded-full"
         >
-          <motion.span
+          <m.span
             layout
             className={`block rounded-full transition-colors duration-200 ${
               i === activeIndex

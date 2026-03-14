@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { makeFadeUpVariants } from '@/lib/motion'
 
@@ -10,7 +10,7 @@ export function ConsultationPhoto() {
   const variants = makeFadeUpVariants(reduced)
 
   return (
-    <motion.div
+    <m.div
       variants={variants}
       initial="hidden"
       whileInView="visible"
@@ -25,6 +25,6 @@ export function ConsultationPhoto() {
         className="h-auto w-full object-contain"
         sizes="400px"
       />
-    </motion.div>
+    </m.div>
   )
 }

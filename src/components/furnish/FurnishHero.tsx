@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import furnishHeroImage from '../../../public/images/furnish/furnish-hero-bg.png'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { makeHeroContainerVariants, makeHeroItemVariants } from '@/lib/motion'
@@ -36,36 +36,36 @@ export function FurnishHero() {
       {/* Content */}
       <div className="relative z-10 -mt-16 px-6 pb-12 md:mt-0 md:flex md:h-full md:items-center md:px-12 md:pb-0">
         <div className="mx-auto w-full max-w-7xl">
-          <motion.div
+          <m.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="max-w-lg lg:max-w-xl"
           >
-            <motion.span
+            <m.span
               variants={itemVariants}
               className="mb-5 block font-accent text-[13px] uppercase tracking-[0.18em] text-terracotta"
             >
               Furnishing Services
-            </motion.span>
+            </m.span>
 
-            <motion.h1
+            <m.h1
               variants={itemVariants}
               className="font-display text-[clamp(2.8rem,6vw,5.5rem)] font-light leading-[0.95] text-obsidian"
             >
               From Concept
               <br />
               to Comfort
-            </motion.h1>
+            </m.h1>
 
-            <motion.p
+            <m.p
               variants={itemVariants}
               className="mt-5 max-w-sm font-body text-base leading-relaxed text-slate md:text-lg"
             >
               Thoughtfully designed interiors that bring your vision to life.
-            </motion.p>
+            </m.p>
 
-            <motion.div
+            <m.div
               variants={itemVariants}
               className="mt-9 flex flex-col gap-3 sm:flex-row sm:gap-4"
             >
@@ -75,13 +75,13 @@ export function FurnishHero() {
               <Button variant="secondary" href="#consultation" className="w-full sm:w-auto">
                 Book Consultation
               </Button>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: reducedMotion ? 0 : 1.5, duration: reducedMotion ? 0.2 : 0.6 }}
@@ -101,7 +101,7 @@ export function FurnishHero() {
         >
           <path d="M12 5v14M5 12l7 7 7-7" />
         </svg>
-      </motion.div>
+      </m.div>
     </section>
   )
 }

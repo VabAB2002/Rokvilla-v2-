@@ -3,7 +3,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { EASE_OUT_EXPO } from '@/lib/motion'
@@ -81,7 +82,7 @@ export function ProjectLightbox({
   if (!mounted) return null
 
   return createPortal(
-    <motion.div
+    <m.div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-void/95 backdrop-blur-md"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -131,7 +132,7 @@ export function ProjectLightbox({
 
       {/* Image with swipe gesture support */}
       <AnimatePresence mode="wait">
-        <motion.div
+        <m.div
           key={currentIndex}
           className="relative mx-4 h-[70vh] w-full max-w-5xl md:mx-20"
           initial={
@@ -159,7 +160,7 @@ export function ProjectLightbox({
             sizes="100vw"
             priority
           />
-        </motion.div>
+        </m.div>
       </AnimatePresence>
 
       {/* Counter */}
@@ -168,7 +169,7 @@ export function ProjectLightbox({
           {currentIndex + 1} / {images.length}
         </span>
       </div>
-    </motion.div>,
+    </m.div>,
     document.body,
   )
 }

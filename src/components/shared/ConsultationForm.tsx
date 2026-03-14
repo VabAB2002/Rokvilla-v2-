@@ -1,7 +1,8 @@
 'use client'
 
 import { type ReactNode, useState, useCallback, useId, useRef, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -268,7 +269,7 @@ function FormSelect({
         {/* Dropdown panel */}
         <AnimatePresence>
           {open && (
-            <motion.ul
+            <m.ul
               ref={listRef}
               id={listboxId}
               role="listbox"
@@ -313,7 +314,7 @@ function FormSelect({
                   </li>
                 )
               })}
-            </motion.ul>
+            </m.ul>
           )}
         </AnimatePresence>
       </div>
@@ -476,7 +477,7 @@ export function ConsultationForm({
             <AnimatedSection delay={0.15} className="flex-1">
               <AnimatePresence mode="wait">
                 {submitted ? (
-                  <motion.div
+                  <m.div
                     key="success"
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -512,9 +513,9 @@ export function ConsultationForm({
                     >
                       Submit Another Request
                     </button>
-                  </motion.div>
+                  </m.div>
                 ) : (
-                  <motion.form
+                  <m.form
                     key="form"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -678,7 +679,7 @@ export function ConsultationForm({
                         </svg>
                       </Button>
                     </div>
-                  </motion.form>
+                  </m.form>
                 )}
               </AnimatePresence>
             </AnimatedSection>
@@ -713,7 +714,7 @@ export function ConsultationForm({
         <AnimatedSection delay={0.15} className="mt-14">
           <AnimatePresence mode="wait">
             {submitted ? (
-              <motion.div
+              <m.div
                 key="success"
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -749,9 +750,9 @@ export function ConsultationForm({
                 >
                   Submit Another Request
                 </button>
-              </motion.div>
+              </m.div>
             ) : (
-              <motion.form
+              <m.form
                 key="form"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -892,7 +893,7 @@ export function ConsultationForm({
                     Book a Meeting
                   </Button>
                 </div>
-              </motion.form>
+              </m.form>
             )}
           </AnimatePresence>
         </AnimatedSection>

@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { ArrowLeft } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import {
@@ -62,28 +62,28 @@ export function ProjectDetailHero({ project }: ProjectDetailHeroProps) {
       {/* Hero content — full height flex, content anchored to bottom */}
       <div className="relative z-10 flex h-full items-end pb-16 md:pb-20 lg:pb-24">
         <div className="mx-auto w-full max-w-7xl px-6 md:px-12 xl:px-16">
-          <motion.div
+          <m.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="max-w-3xl"
           >
-            <motion.span
+            <m.span
               variants={itemVariants}
               className="font-accent text-[12px] uppercase tracking-[0.18em] text-bone/60"
             >
               {capitalize(project.category)} &middot;{' '}
               {capitalize(project.location)}
-            </motion.span>
+            </m.span>
 
-            <motion.h1
+            <m.h1
               variants={itemVariants}
               className="mt-4 font-display text-[clamp(2.5rem,6vw,5.5rem)] font-light leading-[0.95] text-bone"
             >
               {project.name}
-            </motion.h1>
+            </m.h1>
 
-            <motion.div
+            <m.div
               variants={itemVariants}
               className="mt-6 flex items-center gap-6"
             >
@@ -98,8 +98,8 @@ export function ProjectDetailHero({ project }: ProjectDetailHeroProps) {
                 <ArrowLeft className="h-3.5 w-3.5" />
                 All Projects
               </Link>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </div>
     </section>

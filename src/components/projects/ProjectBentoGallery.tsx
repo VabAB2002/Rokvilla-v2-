@@ -2,7 +2,8 @@
 
 import { useState, useCallback, useRef } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
@@ -28,7 +29,7 @@ function BentoImage({
   readonly reducedMotion: boolean
 }) {
   return (
-    <motion.button
+    <m.button
       type="button"
       onClick={onClick}
       className="relative h-full w-full cursor-pointer overflow-hidden rounded-sm"
@@ -45,7 +46,7 @@ function BentoImage({
         className="object-cover"
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
       />
-    </motion.button>
+    </m.button>
   )
 }
 

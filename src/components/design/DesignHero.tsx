@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import designBlueprintImage from '../../../public/images/design/design-blueprint.jpg'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { makeHeroContainerVariants, makeHeroItemVariants } from '@/lib/motion'
@@ -41,39 +41,39 @@ export function DesignHero() {
       {/* Content */}
       <div className="relative z-10 -mt-16 px-6 pb-12 md:mt-0 md:flex md:h-full md:items-center md:px-12 md:pb-0">
         <div className="mx-auto w-full max-w-7xl">
-          <motion.div
+          <m.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="max-w-2xl lg:max-w-3xl"
           >
             {/* Overline */}
-            <motion.span
+            <m.span
               variants={itemVariants}
               className="mb-6 block font-accent text-[13px] uppercase tracking-[0.18em] text-brass md:text-[15px]"
             >
               Design Services
-            </motion.span>
+            </m.span>
 
             {/* Heading */}
-            <motion.h1
+            <m.h1
               variants={itemVariants}
               className="font-display text-[clamp(3rem,7vw,7rem)] font-light leading-[0.9] text-void whitespace-pre-line"
             >
               {"From Blueprint\nto Reality"}
-            </motion.h1>
+            </m.h1>
 
             {/* Body */}
-            <motion.p
+            <m.p
               variants={itemVariants}
               className="mt-6 max-w-md font-body text-base leading-relaxed text-graphite md:text-lg"
             >
               From concept sketches to construction-ready blueprints — architectural
               designs that balance aesthetics, function, and budget.
-            </motion.p>
+            </m.p>
 
             {/* CTAs */}
-            <motion.div
+            <m.div
               variants={itemVariants}
               className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4"
             >
@@ -83,13 +83,13 @@ export function DesignHero() {
               <Button variant="secondary" href="#consultation" className="w-full sm:w-auto">
                 Book Consultation
               </Button>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: reducedMotion ? 0 : 1.2, duration: reducedMotion ? 0.2 : 0.6 }}
@@ -109,7 +109,7 @@ export function DesignHero() {
         >
           <path d="M12 5v14M5 12l7 7 7-7" />
         </svg>
-      </motion.div>
+      </m.div>
     </section>
   )
 }

@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ProjectCard, type ProjectCardData } from '@/components/ui/ProjectCard'
@@ -141,7 +142,7 @@ export function ProjectsCarouselSection({
       {/* Desktop: CarouselTrack */}
       <div className="mx-auto mt-10 hidden max-w-7xl px-6 md:block md:px-12 xl:px-16">
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={activeTab}
             initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -173,7 +174,7 @@ export function ProjectsCarouselSection({
                 </div>
               ))}
             </CarouselTrack>
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
 

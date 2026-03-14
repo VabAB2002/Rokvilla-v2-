@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import type { Service } from '@/types/service'
 import { EASE_OUT_QUART } from '@/lib/motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -19,7 +19,7 @@ export function ServiceCard({ service, heightClass }: ServiceCardProps) {
 
   return (
     <Link href={service.href}>
-      <motion.div
+      <m.div
         className="group relative cursor-pointer overflow-hidden rounded-sm"
         initial="rest"
         whileHover={reducedMotion || isTouch ? undefined : 'hover'}
@@ -27,7 +27,7 @@ export function ServiceCard({ service, heightClass }: ServiceCardProps) {
       >
         <div className={`relative overflow-hidden ${heightClass}`}>
           {/* Image with scale on hover/tap */}
-          <motion.div
+          <m.div
             className="h-full w-full"
             variants={{
               rest: { scale: 1 },
@@ -41,7 +41,7 @@ export function ServiceCard({ service, heightClass }: ServiceCardProps) {
               className="object-cover"
               sizes="(max-width: 767px) 80vw, (max-width: 1024px) 50vw, 33vw"
             />
-          </motion.div>
+          </m.div>
 
           {/* Vignette — darkened edges all around */}
           <div
@@ -67,7 +67,7 @@ export function ServiceCard({ service, heightClass }: ServiceCardProps) {
             </span>
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </Link>
   )
 }
