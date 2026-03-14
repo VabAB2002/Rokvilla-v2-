@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Cormorant_Garamond, Cormorant_SC, DM_Sans } from 'next/font/google'
+import { Cormorant_Garamond, Cormorant_SC, DM_Sans, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -25,6 +25,15 @@ const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500'],
   variable: '--font-dm-sans',
+  display: 'optional',
+  adjustFontFallback: true,
+  fallback: ['system-ui', 'sans-serif'],
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-space-grotesk',
   display: 'optional',
   adjustFontFallback: true,
   fallback: ['system-ui', 'sans-serif'],
@@ -71,7 +80,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${cormorantGaramond.variable} ${cormorantSC.variable} ${dmSans.variable} antialiased`}
+        className={`${cormorantGaramond.variable} ${cormorantSC.variable} ${dmSans.variable} ${spaceGrotesk.variable} antialiased`}
       >
         <a
           href="#main-content"

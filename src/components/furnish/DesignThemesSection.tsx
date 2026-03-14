@@ -4,7 +4,6 @@ import { useRef, useCallback } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
-import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useTouchDevice } from '@/hooks/useTouchDevice'
@@ -41,7 +40,7 @@ function ThemeCardContent({
         <h3 className="font-display text-lg font-medium text-bone">
           {theme.title}
         </h3>
-        <p className="mt-1 font-body text-xs leading-relaxed text-bone/60">
+        <p className="mt-1 hidden truncate font-body text-xs leading-relaxed text-bone/60 md:block">
           {theme.description}
         </p>
       </div>
@@ -60,7 +59,7 @@ export function DesignThemesSection() {
     const container = mobileScrollRef.current
     if (!container) return
     const child = container.children[index] as HTMLElement | undefined
-    child?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+    child?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
   }, [])
 
   return (
@@ -86,22 +85,20 @@ export function DesignThemesSection() {
       {/* Theme cards */}
       <AnimatedSection delay={0.15} className="mt-14">
         {/* Mobile: horizontal scroll carousel */}
-        <div className="overflow-hidden md:hidden">
-          <ScrollFadeContainer
-            scrollRef={mobileScrollRef}
-            scrollClassName="flex gap-3 snap-x snap-mandatory overflow-x-auto no-scrollbar px-3 pb-4"
-            role="region"
-            ariaLabel="Design themes"
+        <div className="md:hidden">
+          <div
+            ref={mobileScrollRef}
+            className="flex gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar px-[10vw] pb-2"
           >
             {DESIGN_THEMES.map((theme) => (
               <div
                 key={theme.id}
-                className="group relative w-[85vw] max-w-[400px] shrink-0 snap-start overflow-hidden rounded-[4px]"
+                className="group relative w-[78vw] max-w-[340px] shrink-0 snap-center overflow-hidden rounded-[4px]"
               >
                 <ThemeCardContent theme={theme} reducedMotion={reducedMotion} isTouch={isTouch} />
               </div>
             ))}
-          </ScrollFadeContainer>
+          </div>
           <ScrollIndicatorDots
             count={DESIGN_THEMES.length}
             activeIndex={activeIndex}

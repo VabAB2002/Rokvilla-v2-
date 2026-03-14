@@ -403,12 +403,12 @@ export function ConsultationForm({
           <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
             {/* Left column: text + illustration + contact */}
             <AnimatedSection className="flex-1 lg:max-w-md">
-              <p className="font-accent text-[13px] uppercase tracking-[0.18em] text-brass md:text-[15px]">
+              <p className="font-accent text-[11px] uppercase tracking-[0.18em] text-brass md:text-[15px]">
                 We&apos;re here to help
               </p>
               <h2
                 id="consultation-heading"
-                className="mt-3 font-display text-3xl font-medium text-obsidian md:text-4xl lg:text-5xl"
+                className="mt-2 font-display text-2xl font-medium text-obsidian md:mt-3 md:text-4xl lg:text-5xl"
               >
                 {title.includes('Deliver') ? (
                   <>
@@ -420,12 +420,12 @@ export function ConsultationForm({
                   title
                 )}
               </h2>
-              <p className="mt-4 max-w-sm font-body text-base leading-relaxed tracking-wide text-slate md:text-lg">
+              <p className="mt-3 max-w-sm font-body text-sm leading-relaxed tracking-wide text-slate md:mt-4 md:text-lg">
                 {subtitle}
               </p>
 
               {/* Illustration slot */}
-              {illustration && <div className="mt-8">{illustration}</div>}
+              {illustration && <div className="mt-8 flex justify-center lg:justify-start">{illustration}</div>}
 
               {/* Contact info */}
               <div className="mt-6 flex flex-col gap-3">

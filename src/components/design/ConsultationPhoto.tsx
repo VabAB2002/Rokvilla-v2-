@@ -15,7 +15,7 @@ export function ConsultationPhoto() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-80px' }}
-      className="relative w-full max-w-[400px]"
+      className="relative w-full max-w-[280px] md:max-w-[400px]"
     >
       <Image
         src="/images/design/consultation-illustration.png"

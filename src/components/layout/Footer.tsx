@@ -47,8 +47,8 @@ export function Footer() {
                 />
               </div>
               <span className="h-5 w-px bg-bone/20" />
-              <span className="font-display text-[15px] font-light uppercase tracking-[0.14em] text-bone/90">
-                RokVilla
+              <span className="font-logo text-[15px] font-semibold uppercase tracking-[0.14em] text-bone/90">
+                ROKVILLA
               </span>
             </Link>
             <p className="mt-2.5 max-w-[260px] font-body text-[11px] leading-relaxed text-stone/70">
@@ -111,7 +111,7 @@ export function Footer() {
               ))}
             </div>
             <p className="mt-1 font-body text-[10px] text-stone/40">
-              &copy; {new Date().getFullYear()} RokVilla. All rights reserved.
+              &copy; {new Date().getFullYear()} ROKVILLA. All rights reserved.
             </p>
           </div>
         </div>
@@ -130,8 +130,8 @@ export function Footer() {
                   className="-ml-[26px] h-16 w-auto opacity-90 md:h-18"
                 />
                 <span className="-ml-5 h-8 w-px bg-bone/20" />
-                <span className="ml-2 font-display text-xl font-light uppercase tracking-[0.12em] text-bone/90">
-                  RokVilla
+                <span className="ml-2 font-logo text-xl font-semibold uppercase tracking-[0.12em] text-bone/90">
+                  ROKVILLA
                 </span>
               </Link>
               <p className="mt-4 max-w-xs font-body text-sm leading-relaxed text-stone">
@@ -168,7 +168,7 @@ export function Footer() {
           {/* Bottom bar */}
           <div className="flex items-center justify-between">
             <p className="font-body text-xs text-stone/60">
-              &copy; {new Date().getFullYear()} RokVilla. All rights reserved.
+              &copy; {new Date().getFullYear()} ROKVILLA. All rights reserved.
             </p>
             <div className="flex items-center gap-5">
               {SOCIAL_LINKS.map((social) => (

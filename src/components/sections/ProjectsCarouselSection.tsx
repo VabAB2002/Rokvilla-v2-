@@ -1,13 +1,15 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ProjectCard, type ProjectCardData } from '@/components/ui/ProjectCard'
 import { CarouselTrack } from '@/components/ui/CarouselTrack'
+import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useCarousel, useVisibleCount } from '@/hooks/useCarousel'
+import { useScrollProgress } from '@/hooks/useScrollProgress'
 import { EASE_OUT_EXPO } from '@/lib/motion'
 
 type BaseItem = ProjectCardData & { readonly id: string }
@@ -66,6 +68,17 @@ export function ProjectsCarouselSection({
     carousel.goTo(0)
   }, [activeTab, carousel.goTo])
 
+  // Mobile scroll-snap tracking
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const { activeIndex } = useScrollProgress(scrollRef)
+
+  const handleDotClick = useCallback((index: number) => {
+    const container = scrollRef.current
+    if (!container) return
+    const child = container.children[index] as HTMLElement | undefined
+    child?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+  }, [])
+
   const headingId = `${sectionId}-heading`
 
   return (
@@ -82,7 +95,7 @@ export function ProjectsCarouselSection({
         </AnimatedSection>
 
         {/* Filter tabs */}
-        <AnimatedSection delay={0.15} className="mt-10 md:mt-12">
+        <AnimatedSection delay={0.15} className="mt-10 hidden md:mt-12 md:block">
           <div className="flex justify-center gap-2 md:gap-3">
             {tabs.map((tab) => (
               <button
@@ -102,8 +115,31 @@ export function ProjectsCarouselSection({
         </AnimatedSection>
       </div>
 
-      {/* Carousel */}
-      <div className="mx-auto mt-10 max-w-7xl px-6 md:px-12 xl:px-16">
+      {/* Mobile: scroll-snap carousel */}
+      <div className="mt-10 md:hidden">
+        <div
+          ref={scrollRef}
+          className="flex gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar px-[10vw] pb-2"
+        >
+          {items.map((project) => (
+            <div
+              key={project.id}
+              className="w-[78vw] max-w-[340px] shrink-0 snap-center"
+            >
+              <ProjectCard project={project} heightClass="h-56" />
+            </div>
+          ))}
+        </div>
+        <ScrollIndicatorDots
+          count={items.length}
+          activeIndex={activeIndex}
+          onDotClick={handleDotClick}
+          className="mt-4"
+        />
+      </div>
+
+      {/* Desktop: CarouselTrack */}
+      <div className="mx-auto mt-10 hidden max-w-7xl px-6 md:block md:px-12 xl:px-16">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -139,22 +175,22 @@ export function ProjectsCarouselSection({
             </CarouselTrack>
           </motion.div>
         </AnimatePresence>
-
-        {/* View all link */}
-        {viewAllHref != null && (
-          <div className="mt-14 flex flex-col items-center gap-3">
-            <Link
-              href={viewAllHref}
-              className="group inline-flex items-center gap-3 rounded-full border-[1.5px] border-terracotta/30 bg-terracotta/[0.07] backdrop-blur-sm px-8 py-3 font-accent text-[12px] uppercase tracking-[0.18em] text-terracotta transition-all duration-300 hover:border-terracotta/50 hover:bg-terracotta/[0.12]"
-            >
-              View All Projects
-              <span className="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
-                &rarr;
-              </span>
-            </Link>
-          </div>
-        )}
       </div>
+
+      {/* View all link */}
+      {viewAllHref != null && (
+        <div className="mx-auto mt-14 flex max-w-7xl flex-col items-center gap-3 px-6 md:px-12 xl:px-16">
+          <Link
+            href={viewAllHref}
+            className="group inline-flex items-center gap-3 rounded-full border-[1.5px] border-terracotta/30 bg-terracotta/[0.07] backdrop-blur-sm px-8 py-3 font-accent text-[12px] uppercase tracking-[0.18em] text-terracotta transition-all duration-300 hover:border-terracotta/50 hover:bg-terracotta/[0.12]"
+          >
+            View All Projects
+            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+              &rarr;
+            </span>
+          </Link>
+        </div>
+      )}
     </section>
   )
 }

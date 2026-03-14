@@ -272,7 +272,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
     id: 'spectrum-industry',
     slug: 'spectrum-industry',
     name: 'Spectrum Industry',
-    category: 'commercial',
+    category: 'industry',
     location: 'ballari',
     image: '/images/projects/spectrum-industry.jpg',
     description:
@@ -322,14 +322,14 @@ export const PROJECTS: ReadonlyArray<Project> = [
   },
 ] as const
 
-/** Curated 6 projects for the homepage: 2 residential, 2 commercial, 2 interior */
+/** Curated 6 projects for the homepage: 2 residential, 1 commercial, 1 industry, 1 interior, 1 residential */
 const HOMEPAGE_IDS = [
   'sripradha',
-  'sri-ganesha-residence',
+  'mig265',
   'cedar-homestore',
-  'junior-toes',
+  'spectrum-industry',
   'pavan-vj',
-  'shivprasad-residence',
+  'vanitha-residence',
 ] as const
 
 export const HOMEPAGE_PROJECTS: ReadonlyArray<Project> = HOMEPAGE_IDS.map(

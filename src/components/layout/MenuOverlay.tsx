@@ -256,7 +256,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
               transition={{ delay: 0.5, duration: 0.4 }}
             >
               <p className="font-body text-xs text-bone/25">
-                &copy; {new Date().getFullYear()} RokVilla. All rights reserved.
+                &copy; {new Date().getFullYear()} ROKVILLA. All rights reserved.
               </p>
               <span className="font-accent text-xs uppercase tracking-[0.15em] text-bone/15">
                 RokVilla
