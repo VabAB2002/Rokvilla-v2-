@@ -7,32 +7,12 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { EASE_OUT_EXPO } from '@/lib/motion'
-
-/* ── Types ── */
-
-interface FormFields {
-  readonly name: string
-  readonly email: string
-  readonly phone: string
-  readonly category: string
-  readonly consultationType: string
-  readonly location: string
-  readonly message: string
-  readonly privacy: boolean
-}
-
-type FormErrors = Partial<Record<keyof FormFields, string>>
-
-const INITIAL_FIELDS: FormFields = {
-  name: '',
-  email: '',
-  phone: '',
-  category: '',
-  consultationType: '',
-  location: '',
-  message: '',
-  privacy: false,
-}
+import {
+  validateForm,
+  INITIAL_FIELDS,
+  type FormFields,
+  type FormErrors,
+} from '@/lib/validation/consultationForm'
 
 const CONSULTATION_TYPES = [
   { value: 'in-person', label: 'In Person' },
@@ -56,30 +36,6 @@ interface ConsultationFormProps {
   readonly contactPhone?: string
   readonly contactPhone2?: string
   readonly sectionClassName?: string
-}
-
-/* ── Validation ── */
-
-function validateForm(fields: FormFields): FormErrors {
-  const errors: FormErrors = {}
-
-  if (!fields.name.trim()) errors.name = 'Name is required'
-  if (!fields.email.trim()) {
-    errors.email = 'Email is required'
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) {
-    errors.email = 'Enter a valid email address'
-  }
-  if (!fields.phone.trim()) {
-    errors.phone = 'Phone number is required'
-  } else if (!/^[+\d][\d\s-]{7,15}$/.test(fields.phone)) {
-    errors.phone = 'Enter a valid phone number'
-  }
-  if (!fields.category) errors.category = 'Select a category'
-  if (!fields.consultationType) errors.consultationType = 'Select a consultation type'
-  if (!fields.location) errors.location = 'Select a location'
-  if (!fields.privacy) errors.privacy = 'You must agree to the privacy policy'
-
-  return errors
 }
 
 /* ── Input component ── */
@@ -380,6 +336,25 @@ export function ConsultationForm({
         setErrors(validationErrors)
         return
       }
+
+      const message = [
+        `Name: ${fields.name}`,
+        `Email: ${fields.email}`,
+        `Phone: ${fields.phone}`,
+        `Category: ${fields.category}`,
+        `Type: ${fields.consultationType}`,
+        `Location: ${fields.location}`,
+        fields.message ? `Message: ${fields.message}` : '',
+      ]
+        .filter(Boolean)
+        .join('\n')
+
+      window.open(
+        `https://wa.me/917899232229?text=${encodeURIComponent(message)}`,
+        '_blank',
+        'noopener,noreferrer',
+      )
+
       setSubmitted(true)
       setFields(INITIAL_FIELDS)
       setErrors({})
