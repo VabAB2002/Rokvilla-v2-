@@ -34,10 +34,10 @@ export function FurnishHero() {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent md:hidden" />
       </div>
 
-      {/* Pricing callout — bottom-right on desktop, above scroll indicator */}
+      {/* Pricing callout — top-right on desktop */}
       <PricingBadge
         price="1,500"
-        className="absolute bottom-24 right-8 z-20 hidden md:block lg:right-16"
+        className="absolute right-8 top-24 z-20 hidden md:block lg:right-16"
       />
 
       {/* Content */}

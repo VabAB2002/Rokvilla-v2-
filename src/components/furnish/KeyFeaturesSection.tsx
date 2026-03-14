@@ -1,9 +1,12 @@
 'use client'
 
+import { useState, useEffect, useRef } from 'react'
 import * as m from 'framer-motion/m'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
+import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import { makeStaggerContainerVariants, EASE_OUT_EXPO } from '@/lib/motion'
+import { useCarousel } from '@/hooks/useCarousel'
+import { makeStaggerContainerVariants, makeCarouselTransition, EASE_OUT_EXPO } from '@/lib/motion'
 import { KEY_FEATURES } from '@/lib/constants/furnish'
 import { InhouseTeamScene } from './illustrations/InhouseTeamScene'
 import { FreeEstimationScene } from './illustrations/FreeEstimationScene'
@@ -27,7 +30,11 @@ const ROW_2_FEATURES = KEY_FEATURES.slice(3, 6)
 const ROW_1_SCENES = SCENES.slice(0, 3)
 const ROW_2_SCENES = SCENES.slice(3, 6)
 
-/* ── Row of 3 features ── */
+/** Fraction of container width each card occupies (leaves peek gap) */
+const CARD_WIDTH_RATIO = 0.84
+const CARD_GAP = 16
+
+/* ── Row of 3 features (desktop only) ── */
 
 function FeatureRow({
   features,
@@ -55,7 +62,7 @@ function FeatureRow({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-80px' }}
-      className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3"
+      className="grid grid-cols-3 gap-8"
     >
       {features.map((feature, i) => {
         const Scene = scenes[i]
@@ -87,6 +94,100 @@ function FeatureRow({
   )
 }
 
+/* ── Mobile overrides for long titles ── */
+
+const MOBILE_TITLES: Readonly<Record<string, string>> = {
+  'feat-inhouse-team': 'In-House Expert Team',
+  'feat-free-drawings': 'Free Design & Drawings',
+}
+
+/* ── Mobile swipe carousel ── */
+
+function MobileFeatureCarousel({ reduced }: { readonly reduced: boolean }) {
+  const { currentIndex, goTo, onDragEnd, dotCount } = useCarousel({
+    count: KEY_FEATURES.length,
+    visibleCount: 1,
+  })
+
+  const viewportRef = useRef<HTMLDivElement>(null)
+  const [containerWidth, setContainerWidth] = useState(0)
+
+  useEffect(() => {
+    const el = viewportRef.current
+    if (!el) return
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setContainerWidth(entry.contentRect.width)
+      }
+    })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  const cardWidth = containerWidth > 0 ? containerWidth * CARD_WIDTH_RATIO : 0
+  const trackOffset = -(currentIndex * (cardWidth + CARD_GAP))
+  const maxDrag = -((KEY_FEATURES.length - 1) * (cardWidth + CARD_GAP))
+
+  return (
+    <div className="mt-10 md:hidden" role="region" aria-label="Key features carousel">
+      <div ref={viewportRef} className="overflow-hidden">
+        <m.div
+          drag="x"
+          dragConstraints={{ left: maxDrag, right: 0 }}
+          dragElastic={reduced ? 0 : 0.08}
+          onDragEnd={onDragEnd}
+          animate={{ x: trackOffset }}
+          transition={makeCarouselTransition(reduced)}
+          className="flex items-stretch cursor-grab active:cursor-grabbing"
+          style={{ gap: CARD_GAP }}
+        >
+          {KEY_FEATURES.map((feature, i) => {
+            const Scene = SCENES[i]
+
+            return (
+              <div
+                key={feature.id}
+                className="shrink-0"
+                style={{ width: cardWidth || `${CARD_WIDTH_RATIO * 100}%` }}
+              >
+                <div className="flex h-full flex-col rounded-2xl border border-limestone/40 bg-white px-5 pb-6 pt-7 shadow-[0_2px_16px_rgba(0,0,0,0.06)]">
+                  {/* Illustration — fixed height for consistency */}
+                  <div className="mx-auto mb-4 flex h-[130px] w-full max-w-[160px] shrink-0 items-center justify-center">
+                    <Scene />
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-display text-base font-medium leading-snug text-obsidian">
+                    {MOBILE_TITLES[feature.id] ?? feature.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="mt-2 font-body text-sm leading-relaxed text-slate">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            )
+          })}
+        </m.div>
+      </div>
+
+      {/* Dot indicators */}
+      <ScrollIndicatorDots
+        count={dotCount}
+        activeIndex={currentIndex}
+        onDotClick={goTo}
+        className="mt-6"
+      />
+
+      {/* Screen reader live region */}
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {`Showing feature ${currentIndex + 1} of ${KEY_FEATURES.length}`}
+      </div>
+    </div>
+  )
+}
+
 /* ── Section ── */
 
 export function KeyFeaturesSection() {
@@ -111,13 +212,14 @@ export function KeyFeaturesSection() {
           </p>
         </AnimatedSection>
 
-        {/* Row 1 */}
-        <div className="mt-16">
+        {/* Mobile: swipeable carousel */}
+        <MobileFeatureCarousel reduced={reduced} />
+
+        {/* Desktop: 2×3 grid */}
+        <div className="mt-16 hidden md:block">
           <FeatureRow features={ROW_1_FEATURES} scenes={ROW_1_SCENES} reduced={reduced} />
         </div>
-
-        {/* Row 2 */}
-        <div className="mt-8 md:mt-20">
+        <div className="mt-20 hidden md:block">
           <FeatureRow features={ROW_2_FEATURES} scenes={ROW_2_SCENES} reduced={reduced} />
         </div>
       </div>
