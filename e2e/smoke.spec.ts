@@ -37,7 +37,7 @@ test.describe('Smoke Tests', () => {
 
   test('JSON-LD present on home', async ({ page }) => {
     await page.goto('/', goto)
-    await expect(page.locator('script[type="application/ld+json"]')).toBeAttached()
+    await expect(page.locator('script[type="application/ld+json"]').first()).toBeAttached()
   })
 
   test('security headers present on home', async ({ request }) => {
