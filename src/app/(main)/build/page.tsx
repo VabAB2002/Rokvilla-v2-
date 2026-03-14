@@ -7,6 +7,7 @@ import { BuildKeyFeaturesSection } from '@/components/build/BuildKeyFeaturesSect
 import { ConsultationPhoto } from '@/components/design/ConsultationPhoto'
 import { TestimonialsSection } from '@/components/shared/TestimonialsSection'
 import { BuildProjectsWrapper } from '@/components/build/BuildProjectsWrapper'
+import { SectionErrorBoundary } from '@/components/error/SectionErrorBoundary'
 import {
   BUILD_TESTIMONIALS,
   BUILD_FAQS,
@@ -36,27 +37,33 @@ export default function BuildPage() {
     <>
       <BuildHero />
       <BuildHowItWorksSection />
-      <Suspense fallback={<div className="min-h-[600px]" />}>
-        <ConstructionPackagesSection />
-      </Suspense>
+      <SectionErrorBoundary name="construction-packages">
+        <Suspense fallback={<div className="min-h-[600px]" />}>
+          <ConstructionPackagesSection />
+        </Suspense>
+      </SectionErrorBoundary>
       <BuildKeyFeaturesSection />
-      <Suspense fallback={<div className="min-h-[400px]" />}>
-        <ConsultationForm
-          layout="split"
-          illustration={<ConsultationPhoto />}
-          sectionClassName="relative overflow-hidden bg-white py-12 md:py-32 lg:py-36"
-        />
-      </Suspense>
+      <SectionErrorBoundary name="build-consultation-form">
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <ConsultationForm
+            layout="split"
+            illustration={<ConsultationPhoto />}
+            sectionClassName="relative overflow-hidden bg-white py-12 md:py-32 lg:py-36"
+          />
+        </Suspense>
+      </SectionErrorBoundary>
       <TestimonialsSection testimonials={BUILD_TESTIMONIALS} />
       <BuildProjectsWrapper />
-      <Suspense fallback={<div className="min-h-[300px]" />}>
-        <FAQSection
-          faqs={BUILD_FAQS}
-          categories={BUILD_FAQ_CATEGORIES}
-          subtitle="Everything you need to know about our construction services"
-          sectionClassName="bg-white py-12 md:py-32 lg:py-36"
-        />
-      </Suspense>
+      <SectionErrorBoundary name="build-faq">
+        <Suspense fallback={<div className="min-h-[300px]" />}>
+          <FAQSection
+            faqs={BUILD_FAQS}
+            categories={BUILD_FAQ_CATEGORIES}
+            subtitle="Everything you need to know about our construction services"
+            sectionClassName="bg-white py-12 md:py-32 lg:py-36"
+          />
+        </Suspense>
+      </SectionErrorBoundary>
     </>
   )
 }

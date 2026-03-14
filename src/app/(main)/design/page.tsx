@@ -6,6 +6,7 @@ import { ProcessSection } from '@/components/design/ProcessSection'
 import { ConsultationPhoto } from '@/components/design/ConsultationPhoto'
 import { DocketsSection } from '@/components/design/DocketsSection'
 import { TestimonialsSection } from '@/components/shared/TestimonialsSection'
+import { SectionErrorBoundary } from '@/components/error/SectionErrorBoundary'
 import { DESIGN_TESTIMONIALS, DESIGN_FAQS, FAQ_CATEGORIES } from '@/lib/constants/design'
 
 const ConsultationForm = dynamic(
@@ -27,23 +28,27 @@ export default function DesignPage() {
     <>
       <DesignHero />
       <ProcessSection />
-      <Suspense fallback={<div className="min-h-[400px]" />}>
-        <ConsultationForm
-          layout="split"
-          illustration={<ConsultationPhoto />}
-          sectionClassName="relative overflow-hidden bg-white py-12 md:py-32 lg:py-36"
-        />
-      </Suspense>
+      <SectionErrorBoundary name="design-consultation-form">
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <ConsultationForm
+            layout="split"
+            illustration={<ConsultationPhoto />}
+            sectionClassName="relative overflow-hidden bg-white py-12 md:py-32 lg:py-36"
+          />
+        </Suspense>
+      </SectionErrorBoundary>
       <DocketsSection />
       <TestimonialsSection testimonials={DESIGN_TESTIMONIALS} />
-      <Suspense fallback={<div className="min-h-[300px]" />}>
-        <FAQSection
-          faqs={DESIGN_FAQS}
-          categories={FAQ_CATEGORIES}
-          subtitle="Everything you need to know about our design services"
-          sectionClassName="bg-white py-12 md:py-32 lg:py-36"
-        />
-      </Suspense>
+      <SectionErrorBoundary name="design-faq">
+        <Suspense fallback={<div className="min-h-[300px]" />}>
+          <FAQSection
+            faqs={DESIGN_FAQS}
+            categories={FAQ_CATEGORIES}
+            subtitle="Everything you need to know about our design services"
+            sectionClassName="bg-white py-12 md:py-32 lg:py-36"
+          />
+        </Suspense>
+      </SectionErrorBoundary>
     </>
   )
 }
