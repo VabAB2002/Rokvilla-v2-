@@ -32,7 +32,7 @@ const dmSans = DM_Sans({
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['600'],
   variable: '--font-space-grotesk',
   display: 'optional',
   adjustFontFallback: true,
