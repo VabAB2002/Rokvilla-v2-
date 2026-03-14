@@ -4,6 +4,7 @@ import Image from 'next/image'
 import furnishHeroImage from '../../../public/images/furnish/furnish-hero-bg.png'
 import * as m from 'framer-motion/m'
 import { Button } from '@/components/ui/Button'
+import { PricingBadge, PricingBadgeMobile } from '@/components/ui/PricingBadge'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { makeHeroContainerVariants, makeHeroItemVariants } from '@/lib/motion'
 
@@ -32,6 +33,12 @@ export function FurnishHero() {
         {/* Soft fade at image bottom — mobile only */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent md:hidden" />
       </div>
+
+      {/* Pricing callout — top-right on desktop */}
+      <PricingBadge
+        price="1,500"
+        className="absolute right-8 top-24 z-20 hidden md:block lg:right-16"
+      />
 
       {/* Content */}
       <div className="relative z-10 -mt-16 px-6 pb-12 md:mt-0 md:flex md:h-full md:items-center md:px-12 md:pb-0">
@@ -65,9 +72,14 @@ export function FurnishHero() {
               Thoughtfully designed interiors that bring your vision to life.
             </m.p>
 
+            {/* Pricing callout — inline on mobile */}
+            <m.div variants={itemVariants} className="md:hidden">
+              <PricingBadgeMobile price="1,500" className="mt-6" />
+            </m.div>
+
             <m.div
               variants={itemVariants}
-              className="mt-9 flex flex-col gap-3 sm:flex-row sm:gap-4"
+              className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4"
             >
               <Button variant="primary" href="#furnish-projects" className="w-full sm:w-auto">
                 Browse Projects

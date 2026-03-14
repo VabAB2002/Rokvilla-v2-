@@ -4,14 +4,13 @@ import { SOCIAL_LINKS } from '@/lib/constants/contact'
 
 const FOOTER_LINKS = {
   company: [
-    { label: 'About', href: '#' },
-    { label: 'Careers', href: '#' },
-    { label: 'Contact', href: '#' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'Contact', href: '/#consultation' },
   ],
   services: [
-    { label: 'Design', href: '/#services' },
-    { label: 'Build Packages', href: '/#services' },
-    { label: 'Furnish', href: '/#services' },
+    { label: 'Design', href: '/design' },
+    { label: 'Build Packages', href: '/build' },
+    { label: 'Furnish', href: '/furnish' },
   ],
   locations: [
     { label: 'Hubballi', href: '/#locations' },

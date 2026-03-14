@@ -465,6 +465,9 @@ export function ConstructionPackagesSection() {
               />
             </button>
           </div>
+          <p className="mt-3 text-center font-body text-xs text-stone md:hidden">
+            ← Swipe to compare →
+          </p>
         </AnimatedSection>
 
         {/* Comparison — keyed by type for clean re-mount */}

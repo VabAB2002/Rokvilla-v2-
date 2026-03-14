@@ -138,7 +138,7 @@ function MobileFeatureCarousel({ reduced }: { readonly reduced: boolean }) {
           onDragEnd={onDragEnd}
           animate={{ x: trackOffset }}
           transition={makeCarouselTransition(reduced)}
-          className="flex cursor-grab active:cursor-grabbing"
+          className="flex items-stretch cursor-grab active:cursor-grabbing"
           style={{ gap: CARD_GAP }}
         >
           {BUILD_KEY_FEATURES.map((feature, i) => {
@@ -150,19 +150,19 @@ function MobileFeatureCarousel({ reduced }: { readonly reduced: boolean }) {
                 className="shrink-0"
                 style={{ width: cardWidth || `${CARD_WIDTH_RATIO * 100}%` }}
               >
-                <div className="flex h-[320px] flex-col rounded-2xl border border-limestone/40 bg-white px-5 pb-6 pt-7 shadow-[0_2px_16px_rgba(0,0,0,0.06)]">
+                <div className="flex h-full flex-col rounded-2xl border border-limestone/40 bg-white px-5 pb-6 pt-7 shadow-[0_2px_16px_rgba(0,0,0,0.06)]">
                   {/* Illustration — fixed height for consistency */}
                   <div className="mx-auto mb-4 flex h-[130px] w-full max-w-[160px] shrink-0 items-center justify-center">
                     <Scene />
                   </div>
 
                   {/* Title */}
-                  <h3 className="line-clamp-2 font-display text-base font-medium leading-snug text-obsidian">
+                  <h3 className="font-display text-base font-medium leading-snug text-obsidian">
                     {MOBILE_TITLES[feature.id] ?? feature.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="mt-2 line-clamp-3 font-body text-sm leading-relaxed text-slate">
+                  <p className="mt-2 font-body text-sm leading-relaxed text-slate">
                     {feature.description}
                   </p>
                 </div>

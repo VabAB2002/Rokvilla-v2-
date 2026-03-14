@@ -4,6 +4,7 @@ import Image from 'next/image'
 import buildHeroImage from '../../../public/images/build/build-hero.png'
 import * as m from 'framer-motion/m'
 import { Button } from '@/components/ui/Button'
+import { PricingBadge, PricingBadgeMobile } from '@/components/ui/PricingBadge'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 import { makeHeroContainerVariants, makeHeroItemVariants } from '@/lib/motion'
@@ -40,6 +41,12 @@ export function BuildHero() {
         }}
       />
 
+      {/* Pricing callout — top-right on desktop */}
+      <PricingBadge
+        price="1,900"
+        className="absolute right-8 top-24 z-20 hidden md:block lg:right-16"
+      />
+
       {/* Content */}
       <div className="relative z-10 -mt-16 px-6 pb-12 md:mt-0 md:flex md:h-full md:items-center md:px-12 md:pb-0">
         <div className="mx-auto w-full max-w-7xl">
@@ -74,10 +81,15 @@ export function BuildHero() {
               quality, transparency, and a 10-year warranty on every home we build.
             </m.p>
 
+            {/* Pricing callout — inline on mobile */}
+            <m.div variants={itemVariants} className="md:hidden">
+              <PricingBadgeMobile price="1,900" className="mt-6" />
+            </m.div>
+
             {/* CTAs */}
             <m.div
               variants={itemVariants}
-              className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4"
+              className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4"
             >
               <Button variant="primary" href="#packages" className="w-full sm:w-auto">
                 View Packages
