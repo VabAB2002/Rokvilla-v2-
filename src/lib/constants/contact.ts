@@ -1,10 +1,13 @@
-// REPLACE_ME: Update all values before deployment
-export const PHONE_NUMBER = '+910000000000'
-export const PHONE_DISPLAY = '+91 000 000 0000'
-export const EMAIL = 'hello@rokvilla.com'
+export const PHONE_NUMBER = '+917899232229'
+export const PHONE_NUMBER_2 = '+917899242229'
+export const PHONE_DISPLAY = '+91 78992 32229'
+export const PHONE_DISPLAY_2 = '+91 78992 42229'
+export const EMAIL = 'home@rokvilla.com'
 export const ADDRESS = 'Hubballi, Karnataka'
 export const WHATSAPP_URL = `https://wa.me/${PHONE_NUMBER.replace('+', '')}`
+export const WHATSAPP_URL_2 = `https://wa.me/${PHONE_NUMBER_2.replace('+', '')}`
 export const CALL_URL = `tel:${PHONE_NUMBER}`
+export const CALL_URL_2 = `tel:${PHONE_NUMBER_2}`
 
 export const SOCIAL_LINKS = [
   {
