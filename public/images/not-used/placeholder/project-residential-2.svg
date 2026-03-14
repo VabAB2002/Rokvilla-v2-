@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#EDE6D6"/>
+
+  <!-- Gradient sky wash using layered rects -->
+  <rect x="0" y="0" width="1200" height="400" fill="#D4C9B0" opacity="0.3"/>
+
+  <!-- Ground -->
+  <rect x="0" y="660" width="1200" height="140" fill="#D4C9B0"/>
+  <line x1="0" y1="660" x2="1200" y2="660" stroke="#9E9182" stroke-width="1"/>
+
+  <!-- Reflected light band on ground -->
+  <rect x="200" y="665" width="800" height="20" fill="#EDE6D6" opacity="0.4"/>
+
+  <!-- Main central pavilion structure -->
+  <!-- Base platform -->
+  <rect x="200" y="620" width="800" height="40" fill="#1C1916"/>
+
+  <!-- Left wing volume -->
+  <rect x="220" y="400" width="240" height="220" fill="#1C1916"/>
+
+  <!-- Center tall volume -->
+  <rect x="490" y="300" width="220" height="320" fill="#1C1916"/>
+
+  <!-- Right wing volume -->
+  <rect x="740" y="440" width="240" height="180" fill="#1C1916"/>
+
+  <!-- Roof planes -->
+  <rect x="190" y="392" width="260" height="14" fill="#9E9182"/>
+  <rect x="480" y="292" width="240" height="14" fill="#9E9182"/>
+  <rect x="730" y="432" width="260" height="14" fill="#9E9182"/>
+
+  <!-- Connecting horizontal bar above all -->
+  <rect x="190" y="350" width="820" height="8" fill="#C4622D"/>
+
+  <!-- Window treatment - left wing: horizontal bands -->
+  <rect x="235" y="430" width="200" height="28" fill="#EDE6D6" opacity="0.85"/>
+  <line x1="310" y1="430" x2="310" y2="458" stroke="#9E9182" stroke-width="1"/>
+  <line x1="380" y1="430" x2="380" y2="458" stroke="#9E9182" stroke-width="1"/>
+  <rect x="235" y="480" width="200" height="28" fill="#EDE6D6" opacity="0.85"/>
+  <line x1="310" y1="480" x2="310" y2="508" stroke="#9E9182" stroke-width="1"/>
+  <rect x="235" y="530" width="200" height="28" fill="#EDE6D6" opacity="0.85"/>
+
+  <!-- Window treatment - center: tall vertical slots -->
+  <rect x="508" y="330" width="22" height="220" fill="#EDE6D6" opacity="0.9"/>
+  <rect x="546" y="330" width="22" height="220" fill="#EDE6D6" opacity="0.9"/>
+  <rect x="584" y="330" width="22" height="220" fill="#EDE6D6" opacity="0.9"/>
+  <rect x="622" y="330" width="22" height="220" fill="#EDE6D6" opacity="0.9"/>
+  <rect x="660" y="330" width="22" height="220" fill="#EDE6D6" opacity="0.9"/>
+
+  <!-- Window treatment - right wing -->
+  <rect x="760" y="470" width="200" height="28" fill="#EDE6D6" opacity="0.85"/>
+  <line x1="830" y1="470" x2="830" y2="498" stroke="#9E9182" stroke-width="1"/>
+  <line x1="900" y1="470" x2="900" y2="498" stroke="#9E9182" stroke-width="1"/>
+  <rect x="760" y="518" width="200" height="28" fill="#EDE6D6" opacity="0.85"/>
+  <line x1="830" y1="518" x2="830" y2="546" stroke="#9E9182" stroke-width="1"/>
+
+  <!-- Terracotta accent fins on center -->
+  <rect x="480" y="300" width="10" height="320" fill="#C4622D"/>
+  <rect x="710" y="300" width="10" height="320" fill="#C4622D"/>
+
+  <!-- Cantilevered entry canopy -->
+  <rect x="540" y="580" width="120" height="8" fill="#9E9182"/>
+  <rect x="540" y="588" width="4" height="32" fill="#9E9182"/>
+  <rect x="656" y="588" width="4" height="32" fill="#9E9182"/>
+
+  <!-- Foreground: step / plinth lines -->
+  <rect x="160" y="652" width="880" height="8" fill="#9E9182" opacity="0.4"/>
+  <rect x="130" y="656" width="940" height="4" fill="#9E9182" opacity="0.3"/>
+
+  <!-- Abstract foliage circles left -->
+  <circle cx="120" cy="580" r="70" fill="#9E9182" opacity="0.2"/>
+  <circle cx="100" cy="560" r="45" fill="#1C1916" opacity="0.08"/>
+
+  <!-- Abstract foliage circles right -->
+  <circle cx="1100" cy="560" r="80" fill="#9E9182" opacity="0.2"/>
+  <circle cx="1110" cy="540" r="50" fill="#1C1916" opacity="0.08"/>
+
+  <!-- Vertical stems under foliage -->
+  <rect x="118" y="580" x2="118" y2="660" width="4" height="80" fill="#1C1916" opacity="0.3"/>
+  <rect x="1098" y="560" width="4" height="100" fill="#1C1916" opacity="0.3"/>
+
+  <!-- Blueprint grid overlay subtle -->
+  <line x1="0" y1="100" x2="1200" y2="100" stroke="#9E9182" stroke-width="0.3" opacity="0.4"/>
+  <line x1="0" y1="200" x2="1200" y2="200" stroke="#9E9182" stroke-width="0.3" opacity="0.4"/>
+  <line x1="400" y1="0" x2="400" y2="300" stroke="#9E9182" stroke-width="0.3" opacity="0.4"/>
+  <line x1="800" y1="0" x2="800" y2="300" stroke="#9E9182" stroke-width="0.3" opacity="0.4"/>
+</svg>

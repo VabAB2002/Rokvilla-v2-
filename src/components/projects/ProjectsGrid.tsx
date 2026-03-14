@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useMemo, useDeferredValue, useCallback } from 'react'
+import { useState, useMemo, useDeferredValue, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ProjectCardLink } from '@/components/projects/ProjectCardLink'
+import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
 import {
   ProjectsFilterBar,
   type FilterCategory,
@@ -12,6 +13,7 @@ import {
 } from '@/components/projects/ProjectsFilterBar'
 import { ProjectsEmptyState } from '@/components/projects/ProjectsEmptyState'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useScrollProgress } from '@/hooks/useScrollProgress'
 import { makeFadeUpVariants, TRANSITION_SMOOTH, EASE_OUT_EXPO } from '@/lib/motion'
 import type { Project } from '@/types/project'
 
@@ -62,6 +64,17 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
     setSortOrder('year-desc')
   }, [])
 
+  // Mobile scroll-snap tracking
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const { activeIndex } = useScrollProgress(scrollRef)
+
+  const handleDotClick = useCallback((index: number) => {
+    const container = scrollRef.current
+    if (!container) return
+    const child = container.children[index] as HTMLElement | undefined
+    child?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+  }, [])
+
   return (
     <section className="bg-white pb-24 md:pb-32 lg:pb-36">
       {/* Filter bar — contained */}
@@ -81,8 +94,38 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
         </AnimatedSection>
       </div>
 
-      {/* Grid — edge-to-edge like homepage */}
-      <div className="mt-10">
+      {/* Mobile: scroll-snap carousel */}
+      <div className="mt-10 md:hidden">
+        {filtered.length === 0 ? (
+          <ProjectsEmptyState onReset={handleReset} />
+        ) : (
+          <>
+            <div
+              key={filterKey}
+              ref={scrollRef}
+              className="flex gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar px-[10vw] pb-2"
+            >
+              {filtered.map((project) => (
+                <div
+                  key={project.id}
+                  className="w-[78vw] max-w-[340px] shrink-0 snap-center"
+                >
+                  <ProjectCardLink project={project} heightClass="h-56" />
+                </div>
+              ))}
+            </div>
+            <ScrollIndicatorDots
+              count={filtered.length}
+              activeIndex={activeIndex}
+              onDotClick={handleDotClick}
+              className="mt-4"
+            />
+          </>
+        )}
+      </div>
+
+      {/* Desktop: grid */}
+      <div className="mt-10 hidden md:block">
         <AnimatePresence mode="wait">
           {filtered.length === 0 ? (
             <motion.div

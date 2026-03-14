@@ -10,6 +10,7 @@
   --font-display: var(--font-cormorant-garamond), Georgia, serif;
   --font-body: var(--font-dm-sans), system-ui, sans-serif;
   --font-accent: var(--font-cormorant-sc), Georgia, serif;
+  --font-logo: var(--font-space-grotesk), system-ui, sans-serif;
 
   /* ── Core Neutrals (clean white base) ── */
   --color-bone: #FFFFFF;

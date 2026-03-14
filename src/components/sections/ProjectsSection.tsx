@@ -19,6 +19,7 @@ const TABS: ReadonlyArray<{ readonly id: FilterTab; readonly label: string }> = 
   { id: 'residential', label: 'Residential' },
   { id: 'commercial', label: 'Commercial' },
   { id: 'interior', label: 'Interior' },
+  { id: 'industry', label: 'Industry' },
 ] as const
 
 export function ProjectsSection() {
@@ -81,7 +82,7 @@ export function ProjectsSection() {
       <div className="mt-10 md:hidden">
         <div
           ref={scrollRef}
-          className="flex gap-3 overflow-x-auto snap-x snap-mandatory no-scrollbar px-[10vw] pb-2"
+          className="flex gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar px-[10vw] pb-2"
         >
           {HOMEPAGE_PROJECTS.map((project) => (
             <div
@@ -109,7 +110,7 @@ export function ProjectsSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -16 }}
             transition={{ duration: reducedMotion ? 0.15 : 0.35, ease: EASE_OUT_EXPO }}
-            className="flex flex-row flex-wrap justify-center gap-4"
+            className="flex flex-row flex-wrap justify-center gap-3"
           >
             {filteredProjects.map((project, i) => (
               <motion.div
@@ -118,7 +119,7 @@ export function ProjectsSection() {
                 initial="hidden"
                 animate="visible"
                 transition={{ ...TRANSITION_SMOOTH, delay: reducedMotion ? 0 : i * 0.08 }}
-                className="w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)]"
+                className="w-[calc(50%-6px)] lg:w-[calc(33.333%-8px)]"
               >
                 <ProjectCardLink project={project} heightClass="h-80" />
               </motion.div>

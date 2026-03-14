@@ -52,14 +52,22 @@ export function ProjectCard({ project, heightClass }: ProjectCardProps) {
           aria-hidden="true"
         />
 
-        {/* Bottom gradient overlay with text */}
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent px-6 pb-2 pt-16">
-          <span className="font-accent text-[13px] uppercase tracking-[0.14em] text-bone/90">
-            {project.category}
+        {/* Bottom gradient overlay with text and arrow */}
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent px-6 pb-2 pt-16">
+          <div>
+            <span className="font-accent text-[13px] uppercase tracking-[0.14em] text-bone/90">
+              {project.category}
+            </span>
+            <h3 className="mt-0.5 font-display text-lg font-medium text-bone md:text-xl">
+              {project.name}
+            </h3>
+          </div>
+          <span
+            className="mb-1 text-xl text-bone transition-transform duration-300 ease-out group-hover:translate-x-1"
+            aria-hidden="true"
+          >
+            &rarr;
           </span>
-          <h3 className="mt-1 font-display text-lg font-medium text-bone md:text-xl">
-            {project.name}
-          </h3>
         </div>
       </div>
     </motion.div>

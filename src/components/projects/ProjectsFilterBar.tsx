@@ -27,6 +27,7 @@ const CATEGORY_OPTIONS: ReadonlyArray<{
   { value: 'residential', label: 'Residential' },
   { value: 'commercial', label: 'Commercial' },
   { value: 'interior', label: 'Interior' },
+  { value: 'industry', label: 'Industry' },
 ]
 
 const LOCATION_OPTIONS: ReadonlyArray<{
