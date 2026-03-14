@@ -1,44 +1,27 @@
 'use client'
 
-import { type ReactNode, useEffect, useRef } from 'react'
-import { ReactLenis, type LenisRef } from 'lenis/react'
-import { cancelFrame, frame } from 'framer-motion'
+import { type ReactNode, useCallback } from 'react'
+import { ReactLenis } from 'lenis/react'
 import { ScrollTrigger } from '@/lib/gsap-config'
+import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 
 export function SmoothScrollProvider({ children }: { readonly children: ReactNode }) {
-  const lenisRef = useRef<LenisRef>(null)
+  const isLowPower = useIsLowPowerDevice()
 
-  useEffect(() => {
-    const maybeLenis = lenisRef.current?.lenis
-    if (!maybeLenis) return
-    // After the guard, lenis is guaranteed non-null — capture for closures
-    const lenisInstance: NonNullable<typeof maybeLenis> = maybeLenis
-
-    // Lenis scroll events keep ScrollTrigger positions in sync
-    const onScroll = () => ScrollTrigger.update()
-    lenisInstance.on('scroll', onScroll)
-
-    // Framer Motion's frame scheduler drives Lenis (single RAF loop)
-    function update({ timestamp }: { timestamp: number }) {
-      lenisInstance.raf(timestamp)
-    }
-    frame.update(update, true)
-
-    return () => {
-      lenisInstance.off('scroll', onScroll)
-      cancelFrame(update)
-    }
+  // Keep GSAP ScrollTrigger positions in sync with Lenis scroll
+  const handleScroll = useCallback(() => {
+    ScrollTrigger.update()
   }, [])
 
   return (
     <ReactLenis
       root
-      ref={lenisRef}
       options={{
-        autoRaf: false,
-        lerp: 0.1,
+        autoRaf: true,
+        lerp: isLowPower ? 1 : 0.1,
         syncTouch: false,
       }}
+      onScroll={handleScroll}
     >
       {children}
     </ReactLenis>

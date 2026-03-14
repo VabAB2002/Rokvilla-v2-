@@ -11,7 +11,7 @@ const cormorantGaramond = Cormorant_Garamond({
   weight: ['300', '500'],
   style: ['normal', 'italic'],
   variable: '--font-cormorant-garamond',
-  display: 'optional',
+  display: 'swap',
   adjustFontFallback: true,
   fallback: ['Georgia', 'serif'],
 })
@@ -20,7 +20,7 @@ const cormorantSC = Cormorant_SC({
   subsets: ['latin'],
   weight: ['400', '500'],
   variable: '--font-cormorant-sc',
-  display: 'optional',
+  display: 'swap',
   adjustFontFallback: true,
   fallback: ['Georgia', 'serif'],
 })
@@ -29,7 +29,7 @@ const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500'],
   variable: '--font-dm-sans',
-  display: 'optional',
+  display: 'swap',
   adjustFontFallback: true,
   fallback: ['system-ui', 'sans-serif'],
 })
@@ -38,7 +38,7 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   weight: ['600'],
   variable: '--font-space-grotesk',
-  display: 'optional',
+  display: 'swap',
   adjustFontFallback: true,
   fallback: ['system-ui', 'sans-serif'],
 })

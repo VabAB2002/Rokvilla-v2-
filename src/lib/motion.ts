@@ -176,6 +176,19 @@ export function makeSceneItemVariants(reduced: boolean): Variants {
   }
 }
 
+/* ── Gallery image-swap spring ── */
+export const TRANSITION_SPRING_GALLERY: Transition = {
+  type: 'spring',
+  bounce: 0,
+  duration: 0.4,
+}
+
+export function makeGalleryTransition(reduced: boolean): Transition {
+  return reduced
+    ? { type: 'tween', duration: 0.15, ease: EASE_OUT_QUART }
+    : TRANSITION_SPRING_GALLERY
+}
+
 /* ── Carousel spring (track slide) ── */
 export const TRANSITION_SPRING_CAROUSEL: Transition = {
   type: 'spring',

@@ -33,7 +33,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
     name: 'Sri Ganesha Residence',
     category: 'residential',
     location: 'dharwad',
-    image: '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_01.png',
+    image: '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_02.png',
     description:
       'A stately residence blending traditional grandeur with modern spatial planning and elegant stone detailing.',
     year: 2022,
@@ -42,9 +42,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
     heroVideo:
       '/00 FINISHED/02 SRI GANESHA RESIDENCE/HERO VIDEO_SRI GANESHA RESIDENCE_01.mp4',
     galleryImages: [
-      '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_01.png',
       '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_02.png',
-      '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_03.png',
       '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_04.png',
       '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_05.png',
       '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_06.png',
@@ -186,6 +184,30 @@ export const PROJECTS: ReadonlyArray<Project> = [
     style: 'Luxe',
   },
   {
+    id: 'ashok-residence',
+    slug: 'ashok-residence',
+    name: 'Ashok Residence',
+    category: 'residential',
+    location: 'bengaluru',
+    image: '/00 FINISHED/09 ASHOK RESIDENCE/09_ASHOK RESIDENCE_01.jpg',
+    description:
+      'A modern multi-storey residence with stacked cantilevered volumes, warm wood balconies, and rooftop solar panels.',
+    year: 2024,
+    heroImage: '/00 FINISHED/09 ASHOK RESIDENCE/09_ASHOK RESIDENCE_01.jpg',
+    heroVideo: '/00 FINISHED/09 ASHOK RESIDENCE/09_ASHOK RESIDENCE_03 video.mp4',
+    galleryImages: [
+      '/00 FINISHED/09 ASHOK RESIDENCE/09_ASHOK RESIDENCE_01.jpg',
+      '/00 FINISHED/09 ASHOK RESIDENCE/09_ASHOK RESIDENCE_02.jpg',
+      '/00 FINISHED/09 ASHOK RESIDENCE/09_ASHOK RESIDENCE_03.jpg',
+      '/00 FINISHED/09 ASHOK RESIDENCE/09_ASHOK RESIDENCE_04.jpg',
+    ],
+    vision:
+      'Ashok Residence is a study in bold geometry and sustainable living. Stacked, cantilevered volumes create generous shaded balconies at every level, while warm timber cladding softens the clean white facade. Rooftop solar panels and a green terrace underscore a commitment to responsible design without compromising on modern elegance.',
+    builtUpArea: '4,200 sq ft',
+    floors: 'G+3',
+    style: 'Modern Contemporary',
+  },
+  {
     id: 'cedar-homestore',
     slug: 'cedar-homestore',
     name: 'Cedar Homestore',
@@ -213,6 +235,32 @@ export const PROJECTS: ReadonlyArray<Project> = [
     style: 'Modern Contemporary',
   },
   {
+    id: 'woodpik-furniture',
+    slug: 'woodpik-furniture',
+    name: 'Woodpik Furniture',
+    category: 'commercial',
+    categoryDisplay: 'Commercial Interior',
+    location: 'bengaluru',
+    image: '/00 FINISHED/12 WOODPIK FURNITURE/12_WOODPIK_01.jpg',
+    description:
+      'A large-scale furniture showroom with slatted wood reception, herringbone flooring, and curated display zones.',
+    year: 2024,
+    heroImage: '/00 FINISHED/12 WOODPIK FURNITURE/12_WOODPIK_01.jpg',
+    galleryImages: [
+      '/00 FINISHED/12 WOODPIK FURNITURE/12_WOODPIK_01.jpg',
+      '/00 FINISHED/12 WOODPIK FURNITURE/12_WOODPIK_02.jpg',
+      '/00 FINISHED/12 WOODPIK FURNITURE/12_WOODPIK_04.jpg',
+      '/00 FINISHED/12 WOODPIK FURNITURE/12_WOODPIK_05.jpg',
+      '/00 FINISHED/12 WOODPIK FURNITURE/12_WOODPIK_06.jpg',
+      '/00 FINISHED/12 WOODPIK FURNITURE/12_WOODPIK_07.jpg',
+    ],
+    vision:
+      'Woodpik Furniture transforms a warehouse-scale space into an immersive retail experience. A slatted timber reception anchored by a marble counter sets the tone, while herringbone wood flooring and exposed industrial ceilings create an honest material backdrop. Distinct zones — from living to children\'s furniture — guide customers through a curated lifestyle narrative.',
+    builtUpArea: '8,000 sq ft',
+    floors: 'G',
+    style: 'Industrial',
+  },
+  {
     id: 'rokvilla-office',
     slug: 'rokvilla-office',
     name: 'RokVilla Office',
@@ -235,6 +283,32 @@ export const PROJECTS: ReadonlyArray<Project> = [
     builtUpArea: '375 sq ft',
     floors: 'GF',
     style: 'Modern Contemporary',
+  },
+  {
+    id: 'control-room',
+    slug: 'control-room',
+    name: 'Control Room',
+    category: 'public',
+    location: 'bengaluru',
+    image: '/00 FINISHED/15 CONTROL ROOM/15_GOVINDARAJA NAGAR CONTROL ROOM_01.jpg',
+    description:
+      'An LED street light control room featuring warm teak panelling, lush indoor planters, and ambient lighting.',
+    year: 2023,
+    heroImage:
+      '/00 FINISHED/15 CONTROL ROOM/15_GOVINDARAJA NAGAR CONTROL ROOM_01.jpg',
+    galleryImages: [
+      '/00 FINISHED/15 CONTROL ROOM/15_GOVINDARAJA NAGAR CONTROL ROOM_01.jpg',
+      '/00 FINISHED/15 CONTROL ROOM/15_GOVINDARAJA NAGAR CONTROL ROOM_02.jpg',
+      '/00 FINISHED/15 CONTROL ROOM/15_GOVINDARAJA NAGAR CONTROL ROOM_03.jpg',
+      '/00 FINISHED/15 CONTROL ROOM/15_GOVINDARAJA NAGAR CONTROL ROOM_04.jpg',
+      '/00 FINISHED/15 CONTROL ROOM/15_GOVINDARAJA NAGAR CONTROL ROOM_05.jpg',
+      '/00 FINISHED/15 CONTROL ROOM/15_GOVINDARAJA NAGAR CONTROL ROOM_06.jpg',
+    ],
+    vision:
+      'The Govindaraja Nagar Control Room elevates a civic utility into a dignified public space. Warm teak panelling and reflective flooring bring material richness, while vibrant indoor flower planters inject life into the entrance lobby. Every detail — from ambient LED strips to the carefully framed devotional mural — demonstrates that public infrastructure deserves the same design care as any private commission.',
+    builtUpArea: '500 sq ft',
+    floors: 'G',
+    style: 'Contemporary',
   },
   {
     id: 'junior-toes',
