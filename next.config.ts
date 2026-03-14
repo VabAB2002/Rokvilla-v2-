@@ -1,5 +1,10 @@
 import type { NextConfig } from 'next'
 import { withSentryConfig } from '@sentry/nextjs'
+import bundleAnalyzer from '@next/bundle-analyzer'
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+})
 
 const CSP_DIRECTIVES = [
   "default-src 'self'",
@@ -53,12 +58,14 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default withSentryConfig(nextConfig, {
-  org: process.env.SENTRY_ORG,
-  project: process.env.SENTRY_PROJECT,
-  silent: !process.env.CI,
-  sourcemaps: {
-    disable: process.env.NODE_ENV !== 'production',
-  },
-  autoInstrumentServerFunctions: false,
-})
+export default withBundleAnalyzer(
+  withSentryConfig(nextConfig, {
+    org: process.env.SENTRY_ORG,
+    project: process.env.SENTRY_PROJECT,
+    silent: !process.env.CI,
+    sourcemaps: {
+      disable: process.env.NODE_ENV !== 'production',
+    },
+    autoInstrumentServerFunctions: false,
+  })
+)
