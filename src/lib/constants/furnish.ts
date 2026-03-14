@@ -151,46 +151,67 @@ export interface DesignTheme {
 
 export const DESIGN_THEMES: ReadonlyArray<DesignTheme> = [
   {
-    id: 'contemporary',
-    title: 'Contemporary',
+    id: 'luxe',
+    title: 'Luxe',
     description:
-      'Clean lines, neutral palettes, and sophisticated textures define this timeless style that balances comfort with refined elegance.',
-    image: '/00 FINISHED/03 MIG265/03_MIG265_02.jpg',
-  },
-  {
-    id: 'minimalist',
-    title: 'Minimalist',
-    description:
-      'Less is more — curated materials, purposeful furniture, and uncluttered spaces let every element breathe and speak for itself.',
-    image: '/00 FINISHED/06 SHIVPRASAD RESIDENCE/06_SHIVPRASAD RESIDENCE_02.jpg',
+      'Opulent finishes, rich textures, and statement pieces create interiors that exude sophistication and grandeur in every detail.',
+    image: '/00 FINISHED/FURNISH THEMES/LUXE.jpg',
   },
   {
     id: 'traditional-indian',
     title: 'Traditional Indian',
     description:
       'Rich warm tones, intricate carved details, and heritage motifs celebrate Indian craftsmanship while creating deeply personal homes.',
-    image: '/00 FINISHED/01 SRIPRADHA/01_SRIPRADHA_02.jpg',
+    image: '/00 FINISHED/FURNISH THEMES/traditional indian .png',
+  },
+  {
+    id: 'modern-contemporary',
+    title: 'Modern Contemporary',
+    description:
+      'Clean lines, neutral palettes, and sophisticated textures define this timeless style that balances comfort with refined elegance.',
+    image: '/00 FINISHED/FURNISH THEMES/MODERN CONTEMPORARY.jpg',
+  },
+  {
+    id: 'urban-minimalism',
+    title: 'Urban Minimalism',
+    description:
+      'Less is more — curated materials, purposeful furniture, and uncluttered spaces let every element breathe and speak for itself.',
+    image: '/00 FINISHED/FURNISH THEMES/MINIMALISM.jpg',
+  },
+  {
+    id: 'european',
+    title: 'European',
+    description:
+      'Timeless European elegance with classic proportions, moulded details, and a refined palette that brings old-world charm to modern living.',
+    image: '/00 FINISHED/FURNISH THEMES/EUROPEANjpg.jpg',
   },
   {
     id: 'industrial',
     title: 'Industrial',
     description:
       'Exposed concrete, raw metal accents, and open structural elements create bold, edgy interiors with urban character.',
-    image: '/00 FINISHED/14 ROKVILLA OFFICE/14_ROKVILLA OFFICE_01.jpg',
+    image: '/00 FINISHED/FURNISH THEMES/INDUSTRIAL.jpg',
   },
   {
-    id: 'scandinavian',
-    title: 'Scandinavian',
+    id: 'boho',
+    title: 'Boho',
     description:
-      'Functional simplicity meets natural warmth — light woods, soft textiles, and a muted colour palette for serene, liveable spaces.',
-    image: '/00 FINISHED/07 PAVAN VJ /07_PAVAN VJ_02.jpg',
+      'Eclectic textures, earthy tones, and layered patterns bring a free-spirited, globally inspired warmth to your living spaces.',
+    image: '/00 FINISHED/FURNISH THEMES/bohemain.jpg',
   },
   {
-    id: 'transitional',
-    title: 'Transitional',
+    id: 'neoclassic',
+    title: 'Neoclassic',
     description:
-      'A harmonious blend of classic and contemporary — comfortable silhouettes paired with modern finishes for timeless versatility.',
-    image: '/00 FINISHED/08 RAJ RESIDENCE/01_RAJ RESIDENCE_02.jpg',
+      'Stately symmetry, ornate mouldings, and a restrained colour palette reimagine classical grandeur for the modern Indian home.',
+    image: '/00 FINISHED/FURNISH THEMES/NEOCLASSICAL.jpg',
+  },
+  {
+    id: 'moroccan',
+    title: 'Moroccan',
+    description:
+      'Vibrant geometric patterns, arched doorways, and jewel-toned accents transport you to the riads of Marrakech with every room.',
+    image: '/00 FINISHED/FURNISH THEMES/MOROCCAN.png',
   },
 ] as const
 
