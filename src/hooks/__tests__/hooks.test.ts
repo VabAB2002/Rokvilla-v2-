@@ -92,16 +92,16 @@ let latestObserver: {
 
 function setupIntersectionObserverMock() {
   latestObserver = null
-  class MockIntersectionObserver {
-    observe = vi.fn()
-    unobserve = vi.fn()
-    disconnect = vi.fn()
-    callback: IOCallback
 
-    constructor(callback: IOCallback) {
-      this.callback = callback
-      latestObserver = this
+  function MockIntersectionObserver(callback: IOCallback) {
+    const instance = {
+      callback,
+      observe: vi.fn(),
+      unobserve: vi.fn(),
+      disconnect: vi.fn(),
     }
+    latestObserver = instance
+    return instance
   }
 
   Object.defineProperty(window, 'IntersectionObserver', {
