@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "lenis/css";
 
 /* ── CSS Property Registration (required for animated conic-gradient) ── */
 @property --border-angle {
@@ -120,10 +121,6 @@ body {
 
 /* ── Base Styles ── */
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
     background-color: var(--color-bone);
     color: var(--color-obsidian);
@@ -149,6 +146,11 @@ body {
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
+    }
+
+    .film-slide {
+      clip-path: none !important;
+      position: relative !important;
     }
   }
 }
