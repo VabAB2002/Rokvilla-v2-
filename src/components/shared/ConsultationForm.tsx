@@ -328,9 +328,12 @@ export function ConsultationForm({
     })
   }, [])
 
+  const [sendError, setSendError] = useState('')
+
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault()
+      setSendError('')
       const validationErrors = validateForm(fields)
       if (Object.keys(validationErrors).length > 0) {
         setErrors(validationErrors)
@@ -349,17 +352,25 @@ export function ConsultationForm({
         .filter(Boolean)
         .join('\n')
 
-      window.open(
-        `https://wa.me/917899232229?text=${encodeURIComponent(message)}`,
+      const waNumber = contactPhone.replace(/[^+\d]/g, '').replace(/^\+/, '')
+      const popup = window.open(
+        `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`,
         '_blank',
         'noopener,noreferrer',
       )
+
+      if (popup === null) {
+        setSendError(
+          'Unable to open WhatsApp. Please allow popups or contact us directly.',
+        )
+        return
+      }
 
       setSubmitted(true)
       setFields(INITIAL_FIELDS)
       setErrors({})
     },
-    [fields],
+    [fields, contactPhone],
   )
 
   /* ── Split layout variant ── */
@@ -636,6 +647,13 @@ export function ConsultationForm({
                       )}
                     </div>
 
+                    {/* Send error */}
+                    {sendError && (
+                      <p role="alert" className="mt-4 font-body text-sm text-terracotta-deep">
+                        {sendError}
+                      </p>
+                    )}
+
                     {/* Submit */}
                     <div className="mt-6">
                       <Button variant="primary" type="submit" fullWidth>
@@ -861,6 +879,13 @@ export function ConsultationForm({
                     </p>
                   )}
                 </div>
+
+                {/* Send error */}
+                {sendError && (
+                  <p role="alert" className="mt-5 font-body text-sm text-terracotta-deep">
+                    {sendError}
+                  </p>
+                )}
 
                 {/* Submit */}
                 <div className="mt-8">
