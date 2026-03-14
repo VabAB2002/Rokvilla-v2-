@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState, useEffect, type ReactNode } from 'react'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { makeCarouselTransition } from '@/lib/motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useTouchDevice } from '@/hooks/useTouchDevice'
@@ -95,7 +95,7 @@ export function CarouselTrack({
     >
       {/* Clip area */}
       <div ref={viewportRef} className="overflow-hidden">
-        <motion.div
+        <m.div
           drag={needsCarousel ? 'x' : false}
           dragConstraints={{ left: maxDrag, right: 0 }}
           dragElastic={reducedMotion ? 0 : 0.08}
@@ -106,7 +106,7 @@ export function CarouselTrack({
           style={{ gap }}
         >
           {children}
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Prev arrow */}
@@ -164,7 +164,7 @@ export function CarouselTrack({
               onClick={() => goTo(i)}
               className="relative flex min-h-[44px] min-w-[44px] items-center justify-center p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:rounded-full"
             >
-              <motion.span
+              <m.span
                 layout
                 className={`block h-1.5 rounded-full transition-colors duration-200 ${
                   i === currentIndex ? 'bg-terracotta w-4' : 'bg-limestone w-1.5'

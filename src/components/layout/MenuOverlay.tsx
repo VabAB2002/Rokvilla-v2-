@@ -2,7 +2,8 @@
 
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence } from 'framer-motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 import { EASE_OUT_EXPO } from '@/lib/motion'
@@ -86,7 +87,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
+        <m.div
           id="menu-overlay"
           className="fixed inset-0 z-[55] overflow-hidden overscroll-none"
           initial={{ opacity: 0 }}
@@ -110,7 +111,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                 <nav aria-label="Menu navigation">
                   <ul className="flex flex-col gap-1 lg:gap-2">
                     {MENU_LINKS.map((link, i) => (
-                      <motion.li
+                      <m.li
                         key={link.href}
                         initial={reducedMotion ? { opacity: 0 } : { opacity: 0, x: -24 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -154,24 +155,24 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                             ))}
                           </ul>
                         )}
-                      </motion.li>
+                      </m.li>
                     ))}
                   </ul>
                 </nav>
               </div>
 
               {/* Vertical divider — desktop */}
-              <motion.div
+              <m.div
                 className="hidden lg:mx-16 lg:flex lg:items-center"
                 initial={{ opacity: 0, scaleY: 0 }}
                 animate={{ opacity: 1, scaleY: 1 }}
                 transition={{ delay: 0.3, duration: 0.5, ease: EASE_OUT_EXPO }}
               >
                 <div className="h-64 w-px bg-bone/10" />
-              </motion.div>
+              </m.div>
 
               {/* Horizontal divider — mobile */}
-              <motion.div
+              <m.div
                 className="my-4 lg:hidden"
                 initial={{ opacity: 0, scaleX: 0 }}
                 animate={{ opacity: 1, scaleX: 1 }}
@@ -179,10 +180,10 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                 style={{ transformOrigin: 'left' }}
               >
                 <div className="h-px bg-bone/10" />
-              </motion.div>
+              </m.div>
 
               {/* Contact + Social */}
-              <motion.div
+              <m.div
                 className="pointer-events-auto flex flex-col justify-center lg:flex-1"
                 initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -252,11 +253,11 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             </div>
 
             {/* Bottom bar */}
-            <motion.div
+            <m.div
               className="pointer-events-auto flex items-center justify-between px-8 py-4 md:px-12 lg:px-20 lg:py-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -268,9 +269,9 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
               <span className="font-accent text-xs uppercase tracking-[0.15em] text-bone/15">
                 RokVilla
               </span>
-            </motion.div>
+            </m.div>
           </div>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   )

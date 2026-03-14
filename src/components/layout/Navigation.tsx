@@ -4,7 +4,7 @@ import { useState, useCallback, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { useScrollState } from '@/hooks/useScrollState'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
@@ -120,17 +120,17 @@ export function Navigation() {
 
   const hamburgerLines = (
     <div className="flex flex-col gap-1.5">
-      <motion.span
+      <m.span
         animate={isMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
         transition={hamburgerDuration ? { duration: hamburgerDuration } : undefined}
         className={`block h-[1.5px] w-5 origin-center transition-colors duration-300 ${lineColor}`}
       />
-      <motion.span
+      <m.span
         animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
         transition={hamburgerDuration ? { duration: hamburgerDuration } : undefined}
         className={`block h-[1.5px] w-5 transition-colors duration-300 ${lineColor}`}
       />
-      <motion.span
+      <m.span
         animate={isMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
         transition={hamburgerDuration ? { duration: hamburgerDuration } : undefined}
         className={`block h-[1.5px] w-5 origin-center transition-colors duration-300 ${lineColor}`}

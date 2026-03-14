@@ -2,7 +2,8 @@
 
 import { useState, useCallback } from 'react'
 import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
-import { motion, AnimatePresence, type Transition } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence, type Transition } from 'framer-motion'
 import { Check, X, Minus, ChevronDown } from 'lucide-react'
 import type {
   PackageTier,
@@ -84,19 +85,19 @@ function CategoryAccordion({ category, tierIndex, isOpen, onToggle }: CategoryAc
         <span className="font-display text-[11px] font-semibold uppercase tracking-widest text-obsidian">
           {category.name}
         </span>
-        <motion.div
+        <m.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.2 }}
           className="shrink-0 flex items-center text-stone"
         >
           <ChevronDown size={14} aria-hidden="true" />
-        </motion.div>
+        </m.div>
       </button>
 
       {/* Collapsible content */}
       <AnimatePresence initial={false}>
         {isOpen && (
-          <motion.div
+          <m.div
             id={contentId}
             role="region"
             aria-labelledby={headerId}
@@ -144,7 +145,7 @@ function CategoryAccordion({ category, tierIndex, isOpen, onToggle }: CategoryAc
                 </p>
               )}
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

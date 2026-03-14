@@ -1,6 +1,7 @@
 'use client'
 
-import { motion, type Variants } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { type Variants } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -104,7 +105,7 @@ export function DocketsSection() {
               </thead>
 
               {/* Service Rows */}
-              <motion.tbody
+              <m.tbody
                 variants={rowContainerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -114,7 +115,7 @@ export function DocketsSection() {
                   const isLast = i === PRICING_SERVICES.length - 1
 
                   return (
-                    <motion.tr
+                    <m.tr
                       key={service.id}
                       variants={rowItemVariants}
                       className={`group transition-colors duration-150 hover:bg-parchment ${
@@ -166,10 +167,10 @@ export function DocketsSection() {
                           </td>
                         )
                       })}
-                    </motion.tr>
+                    </m.tr>
                   )
                 })}
-              </motion.tbody>
+              </m.tbody>
             </table>
           </div>
           </div>

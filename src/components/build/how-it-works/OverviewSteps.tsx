@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { makeStaggerContainerVariants } from '@/lib/motion'
 import { BUILD_STEPS } from '@/lib/constants/build'
@@ -24,7 +24,7 @@ export function OverviewSteps() {
   }
 
   return (
-    <motion.div
+    <m.div
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -42,7 +42,7 @@ export function OverviewSteps() {
         const isLast = i === BUILD_STEPS.length - 1
 
         return (
-          <motion.div
+          <m.div
             key={step.number}
             variants={itemVariants}
             className="relative flex flex-col items-center text-center"
@@ -87,9 +87,9 @@ export function OverviewSteps() {
             <p className="mt-3 max-w-xs font-body text-sm leading-relaxed text-slate">
               {step.description}
             </p>
-          </motion.div>
+          </m.div>
         )
       })}
-    </motion.div>
+    </m.div>
   )
 }

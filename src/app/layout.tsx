@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Cormorant_SC, DM_Sans, Space_Grotesk } from 'next/font/google'
 import './globals.css'
+import { SITE_URL, OG_IMAGE_DEFAULT } from '@/lib/seo/constants'
+import { JsonLd } from '@/components/seo/JsonLd'
+import { buildOrganizationSchema, buildLocalBusinessSchema } from '@/lib/seo/schemas'
+import { LOCATIONS } from '@/lib/constants/locations'
 
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ['latin'],
@@ -32,7 +36,7 @@ const dmSans = DM_Sans({
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['600'],
   variable: '--font-space-grotesk',
   display: 'optional',
   adjustFontFallback: true,
@@ -48,6 +52,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'RokVilla | Premium Architecture & Construction',
     template: '%s | RokVilla',
@@ -68,8 +73,13 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     siteName: 'RokVilla',
+    url: SITE_URL,
+    description:
+      'Premium architecture, construction & interior design in Karnataka.',
+    images: [{ url: OG_IMAGE_DEFAULT, width: 1200, height: 630, alt: 'RokVilla' }],
   },
   robots: { index: true, follow: true },
+  alternates: { canonical: SITE_URL },
 }
 
 export default function RootLayout({
@@ -79,9 +89,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css"
+          crossOrigin="anonymous"
+          integrity="sha384-GTsgKcJXGSkBp0M68qpxkz9XovzVH0PwSrjYONvkn3tXtySOSq+a14bG2gVJHwQG"
+        />
+      </head>
       <body
         className={`${cormorantGaramond.variable} ${cormorantSC.variable} ${dmSans.variable} ${spaceGrotesk.variable} antialiased`}
       >
+        <JsonLd
+          schema={[
+            buildOrganizationSchema(),
+            ...LOCATIONS.map(buildLocalBusinessSchema),
+          ]}
+        />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded focus:bg-terracotta focus:px-4 focus:py-2 focus:font-body focus:text-sm focus:text-bone focus:shadow-lg"

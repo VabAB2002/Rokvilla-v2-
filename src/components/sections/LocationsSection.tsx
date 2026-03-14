@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { LocationCard } from '@/components/ui/LocationCard'
 import { LOCATIONS } from '@/lib/constants/locations'
@@ -27,7 +27,7 @@ export function LocationsSection() {
       </div>
 
       {/* Mobile cards — stacked column */}
-      <motion.div
+      <m.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-80px' }}
@@ -35,18 +35,18 @@ export function LocationsSection() {
         className="mx-auto mt-16 flex max-w-7xl flex-col gap-4 px-6 md:hidden"
       >
         {LOCATIONS.map((location, i) => (
-          <motion.div
+          <m.div
             key={location.id}
             variants={fadeVariants}
             transition={{ ...TRANSITION_SMOOTH, delay: reducedMotion ? 0 : i * 0.12 }}
           >
             <LocationCard location={location} heightClass="h-56" />
-          </motion.div>
+          </m.div>
         ))}
-      </motion.div>
+      </m.div>
 
       {/* Desktop cards — 3-column grid */}
-      <motion.div
+      <m.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-80px' }}
@@ -54,15 +54,15 @@ export function LocationsSection() {
         className="mt-16 hidden md:grid md:grid-cols-3 md:gap-4 md:px-4"
       >
         {LOCATIONS.map((location, i) => (
-          <motion.div
+          <m.div
             key={location.id}
             variants={fadeVariants}
             transition={{ ...TRANSITION_SMOOTH, delay: reducedMotion ? 0 : i * 0.12 }}
           >
             <LocationCard location={location} heightClass="h-80" />
-          </motion.div>
+          </m.div>
         ))}
-      </motion.div>
+      </m.div>
     </section>
   )
 }

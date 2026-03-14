@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useMemo, useRef, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ProjectCardLink } from '@/components/projects/ProjectCardLink'
@@ -104,7 +105,7 @@ export function ProjectsSection() {
       {/* Desktop project cards — flex wrap grid */}
       <div className="mt-10 hidden md:block">
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={activeTab}
             initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -113,7 +114,7 @@ export function ProjectsSection() {
             className="flex flex-row flex-wrap justify-center gap-3"
           >
             {filteredProjects.map((project, i) => (
-              <motion.div
+              <m.div
                 key={project.id}
                 variants={fadeVariants}
                 initial="hidden"
@@ -122,9 +123,9 @@ export function ProjectsSection() {
                 className="w-[calc(50%-6px)] lg:w-[calc(33.333%-8px)]"
               >
                 <ProjectCardLink project={project} heightClass="h-80" />
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
 

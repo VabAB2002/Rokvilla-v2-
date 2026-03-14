@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { makeStaggerContainerVariants, EASE_OUT_EXPO } from '@/lib/motion'
@@ -50,7 +50,7 @@ function FeatureRow({
   }
 
   return (
-    <motion.div
+    <m.div
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -61,7 +61,7 @@ function FeatureRow({
         const Scene = scenes[i]
 
         return (
-          <motion.div
+          <m.div
             key={feature.id}
             variants={itemVariants}
             className="flex flex-col items-center text-center"
@@ -80,10 +80,10 @@ function FeatureRow({
             <p className="mt-2 max-w-xs font-body text-sm leading-relaxed text-slate">
               {feature.description}
             </p>
-          </motion.div>
+          </m.div>
         )
       })}
-    </motion.div>
+    </m.div>
   )
 }
 

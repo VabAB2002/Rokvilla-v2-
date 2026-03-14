@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { useScrollState } from '@/hooks/useScrollState'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
@@ -15,7 +15,7 @@ export function BottomActionStrip() {
   const isLowPower = useIsLowPowerDevice()
 
   return (
-    <motion.div
+    <m.div
       data-bottom-strip
       className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] left-4 right-4 z-50 lg:hidden"
       initial="hidden"
@@ -79,6 +79,6 @@ export function BottomActionStrip() {
           Book Free Consultation
         </a>
       </div>
-    </motion.div>
+    </m.div>
   )
 }

@@ -2,7 +2,8 @@
 
 import { useState, useMemo, useCallback } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -85,7 +86,7 @@ export function ProjectsGallerySection() {
       <AnimatedSection delay={0.25} className="mt-14">
         <div className="overflow-hidden md:overflow-visible">
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={activeFilter}
               initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -101,7 +102,7 @@ export function ProjectsGallerySection() {
                 className="group relative w-[85vw] max-w-[400px] shrink-0 snap-start overflow-hidden rounded-[4px] md:w-auto md:max-w-none"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <motion.div
+                  <m.div
                     whileHover={isTouch || reducedMotion ? undefined : { scale: 1.04 }}
                     transition={{ duration: 0.6, ease: EASE_OUT_QUART }}
                     className="h-full w-full"
@@ -113,7 +114,7 @@ export function ProjectsGallerySection() {
                       className="object-cover"
                       sizes="(max-width: 768px) 85vw, 33vw"
                     />
-                  </motion.div>
+                  </m.div>
 
                   {/* Gradient overlay */}
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent p-5 pt-16">
@@ -131,7 +132,7 @@ export function ProjectsGallerySection() {
               </div>
             ))}
             </ScrollFadeContainer>
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         </div>
       </AnimatedSection>

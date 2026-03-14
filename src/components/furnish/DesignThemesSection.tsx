@@ -2,7 +2,7 @@
 
 import { useRef, useCallback } from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -23,7 +23,7 @@ function ThemeCardContent({
 }) {
   return (
     <div className="relative aspect-[4/3] overflow-hidden">
-      <motion.div
+      <m.div
         whileHover={isTouch || reducedMotion ? undefined : { scale: 1.04 }}
         transition={{ duration: 0.6, ease: EASE_OUT_QUART }}
         className="h-full w-full"
@@ -35,7 +35,7 @@ function ThemeCardContent({
           className="object-cover"
           sizes="(max-width: 768px) 85vw, 33vw"
         />
-      </motion.div>
+      </m.div>
       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-obsidian/80 via-obsidian/40 to-transparent p-5 pt-16">
         <h3 className="font-display text-lg font-medium text-bone">
           {theme.title}
@@ -108,7 +108,7 @@ export function DesignThemesSection() {
         </div>
 
         {/* Desktop: staggered grid */}
-        <motion.div
+        <m.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -116,7 +116,7 @@ export function DesignThemesSection() {
           className="mx-auto hidden max-w-7xl md:grid md:grid-cols-3 md:gap-4 md:px-12 xl:px-16"
         >
           {DESIGN_THEMES.map((theme) => (
-            <motion.div
+            <m.div
               key={theme.id}
               variants={{
                 hidden: reducedMotion ? { opacity: 0 } : { opacity: 0, y: 24 },
@@ -125,9 +125,9 @@ export function DesignThemesSection() {
               className="group relative overflow-hidden rounded-[4px]"
             >
               <ThemeCardContent theme={theme} reducedMotion={reducedMotion} isTouch={isTouch} />
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </AnimatedSection>
     </section>
   )

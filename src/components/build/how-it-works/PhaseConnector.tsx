@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { EASE_OUT_EXPO } from '@/lib/motion'
 
@@ -11,7 +11,7 @@ export function PhaseConnector() {
     <div className="py-16 md:py-20">
       <div className="relative flex flex-col items-center">
         {/* Animated horizontal line — grows from center outward */}
-        <motion.div
+        <m.div
           initial={reduced ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }}
           whileInView={{ scaleX: 1, opacity: 1 }}
           viewport={{ once: true, margin: '-60px' }}
@@ -21,7 +21,7 @@ export function PhaseConnector() {
         />
 
         {/* Decorative terracotta dots along the line */}
-        <motion.div
+        <m.div
           initial={reduced ? { opacity: 1 } : { opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: '-60px' }}
@@ -31,10 +31,10 @@ export function PhaseConnector() {
         >
           <div className="h-2 w-2 rounded-full bg-terracotta/30" />
           <div className="h-2 w-2 rounded-full bg-terracotta/30" />
-        </motion.div>
+        </m.div>
 
         {/* Pill label — pops in with scale */}
-        <motion.span
+        <m.span
           initial={reduced ? { opacity: 1 } : { opacity: 0, scale: 0.8, y: 8 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
@@ -42,10 +42,10 @@ export function PhaseConnector() {
           className="relative z-10 rounded-full border border-terracotta/30 bg-terracotta/[0.06] px-6 py-2 font-accent text-[12px] uppercase tracking-[0.2em] text-terracotta shadow-sm backdrop-blur-sm md:text-[13px]"
         >
           Your Journey Begins Here
-        </motion.span>
+        </m.span>
 
         {/* Animated vertical tail — draws downward */}
-        <motion.div
+        <m.div
           initial={reduced ? { scaleY: 1, opacity: 1 } : { scaleY: 0, opacity: 0 }}
           whileInView={{ scaleY: 1, opacity: 1 }}
           viewport={{ once: true, margin: '-60px' }}
@@ -55,7 +55,7 @@ export function PhaseConnector() {
         />
 
         {/* Terminal dot at the bottom */}
-        <motion.div
+        <m.div
           initial={reduced ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-60px' }}

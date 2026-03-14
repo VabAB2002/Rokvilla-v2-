@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useMemo, useDeferredValue, useCallback, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ProjectCardLink } from '@/components/projects/ProjectCardLink'
 import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
@@ -128,7 +129,7 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
       <div className="mt-10 hidden md:block">
         <AnimatePresence mode="wait">
           {filtered.length === 0 ? (
-            <motion.div
+            <m.div
               key="empty"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -136,9 +137,9 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
               transition={{ duration: 0.2 }}
             >
               <ProjectsEmptyState onReset={handleReset} />
-            </motion.div>
+            </m.div>
           ) : (
-            <motion.div
+            <m.div
               key={filterKey}
               initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -150,7 +151,7 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
               className="flex flex-wrap justify-center gap-3 md:gap-4"
             >
               {filtered.map((project, i) => (
-                <motion.div
+                <m.div
                   key={project.id}
                   variants={fadeVariants}
                   initial="hidden"
@@ -162,9 +163,9 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
                   className="w-full sm:w-[calc(50%-6px)] lg:w-[calc(33.333%-11px)]"
                 >
                   <ProjectCardLink project={project} heightClass="h-56 md:h-80" />
-                </motion.div>
+                </m.div>
               ))}
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>

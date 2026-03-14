@@ -2,13 +2,15 @@
 
 import Image from 'next/image'
 import buildHeroImage from '../../../public/images/build/build-hero.png'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 import { makeHeroContainerVariants, makeHeroItemVariants } from '@/lib/motion'
 
 export function BuildHero() {
   const reducedMotion = useReducedMotion()
+  const isLowPower = useIsLowPowerDevice()
   const containerVariants = makeHeroContainerVariants(reducedMotion)
   const itemVariants = makeHeroItemVariants(reducedMotion)
 
@@ -41,39 +43,39 @@ export function BuildHero() {
       {/* Content */}
       <div className="relative z-10 -mt-16 px-6 pb-12 md:mt-0 md:flex md:h-full md:items-center md:px-12 md:pb-0">
         <div className="mx-auto w-full max-w-7xl">
-          <motion.div
+          <m.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="max-w-3xl lg:max-w-4xl"
           >
             {/* Overline */}
-            <motion.span
+            <m.span
               variants={itemVariants}
               className="mb-5 block font-accent text-[13px] uppercase tracking-[0.18em] text-terracotta"
             >
               Construction Services
-            </motion.span>
+            </m.span>
 
             {/* Heading */}
-            <motion.h1
+            <m.h1
               variants={itemVariants}
               className="font-display text-[clamp(3rem,7vw,7rem)] font-light leading-[0.9] text-obsidian whitespace-pre-line"
             >
               {"Let's Build\nSomething\nRok-Solid"}
-            </motion.h1>
+            </m.h1>
 
             {/* Body */}
-            <motion.p
+            <m.p
               variants={itemVariants}
               className="mt-6 max-w-md font-body text-base leading-relaxed text-slate md:text-lg"
             >
               From foundation to finish — construction packages that deliver
               quality, transparency, and a 10-year warranty on every home we build.
-            </motion.p>
+            </m.p>
 
             {/* CTAs */}
-            <motion.div
+            <m.div
               variants={itemVariants}
               className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4"
             >
@@ -83,13 +85,13 @@ export function BuildHero() {
               <Button variant="secondary" href="#consultation" className="w-full sm:w-auto">
                 Book Consultation
               </Button>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: reducedMotion ? 0 : 1.2, duration: reducedMotion ? 0.2 : 0.6 }}
@@ -104,12 +106,12 @@ export function BuildHero() {
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className={`${reducedMotion ? '' : 'animate-bounce-gentle'} text-obsidian/30`}
+          className={`${!reducedMotion && !isLowPower ? 'animate-bounce-gentle' : ''} text-obsidian/30`}
           aria-hidden="true"
         >
           <path d="M12 5v14M5 12l7 7 7-7" />
         </svg>
-      </motion.div>
+      </m.div>
     </section>
   )
 }

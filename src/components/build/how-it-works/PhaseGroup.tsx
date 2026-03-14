@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { makeStaggerContainerVariants } from '@/lib/motion'
 import type { BuildPhaseGroup } from '@/lib/constants/build'
@@ -62,7 +62,7 @@ export function PhaseGroup({ group, reversed }: PhaseGroupProps) {
         <div className="mt-5 h-px w-12 bg-limestone" aria-hidden="true" />
 
         {/* Sub-steps stack */}
-        <motion.div
+        <m.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -74,7 +74,7 @@ export function PhaseGroup({ group, reversed }: PhaseGroupProps) {
 
             return (
               <div key={step.id}>
-                <motion.div
+                <m.div
                   variants={subStepVariants}
                   className="flex gap-4"
                 >
@@ -93,7 +93,7 @@ export function PhaseGroup({ group, reversed }: PhaseGroupProps) {
                       {step.description}
                     </p>
                   </div>
-                </motion.div>
+                </m.div>
 
                 {/* Vertical dashed connector between sub-steps */}
                 {!isLast && (
@@ -105,7 +105,7 @@ export function PhaseGroup({ group, reversed }: PhaseGroupProps) {
               </div>
             )
           })}
-        </motion.div>
+        </m.div>
       </div>
     </div>
   )
