@@ -8,6 +8,7 @@ import { AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { EASE_OUT_EXPO } from '@/lib/motion'
+import { BLUR_DATA_URL } from '@/lib/constants/images'
 
 interface ProjectLightboxProps {
   readonly images: ReadonlyArray<string>
@@ -159,6 +160,8 @@ export function ProjectLightbox({
             className="object-contain"
             sizes="100vw"
             priority
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
           />
         </m.div>
       </AnimatePresence>

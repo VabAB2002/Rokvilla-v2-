@@ -11,6 +11,7 @@ import { ProjectLightbox } from '@/components/projects/ProjectLightbox'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useScrollProgress } from '@/hooks/useScrollProgress'
 import { EASE_OUT_QUART } from '@/lib/motion'
+import { BLUR_DATA_URL } from '@/lib/constants/images'
 
 interface ProjectBentoGalleryProps {
   readonly images: ReadonlyArray<string>
@@ -45,6 +46,8 @@ function BentoImage({
         fill
         className="object-cover"
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        placeholder="blur"
+        blurDataURL={BLUR_DATA_URL}
       />
     </m.button>
   )
