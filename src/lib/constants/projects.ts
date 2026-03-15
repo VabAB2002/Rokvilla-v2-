@@ -12,7 +12,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
     description:
       'A contemporary multi-storey residence with double-height atriums, wooden-framed skylights, and lush greenery.',
     year: 2022,
-    heroImage: '/00 FINISHED/01 SRIPRADHA/HERO IMAGE_01_SRIPRADHA.png',
+    heroImage: '/00 FINISHED/01 SRIPRADHA/HERO IMAGE_01_SRIPRADHA.jpg',
     heroVideo: '/00 FINISHED/01 SRIPRADHA/HERO VID_01_SRIPRADHA.mp4',
     galleryImages: [
       '/00 FINISHED/01 SRIPRADHA/01_SRIPRADHA_01.jpg',
@@ -43,9 +43,9 @@ export const PROJECTS: ReadonlyArray<Project> = [
       '/00 FINISHED/02 SRI GANESHA RESIDENCE/HERO VIDEO_SRI GANESHA RESIDENCE_01.mp4',
     galleryImages: [
       '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_02.png',
-      '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_04.png',
-      '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_05.png',
-      '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_06.png',
+      '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_04.jpg',
+      '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_05.jpg',
+      '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_06.jpg',
       '/00 FINISHED/02 SRI GANESHA RESIDENCE/02_SRI GANESHA RESIDENCE_07.jpg',
     ],
     vision:
@@ -141,7 +141,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
     image: '/images/projects/pavan-vj.jpg',
     description:
       'A dramatic double-height living space with glass staircase, arched niches, and rich material contrasts.',
-    year: 2026,
+    year: 2025,
     heroImage: '/00 FINISHED/07 PAVAN VJ /HERO IMAGE_PAVAN VJ_07.jpg',
     galleryImages: [
       '/00 FINISHED/07 PAVAN VJ /07_PAVAN VJ_01.jpg',
@@ -165,7 +165,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
     image: '/images/projects/raj-residence.jpg',
     description:
       'Luxury interiors featuring a signature gold arch framing the kitchen, marble accents, and warm wood tones.',
-    year: 2026,
+    year: 2025,
     heroImage: '/00 FINISHED/08 RAJ RESIDENCE/HERO IMAGE_RAJ RESIDENCE_08.jpg',
     heroVideo: '/00 FINISHED/08 RAJ RESIDENCE/HERO VIDEO_RAJ RESIDENCE_08.mp4',
     galleryImages: [
@@ -316,16 +316,16 @@ export const PROJECTS: ReadonlyArray<Project> = [
     name: 'Junior Toes',
     category: 'interior',
     location: 'bengaluru',
-    image: '/00 FINISHED/16 JUNIOR TOES/16_JUNIOR TOES_01.png',
+    image: '/00 FINISHED/16 JUNIOR TOES/16_JUNIOR TOES_01.jpg',
     description:
       'A playful children\'s retail space with vibrant interiors, custom display units, and an inviting storefront.',
     year: 2025,
-    heroImage: '/00 FINISHED/16 JUNIOR TOES/HERO IMAGE_JUNIOR TOES_16.png',
+    heroImage: '/00 FINISHED/16 JUNIOR TOES/HERO IMAGE_JUNIOR TOES_16.jpg',
     galleryImages: [
-      '/00 FINISHED/16 JUNIOR TOES/16_JUNIOR TOES_01.png',
+      '/00 FINISHED/16 JUNIOR TOES/16_JUNIOR TOES_01.jpg',
       '/00 FINISHED/16 JUNIOR TOES/16_JUNIOR TOES_02.jpg',
-      '/00 FINISHED/16 JUNIOR TOES/16_JUNIOR TOES_03.png',
-      '/00 FINISHED/16 JUNIOR TOES/16_JUNIOR TOES_04.png',
+      '/00 FINISHED/16 JUNIOR TOES/16_JUNIOR TOES_03.jpg',
+      '/00 FINISHED/16 JUNIOR TOES/16_JUNIOR TOES_04.jpg',
       '/00 FINISHED/16 JUNIOR TOES/16_JUNIOR TOES_05.jpg',
     ],
     vision:

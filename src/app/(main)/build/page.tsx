@@ -30,7 +30,7 @@ const FAQSection = dynamic(
 )
 
 export const metadata: Metadata = {
-  title: 'Build — RokVilla',
+  title: 'Build',
   description:
     'From foundation to finish — construction packages with transparent pricing, daily site updates, and a 10-year warranty. Choose your package and build your dream home.',
   openGraph: {

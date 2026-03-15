@@ -39,7 +39,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   if (!project) notFound()
 
   return (
-    <main>
+    <>
       <JsonLd
         schema={buildBreadcrumbSchema([
           { name: 'Home', url: SITE_URL },
@@ -53,6 +53,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         images={project.galleryImages}
         projectName={project.name}
       />
-    </main>
+    </>
   )
 }

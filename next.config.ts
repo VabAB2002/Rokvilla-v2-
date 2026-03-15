@@ -13,7 +13,7 @@ const CSP_DIRECTIVES = [
   "img-src 'self' data: blob: https://api.mapbox.com https://*.mapbox.com https://images.unsplash.com",
   "font-src 'self'",
   "worker-src 'self' blob:",
-  "connect-src 'self' https://*.mapbox.com https://events.mapbox.com https://*.sentry.io https://o*.ingest.sentry.io",
+  "connect-src 'self' https://*.mapbox.com https://events.mapbox.com https://*.sentry.io https://o*.ingest.sentry.io https://vitals.vercel-insights.com https://*.vercel-insights.com",
   "media-src 'self'",
   "frame-src 'none'",
   "frame-ancestors 'none'",
@@ -26,7 +26,7 @@ const CSP_DIRECTIVES = [
 
 const SECURITY_HEADERS = [
   { key: 'Content-Security-Policy', value: CSP_DIRECTIVES },
-  { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains' },
+  { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
   { key: 'X-Frame-Options', value: 'DENY' },
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
@@ -40,6 +40,7 @@ const SECURITY_HEADERS = [
 ] as const
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
@@ -55,6 +56,13 @@ const nextConfig: NextConfig = {
         source: '/(.*)',
         headers: [...SECURITY_HEADERS],
       },
+    ]
+  },
+  async redirects() {
+    return [
+      { source: '/services/design', destination: '/design', permanent: true },
+      { source: '/services/build', destination: '/build', permanent: true },
+      { source: '/services/furnish', destination: '/furnish', permanent: true },
     ]
   },
 }

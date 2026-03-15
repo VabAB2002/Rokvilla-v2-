@@ -36,7 +36,7 @@ const LOCATION_OPTIONS: ReadonlyArray<{
   readonly label: string
 }> = [
   { value: 'all', label: 'All Locations' },
-  { value: 'hubli', label: 'Hubli' },
+  { value: 'hubli', label: 'Hubballi' },
   { value: 'dharwad', label: 'Dharwad' },
   { value: 'ballari', label: 'Ballari' },
   { value: 'bengaluru', label: 'Bengaluru' },

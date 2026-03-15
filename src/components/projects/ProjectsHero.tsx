@@ -18,7 +18,7 @@ export function ProjectsHero({ totalCount }: ProjectsHeroProps) {
                 Our Projects
               </h1>
               <p className="mt-3 font-body text-base tracking-wide text-stone md:text-lg">
-                From Home to Industries
+                From Homes to Industries
               </p>
             </div>
             <span className="font-display text-2xl font-light tabular-nums text-obsidian/40 md:text-3xl">

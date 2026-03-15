@@ -1050,7 +1050,7 @@ export const PACKAGE_TYPES: ReadonlyArray<PackageType> = [
           {
             id: 'fire-panic',
             icon: 'ShieldAlert',
-            feature: 'Fire leaks and Panic buttons in strategic areas',
+            feature: 'Fire alarms and Panic buttons in strategic areas',
             values: [false, true, true],
           },
           {

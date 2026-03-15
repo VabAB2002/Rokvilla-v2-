@@ -1,6 +1,8 @@
 'use client'
 
 import { type ReactNode, useState, useCallback, useId, useRef, useEffect } from 'react'
+import Link from 'next/link'
+import { track } from '@vercel/analytics'
 import * as m from 'framer-motion/m'
 import { AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
@@ -366,6 +368,7 @@ export function ConsultationForm({
         return
       }
 
+      track('consultation_submitted', { category: fields.category })
       setSubmitted(true)
       setFields(INITIAL_FIELDS)
       setErrors({})
@@ -534,7 +537,7 @@ export function ConsultationForm({
                         type="email"
                         value={fields.email}
                         error={errors.email}
-                        placeholder="you@example.com"
+                        placeholder="yourname@email.com"
                         onChange={handleChange}
                         autoComplete="email"
                         required
@@ -550,7 +553,7 @@ export function ConsultationForm({
                         type="tel"
                         value={fields.phone}
                         error={errors.phone}
-                        placeholder="+91 78992 32229"
+                        placeholder="+91 XXXXX XXXXX"
                         onChange={handleChange}
                         autoComplete="tel"
                         required
@@ -633,7 +636,10 @@ export function ConsultationForm({
                           className="mt-0.5 h-5 w-5 accent-terracotta"
                         />
                         <span className="font-body text-xs text-slate">
-                          I agree to the Privacy Policy and Terms &amp; Conditions
+                          I agree to the{' '}
+                          <Link href="/privacy-policy" target="_blank" className="underline text-terracotta hover:text-terracotta/80 transition-colors">Privacy Policy</Link>
+                          {' '}and{' '}
+                          <Link href="/terms" target="_blank" className="underline text-terracotta hover:text-terracotta/80 transition-colors">Terms &amp; Conditions</Link>
                         </span>
                       </label>
                       {errors.privacy && (
@@ -870,7 +876,10 @@ export function ConsultationForm({
                       className="mt-0.5 h-5 w-5 accent-terracotta"
                     />
                     <span className="font-body text-xs text-slate">
-                      I agree to the Privacy Policy and Terms &amp; Conditions
+                      I agree to the{' '}
+                      <Link href="/privacy-policy" target="_blank" className="underline text-terracotta hover:text-terracotta/80 transition-colors">Privacy Policy</Link>
+                      {' '}and{' '}
+                      <Link href="/terms" target="_blank" className="underline text-terracotta hover:text-terracotta/80 transition-colors">Terms &amp; Conditions</Link>
                     </span>
                   </label>
                   {errors.privacy && (

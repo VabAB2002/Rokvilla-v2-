@@ -34,6 +34,7 @@ export function ProjectDetailHero({ project }: ProjectDetailHeroProps) {
           loop
           playsInline
           poster={project.heroImage}
+          aria-label="Architectural project showcase video"
           className="absolute inset-0 h-full w-full object-cover"
         >
           <source src={project.heroVideo} type="video/mp4" />

@@ -109,7 +109,7 @@ export function ProjectBentoGallery({
                 <div className="col-span-3">
                   <BentoImage
                     src={bentoImages[0]}
-                    alt={`${projectName} 1`}
+                    alt={`${projectName} — project view 1`}
                     onClick={() => openLightbox(0)}
                     reducedMotion={reducedMotion}
                   />
@@ -119,7 +119,7 @@ export function ProjectBentoGallery({
                 <div className="col-span-2">
                   <BentoImage
                     src={bentoImages[1]}
-                    alt={`${projectName} 2`}
+                    alt={`${projectName} — project view 2`}
                     onClick={() => openLightbox(1)}
                     reducedMotion={reducedMotion}
                   />
@@ -133,7 +133,7 @@ export function ProjectBentoGallery({
                 <div key={img} className="aspect-[4/3]">
                   <BentoImage
                     src={img}
-                    alt={`${projectName} ${i + 3}`}
+                    alt={`${projectName} — project view ${i + 3}`}
                     onClick={() => openLightbox(i + 2)}
                     reducedMotion={reducedMotion}
                   />
@@ -157,7 +157,7 @@ export function ProjectBentoGallery({
                 >
                   <BentoImage
                     src={img}
-                    alt={`${projectName} ${i + 1}`}
+                    alt={`${projectName} — project view ${i + 1}`}
                     onClick={() => openLightbox(i)}
                     reducedMotion={reducedMotion}
                   />

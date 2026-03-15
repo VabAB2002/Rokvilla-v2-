@@ -139,7 +139,7 @@ export interface BuildKeyFeature {
 export const BUILD_KEY_FEATURES: ReadonlyArray<BuildKeyFeature> = [
   {
     id: 'feat-inhouse',
-    title: 'Inhouse Architects, Interior Designer, Project Coordinators',
+    title: 'Inhouse Architects, Interior Designers, Project Coordinators',
     description:
       'Our entire design and execution team is in-house — no outsourcing, no gaps in communication, just seamless end-to-end ownership of your project.',
     icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z',
@@ -190,6 +190,7 @@ export interface PlatformRating {
   readonly reviewCount: string
 }
 
+// Last verified: March 2025 — update quarterly
 export const PLATFORM_RATINGS: ReadonlyArray<PlatformRating> = [
   { id: 'google', platform: 'Google', rating: '4.9', reviewCount: '200+ reviews' },
   { id: 'justdial', platform: 'JustDial', rating: '4.8', reviewCount: '150+ reviews' },
@@ -205,7 +206,7 @@ export const BUILD_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     name: 'Ramesh Hiremath',
     initials: 'RH',
     projectType: 'Residential Construction',
-    location: 'Hubli',
+    location: 'Hubballi',
     quote:
       'RokVilla built our 3BHK home from foundation to finish in just 8 months. The quality of the RCC frame and plastering is exceptional — our structural engineer was genuinely impressed.',
     rating: 5,
@@ -245,7 +246,7 @@ export const BUILD_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     name: 'Anil Patil',
     initials: 'AP',
     projectType: 'Commercial Construction',
-    location: 'Hubli',
+    location: 'Hubballi',
     quote:
       'They handled our commercial showroom construction professionally from start to finish. The project coordination was seamless and they delivered ahead of schedule.',
     rating: 5,
@@ -332,9 +333,9 @@ export const BUILD_FAQS: ReadonlyArray<BuildFAQItem> = [
   {
     id: 'build-faq-9',
     category: 'process',
-    question: 'Does Rokvilla handle building approvals?',
+    question: 'Does RokVilla handle building approvals?',
     answer:
-      'Rokvilla facilitates the approval process through experienced Construction Professionals on our platform. While we are not directly involved in the approvals, our partners work closely with you to ensure a completely hassle-free experience from start to finish.',
+      'RokVilla facilitates the approval process through experienced Construction Professionals on our team. While we are not directly involved in the approvals, our partners work closely with you to ensure a completely hassle-free experience from start to finish.',
   },
   {
     id: 'build-faq-10',

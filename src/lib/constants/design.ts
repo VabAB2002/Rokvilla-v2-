@@ -380,5 +380,4 @@ export interface Stat {
 export const DESIGN_STATS: ReadonlyArray<Stat> = [
   { value: 50, suffix: '+', label: 'Projects Delivered' },
   { value: 100, suffix: '%', label: 'Quality Assurance' },
-  { value: 0, suffix: '%', label: 'Cost Overrun' },
 ] as const

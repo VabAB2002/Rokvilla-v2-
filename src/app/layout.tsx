@@ -59,12 +59,12 @@ export const metadata: Metadata = {
     template: '%s | RokVilla',
   },
   description:
-    'RokVilla crafts premium residential, commercial and interior spaces in Hubli, Dharwad and Ballari, Karnataka.',
+    'RokVilla crafts premium residential, commercial and interior spaces in Hubballi, Dharwad and Ballari, Karnataka.',
   keywords: [
     'architecture',
     'construction',
     'interior design',
-    'Hubli',
+    'Hubballi',
     'Dharwad',
     'Ballari',
     'Karnataka',
@@ -78,6 +78,12 @@ export const metadata: Metadata = {
     description:
       'Premium architecture, construction & interior design in Karnataka.',
     images: [{ url: OG_IMAGE_DEFAULT, width: 1200, height: 630, alt: 'RokVilla' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'RokVilla | Premium Architecture & Construction',
+    description: 'Premium architecture, construction & interior design in Karnataka.',
+    images: [OG_IMAGE_DEFAULT],
   },
   robots: { index: true, follow: true },
   alternates: { canonical: SITE_URL },

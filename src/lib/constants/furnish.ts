@@ -93,7 +93,7 @@ export const FURNISH_PROJECTS: ReadonlyArray<FurnishProject> = [
   {
     id: 'proj-sripradha',
     title: 'Sripradha Residence',
-    location: 'Hubli',
+    location: 'Hubballi',
     category: 'Residential Interior',
     image: '/00 FINISHED/01 SRIPRADHA/01_SRIPRADHA_01.jpg',
     rooms: ['living-room', 'bedroom', 'kitchen'],
@@ -109,7 +109,7 @@ export const FURNISH_PROJECTS: ReadonlyArray<FurnishProject> = [
   {
     id: 'proj-vanitha',
     title: 'Vanitha Residence',
-    location: 'Hubli',
+    location: 'Hubballi',
     category: 'Residential Interior',
     image: '/00 FINISHED/05 VANITHA RESIDENCE/05_VANITHA RESIDENCE_01.jpg',
     rooms: ['living-room', 'kitchen', 'pooja-room'],
@@ -125,7 +125,7 @@ export const FURNISH_PROJECTS: ReadonlyArray<FurnishProject> = [
   {
     id: 'proj-pavan-vj',
     title: 'Pavan VJ Residence',
-    location: 'Hubli',
+    location: 'Hubballi',
     category: 'Residential Interior',
     image: '/00 FINISHED/07 PAVAN VJ /07_PAVAN VJ_01.jpg',
     rooms: ['living-room', 'bedroom', 'kitchen'],
@@ -133,7 +133,7 @@ export const FURNISH_PROJECTS: ReadonlyArray<FurnishProject> = [
   {
     id: 'proj-raj',
     title: 'Raj Residence',
-    location: 'Hubli',
+    location: 'Hubballi',
     category: 'Full Home Interior',
     image: '/00 FINISHED/08 RAJ RESIDENCE/01_RAJ RESIDENCE_01.jpg',
     rooms: ['living-room', 'bedroom', 'kitchen', 'bathroom'],
@@ -162,7 +162,7 @@ export const DESIGN_THEMES: ReadonlyArray<DesignTheme> = [
     title: 'Traditional Indian',
     description:
       'Rich warm tones, intricate carved details, and heritage motifs celebrate Indian craftsmanship while creating deeply personal homes.',
-    image: '/00 FINISHED/FURNISH THEMES/traditional indian .png',
+    image: '/00 FINISHED/FURNISH THEMES/traditional-indian.jpg',
   },
   {
     id: 'modern-contemporary',
@@ -183,7 +183,7 @@ export const DESIGN_THEMES: ReadonlyArray<DesignTheme> = [
     title: 'European',
     description:
       'Timeless European elegance with classic proportions, moulded details, and a refined palette that brings old-world charm to modern living.',
-    image: '/00 FINISHED/FURNISH THEMES/EUROPEANjpg.jpg',
+    image: '/00 FINISHED/FURNISH THEMES/EUROPEAN.jpg',
   },
   {
     id: 'industrial',
@@ -197,7 +197,7 @@ export const DESIGN_THEMES: ReadonlyArray<DesignTheme> = [
     title: 'Boho',
     description:
       'Eclectic textures, earthy tones, and layered patterns bring a free-spirited, globally inspired warmth to your living spaces.',
-    image: '/00 FINISHED/FURNISH THEMES/bohemain.jpg',
+    image: '/00 FINISHED/FURNISH THEMES/bohemian.jpg',
   },
   {
     id: 'neoclassic',
@@ -211,7 +211,7 @@ export const DESIGN_THEMES: ReadonlyArray<DesignTheme> = [
     title: 'Moroccan',
     description:
       'Vibrant geometric patterns, arched doorways, and jewel-toned accents transport you to the riads of Marrakech with every room.',
-    image: '/00 FINISHED/FURNISH THEMES/MOROCCAN.png',
+    image: '/00 FINISHED/FURNISH THEMES/MOROCCAN.jpg',
   },
 ] as const
 
@@ -327,7 +327,7 @@ export const FURNISH_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     name: 'Suresh Bhat',
     initials: 'SB',
     projectType: 'Full Home Interior',
-    location: 'Hubli',
+    location: 'Hubballi',
     quote:
       'RokVilla transformed our bare apartment into a warm, fully furnished home in just 45 days. The modular kitchen alone exceeded our expectations — every inch is utilised so smartly.',
     rating: 5,
@@ -347,7 +347,7 @@ export const FURNISH_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     name: 'Deepak Kulkarni',
     initials: 'DK',
     projectType: 'Bedroom & Wardrobe',
-    location: 'Hubli',
+    location: 'Hubballi',
     quote:
       'The custom wardrobes for all three bedrooms are impeccably built. HETTICH hinges move like butter and the BWP plywood in our bathroom area has shown zero swelling even after two monsoons.',
     rating: 5,

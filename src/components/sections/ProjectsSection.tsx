@@ -77,7 +77,7 @@ export function ProjectsSection() {
               Projects
             </h2>
             <p className="mt-3 font-body text-base tracking-wide text-slate md:text-lg">
-              From Home to Industries
+              From Homes to Industries
             </p>
           </AnimatedSection>
         </div>

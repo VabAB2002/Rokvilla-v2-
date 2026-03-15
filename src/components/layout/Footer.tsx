@@ -39,7 +39,7 @@ export function Footer() {
               <div className="relative h-8 w-14 shrink-0 overflow-hidden">
                 <Image
                   src="/logo/rok-logo-white.png"
-                  alt=""
+                  alt="RokVilla"
                   width={1024}
                   height={576}
                   className="absolute inset-0 h-full w-full scale-[1.6] object-contain opacity-90"

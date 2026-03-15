@@ -21,7 +21,7 @@ const FAQSection = dynamic(
 )
 
 export const metadata: Metadata = {
-  title: 'Design — RokVilla',
+  title: 'Design',
   description:
     'From concept to blueprint — architectural designs that balance aesthetics, function, and budget. Browse our projects, choose your service, and connect with us.',
   openGraph: {

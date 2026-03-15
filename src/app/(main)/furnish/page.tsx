@@ -29,7 +29,7 @@ const FAQSection = dynamic(
 )
 
 export const metadata: Metadata = {
-  title: 'Furnish — RokVilla',
+  title: 'Furnish',
   description:
     'End-to-end interior furnishing with premium materials, expert craftsmanship, and a 10-year warranty. Browse projects, explore design themes, and book a free consultation.',
   openGraph: {

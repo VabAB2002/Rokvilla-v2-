@@ -330,7 +330,7 @@ export function TestimonialsSection({
             {title ?? (
               <>
                 The Voices{' '}
-                <span className="italic text-terracotta">Behind</span>
+                <span className="italic text-terracotta">Behind Our Work</span>
               </>
             )}
           </h2>
