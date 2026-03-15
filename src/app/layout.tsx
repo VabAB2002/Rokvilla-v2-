@@ -4,6 +4,7 @@ import './globals.css'
 import { SITE_URL, OG_IMAGE_DEFAULT } from '@/lib/seo/constants'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { buildOrganizationSchema, buildLocalBusinessSchema } from '@/lib/seo/schemas'
+import { Analytics } from '@vercel/analytics/next'
 import { LOCATIONS } from '@/lib/constants/locations'
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -113,6 +114,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <div id="main-content" className="overflow-x-clip overscroll-x-none">{children}</div>
+        <Analytics />
       </body>
     </html>
   )
