@@ -1,7 +1,7 @@
 'use client'
 
+import Image from 'next/image'
 import * as m from 'framer-motion/m'
-import { ImageComparisonSlider } from '@/components/ui/ImageComparisonSlider'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 import { makeHeroContainerVariants, makeHeroItemVariants } from '@/lib/motion'
@@ -14,17 +14,15 @@ export function HeroSection() {
 
   return (
     <section aria-label="Hero" className="relative h-dvh min-h-[600px] overflow-hidden">
-      {/* Image comparison slider — fills viewport */}
-      <div className="absolute inset-0">
-        <ImageComparisonSlider
-          beforeSrc="/images/home/hero-real.jpg"
-          beforeAlt="Cedar Homestore at dusk — completed building"
-          afterSrc="/images/home/hero-sketch.png"
-          afterAlt="Architectural pencil sketch of Cedar Homestore"
-          initialPosition={50}
-          enableLerp={!reducedMotion && !isLowPower}
-        />
-      </div>
+      {/* Hero background image */}
+      <Image
+        src="/images/home/hero-real.jpg"
+        alt="Cedar Homestore at dusk — completed building"
+        fill
+        priority
+        className="object-cover"
+        sizes="100vw"
+      />
 
       {/* Gradient overlay for text legibility */}
       <div
@@ -36,8 +34,8 @@ export function HeroSection() {
         }}
       />
 
-      {/* Content — pointer-events-none lets clicks pass through to slider; add pointer-events-auto on any future CTA buttons */}
-      <div className="pointer-events-none relative z-10 flex h-full items-end pb-24 md:items-center md:pb-0">
+      {/* Content */}
+      <div className="relative z-10 flex h-full items-end pb-24 md:items-center md:pb-0">
         <div className="mx-auto w-full max-w-7xl px-6 md:px-12">
           <m.div
             variants={containerVariants}

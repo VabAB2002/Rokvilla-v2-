@@ -430,7 +430,7 @@ export function ConstructionPackagesSection() {
             Compare Packages
           </h2>
           <p className="mt-4 font-body text-base leading-relaxed text-slate md:text-lg">
-            Choose between Homes and Luxury Homes to find your perfect fit.
+            Choose between Homes/Buildings and Luxury Homes/Luxury Buildings to find your perfect fit.
           </p>
 
           {/* Type toggle */}
