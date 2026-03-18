@@ -26,7 +26,9 @@ export async function generateMetadata({
   return {
     title: project.name,
     description: project.vision,
+    alternates: { canonical: `${SITE_URL}/projects/${slug}` },
     openGraph: {
+      title: `${project.name} | RokVilla`,
       images: [{ url: new URL(project.heroImage, SITE_URL).href }],
     },
   }

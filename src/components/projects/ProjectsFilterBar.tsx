@@ -73,8 +73,8 @@ export function ProjectsFilterBar({
           />
         </div>
 
-        {/* Dropdowns */}
-        <div className="flex flex-1 gap-3">
+        {/* Dropdowns — stacked on mobile, side-by-side on sm+ */}
+        <div className="flex flex-col sm:flex-row flex-1 gap-3">
           <div className="relative flex-1 min-w-0">
             <select
               value={category}
@@ -117,8 +117,8 @@ export function ProjectsFilterBar({
         </div>
       </div>
 
-      {/* Bottom row: match count + sort */}
-      <div className="flex items-center justify-between">
+      {/* Bottom row: match count + sort — hidden on mobile */}
+      <div className="hidden md:flex items-center justify-between">
         <span className="font-body text-sm tabular-nums text-stone">
           {matchCount} {matchCount === 1 ? 'Project' : 'Projects'}
         </span>

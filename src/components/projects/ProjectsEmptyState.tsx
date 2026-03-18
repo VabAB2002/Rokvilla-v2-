@@ -8,7 +8,7 @@ export function ProjectsEmptyState({ onReset }: ProjectsEmptyStateProps) {
       <p className="font-display text-2xl font-light text-obsidian/60">
         No projects match your filters
       </p>
-      <p className="mt-3 max-w-sm font-body text-sm text-stone">
+      <p className="mt-3 max-w-sm font-body text-sm text-slate">
         Try adjusting your search or filter criteria to discover more of our
         work.
       </p>

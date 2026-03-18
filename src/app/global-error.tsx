@@ -16,19 +16,46 @@ export default function GlobalError({
 
   return (
     <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Error | RokVilla</title>
+      </head>
       <body>
-        <div className="flex min-h-dvh flex-col items-center justify-center bg-white px-6">
-          <h2 className="text-2xl font-medium" style={{ color: '#1C1916' }}>
+        <div
+          style={{
+            display: 'flex',
+            minHeight: '100dvh',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '0 1.5rem',
+            fontFamily: 'system-ui, sans-serif',
+            backgroundColor: '#FFFFFF',
+          }}
+        >
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 500, color: '#1C1916' }}>
             Something went wrong
           </h2>
-          <p className="mt-2 text-sm" style={{ color: '#5C5248' }}>
+          <p style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: '#5C5248' }}>
             We have been notified and are looking into it.
           </p>
           <button
             type="button"
             onClick={reset}
-            className="mt-6 rounded-full px-8 py-3 text-sm font-medium uppercase tracking-wider text-white"
-            style={{ backgroundColor: '#ee7707' }}
+            style={{
+              marginTop: '1.5rem',
+              borderRadius: '9999px',
+              padding: '0.75rem 2rem',
+              fontSize: '0.875rem',
+              fontWeight: 500,
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              color: '#FFFFFF',
+              backgroundColor: '#ee7707',
+              border: 'none',
+              cursor: 'pointer',
+            }}
           >
             Try again
           </button>

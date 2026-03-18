@@ -35,7 +35,7 @@ export class SectionErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return this.props.fallback ?? (
         <div className="flex min-h-[200px] items-center justify-center">
-          <p className="font-body text-sm text-stone">This section is temporarily unavailable.</p>
+          <p className="font-body text-sm text-slate">This section is temporarily unavailable.</p>
         </div>
       )
     }

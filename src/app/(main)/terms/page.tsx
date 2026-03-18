@@ -1,9 +1,12 @@
 import type { Metadata } from 'next'
+import { EMAIL, PHONE_NUMBER, PHONE_NUMBER_2, PHONE_DISPLAY, PHONE_DISPLAY_2 } from '@/lib/constants/contact'
+import { SITE_URL } from '@/lib/seo/constants'
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions',
   description:
     'Review the terms and conditions governing your use of the RokVilla website and our architecture, construction, and interior design services.',
+  alternates: { canonical: `${SITE_URL}/terms` },
 }
 
 export default function TermsPage() {
@@ -20,7 +23,7 @@ export default function TermsPage() {
             Terms &amp; Conditions
           </h1>
           <p className="mt-4 font-body text-sm text-slate">
-            Last updated: March 2025
+            Last updated: March 2026
           </p>
         </div>
 
@@ -252,26 +255,26 @@ export default function TermsPage() {
               <p className="font-body text-sm text-slate">
                 Email:{' '}
                 <a
-                  href="mailto:home@rokvilla.com"
+                  href={`mailto:${EMAIL}`}
                   className="text-terracotta underline underline-offset-2 hover:opacity-80"
                 >
-                  home@rokvilla.com
+                  {EMAIL}
                 </a>
               </p>
               <p className="font-body text-sm text-slate">
                 Phone:{' '}
                 <a
-                  href="tel:+917899232229"
+                  href={`tel:${PHONE_NUMBER}`}
                   className="text-terracotta underline underline-offset-2 hover:opacity-80"
                 >
-                  +91 78992 32229
+                  {PHONE_DISPLAY}
                 </a>{' '}
                 /{' '}
                 <a
-                  href="tel:+917899242229"
+                  href={`tel:${PHONE_NUMBER_2}`}
                   className="text-terracotta underline underline-offset-2 hover:opacity-80"
                 >
-                  +91 78992 42229
+                  {PHONE_DISPLAY_2}
                 </a>
               </p>
             </address>

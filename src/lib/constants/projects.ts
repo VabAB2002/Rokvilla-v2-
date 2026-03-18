@@ -397,8 +397,15 @@ const HOMEPAGE_IDS = [
   'vanitha-residence',
 ] as const
 
-export const HOMEPAGE_PROJECTS: ReadonlyArray<Project> = HOMEPAGE_IDS.map(
-  (id) => PROJECTS.find((p) => p.id === id)!,
+export const HOMEPAGE_PROJECTS: ReadonlyArray<Project> = HOMEPAGE_IDS.flatMap(
+  (id) => {
+    const project = PROJECTS.find((p) => p.id === id)
+    if (!project) {
+      console.warn(`[rokvilla] HOMEPAGE_IDS references unknown project id: "${id}"`)
+      return []
+    }
+    return [project]
+  },
 )
 
 export function getProjectBySlug(slug: string): Project | undefined {

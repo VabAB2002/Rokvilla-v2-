@@ -5,6 +5,7 @@ import * as m from 'framer-motion/m'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 import { makeHeroContainerVariants, makeHeroItemVariants } from '@/lib/motion'
+import { BLUR_DATA_URL } from '@/lib/constants/images'
 
 export function HeroSection() {
   const reducedMotion = useReducedMotion()
@@ -20,6 +21,8 @@ export function HeroSection() {
         alt="Cedar Homestore at dusk — completed building"
         fill
         priority
+        placeholder="blur"
+        blurDataURL={BLUR_DATA_URL}
         className="object-cover"
         sizes="100vw"
       />

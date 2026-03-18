@@ -112,9 +112,9 @@ export function ProjectsSection() {
           {HOMEPAGE_PROJECTS.map((project) => (
             <div
               key={project.id}
-              className="w-[78vw] max-w-[340px] shrink-0 snap-center"
+              className="w-[85vw] shrink-0 snap-center"
             >
-              <ProjectCardLink project={project} heightClass="h-56" />
+              <ProjectCardLink project={project} heightClass="h-96" />
             </div>
           ))}
         </div>

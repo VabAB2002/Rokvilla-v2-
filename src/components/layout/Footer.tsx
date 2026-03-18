@@ -6,6 +6,8 @@ const FOOTER_LINKS = {
   company: [
     { label: 'Projects', href: '/projects' },
     { label: 'Contact', href: '/#consultation' },
+    { label: 'Privacy Policy', href: '/privacy-policy' },
+    { label: 'Terms', href: '/terms' },
   ],
   services: [
     { label: 'Design', href: '/design' },
@@ -50,7 +52,7 @@ export function Footer() {
                 ROKVILLA
               </span>
             </Link>
-            <p className="mt-2.5 max-w-[260px] font-body text-[11px] leading-relaxed text-stone/70">
+            <p className="mt-2.5 max-w-[260px] font-body text-[11px] leading-relaxed text-bone/50">
               Crafting spaces that stand the test of time.
               Premium architecture &amp; construction across Karnataka.
             </p>
@@ -71,7 +73,7 @@ export function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="inline-flex min-h-[44px] items-center font-body text-[12px] text-stone/80 transition-colors duration-200 hover:text-brass-light active:text-brass-light"
+                        className="inline-flex min-h-[44px] items-center font-body text-[12px] text-bone/60 transition-colors duration-200 hover:text-brass-light active:text-brass-light"
                       >
                         {link.label}
                       </Link>
@@ -93,7 +95,7 @@ export function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-bone/[0.06] text-stone/60 transition-colors duration-200 hover:border-brass-light/30 hover:text-brass-light active:text-brass-light"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-bone/[0.06] text-bone/50 transition-colors duration-200 hover:border-brass-light/30 hover:text-brass-light active:text-brass-light"
                 >
                   <svg
                     className="h-[18px] w-[18px]"
@@ -109,7 +111,7 @@ export function Footer() {
                 </a>
               ))}
             </div>
-            <p className="mt-1 font-body text-[10px] text-stone/40">
+            <p className="mt-1 font-body text-[10px] text-bone/40">
               &copy; {new Date().getFullYear()} ROKVILLA. All rights reserved.
             </p>
           </div>
@@ -133,7 +135,7 @@ export function Footer() {
                   ROKVILLA
                 </span>
               </Link>
-              <p className="mt-4 max-w-xs font-body text-sm leading-relaxed text-stone">
+              <p className="mt-4 max-w-xs font-body text-sm leading-relaxed text-bone/50">
                 Crafting spaces that stand the test of time.
                 Premium architecture &amp; construction across Karnataka.
               </p>
@@ -150,7 +152,7 @@ export function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="inline-flex min-h-[44px] items-center py-2 font-body text-[13px] text-stone transition-colors duration-200 hover:text-brass-light active:text-brass-light"
+                        className="inline-flex min-h-[44px] items-center py-2 font-body text-[13px] text-bone/60 transition-colors duration-200 hover:text-brass-light active:text-brass-light"
                       >
                         {link.label}
                       </Link>
@@ -166,7 +168,7 @@ export function Footer() {
 
           {/* Bottom bar */}
           <div className="flex items-center justify-between">
-            <p className="font-body text-xs text-stone/60">
+            <p className="font-body text-xs text-bone/40">
               &copy; {new Date().getFullYear()} ROKVILLA. All rights reserved.
             </p>
             <div className="flex items-center gap-5">
@@ -175,7 +177,7 @@ export function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="flex min-h-[44px] min-w-[44px] items-center justify-center text-stone transition-colors duration-200 hover:text-brass-light active:text-brass-light"
+                  className="flex min-h-[44px] min-w-[44px] items-center justify-center text-bone/50 transition-colors duration-200 hover:text-brass-light active:text-brass-light"
                 >
                   <svg
                     className="h-5 w-5"

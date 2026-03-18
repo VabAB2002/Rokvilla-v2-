@@ -12,7 +12,7 @@ export const CALL_URL_2 = `tel:${PHONE_NUMBER_2}`
 export const SOCIAL_LINKS = [
   {
     label: 'Instagram',
-    href: 'https://www.instagram.com/rokvilla/',
+    href: 'https://www.instagram.com/rokvilla_com/',
     icon: 'M16 4H8a4 4 0 00-4 4v8a4 4 0 004 4h8a4 4 0 004-4V8a4 4 0 00-4-4z M12 15a3 3 0 110-6 3 3 0 010 6z M16.5 7.5h.01',
   },
   {

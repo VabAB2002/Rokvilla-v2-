@@ -16,13 +16,15 @@ export function buildOrganizationSchema(): SchemaBase {
     url: SITE_URL,
     logo: `${SITE_URL}/logo/rok-logo-black.png`,
     description:
-      'Premium architecture, construction & interior design in Hubli, Dharwad & Ballari, Karnataka.',
+      'Premium architecture, construction & interior design in Hubballi, Dharwad & Ballari, Karnataka.',
     telephone: PHONE_DISPLAY,
     email: EMAIL,
     address: {
       '@type': 'PostalAddress',
+      streetAddress: LOCATIONS[0].address,
       addressLocality: 'Hubballi',
       addressRegion: 'Karnataka',
+      postalCode: LOCATIONS[0].address.match(/\d{6}/)?.[0] ?? '',
       addressCountry: 'IN',
     },
     sameAs: SOCIAL_LINKS.map((link) => link.href),
@@ -35,10 +37,13 @@ export function buildLocalBusinessSchema(
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
+    '@id': `${SITE_URL}/#location-${location.id}`,
     name: `RokVilla — ${location.city}`,
     url: SITE_URL,
+    image: `${SITE_URL}/logo/rok-logo-black.png`,
     telephone: location.phone,
     email: location.email,
+    // TODO: Add openingHours and priceRange when business provides details
     address: {
       '@type': 'PostalAddress',
       streetAddress: location.address,

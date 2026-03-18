@@ -323,7 +323,7 @@ export const MATERIAL_FEATURES: ReadonlyArray<MaterialFeature> = [
 
 export const FURNISH_TESTIMONIALS: ReadonlyArray<Testimonial> = [
   {
-    id: 'furn-test-1',
+    id: 'furnish-review-1',
     name: 'Suresh Bhat',
     initials: 'SB',
     projectType: 'Full Home Interior',
@@ -333,7 +333,7 @@ export const FURNISH_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'furn-test-2',
+    id: 'furnish-review-2',
     name: 'Kavitha Rao',
     initials: 'KR',
     projectType: 'Modular Kitchen',
@@ -343,7 +343,7 @@ export const FURNISH_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'furn-test-3',
+    id: 'furnish-review-3',
     name: 'Deepak Kulkarni',
     initials: 'DK',
     projectType: 'Bedroom & Wardrobe',
@@ -353,7 +353,7 @@ export const FURNISH_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'furn-test-4',
+    id: 'furnish-review-4',
     name: 'Meena Patil',
     initials: 'MP',
     projectType: 'Living Room Furnishing',
@@ -363,7 +363,7 @@ export const FURNISH_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'furn-test-5',
+    id: 'furnish-review-5',
     name: 'Arun Hegde',
     initials: 'AH',
     projectType: 'Full Home Interior',

@@ -29,6 +29,16 @@ export function LocationMiniMap({ location }: LocationMiniMapProps) {
 
     async function initMap() {
       try {
+        // Dynamically inject Mapbox CSS on first use (avoids render-blocking on all pages)
+        if (!document.querySelector('link[data-mapbox-css]')) {
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.href = 'https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css'
+          link.crossOrigin = 'anonymous'
+          link.dataset.mapboxCss = 'true'
+          document.head.appendChild(link)
+        }
+
         const mapboxgl = (await import('mapbox-gl')).default
         if (cancelled) return
         mapboxgl.accessToken = token!

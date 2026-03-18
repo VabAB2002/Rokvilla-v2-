@@ -28,15 +28,13 @@
   --color-slate: #5C5248;
   --color-obsidian: #1C1916;
 
-  /* ── Earth Accent — Karnataka laterite (WCAG AA accessible) ── */
-  --color-terracotta: #b75c07;
-  --color-terracotta-deep: #9a4d06;
+  /* ── Earth Accent — Karnataka laterite ── */
+  --color-terracotta: #ee7707;
+  --color-terracotta-deep: #d56a06;
   --color-terracotta-pale: #f5a04d;
-  --color-terracotta-muted: #c4873e;
-  --color-terracotta-vivid: #ee7707;
 
   /* ── Brass Accent — premium metallic ── */
-  --color-brass: #b75c07;
+  --color-brass: #C8956C;
   --color-brass-light: #f5a623;
   --color-brass-pale: #f7c675;
 
@@ -48,7 +46,7 @@
   /* ── Shadows ── */
   --shadow-card: 0 1px 3px rgba(28,25,22,0.06), 0 4px 16px rgba(28,25,22,0.08);
   --shadow-card-hover: 0 8px 32px rgba(28,25,22,0.14), 0 2px 8px rgba(28,25,22,0.08);
-  --shadow-accent: 0 4px 20px rgba(183, 92, 7, 0.35);
+  --shadow-accent: 0 4px 20px rgba(238, 119, 7, 0.35);
   --shadow-dark: 0 4px 24px rgba(0,0,0,0.3);
 
   /* ── Easings ── */

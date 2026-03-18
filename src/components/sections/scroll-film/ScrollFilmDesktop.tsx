@@ -192,7 +192,7 @@ export function ScrollFilmDesktop() {
                 {chapter.title}
               </h3>
 
-              <p className="film-tagline mt-6 max-w-lg font-body text-lg leading-relaxed text-stone">
+              <p className="film-tagline mt-6 max-w-lg font-body text-lg leading-relaxed text-bone/60">
                 {chapter.tagline}
               </p>
 

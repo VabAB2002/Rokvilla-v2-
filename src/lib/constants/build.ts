@@ -67,7 +67,7 @@ export const BUILD_PHASE_GROUPS: ReadonlyArray<BuildPhaseGroup> = [
         id: 'gs-1',
         title: 'Fill a Short Form',
         description:
-          'Share your requirements in a quick form — our team calls you back within 24 hours to get things moving.',
+          'Share your requirements in a quick form — we connect with you on WhatsApp to get things moving.',
         iconPath:
           'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2',
       },
@@ -190,7 +190,6 @@ export interface PlatformRating {
   readonly reviewCount: string
 }
 
-// Last verified: March 2025 — update quarterly
 export const PLATFORM_RATINGS: ReadonlyArray<PlatformRating> = [
   { id: 'google', platform: 'Google', rating: '4.9', reviewCount: '200+ reviews' },
   { id: 'justdial', platform: 'JustDial', rating: '4.8', reviewCount: '150+ reviews' },
@@ -202,7 +201,7 @@ export const PLATFORM_RATINGS: ReadonlyArray<PlatformRating> = [
 
 export const BUILD_TESTIMONIALS: ReadonlyArray<Testimonial> = [
   {
-    id: 'build-test-1',
+    id: 'build-review-1',
     name: 'Ramesh Hiremath',
     initials: 'RH',
     projectType: 'Residential Construction',
@@ -212,7 +211,7 @@ export const BUILD_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'build-test-2',
+    id: 'build-review-2',
     name: 'Savita Gowda',
     initials: 'SG',
     projectType: 'Luxury Villa',
@@ -222,7 +221,7 @@ export const BUILD_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'build-test-3',
+    id: 'build-review-3',
     name: 'Prakash Shetty',
     initials: 'PS',
     projectType: 'Residential Construction',
@@ -232,7 +231,7 @@ export const BUILD_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'build-test-4',
+    id: 'build-review-4',
     name: 'Lakshmi Devi',
     initials: 'LD',
     projectType: 'Residential Construction',
@@ -242,7 +241,7 @@ export const BUILD_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'build-test-5',
+    id: 'build-review-5',
     name: 'Anil Patil',
     initials: 'AP',
     projectType: 'Commercial Construction',

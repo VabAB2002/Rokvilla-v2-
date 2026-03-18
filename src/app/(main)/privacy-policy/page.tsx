@@ -1,9 +1,12 @@
 import type { Metadata } from 'next'
+import { EMAIL, PHONE_NUMBER, PHONE_NUMBER_2, PHONE_DISPLAY, PHONE_DISPLAY_2 } from '@/lib/constants/contact'
+import { SITE_URL } from '@/lib/seo/constants'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
     'Learn how RokVilla collects, uses, and protects your personal information in accordance with the Digital Personal Data Protection Act 2023.',
+  alternates: { canonical: `${SITE_URL}/privacy-policy` },
 }
 
 export default function PrivacyPolicyPage() {
@@ -20,7 +23,7 @@ export default function PrivacyPolicyPage() {
             Privacy Policy
           </h1>
           <p className="mt-4 font-body text-sm text-slate">
-            Last updated: March 2025
+            Last updated: March 2026
           </p>
         </div>
 
@@ -72,7 +75,10 @@ export default function PrivacyPolicyPage() {
               ))}
             </ul>
             <p className="mt-4 font-body text-base leading-relaxed text-slate">
-              We do not use cookies, collect browsing history, or track you across other websites.
+              We do not use first-party cookies or track you across other websites.
+              Our third-party services (Sentry for error monitoring, Mapbox for interactive maps) may
+              set functional cookies on your device. These are used solely for technical performance
+              and error detection, not for tracking or advertising.
             </p>
           </section>
 
@@ -290,26 +296,26 @@ export default function PrivacyPolicyPage() {
               <p className="font-body text-sm text-slate">
                 Email:{' '}
                 <a
-                  href="mailto:home@rokvilla.com"
+                  href={`mailto:${EMAIL}`}
                   className="text-terracotta underline underline-offset-2 hover:opacity-80"
                 >
-                  home@rokvilla.com
+                  {EMAIL}
                 </a>
               </p>
               <p className="font-body text-sm text-slate">
                 Phone:{' '}
                 <a
-                  href="tel:+917899232229"
+                  href={`tel:${PHONE_NUMBER}`}
                   className="text-terracotta underline underline-offset-2 hover:opacity-80"
                 >
-                  +91 78992 32229
+                  {PHONE_DISPLAY}
                 </a>{' '}
                 /{' '}
                 <a
-                  href="tel:+917899242229"
+                  href={`tel:${PHONE_NUMBER_2}`}
                   className="text-terracotta underline underline-offset-2 hover:opacity-80"
                 >
-                  +91 78992 42229
+                  {PHONE_DISPLAY_2}
                 </a>
               </p>
             </address>

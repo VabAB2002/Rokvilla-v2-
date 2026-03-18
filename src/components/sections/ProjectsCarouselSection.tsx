@@ -96,8 +96,8 @@ export function ProjectsCarouselSection({
         </AnimatedSection>
 
         {/* Filter tabs */}
-        <AnimatedSection delay={0.15} className="mt-10 hidden md:mt-12 md:block">
-          <div className="flex justify-center gap-2 md:gap-3">
+        <AnimatedSection delay={0.15} className="mt-10 md:mt-12">
+          <div className="flex justify-center gap-1.5 overflow-x-auto no-scrollbar md:gap-3 md:overflow-visible">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
@@ -122,17 +122,17 @@ export function ProjectsCarouselSection({
           ref={scrollRef}
           className="flex gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar px-[10vw] pb-2"
         >
-          {items.map((project) => (
+          {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="w-[78vw] max-w-[340px] shrink-0 snap-center"
+              className="w-[85vw] shrink-0 snap-center"
             >
-              <ProjectCard project={project} heightClass="h-56" />
+              <ProjectCard project={project} heightClass="h-96" />
             </div>
           ))}
         </div>
         <ScrollIndicatorDots
-          count={items.length}
+          count={filteredProjects.length}
           activeIndex={activeIndex}
           onDotClick={handleDotClick}
           className="mt-4"
@@ -170,7 +170,7 @@ export function ProjectsCarouselSection({
                     width: `calc((100% - ${(visibleCount - 1) * gap}px) / ${visibleCount})`,
                   }}
                 >
-                  <ProjectCard project={project} heightClass="h-56 md:h-80" />
+                  <ProjectCard project={project} heightClass="h-96 md:h-80" />
                 </div>
               ))}
             </CarouselTrack>

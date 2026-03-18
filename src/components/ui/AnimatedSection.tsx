@@ -1,6 +1,9 @@
 'use client'
 
-import { type ReactNode, useRef, useEffect, useState } from 'react'
+import { type ReactNode } from 'react'
+import * as m from 'framer-motion/m'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { EASE_OUT_EXPO } from '@/lib/motion'
 
 interface AnimatedSectionProps {
   readonly children: ReactNode
@@ -13,34 +16,21 @@ export function AnimatedSection({
   className = '',
   delay = 0,
 }: AnimatedSectionProps) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(el)
-        }
-      },
-      { rootMargin: '-100px 0px' }
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+  const reducedMotion = useReducedMotion()
 
   return (
-    <div
-      ref={ref}
-      className={`${isVisible ? 'animate-[fadeUp_0.7s_var(--ease-out-expo)_forwards]' : 'opacity-0 translate-y-6'} ${className}`}
-      style={delay > 0 ? { animationDelay: `${delay}s` } : undefined}
+    <m.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-100px 0px' }}
+      transition={{
+        duration: reducedMotion ? 0.1 : 0.7,
+        delay,
+        ease: EASE_OUT_EXPO,
+      }}
+      className={className}
     >
       {children}
-    </div>
+    </m.div>
   )
 }
