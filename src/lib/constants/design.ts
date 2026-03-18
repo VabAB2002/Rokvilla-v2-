@@ -17,7 +17,7 @@ export const DESIGN_STEPS: ReadonlyArray<ProcessStep> = [
     title: 'Go Through Our Projects',
     description:
       'Browse our portfolio of residential, commercial, and interior projects to find inspiration for your vision.',
-    href: '#design-projects',
+    href: '/projects',
   },
   {
     number: '02',

@@ -79,7 +79,7 @@ export function DesignHero() {
               variants={itemVariants}
               className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4"
             >
-              <Button variant="primary" href="#design-projects" className="w-full sm:w-auto">
+              <Button variant="primary" href="/projects" className="w-full sm:w-auto">
                 Browse Projects
               </Button>
               <Button variant="secondary" href="#consultation" className="w-full sm:w-auto">
