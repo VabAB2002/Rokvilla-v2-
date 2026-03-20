@@ -26,9 +26,7 @@ export function validateForm(fields: FormFields): FormErrors {
   const errors: FormErrors = {}
 
   if (!fields.name.trim()) errors.name = 'Name is required'
-  if (!fields.email.trim()) {
-    errors.email = 'Email is required'
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) {
+  if (fields.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) {
     errors.email = 'Enter a valid email address'
   }
   if (!fields.phone.trim()) {

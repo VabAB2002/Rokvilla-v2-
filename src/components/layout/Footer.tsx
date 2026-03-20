@@ -4,6 +4,7 @@ import { SOCIAL_LINKS } from '@/lib/constants/contact'
 
 const FOOTER_LINKS = {
   company: [
+    { label: 'About', href: '/about' },
     { label: 'Projects', href: '/projects' },
     { label: 'Contact', href: '/#consultation' },
     { label: 'Privacy Policy', href: '/privacy-policy' },
