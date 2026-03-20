@@ -7,7 +7,6 @@ import { ServicesSection } from '@/components/sections/ServicesSection'
 import { ProjectsSection } from '@/components/sections/ProjectsSection'
 import { ConsultationPhoto } from '@/components/design/ConsultationPhoto'
 import { SectionErrorBoundary } from '@/components/error/SectionErrorBoundary'
-import { MapSkeleton, FormSkeleton } from '@/components/ui/Skeleton'
 
 export const metadata: Metadata = {
   alternates: { canonical: SITE_URL },
@@ -15,6 +14,10 @@ export const metadata: Metadata = {
 
 const LocationsSection = dynamic(
   () => import('@/components/sections/LocationsSection').then(m => m.LocationsSection)
+)
+
+const HoverGallerySection = dynamic(
+  () => import('@/components/sections/HoverGallerySection').then(m => m.HoverGallerySection)
 )
 
 const ConsultationForm = dynamic(
@@ -28,12 +31,17 @@ export default function Home() {
       <ServicesSection />
       <ProjectsSection />
       <SectionErrorBoundary name="locations-map">
-        <Suspense fallback={<MapSkeleton />}>
+        <Suspense fallback={<div className="min-h-[500px]" />}>
           <LocationsSection />
         </Suspense>
       </SectionErrorBoundary>
+      <SectionErrorBoundary name="featured-work">
+        <Suspense fallback={<div className="min-h-[500px]" />}>
+          <HoverGallerySection />
+        </Suspense>
+      </SectionErrorBoundary>
       <SectionErrorBoundary name="home-consultation-form">
-        <Suspense fallback={<FormSkeleton />}>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
           <ConsultationForm
             layout="split"
             illustration={<ConsultationPhoto />}
