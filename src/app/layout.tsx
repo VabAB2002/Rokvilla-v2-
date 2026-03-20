@@ -4,7 +4,9 @@ import './globals.css'
 import { SITE_URL, OG_IMAGE_DEFAULT } from '@/lib/seo/constants'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { buildOrganizationSchema, buildLocalBusinessSchema } from '@/lib/seo/schemas'
+import { Analytics } from '@vercel/analytics/next'
 import { LOCATIONS } from '@/lib/constants/locations'
+import { getNonce } from '@/lib/nonce'
 
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ['latin'],
@@ -58,12 +60,12 @@ export const metadata: Metadata = {
     template: '%s | RokVilla',
   },
   description:
-    'RokVilla crafts premium residential, commercial and interior spaces in Hubli, Dharwad and Ballari, Karnataka.',
+    'RokVilla crafts premium residential, commercial and interior spaces in Hubballi, Dharwad and Ballari, Karnataka.',
   keywords: [
     'architecture',
     'construction',
     'interior design',
-    'Hubli',
+    'Hubballi',
     'Dharwad',
     'Ballari',
     'Karnataka',
@@ -74,33 +76,40 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     siteName: 'RokVilla',
     url: SITE_URL,
+    title: 'RokVilla — Design. Build. Furnish.',
     description:
-      'Premium architecture, construction & interior design in Karnataka.',
-    images: [{ url: OG_IMAGE_DEFAULT, width: 1200, height: 630, alt: 'RokVilla' }],
+      'Premium architecture, construction & interior design studio in Hubballi, Dharwad & Ballari, Karnataka.',
+    images: [{ url: OG_IMAGE_DEFAULT, width: 1200, height: 1200, alt: 'RokVilla — Premium Architecture' }],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'RokVilla — Design. Build. Furnish.',
+    description: 'Premium architecture, construction & interior design studio in Hubballi, Dharwad & Ballari, Karnataka.',
+    images: [OG_IMAGE_DEFAULT],
   },
   robots: { index: true, follow: true },
-  alternates: { canonical: SITE_URL },
+  alternates: {
+    languages: {
+      'en-IN': SITE_URL,
+      'x-default': SITE_URL,
+    },
+  },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const nonce = await getNonce()
+
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css"
-          crossOrigin="anonymous"
-          integrity="sha384-GTsgKcJXGSkBp0M68qpxkz9XovzVH0PwSrjYONvkn3tXtySOSq+a14bG2gVJHwQG"
-        />
-      </head>
       <body
         className={`${cormorantGaramond.variable} ${cormorantSC.variable} ${dmSans.variable} ${spaceGrotesk.variable} antialiased`}
       >
         <JsonLd
+          nonce={nonce}
           schema={[
             buildOrganizationSchema(),
             ...LOCATIONS.map(buildLocalBusinessSchema),
@@ -113,6 +122,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <div id="main-content" className="overflow-x-clip overscroll-x-none">{children}</div>
+        <Analytics />
       </body>
     </html>
   )

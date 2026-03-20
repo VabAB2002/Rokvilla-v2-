@@ -77,7 +77,7 @@ export function ProjectsSection() {
               Projects
             </h2>
             <p className="mt-3 font-body text-base tracking-wide text-slate md:text-lg">
-              From Home to Industries
+              From Homes to Industries
             </p>
           </AnimatedSection>
         </div>
@@ -112,9 +112,9 @@ export function ProjectsSection() {
           {HOMEPAGE_PROJECTS.map((project) => (
             <div
               key={project.id}
-              className="w-[78vw] max-w-[340px] shrink-0 snap-center"
+              className="w-[85vw] shrink-0 snap-center"
             >
-              <ProjectCardLink project={project} heightClass="h-56" />
+              <ProjectCardLink project={project} heightClass="h-96" />
             </div>
           ))}
         </div>

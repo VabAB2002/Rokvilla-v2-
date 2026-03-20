@@ -1,10 +1,11 @@
 'use client'
 
+import Image from 'next/image'
 import * as m from 'framer-motion/m'
-import { VideoBackground } from '@/components/ui/VideoBackground'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 import { makeHeroContainerVariants, makeHeroItemVariants } from '@/lib/motion'
+import { BLUR_DATA_URL } from '@/lib/constants/images'
 
 export function HeroSection() {
   const reducedMotion = useReducedMotion()
@@ -14,9 +15,26 @@ export function HeroSection() {
 
   return (
     <section aria-label="Hero" className="relative h-dvh min-h-[600px] overflow-hidden">
-      <VideoBackground
-        imageSrc="/images/home/hero-fallback.jpg"
-        imageAlt="RokVilla architecture showcase — Cedar Homestore at dusk"
+      {/* Hero background image */}
+      <Image
+        src="/images/home/hero-real.jpg"
+        alt="Cedar Homestore at dusk — completed building"
+        fill
+        priority
+        placeholder="blur"
+        blurDataURL={BLUR_DATA_URL}
+        className="object-cover"
+        sizes="100vw"
+      />
+
+      {/* Gradient overlay for text legibility */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[5]"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(15,13,11,0.3) 0%, rgba(15,13,11,0.55) 50%, rgba(15,13,11,0.82) 100%)',
+        }}
       />
 
       {/* Content */}
@@ -51,8 +69,6 @@ export function HeroSection() {
             >
               Premium residential, commercial, and interior spaces — crafted with precision across Karnataka.
             </m.p>
-
-
           </m.div>
         </div>
       </div>

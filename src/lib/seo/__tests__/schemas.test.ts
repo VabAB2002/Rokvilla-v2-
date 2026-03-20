@@ -35,8 +35,10 @@ describe('buildOrganizationSchema', () => {
     const schema = buildOrganizationSchema()
     expect(schema.address).toEqual({
       '@type': 'PostalAddress',
+      streetAddress: 'Rokvilla Design & Build Co, 20, Hubballi, Karnataka 580031',
       addressLocality: 'Hubballi',
       addressRegion: 'Karnataka',
+      postalCode: '580031',
       addressCountry: 'IN',
     })
   })
@@ -45,9 +47,9 @@ describe('buildOrganizationSchema', () => {
     const schema = buildOrganizationSchema()
     const sameAs = schema.sameAs as string[]
     expect(sameAs).toHaveLength(3)
-    expect(sameAs).toContain('https://instagram.com/rokvilla')
-    expect(sameAs).toContain('https://facebook.com/rokvilla')
-    expect(sameAs).toContain('https://linkedin.com/company/rokvilla')
+    expect(sameAs).toContain('https://www.instagram.com/rokvilla_com/')
+    expect(sameAs).toContain('https://www.facebook.com/rokvilla/')
+    expect(sameAs).toContain('https://www.linkedin.com/company/rokvilla/')
   })
 })
 

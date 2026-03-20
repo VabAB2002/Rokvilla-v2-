@@ -11,6 +11,7 @@ import { ConsultationPhoto } from '@/components/design/ConsultationPhoto'
 import { TestimonialsSection } from '@/components/shared/TestimonialsSection'
 import { BuildProjectsWrapper } from '@/components/build/BuildProjectsWrapper'
 import { SectionErrorBoundary } from '@/components/error/SectionErrorBoundary'
+import { FormSkeleton } from '@/components/ui/Skeleton'
 import {
   BUILD_TESTIMONIALS,
   BUILD_FAQS,
@@ -30,10 +31,12 @@ const FAQSection = dynamic(
 )
 
 export const metadata: Metadata = {
-  title: 'Build — RokVilla',
+  title: 'Build',
   description:
     'From foundation to finish — construction packages with transparent pricing, daily site updates, and a 10-year warranty. Choose your package and build your dream home.',
+  alternates: { canonical: `${SITE_URL}/build` },
   openGraph: {
+    title: 'Construction Packages | RokVilla',
     url: `${SITE_URL}/build`,
     description:
       'From foundation to finish — construction packages with transparent pricing, daily site updates, and a 10-year warranty. Choose your package and build your dream home.',
@@ -64,7 +67,7 @@ export default function BuildPage() {
       <div className="cv-auto"><BuildKeyFeaturesSection /></div>
       <div className="cv-auto">
         <SectionErrorBoundary name="build-consultation-form">
-          <Suspense fallback={<div className="min-h-[400px]" />}>
+          <Suspense fallback={<FormSkeleton />}>
             <ConsultationForm
               layout="split"
               illustration={<ConsultationPhoto />}

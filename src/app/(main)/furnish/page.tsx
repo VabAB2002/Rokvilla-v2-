@@ -14,6 +14,7 @@ import { MaterialFeaturesSection } from '@/components/furnish/MaterialFeaturesSe
 import { ConsultationPhoto } from '@/components/design/ConsultationPhoto'
 import { TestimonialsSection } from '@/components/shared/TestimonialsSection'
 import { SectionErrorBoundary } from '@/components/error/SectionErrorBoundary'
+import { FormSkeleton } from '@/components/ui/Skeleton'
 import {
   FURNISH_TESTIMONIALS,
   FURNISH_FAQS,
@@ -29,10 +30,12 @@ const FAQSection = dynamic(
 )
 
 export const metadata: Metadata = {
-  title: 'Furnish — RokVilla',
+  title: 'Furnish',
   description:
     'End-to-end interior furnishing with premium materials, expert craftsmanship, and a 10-year warranty. Browse projects, explore design themes, and book a free consultation.',
+  alternates: { canonical: `${SITE_URL}/furnish` },
   openGraph: {
+    title: 'Interior Furnishing | RokVilla',
     url: `${SITE_URL}/furnish`,
     description:
       'End-to-end interior furnishing with premium materials, expert craftsmanship, and a 10-year warranty. Browse projects, explore design themes, and book a free consultation.',
@@ -60,7 +63,7 @@ export default function FurnishPage() {
       <div className="cv-auto"><MaterialFeaturesSection /></div>
       <div className="cv-auto">
         <SectionErrorBoundary name="furnish-consultation-form">
-          <Suspense fallback={<div className="min-h-[400px]" />}>
+          <Suspense fallback={<FormSkeleton />}>
             <ConsultationForm
               layout="split"
               illustration={<ConsultationPhoto />}

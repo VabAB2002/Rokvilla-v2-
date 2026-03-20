@@ -21,6 +21,7 @@ const MENU_LINKS = [
     ],
   },
   { label: 'Projects', href: '/projects' },
+  { label: 'About', href: '/about' },
   { label: 'Locations', href: '/#locations' },
 ] as const
 
@@ -196,7 +197,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                 <div className="flex flex-col gap-6 lg:gap-10">
                   {/* Contact info */}
                   <div>
-                    <h3 className="font-accent text-[11px] font-medium uppercase tracking-[0.18em] text-stone">
+                    <h3 className="font-accent text-[11px] font-medium uppercase tracking-[0.18em] text-bone/50">
                       Get in Touch
                     </h3>
                     <div className="mt-3 flex flex-col gap-2 lg:mt-5 lg:gap-3">
@@ -218,7 +219,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                       >
                         {CONTACT.email}
                       </a>
-                      <p className="font-body text-base text-bone/40 lg:text-lg">
+                      <p className="font-body text-base text-bone/60 lg:text-lg">
                         {CONTACT.address}
                       </p>
                     </div>
@@ -226,7 +227,7 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
 
                   {/* Social links */}
                   <div>
-                    <h3 className="font-accent text-[11px] font-medium uppercase tracking-[0.18em] text-stone">
+                    <h3 className="font-accent text-[11px] font-medium uppercase tracking-[0.18em] text-bone/50">
                       Follow Us
                     </h3>
                     <div className="mt-4 flex items-center gap-5">

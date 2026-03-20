@@ -26,7 +26,9 @@ export async function generateMetadata({
   return {
     title: project.name,
     description: project.vision,
+    alternates: { canonical: `${SITE_URL}/projects/${slug}` },
     openGraph: {
+      title: `${project.name} | RokVilla`,
       images: [{ url: new URL(project.heroImage, SITE_URL).href }],
     },
   }
@@ -39,7 +41,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   if (!project) notFound()
 
   return (
-    <main>
+    <>
       <JsonLd
         schema={buildBreadcrumbSchema([
           { name: 'Home', url: SITE_URL },
@@ -53,6 +55,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         images={project.galleryImages}
         projectName={project.name}
       />
-    </main>
+    </>
   )
 }

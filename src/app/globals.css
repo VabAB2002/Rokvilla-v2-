@@ -32,10 +32,9 @@
   --color-terracotta: #ee7707;
   --color-terracotta-deep: #d56a06;
   --color-terracotta-pale: #f5a04d;
-  --color-terracotta-muted: #c4873e;
 
   /* ── Brass Accent — premium metallic ── */
-  --color-brass: #ee7707;
+  --color-brass: #C8956C;
   --color-brass-light: #f5a623;
   --color-brass-pale: #f7c675;
 
@@ -47,7 +46,7 @@
   /* ── Shadows ── */
   --shadow-card: 0 1px 3px rgba(28,25,22,0.06), 0 4px 16px rgba(28,25,22,0.08);
   --shadow-card-hover: 0 8px 32px rgba(28,25,22,0.14), 0 2px 8px rgba(28,25,22,0.08);
-  --shadow-accent: 0 4px 20px rgba(238, 119, 7, 0.3);
+  --shadow-accent: 0 4px 20px rgba(238, 119, 7, 0.35);
   --shadow-dark: 0 4px 24px rgba(0,0,0,0.3);
 
   /* ── Easings ── */

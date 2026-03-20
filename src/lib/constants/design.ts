@@ -17,7 +17,7 @@ export const DESIGN_STEPS: ReadonlyArray<ProcessStep> = [
     title: 'Go Through Our Projects',
     description:
       'Browse our portfolio of residential, commercial, and interior projects to find inspiration for your vision.',
-    href: '#design-projects',
+    href: '/projects',
   },
   {
     number: '02',
@@ -214,17 +214,17 @@ export interface Testimonial {
 
 export const DESIGN_TESTIMONIALS: ReadonlyArray<Testimonial> = [
   {
-    id: 'test-1',
+    id: 'design-review-1',
     name: 'Rajesh Kulkarni',
     initials: 'RK',
     projectType: 'Residential',
-    location: 'Hubli',
+    location: 'Hubballi',
     quote:
       'RokVilla transformed our vague ideas into a stunning home design. Their attention to vastu compliance while keeping the aesthetics modern was impressive.',
     rating: 5,
   },
   {
-    id: 'test-2',
+    id: 'design-review-2',
     name: 'Priya Deshpande',
     initials: 'PD',
     projectType: 'Interior',
@@ -234,17 +234,17 @@ export const DESIGN_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'test-3',
+    id: 'design-review-3',
     name: 'Mahesh Patil',
     initials: 'MP',
     projectType: 'Commercial',
-    location: 'Hubli',
+    location: 'Hubballi',
     quote:
       'Our showroom design by RokVilla increased foot traffic by 40%. The spatial planning and facade design completely stand out on the street.',
     rating: 5,
   },
   {
-    id: 'test-4',
+    id: 'design-review-4',
     name: 'Anita Hegde',
     initials: 'AH',
     projectType: 'Residential',
@@ -254,7 +254,7 @@ export const DESIGN_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'test-5',
+    id: 'design-review-5',
     name: 'Vinay Joshi',
     initials: 'VJ',
     projectType: 'Residential',
@@ -264,11 +264,11 @@ export const DESIGN_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'test-6',
+    id: 'design-review-6',
     name: 'Sneha Naik',
     initials: 'SN',
     projectType: 'Interior',
-    location: 'Hubli',
+    location: 'Hubballi',
     quote:
       'They designed our café interior with a perfect blend of warmth and modern edge. Customers constantly compliment the space — it speaks for itself.',
     rating: 5,
@@ -380,5 +380,4 @@ export interface Stat {
 export const DESIGN_STATS: ReadonlyArray<Stat> = [
   { value: 50, suffix: '+', label: 'Projects Delivered' },
   { value: 100, suffix: '%', label: 'Quality Assurance' },
-  { value: 0, suffix: '%', label: 'Cost Overrun' },
 ] as const

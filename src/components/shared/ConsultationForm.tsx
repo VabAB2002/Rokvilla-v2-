@@ -1,12 +1,15 @@
 'use client'
 
 import { type ReactNode, useState, useCallback, useId, useRef, useEffect } from 'react'
+import Link from 'next/link'
+import { track } from '@vercel/analytics'
 import * as m from 'framer-motion/m'
 import { AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { EASE_OUT_EXPO } from '@/lib/motion'
+import { EMAIL, PHONE_DISPLAY, PHONE_DISPLAY_2 } from '@/lib/constants/contact'
 import {
   validateForm,
   INITIAL_FIELDS,
@@ -308,9 +311,9 @@ export function ConsultationForm({
   categories = DEFAULT_CATEGORIES,
   layout = 'centered',
   illustration,
-  contactEmail = 'home@rokvilla.com',
-  contactPhone = '+91 78992 32229',
-  contactPhone2 = '+91 78992 42229',
+  contactEmail = EMAIL,
+  contactPhone = PHONE_DISPLAY,
+  contactPhone2 = PHONE_DISPLAY_2,
   sectionClassName,
 }: ConsultationFormProps) {
   const reducedMotion = useReducedMotion()
@@ -328,7 +331,8 @@ export function ConsultationForm({
     })
   }, [])
 
-  const [sendError, setSendError] = useState('')
+  const [sendError, setSendError] = useState<string>('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
@@ -340,9 +344,11 @@ export function ConsultationForm({
         return
       }
 
+      setIsSubmitting(true)
+
       const message = [
         `Name: ${fields.name}`,
-        `Email: ${fields.email}`,
+        fields.email.trim() ? `Email: ${fields.email}` : '',
         `Phone: ${fields.phone}`,
         `Category: ${fields.category}`,
         `Type: ${fields.consultationType}`,
@@ -353,22 +359,22 @@ export function ConsultationForm({
         .join('\n')
 
       const waNumber = contactPhone.replace(/[^+\d]/g, '').replace(/^\+/, '')
-      const popup = window.open(
-        `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`,
-        '_blank',
-        'noopener,noreferrer',
-      )
+      const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`
+      const popup = window.open(waUrl, '_blank', 'noopener,noreferrer')
 
       if (popup === null) {
         setSendError(
-          'Unable to open WhatsApp. Please allow popups or contact us directly.',
+          `Unable to open WhatsApp. Please allow popups, or open WhatsApp directly, or call ${contactPhone}.`,
         )
+        setIsSubmitting(false)
         return
       }
 
+      track('consultation_submitted', { category: fields.category })
       setSubmitted(true)
       setFields(INITIAL_FIELDS)
       setErrors({})
+      setIsSubmitting(false)
     },
     [fields, contactPhone],
   )
@@ -489,15 +495,14 @@ export function ConsultationForm({
                       Thank You!
                     </h3>
                     <p className="mt-2 font-body text-sm text-slate">
-                      We&apos;ve received your consultation request. Our team will reach out
-                      within 24 hours.
+                      You&apos;re being connected to our team on WhatsApp.
                     </p>
                     <button
                       type="button"
                       onClick={() => setSubmitted(false)}
                       className="mt-6 font-body text-[13px] uppercase tracking-[0.08em] text-terracotta transition-colors hover:text-terracotta-deep"
                     >
-                      Submit Another Request
+                      Send Another Inquiry
                     </button>
                   </m.div>
                 ) : (
@@ -529,15 +534,14 @@ export function ConsultationForm({
                         idPrefix={uid}
                       />
                       <FormInput
-                        label="Email"
+                        label="Email (optional)"
                         name="email"
                         type="email"
                         value={fields.email}
                         error={errors.email}
-                        placeholder="you@example.com"
+                        placeholder="yourname@email.com"
                         onChange={handleChange}
                         autoComplete="email"
-                        required
                         idPrefix={uid}
                       />
                     </div>
@@ -550,7 +554,7 @@ export function ConsultationForm({
                         type="tel"
                         value={fields.phone}
                         error={errors.phone}
-                        placeholder="+91 78992 32229"
+                        placeholder="+91 98765 43210"
                         onChange={handleChange}
                         autoComplete="tel"
                         required
@@ -633,7 +637,10 @@ export function ConsultationForm({
                           className="mt-0.5 h-5 w-5 accent-terracotta"
                         />
                         <span className="font-body text-xs text-slate">
-                          I agree to the Privacy Policy and Terms &amp; Conditions
+                          I agree to the{' '}
+                          <Link href="/privacy-policy" target="_blank" className="underline text-terracotta hover:text-terracotta/80 transition-colors">Privacy Policy</Link>
+                          {' '}and{' '}
+                          <Link href="/terms" target="_blank" className="underline text-terracotta hover:text-terracotta/80 transition-colors">Terms &amp; Conditions</Link>
                         </span>
                       </label>
                       {errors.privacy && (
@@ -656,8 +663,8 @@ export function ConsultationForm({
 
                     {/* Submit */}
                     <div className="mt-6">
-                      <Button variant="primary" type="submit" fullWidth>
-                        Book a Meeting
+                      <Button variant="primary" type="submit" fullWidth disabled={isSubmitting}>
+                        {isSubmitting ? 'Opening WhatsApp…' : 'Book a Meeting'}
                         <svg
                           width="16"
                           height="16"
@@ -733,15 +740,14 @@ export function ConsultationForm({
                   Thank You!
                 </h3>
                 <p className="mt-2 font-body text-sm text-slate">
-                  We&apos;ve received your consultation request. Our team will reach
-                  out within 24 hours.
+                  You&apos;re being connected to our team on WhatsApp.
                 </p>
                 <button
                   type="button"
                   onClick={() => setSubmitted(false)}
                   className="mt-6 font-body text-[13px] uppercase tracking-[0.08em] text-terracotta transition-colors hover:text-terracotta-deep"
                 >
-                  Submit Another Request
+                  Send Another Inquiry
                 </button>
               </m.div>
             ) : (
@@ -769,15 +775,14 @@ export function ConsultationForm({
                     idPrefix={uid}
                   />
                   <FormInput
-                    label="Email"
+                    label="Email (optional)"
                     name="email"
                     type="email"
                     value={fields.email}
                     error={errors.email}
-                    placeholder="you@example.com"
+                    placeholder="name@email.com"
                     onChange={handleChange}
                     autoComplete="email"
-                    required
                     idPrefix={uid}
                   />
                   <FormInput
@@ -870,7 +875,10 @@ export function ConsultationForm({
                       className="mt-0.5 h-5 w-5 accent-terracotta"
                     />
                     <span className="font-body text-xs text-slate">
-                      I agree to the Privacy Policy and Terms &amp; Conditions
+                      I agree to the{' '}
+                      <Link href="/privacy-policy" target="_blank" className="underline text-terracotta hover:text-terracotta/80 transition-colors">Privacy Policy</Link>
+                      {' '}and{' '}
+                      <Link href="/terms" target="_blank" className="underline text-terracotta hover:text-terracotta/80 transition-colors">Terms &amp; Conditions</Link>
                     </span>
                   </label>
                   {errors.privacy && (
@@ -889,8 +897,8 @@ export function ConsultationForm({
 
                 {/* Submit */}
                 <div className="mt-8">
-                  <Button variant="primary" type="submit" fullWidth>
-                    Book a Meeting
+                  <Button variant="primary" type="submit" fullWidth disabled={isSubmitting}>
+                    {isSubmitting ? 'Opening WhatsApp…' : 'Book a Meeting'}
                   </Button>
                 </div>
               </m.form>

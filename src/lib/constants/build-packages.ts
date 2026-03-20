@@ -47,7 +47,7 @@ export const PACKAGE_TYPES: ReadonlyArray<PackageType> = [
      ════════════════════════════════════════════════ */
   {
     id: 'homes',
-    label: 'Homes',
+    label: 'Homes/Buildings',
     startingPrice: 1910,
     tiers: [
       { id: 'basic', name: 'Basic', pricePerSqft: 1910 },
@@ -508,7 +508,7 @@ export const PACKAGE_TYPES: ReadonlyArray<PackageType> = [
      ════════════════════════════════════════════════ */
   {
     id: 'luxury-homes',
-    label: 'Luxury Homes',
+    label: 'Luxury Homes/Luxury Buildings',
     startingPrice: 3910,
     tiers: [
       { id: 'freesia', name: 'Luxe', pricePerSqft: 3910 },
@@ -1050,7 +1050,7 @@ export const PACKAGE_TYPES: ReadonlyArray<PackageType> = [
           {
             id: 'fire-panic',
             icon: 'ShieldAlert',
-            feature: 'Fire leaks and Panic buttons in strategic areas',
+            feature: 'Fire alarms and Panic buttons in strategic areas',
             values: [false, true, true],
           },
           {

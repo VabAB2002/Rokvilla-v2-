@@ -7,6 +7,7 @@ import * as m from 'framer-motion/m'
 import { AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useFocusTrap } from '@/hooks/useFocusTrap'
 import { EASE_OUT_EXPO } from '@/lib/motion'
 import { BLUR_DATA_URL } from '@/lib/constants/images'
 
@@ -29,7 +30,10 @@ export function ProjectLightbox({
 }: ProjectLightboxProps) {
   const reducedMotion = useReducedMotion()
   const closeRef = useRef<HTMLButtonElement>(null)
+  const dialogRef = useRef<HTMLDivElement>(null)
   const [mounted, setMounted] = useState(false)
+
+  useFocusTrap(dialogRef)
 
   // SSR guard — createPortal needs document.body which only exists client-side
   useEffect(() => {
@@ -84,6 +88,7 @@ export function ProjectLightbox({
 
   return createPortal(
     <m.div
+      ref={dialogRef}
       className="fixed inset-0 z-[100] flex items-center justify-center bg-void/95 backdrop-blur-md"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

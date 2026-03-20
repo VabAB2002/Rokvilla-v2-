@@ -6,27 +6,9 @@ const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 })
 
-const CSP_DIRECTIVES = [
-  "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
-  "style-src 'self' 'unsafe-inline' https://api.mapbox.com",
-  "img-src 'self' data: blob: https://api.mapbox.com https://*.mapbox.com https://images.unsplash.com",
-  "font-src 'self'",
-  "worker-src 'self' blob:",
-  "connect-src 'self' https://*.mapbox.com https://events.mapbox.com https://*.sentry.io https://o*.ingest.sentry.io",
-  "media-src 'self'",
-  "frame-src 'none'",
-  "frame-ancestors 'none'",
-  "object-src 'none'",
-  "base-uri 'self'",
-  "form-action 'self'",
-  "manifest-src 'self'",
-  "upgrade-insecure-requests",
-].join('; ')
-
+// CSP is now set per-request in middleware.ts with nonce-based script-src
 const SECURITY_HEADERS = [
-  { key: 'Content-Security-Policy', value: CSP_DIRECTIVES },
-  { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains' },
+  { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
   { key: 'X-Frame-Options', value: 'DENY' },
   { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
@@ -40,10 +22,9 @@ const SECURITY_HEADERS = [
 ] as const
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
   images: {
-    remotePatterns: [
-      { protocol: 'https', hostname: 'images.unsplash.com' },
-    ],
+    remotePatterns: [],
     formats: ['image/avif', 'image/webp'],
     qualities: [75, 85],
     deviceSizes: [375, 640, 750, 828, 1080, 1200, 1920],
@@ -55,6 +36,13 @@ const nextConfig: NextConfig = {
         source: '/(.*)',
         headers: [...SECURITY_HEADERS],
       },
+    ]
+  },
+  async redirects() {
+    return [
+      { source: '/services/design', destination: '/design', permanent: true },
+      { source: '/services/build', destination: '/build', permanent: true },
+      { source: '/services/furnish', destination: '/furnish', permanent: true },
     ]
   },
 }

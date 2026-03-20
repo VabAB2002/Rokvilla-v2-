@@ -4,6 +4,7 @@ import { FloatingCTAs } from '@/components/layout/FloatingCTAs'
 import { BottomActionStrip } from '@/components/layout/BottomActionStrip'
 import { MotionProvider } from '@/components/layout/MotionProvider'
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider'
+import { CookieConsent } from '@/components/layout/CookieConsent'
 
 export default function MainLayout({
   children,
@@ -18,6 +19,7 @@ export default function MainLayout({
         <Footer />
         <FloatingCTAs />
         <BottomActionStrip />
+        <CookieConsent />
       </SmoothScrollProvider>
     </MotionProvider>
   )

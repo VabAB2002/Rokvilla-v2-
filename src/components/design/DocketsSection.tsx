@@ -68,7 +68,7 @@ export function DocketsSection() {
             id="dockets-heading"
             className="font-display text-3xl font-medium text-obsidian md:text-4xl lg:text-5xl"
           >
-            Architectural &amp; Good for Construction Drawings
+            Architectural &amp; Construction Drawings
           </h2>
           <p className="mt-4 font-body text-base leading-relaxed text-slate md:text-lg">
             Transparent pricing per SQFT across every project.

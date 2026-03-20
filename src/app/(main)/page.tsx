@@ -1,10 +1,16 @@
+import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
+import { SITE_URL } from '@/lib/seo/constants'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { ServicesSection } from '@/components/sections/ServicesSection'
 import { ProjectsSection } from '@/components/sections/ProjectsSection'
 import { ConsultationPhoto } from '@/components/design/ConsultationPhoto'
 import { SectionErrorBoundary } from '@/components/error/SectionErrorBoundary'
+
+export const metadata: Metadata = {
+  alternates: { canonical: SITE_URL },
+}
 
 const LocationsSection = dynamic(
   () => import('@/components/sections/LocationsSection').then(m => m.LocationsSection)

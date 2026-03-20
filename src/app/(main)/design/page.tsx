@@ -7,6 +7,7 @@ import { ConsultationPhoto } from '@/components/design/ConsultationPhoto'
 import { DocketsSection } from '@/components/design/DocketsSection'
 import { TestimonialsSection } from '@/components/shared/TestimonialsSection'
 import { SectionErrorBoundary } from '@/components/error/SectionErrorBoundary'
+import { FormSkeleton } from '@/components/ui/Skeleton'
 import { DESIGN_TESTIMONIALS, DESIGN_FAQS, FAQ_CATEGORIES } from '@/lib/constants/design'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { buildServiceSchema, buildBreadcrumbSchema } from '@/lib/seo/schemas'
@@ -21,10 +22,12 @@ const FAQSection = dynamic(
 )
 
 export const metadata: Metadata = {
-  title: 'Design — RokVilla',
+  title: 'Design',
   description:
     'From concept to blueprint — architectural designs that balance aesthetics, function, and budget. Browse our projects, choose your service, and connect with us.',
+  alternates: { canonical: `${SITE_URL}/design` },
   openGraph: {
+    title: 'Architectural Design Services | RokVilla',
     url: `${SITE_URL}/design`,
     description:
       'From concept to blueprint — architectural designs that balance aesthetics, function, and budget. Browse our projects, choose your service, and connect with us.',
@@ -47,7 +50,7 @@ export default function DesignPage() {
       <div className="cv-auto"><ProcessSection /></div>
       <div className="cv-auto">
         <SectionErrorBoundary name="design-consultation-form">
-          <Suspense fallback={<div className="min-h-[400px]" />}>
+          <Suspense fallback={<FormSkeleton />}>
             <ConsultationForm
               layout="split"
               illustration={<ConsultationPhoto />}
