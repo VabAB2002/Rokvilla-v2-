@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ButtonDark } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -40,7 +40,7 @@ function RatingBadge({
       className="rounded-[4px] border border-white/10 bg-white/5 px-5 py-4 text-center backdrop-blur-sm"
       aria-label={`${platform}: ${rating} out of 5 stars, ${reviewCount}`}
     >
-      <span className="block font-body text-[11px] font-medium uppercase tracking-[0.1em] text-stone">
+      <span className="block font-body text-[11px] font-medium uppercase tracking-[0.1em] text-bone/50">
         {platform}
       </span>
       <div className="mt-1.5 flex items-center justify-center gap-1.5">
@@ -49,7 +49,7 @@ function RatingBadge({
           {rating}
         </span>
       </div>
-      <span className="mt-1 block font-body text-[11px] text-stone/70" aria-hidden="true">
+      <span className="mt-1 block font-body text-[11px] text-bone/40" aria-hidden="true">
         {reviewCount}
       </span>
     </div>
@@ -81,7 +81,7 @@ export function ConstructionCTASection() {
               >
                 Hire the Best House Construction Service
               </h2>
-              <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-stone md:text-lg">
+              <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-bone/60 md:text-lg">
                 Trusted by homeowners across Karnataka. See what platforms say about our work.
               </p>
               <div className="mt-8">
@@ -95,7 +95,7 @@ export function ConstructionCTASection() {
           {/* Right column — rating badges */}
           <div className="flex-1 lg:max-w-md">
             <AnimatedSection delay={0.15}>
-              <motion.div
+              <m.div
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -103,7 +103,7 @@ export function ConstructionCTASection() {
                 className="grid grid-cols-2 gap-4"
               >
                 {PLATFORM_RATINGS.map((r) => (
-                  <motion.div
+                  <m.div
                     key={r.id}
                     variants={{
                       hidden: reducedMotion
@@ -117,9 +117,9 @@ export function ConstructionCTASection() {
                       rating={r.rating}
                       reviewCount={r.reviewCount}
                     />
-                  </motion.div>
+                  </m.div>
                 ))}
-              </motion.div>
+              </m.div>
             </AnimatedSection>
           </div>
         </div>

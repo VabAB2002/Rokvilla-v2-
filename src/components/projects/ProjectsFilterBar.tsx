@@ -4,7 +4,7 @@ import { Search, ChevronDown } from 'lucide-react'
 import type { ProjectCategory } from '@/types/questionnaire'
 
 type FilterCategory = 'all' | ProjectCategory
-type FilterLocation = 'all' | 'hubli' | 'dharwad' | 'ballari'
+type FilterLocation = 'all' | 'hubli' | 'dharwad' | 'ballari' | 'bengaluru' | 'vijayapur'
 type SortOrder = 'year-desc' | 'alpha'
 
 interface ProjectsFilterBarProps {
@@ -27,6 +27,8 @@ const CATEGORY_OPTIONS: ReadonlyArray<{
   { value: 'residential', label: 'Residential' },
   { value: 'commercial', label: 'Commercial' },
   { value: 'interior', label: 'Interior' },
+  { value: 'industry', label: 'Industry' },
+  { value: 'public', label: 'Public' },
 ]
 
 const LOCATION_OPTIONS: ReadonlyArray<{
@@ -34,9 +36,11 @@ const LOCATION_OPTIONS: ReadonlyArray<{
   readonly label: string
 }> = [
   { value: 'all', label: 'All Locations' },
-  { value: 'hubli', label: 'Hubli' },
+  { value: 'hubli', label: 'Hubballi' },
   { value: 'dharwad', label: 'Dharwad' },
   { value: 'ballari', label: 'Ballari' },
+  { value: 'bengaluru', label: 'Bengaluru' },
+  { value: 'vijayapur', label: 'Vijayapur' },
 ]
 
 export function ProjectsFilterBar({
@@ -69,15 +73,15 @@ export function ProjectsFilterBar({
           />
         </div>
 
-        {/* Dropdowns */}
-        <div className="flex flex-1 gap-3">
+        {/* Dropdowns — stacked on mobile, side-by-side on sm+ */}
+        <div className="flex flex-col sm:flex-row flex-1 gap-3">
           <div className="relative flex-1 min-w-0">
             <select
               value={category}
               onChange={(e) =>
                 onCategoryChange(e.target.value as FilterCategory)
               }
-              className="min-h-[44px] w-full flex-1 min-w-0 appearance-none rounded-xl border border-limestone bg-white py-3 pl-4 pr-10 font-body text-base md:text-[13px] uppercase tracking-[0.08em] text-slate transition-colors duration-200 focus:border-terracotta focus:outline-none"
+              className="min-h-[44px] w-full flex-1 min-w-0 appearance-none rounded-xl border border-limestone bg-white py-3 pl-4 pr-10 font-body text-xs md:text-[13px] uppercase tracking-[0.08em] text-slate transition-colors duration-200 focus:border-terracotta focus:outline-none"
             >
               {CATEGORY_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -97,7 +101,7 @@ export function ProjectsFilterBar({
               onChange={(e) =>
                 onLocationChange(e.target.value as FilterLocation)
               }
-              className="min-h-[44px] w-full flex-1 min-w-0 appearance-none rounded-xl border border-limestone bg-white py-3 pl-4 pr-10 font-body text-base md:text-[13px] uppercase tracking-[0.08em] text-slate transition-colors duration-200 focus:border-terracotta focus:outline-none"
+              className="min-h-[44px] w-full flex-1 min-w-0 appearance-none rounded-xl border border-limestone bg-white py-3 pl-4 pr-10 font-body text-xs md:text-[13px] uppercase tracking-[0.08em] text-slate transition-colors duration-200 focus:border-terracotta focus:outline-none"
             >
               {LOCATION_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -113,8 +117,8 @@ export function ProjectsFilterBar({
         </div>
       </div>
 
-      {/* Bottom row: match count + sort */}
-      <div className="flex items-center justify-between">
+      {/* Bottom row: match count + sort — hidden on mobile */}
+      <div className="hidden md:flex items-center justify-between">
         <span className="font-body text-sm tabular-nums text-stone">
           {matchCount} {matchCount === 1 ? 'Project' : 'Projects'}
         </span>

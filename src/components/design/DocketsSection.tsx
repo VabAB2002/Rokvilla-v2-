@@ -1,6 +1,7 @@
 'use client'
 
-import { motion, type Variants } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { type Variants } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -67,10 +68,10 @@ export function DocketsSection() {
             id="dockets-heading"
             className="font-display text-3xl font-medium text-obsidian md:text-4xl lg:text-5xl"
           >
-            Architectural &amp; Good for Construction Drawings
+            Architectural &amp; Construction Drawings
           </h2>
           <p className="mt-4 font-body text-base leading-relaxed text-slate md:text-lg">
-            Transparent, per-unit rates across all project types.
+            Transparent pricing per SQFT across every project.
           </p>
         </AnimatedSection>
 
@@ -88,13 +89,13 @@ export function DocketsSection() {
               {/* Column Headers */}
               <thead>
                 <tr className="border-b border-limestone/30">
-                  <th className="sticky left-0 z-10 border-r border-limestone/20 bg-white py-4 pl-6 pr-4 text-left font-display text-sm font-medium text-stone md:pl-8 md:text-base">
+                  <th className="sticky left-0 z-10 border-r border-limestone/20 bg-white py-4 pl-6 pr-4 text-left font-display text-sm font-medium text-terracotta md:pl-8 md:text-base">
                     Service
                   </th>
                   {PRICING_CATEGORIES.map((cat) => (
                     <th
                       key={cat.id}
-                      className="px-3 py-4 text-center font-body text-xs uppercase tracking-[0.08em] text-slate md:px-4"
+                      className="px-3 py-4 text-center font-body text-xs uppercase tracking-[0.08em] text-terracotta md:px-4"
                     >
                       <span className="hidden lg:inline">{cat.label}</span>
                       <span className="lg:hidden">{cat.shortLabel}</span>
@@ -104,7 +105,7 @@ export function DocketsSection() {
               </thead>
 
               {/* Service Rows */}
-              <motion.tbody
+              <m.tbody
                 variants={rowContainerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -114,7 +115,7 @@ export function DocketsSection() {
                   const isLast = i === PRICING_SERVICES.length - 1
 
                   return (
-                    <motion.tr
+                    <m.tr
                       key={service.id}
                       variants={rowItemVariants}
                       className={`group transition-colors duration-150 hover:bg-parchment ${
@@ -166,10 +167,10 @@ export function DocketsSection() {
                           </td>
                         )
                       })}
-                    </motion.tr>
+                    </m.tr>
                   )
                 })}
-              </motion.tbody>
+              </m.tbody>
             </table>
           </div>
           </div>

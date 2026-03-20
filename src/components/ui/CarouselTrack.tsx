@@ -1,9 +1,10 @@
 'use client'
 
 import { useRef, useState, useEffect, type ReactNode } from 'react'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { makeCarouselTransition } from '@/lib/motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useTouchDevice } from '@/hooks/useTouchDevice'
 
 /* ── Chevron SVG ── */
 
@@ -59,6 +60,7 @@ export function CarouselTrack({
   ariaLabel = 'Content carousel',
 }: CarouselTrackProps) {
   const reducedMotion = useReducedMotion()
+  const isTouch = useTouchDevice()
   const viewportRef = useRef<HTMLDivElement>(null)
   const [containerWidth, setContainerWidth] = useState(0)
 
@@ -93,7 +95,7 @@ export function CarouselTrack({
     >
       {/* Clip area */}
       <div ref={viewportRef} className="overflow-hidden">
-        <motion.div
+        <m.div
           drag={needsCarousel ? 'x' : false}
           dragConstraints={{ left: maxDrag, right: 0 }}
           dragElastic={reducedMotion ? 0 : 0.08}
@@ -104,7 +106,7 @@ export function CarouselTrack({
           style={{ gap }}
         >
           {children}
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Prev arrow */}
@@ -118,9 +120,8 @@ export function CarouselTrack({
             flex h-12 w-12 items-center justify-center rounded-full
             border border-limestone bg-bone/90 backdrop-blur-sm
             transition-all duration-200
-            lg:opacity-0 lg:group-hover:opacity-100
             ${canGoPrev
-              ? 'hover:border-terracotta hover:text-terracotta text-obsidian'
+              ? `text-obsidian hover:border-terracotta hover:text-terracotta ${isTouch ? 'lg:opacity-70' : 'lg:opacity-0 lg:group-hover:opacity-100'}`
               : 'opacity-30 cursor-not-allowed text-stone'
             }
             focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2`}
@@ -140,9 +141,8 @@ export function CarouselTrack({
             flex h-12 w-12 items-center justify-center rounded-full
             border border-limestone bg-bone/90 backdrop-blur-sm
             transition-all duration-200
-            lg:opacity-0 lg:group-hover:opacity-100
             ${canGoNext
-              ? 'hover:border-terracotta hover:text-terracotta text-obsidian'
+              ? `text-obsidian hover:border-terracotta hover:text-terracotta ${isTouch ? 'lg:opacity-70' : 'lg:opacity-0 lg:group-hover:opacity-100'}`
               : 'opacity-30 cursor-not-allowed text-stone'
             }
             focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2`}
@@ -164,7 +164,7 @@ export function CarouselTrack({
               onClick={() => goTo(i)}
               className="relative flex min-h-[44px] min-w-[44px] items-center justify-center p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:rounded-full"
             >
-              <motion.span
+              <m.span
                 layout
                 className={`block h-1.5 rounded-full transition-colors duration-200 ${
                   i === currentIndex ? 'bg-terracotta w-4' : 'bg-limestone w-1.5'

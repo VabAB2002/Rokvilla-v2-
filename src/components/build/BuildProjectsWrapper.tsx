@@ -18,6 +18,7 @@ const BUILD_TABS = [
   { id: 'residential', label: 'Residential' },
   { id: 'commercial', label: 'Commercial' },
   { id: 'interior', label: 'Interior' },
+  { id: 'industry', label: 'Industry' },
 ] as const
 
 export function BuildProjectsWrapper() {

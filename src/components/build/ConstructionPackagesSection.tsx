@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, type ComponentType } from 'react'
-import { motion, AnimatePresence, type Variants } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence, type Variants } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Button } from '@/components/ui/Button'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -225,7 +226,7 @@ function CategoryBlock({
   return (
     <>
       {/* Category header */}
-      <motion.tr variants={rowItemVariants}>
+      <m.tr variants={rowItemVariants}>
         <td
           colSpan={colCount}
           className="border-b border-limestone/30 bg-parchment px-6 py-4 md:px-8"
@@ -239,7 +240,7 @@ function CategoryBlock({
             </p>
           )}
         </td>
-      </motion.tr>
+      </m.tr>
 
       {/* Rows */}
       {category.rows.map((row, i) => (
@@ -255,7 +256,7 @@ function CategoryBlock({
 
       {/* Footnote */}
       {category.footnote && (
-        <motion.tr variants={rowItemVariants}>
+        <m.tr variants={rowItemVariants}>
           <td
             colSpan={colCount}
             className="border-b border-limestone/30 px-6 py-2 md:px-8"
@@ -264,7 +265,7 @@ function CategoryBlock({
               {category.footnote}
             </p>
           </td>
-        </motion.tr>
+        </m.tr>
       )}
     </>
   )
@@ -289,7 +290,7 @@ function ComparisonTableRow({
   const isDimmed = highlightDiffs && !hasDistinctValues(row)
 
   return (
-    <motion.tr
+    <m.tr
       variants={variants}
       className={`group transition-all duration-200 hover:bg-parchment ${
         !isLast ? 'border-b border-limestone/15' : 'border-b border-limestone/30'
@@ -322,7 +323,7 @@ function ComparisonTableRow({
           <CellValue value={row.values[i] ?? null} />
         </td>
       ))}
-    </motion.tr>
+    </m.tr>
   )
 }
 
@@ -348,7 +349,7 @@ function PackageTypeToggle({
             }`}
           >
             {activeId === pt.id && (
-              <motion.span
+              <m.span
                 layoutId="pkg-pill"
                 className="absolute inset-0 rounded-full bg-terracotta shadow-md"
                 style={{ borderRadius: 9999 }}
@@ -378,13 +379,13 @@ function TierHeaders({ tiers }: { readonly tiers: ReadonlyArray<PackageTier> }) 
           scope="col"
           className="sticky left-0 z-10 border-r border-limestone/20 bg-white py-5 pl-6 pr-4 text-left md:pl-8"
         >
-          <span className="font-body text-xs uppercase tracking-[0.08em] text-stone">
+          <span className="font-body text-xs uppercase tracking-[0.08em] text-terracotta">
             Feature
           </span>
         </th>
         {tiers.map((tier) => (
           <th key={tier.id} scope="col" className="px-3 py-5 text-center md:px-5">
-            <span className="block font-display text-lg font-medium text-obsidian md:text-xl">
+            <span className="block font-display text-lg font-medium text-terracotta md:text-xl">
               {tier.name}
             </span>
             <span className="mt-1 block font-body text-xs text-stone md:text-sm">
@@ -429,7 +430,7 @@ export function ConstructionPackagesSection() {
             Compare Packages
           </h2>
           <p className="mt-4 font-body text-base leading-relaxed text-slate md:text-lg">
-            Choose between Homes and Luxury Homes to find your perfect fit.
+            Choose between Homes/Buildings and Luxury Homes/Luxury Buildings to find your perfect fit.
           </p>
 
           {/* Type toggle */}
@@ -456,7 +457,7 @@ export function ConstructionPackagesSection() {
                 highlightDiffs ? 'bg-terracotta' : 'bg-limestone/40'
               }`}
             >
-              <motion.span
+              <m.span
                 layout
                 className="pointer-events-none block h-5 w-5 rounded-full bg-white shadow-sm"
                 transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
@@ -464,11 +465,14 @@ export function ConstructionPackagesSection() {
               />
             </button>
           </div>
+          <p className="mt-3 text-center font-body text-xs text-stone md:hidden">
+            ← Swipe to compare →
+          </p>
         </AnimatedSection>
 
         {/* Comparison — keyed by type for clean re-mount */}
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={activeTypeId}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -477,7 +481,7 @@ export function ConstructionPackagesSection() {
             className="mt-12"
           >
             {/* Mobile: swipeable card view */}
-            <div className="sm:hidden">
+            <div className="md:hidden">
               <PackageCardView
                 tiers={tiers}
                 categories={categories}
@@ -486,7 +490,7 @@ export function ConstructionPackagesSection() {
             </div>
 
             {/* Desktop: full comparison table */}
-            <div className="hidden sm:block">
+            <div className="hidden md:block">
               <div className="mx-auto overflow-x-auto rounded-[4px] border border-limestone/40 bg-white shadow-card no-scrollbar">
                 <table
                   className="w-full min-w-[800px]"
@@ -496,7 +500,7 @@ export function ConstructionPackagesSection() {
 
                   {/* Per-category tbody for viewport-based stagger animation */}
                   {categories.map((category) => (
-                    <motion.tbody
+                    <m.tbody
                       key={category.id}
                       variants={rowContainerVariants}
                       initial="hidden"
@@ -510,12 +514,12 @@ export function ConstructionPackagesSection() {
                         rowItemVariants={rowItemVariants}
                         highlightDiffs={highlightDiffs}
                       />
-                    </motion.tbody>
+                    </m.tbody>
                   ))}
                 </table>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </AnimatePresence>
 
         {/* Footer CTA */}

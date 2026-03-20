@@ -1,4 +1,12 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+/* ── CSS Property Registration (required for animated conic-gradient) ── */
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
 
 /* ═══════════════════════════════════════════════
    RokVilla Design System — Tailwind v4 Theme
@@ -10,6 +18,7 @@
   --font-display: var(--font-cormorant-garamond), Georgia, serif;
   --font-body: var(--font-dm-sans), system-ui, sans-serif;
   --font-accent: var(--font-cormorant-sc), Georgia, serif;
+  --font-logo: var(--font-space-grotesk), system-ui, sans-serif;
 
   /* ── Core Neutrals (clean white base) ── */
   --color-bone: #FFFFFF;
@@ -21,14 +30,13 @@
 
   /* ── Earth Accent — Karnataka laterite ── */
   --color-terracotta: #ee7707;
-  --color-terracotta-deep: #ee7707;
-  --color-terracotta-pale: #ee7707;
-  --color-terracotta-muted: #ee7707;
+  --color-terracotta-deep: #d56a06;
+  --color-terracotta-pale: #f5a04d;
 
   /* ── Brass Accent — premium metallic ── */
-  --color-brass: #ee7707;
-  --color-brass-light: #ee7707;
-  --color-brass-pale: #ee7707;
+  --color-brass: #C8956C;
+  --color-brass-light: #f5a623;
+  --color-brass-pale: #f7c675;
 
   /* ── Dark sections ── */
   --color-void: #0F0D0B;
@@ -38,7 +46,7 @@
   /* ── Shadows ── */
   --shadow-card: 0 1px 3px rgba(28,25,22,0.06), 0 4px 16px rgba(28,25,22,0.08);
   --shadow-card-hover: 0 8px 32px rgba(28,25,22,0.14), 0 2px 8px rgba(28,25,22,0.08);
-  --shadow-accent: 0 4px 20px rgba(238, 119, 7, 0.3);
+  --shadow-accent: 0 4px 20px rgba(238, 119, 7, 0.35);
   --shadow-dark: 0 4px 24px rgba(0,0,0,0.3);
 
   /* ── Easings ── */
@@ -66,6 +74,26 @@
 @keyframes shadowPulse {
   0%   { box-shadow: 0 4px 16px rgba(238, 119, 7, 0.25); }
   100% { box-shadow: 0 6px 24px rgba(238, 119, 7, 0.45); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes price-glow {
+  0%, 100% { box-shadow: 0 4px 20px rgba(238, 119, 7, 0.15), inset 0 0 0 1px rgba(238, 119, 7, 0.15); }
+  50%      { box-shadow: 0 8px 32px rgba(238, 119, 7, 0.3), inset 0 0 0 1px rgba(238, 119, 7, 0.3); }
+}
+
+@keyframes border-rotate {
+  from { --border-angle: 0deg; }
+  to   { --border-angle: 360deg; }
+}
+
+@keyframes text-shimmer {
+  0%   { background-position: -100% center; }
+  100% { background-position: 200% center; }
 }
 
 /* ── Gentle bounce for hero scroll indicators ── */
@@ -122,6 +150,11 @@ body {
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+
+    .film-slide {
+      clip-path: none !important;
+      position: relative !important;
+    }
   }
 }
 
@@ -147,6 +180,24 @@ body {
 
   .animate-bounce-gentle {
     animation: bounce-gentle 1.2s ease-in-out infinite;
+  }
+
+  .animate-price-glow {
+    animation: price-glow 3s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  .animate-border-rotate {
+    animation: border-rotate 4s linear infinite;
+  }
+
+  .animate-text-shimmer {
+    background-size: 300% 100%;
+    animation: text-shimmer 3s ease-in-out infinite;
   }
 
   /* Content-visibility for below-fold sections */

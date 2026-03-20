@@ -17,7 +17,7 @@ export const DESIGN_STEPS: ReadonlyArray<ProcessStep> = [
     title: 'Go Through Our Projects',
     description:
       'Browse our portfolio of residential, commercial, and interior projects to find inspiration for your vision.',
-    href: '#design-projects',
+    href: '/projects',
   },
   {
     number: '02',
@@ -128,7 +128,7 @@ export const PRICING_SERVICES: ReadonlyArray<PricingService> = [
     id: 'furniture-working',
     name: 'Detailed Furniture Working Drawings',
     shortName: 'Furniture Dwgs',
-    unit: 'unit',
+    unit: 'sqft',
     iconPath: 'M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3M3 16h18M5 19v2M19 19v2M3 11a2 2 0 0 0-1 2v3h20v-3a2 2 0 0 0-1-2',
   },
   {
@@ -155,8 +155,8 @@ export const PRICING_RATES: Readonly<Record<PricingCategoryId, RateMap>> = {
     'walkthrough-luxury': 10,
     'wall-marking-2d': 1.5,
     'electrical-plumbing': 5,
-    'site-measured': 0.75,
-    'furniture-working': 1000,
+    'site-measured': 1,
+    'furniture-working': 25,
     'boq': 4,
   },
   'large-residential': {
@@ -168,8 +168,8 @@ export const PRICING_RATES: Readonly<Record<PricingCategoryId, RateMap>> = {
     'walkthrough-luxury': 12,
     'wall-marking-2d': 2,
     'electrical-plumbing': 7,
-    'site-measured': 0.75,
-    'furniture-working': 1200,
+    'site-measured': 1.5,
+    'furniture-working': 35,
     'boq': 5,
   },
   'commercial-small': {
@@ -181,22 +181,22 @@ export const PRICING_RATES: Readonly<Record<PricingCategoryId, RateMap>> = {
     'walkthrough-luxury': 12,
     'wall-marking-2d': 2,
     'electrical-plumbing': 7,
-    'site-measured': 0.75,
-    'furniture-working': 1200,
+    'site-measured': 2.5,
+    'furniture-working': 35,
     'boq': 4,
   },
   'commercial-large': {
-    'floor-plans': 2,
-    '3d-exterior': 1,
-    '3d-basic-interior': 25,
-    '3d-luxury-interior': 35,
-    'walkthrough-basic': 6,
-    'walkthrough-luxury': 8,
-    'wall-marking-2d': 1,
-    'electrical-plumbing': 3,
-    'site-measured': 0.75,
-    'furniture-working': 1200,
-    'boq': 4,
+    'floor-plans': 8,
+    '3d-exterior': 4,
+    '3d-basic-interior': 30,
+    '3d-luxury-interior': 40,
+    'walkthrough-basic': 10,
+    'walkthrough-luxury': 14,
+    'wall-marking-2d': 2,
+    'electrical-plumbing': 10,
+    'site-measured': 3,
+    'furniture-working': 35,
+    'boq': 5,
   },
 } as const
 
@@ -214,17 +214,17 @@ export interface Testimonial {
 
 export const DESIGN_TESTIMONIALS: ReadonlyArray<Testimonial> = [
   {
-    id: 'test-1',
+    id: 'design-review-1',
     name: 'Rajesh Kulkarni',
     initials: 'RK',
     projectType: 'Residential',
-    location: 'Hubli',
+    location: 'Hubballi',
     quote:
       'RokVilla transformed our vague ideas into a stunning home design. Their attention to vastu compliance while keeping the aesthetics modern was impressive.',
     rating: 5,
   },
   {
-    id: 'test-2',
+    id: 'design-review-2',
     name: 'Priya Deshpande',
     initials: 'PD',
     projectType: 'Interior',
@@ -234,17 +234,17 @@ export const DESIGN_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'test-3',
+    id: 'design-review-3',
     name: 'Mahesh Patil',
     initials: 'MP',
     projectType: 'Commercial',
-    location: 'Hubli',
+    location: 'Hubballi',
     quote:
       'Our showroom design by RokVilla increased foot traffic by 40%. The spatial planning and facade design completely stand out on the street.',
     rating: 5,
   },
   {
-    id: 'test-4',
+    id: 'design-review-4',
     name: 'Anita Hegde',
     initials: 'AH',
     projectType: 'Residential',
@@ -254,7 +254,7 @@ export const DESIGN_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'test-5',
+    id: 'design-review-5',
     name: 'Vinay Joshi',
     initials: 'VJ',
     projectType: 'Residential',
@@ -264,11 +264,11 @@ export const DESIGN_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'test-6',
+    id: 'design-review-6',
     name: 'Sneha Naik',
     initials: 'SN',
     projectType: 'Interior',
-    location: 'Hubli',
+    location: 'Hubballi',
     quote:
       'They designed our café interior with a perfect blend of warmth and modern edge. Customers constantly compliment the space — it speaks for itself.',
     rating: 5,
@@ -380,5 +380,4 @@ export interface Stat {
 export const DESIGN_STATS: ReadonlyArray<Stat> = [
   { value: 50, suffix: '+', label: 'Projects Delivered' },
   { value: 100, suffix: '%', label: 'Quality Assurance' },
-  { value: 0, suffix: '%', label: 'Cost Overrun' },
 ] as const

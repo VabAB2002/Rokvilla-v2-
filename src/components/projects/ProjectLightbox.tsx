@@ -3,10 +3,13 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useFocusTrap } from '@/hooks/useFocusTrap'
 import { EASE_OUT_EXPO } from '@/lib/motion'
+import { BLUR_DATA_URL } from '@/lib/constants/images'
 
 interface ProjectLightboxProps {
   readonly images: ReadonlyArray<string>
@@ -27,7 +30,10 @@ export function ProjectLightbox({
 }: ProjectLightboxProps) {
   const reducedMotion = useReducedMotion()
   const closeRef = useRef<HTMLButtonElement>(null)
+  const dialogRef = useRef<HTMLDivElement>(null)
   const [mounted, setMounted] = useState(false)
+
+  useFocusTrap(dialogRef)
 
   // SSR guard — createPortal needs document.body which only exists client-side
   useEffect(() => {
@@ -81,7 +87,8 @@ export function ProjectLightbox({
   if (!mounted) return null
 
   return createPortal(
-    <motion.div
+    <m.div
+      ref={dialogRef}
       className="fixed inset-0 z-[100] flex items-center justify-center bg-void/95 backdrop-blur-md"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -110,7 +117,7 @@ export function ProjectLightbox({
           e.stopPropagation()
           onPrev()
         }}
-        className="absolute left-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-bone/10 text-bone/60 backdrop-blur-sm transition-colors duration-200 hover:bg-bone/20 hover:text-bone md:left-6"
+        className="absolute left-1 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-bone/10 text-bone/60 backdrop-blur-sm transition-colors duration-200 hover:bg-bone/20 hover:text-bone md:left-6"
         aria-label="Previous image"
       >
         <ChevronLeft className="h-6 w-6" />
@@ -123,7 +130,7 @@ export function ProjectLightbox({
           e.stopPropagation()
           onNext()
         }}
-        className="absolute right-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-bone/10 text-bone/60 backdrop-blur-sm transition-colors duration-200 hover:bg-bone/20 hover:text-bone md:right-6"
+        className="absolute right-1 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-bone/10 text-bone/60 backdrop-blur-sm transition-colors duration-200 hover:bg-bone/20 hover:text-bone md:right-6"
         aria-label="Next image"
       >
         <ChevronRight className="h-6 w-6" />
@@ -131,9 +138,9 @@ export function ProjectLightbox({
 
       {/* Image with swipe gesture support */}
       <AnimatePresence mode="wait">
-        <motion.div
+        <m.div
           key={currentIndex}
-          className="relative mx-16 h-[70vh] w-full max-w-5xl md:mx-20"
+          className="relative mx-4 h-[70vh] w-full max-w-5xl md:mx-20"
           initial={
             reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.97 }
           }
@@ -158,8 +165,10 @@ export function ProjectLightbox({
             className="object-contain"
             sizes="100vw"
             priority
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
           />
-        </motion.div>
+        </m.div>
       </AnimatePresence>
 
       {/* Counter */}
@@ -168,7 +177,7 @@ export function ProjectLightbox({
           {currentIndex + 1} / {images.length}
         </span>
       </div>
-    </motion.div>,
+    </m.div>,
     document.body,
   )
 }

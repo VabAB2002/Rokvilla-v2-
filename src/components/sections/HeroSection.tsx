@@ -1,62 +1,80 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { VideoBackground } from '@/components/ui/VideoBackground'
+import Image from 'next/image'
+import * as m from 'framer-motion/m'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 import { makeHeroContainerVariants, makeHeroItemVariants } from '@/lib/motion'
+import { BLUR_DATA_URL } from '@/lib/constants/images'
 
 export function HeroSection() {
   const reducedMotion = useReducedMotion()
+  const isLowPower = useIsLowPowerDevice()
   const containerVariants = makeHeroContainerVariants(reducedMotion)
   const itemVariants = makeHeroItemVariants(reducedMotion)
 
   return (
     <section aria-label="Hero" className="relative h-dvh min-h-[600px] overflow-hidden">
-      <VideoBackground
-        imageSrc="/images/home/hero-fallback.jpg"
-        imageAlt="RokVilla architecture showcase — Cedar Homestore at dusk"
+      {/* Hero background image */}
+      <Image
+        src="/images/home/hero-real.jpg"
+        alt="Cedar Homestore at dusk — completed building"
+        fill
+        priority
+        placeholder="blur"
+        blurDataURL={BLUR_DATA_URL}
+        className="object-cover"
+        sizes="100vw"
+      />
+
+      {/* Gradient overlay for text legibility */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[5]"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(15,13,11,0.3) 0%, rgba(15,13,11,0.55) 50%, rgba(15,13,11,0.82) 100%)',
+        }}
       />
 
       {/* Content */}
       <div className="relative z-10 flex h-full items-end pb-24 md:items-center md:pb-0">
         <div className="mx-auto w-full max-w-7xl px-6 md:px-12">
-          <motion.div
+          <m.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="max-w-2xl lg:max-w-3xl"
           >
             {/* Overline */}
-            <motion.span
+            <m.span
               variants={itemVariants}
               className="mb-6 block font-accent text-[13px] uppercase tracking-[0.18em] text-brass-light"
             >
               Architecture &amp; Construction
-            </motion.span>
+            </m.span>
 
             {/* Heading */}
-            <motion.h1
+            <m.h1
               variants={itemVariants}
               className="font-display text-[clamp(3.5rem,8vw,7.5rem)] font-light leading-[0.9] text-bone whitespace-pre-line"
             >
               {'Built to\nEndure.'}
-            </motion.h1>
+            </m.h1>
 
             {/* Body */}
-            <motion.p
+            <m.p
               variants={itemVariants}
-              className="mt-6 max-w-md font-body text-base leading-relaxed text-stone md:text-lg"
+              className="mt-6 max-w-md font-body text-base leading-relaxed text-bone md:text-lg"
             >
               Premium residential, commercial, and interior spaces — crafted with precision across Karnataka.
-            </motion.p>
-
-
-          </motion.div>
+            </m.p>
+          </m.div>
         </div>
       </div>
 
       {/* Down arrow */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: reducedMotion ? 0 : 1.5, duration: reducedMotion ? 0.2 : 0.6 }}
@@ -71,12 +89,12 @@ export function HeroSection() {
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className={`${reducedMotion ? '' : 'animate-bounce-gentle'} text-bone/70`}
+          className={`${!reducedMotion && !isLowPower ? 'animate-bounce-gentle' : ''} text-bone/70`}
           aria-hidden="true"
         >
           <path d="M12 5v14M5 12l7 7 7-7" />
         </svg>
-      </motion.div>
+      </m.div>
     </section>
   )
 }

@@ -1,38 +1,44 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useSyncExternalStore } from 'react'
+
+type NetworkConnection = {
+  saveData?: boolean
+  effectiveType?: string
+  addEventListener?: (type: string, listener: () => void) => void
+  removeEventListener?: (type: string, listener: () => void) => void
+}
+
+function getConnection(): NetworkConnection | undefined {
+  return (navigator as Navigator & { connection?: NetworkConnection }).connection
+}
+
+function getSnapshot(): boolean {
+  const conn = getConnection()
+  return (
+    conn?.saveData === true ||
+    conn?.effectiveType === '2g' ||
+    conn?.effectiveType === 'slow-2g'
+  )
+}
+
+function getServerSnapshot(): boolean {
+  return false
+}
+
+function subscribe(callback: () => void): () => void {
+  const conn = getConnection()
+  conn?.addEventListener?.('change', callback)
+  return () => conn?.removeEventListener?.('change', callback)
+}
 
 /**
- * Detects constrained network/power conditions by checking explicit user
- * or network signals:
+ * Detects constrained network/power conditions by checking:
  * - navigator.connection.saveData — user opted into data saving
  * - effectiveType is '2g' or 'slow-2g' — very slow network
  *
- * Returns true if any condition indicates a constrained device.
- * SSR-safe: defaults to false on the server.
- *
- * **Note:** Hardware signals (deviceMemory, hardwareConcurrency) are
- * intentionally omitted — their thresholds overlap with mainstream
- * mid-range devices and would incorrectly flag most mobile users.
+ * Uses useSyncExternalStore for hydration-safe reads (no post-hydration re-render).
  */
 export function useIsLowPowerDevice(): boolean {
-  const [isLowPower, setIsLowPower] = useState(false)
-
-  useEffect(() => {
-    const nav = navigator as Navigator & {
-      connection?: {
-        saveData?: boolean
-        effectiveType?: string
-      }
-    }
-
-    const saveData = nav.connection?.saveData === true
-    const slowNetwork =
-      nav.connection?.effectiveType === '2g' ||
-      nav.connection?.effectiveType === 'slow-2g'
-
-    setIsLowPower(saveData || slowNetwork)
-  }, [])
-
-  return isLowPower
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 }

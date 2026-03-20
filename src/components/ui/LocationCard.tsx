@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { LocationMiniMap } from '@/components/ui/LocationMiniMap'
 import { EASE_OUT_QUART } from '@/lib/motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -19,7 +19,7 @@ export function LocationCard({ location, heightClass }: LocationCardProps) {
 
   return (
     <a href={directionsUrl} target="_blank" rel="noopener noreferrer">
-      <motion.div
+      <m.div
         className="group relative cursor-pointer overflow-hidden rounded-sm"
         initial="rest"
         whileHover={reducedMotion || isTouch ? undefined : 'hover'}
@@ -27,7 +27,7 @@ export function LocationCard({ location, heightClass }: LocationCardProps) {
       >
         {/* Map — compact on mobile, proportional on desktop */}
         <div className={`relative overflow-hidden ${heightClass}`}>
-          <motion.div
+          <m.div
             className="h-full w-full"
             variants={{
               rest: { scale: 1 },
@@ -35,7 +35,7 @@ export function LocationCard({ location, heightClass }: LocationCardProps) {
             }}
           >
             <LocationMiniMap location={location} />
-          </motion.div>
+          </m.div>
 
           {/* Vignette — darkened edges all around */}
           <div
@@ -53,7 +53,7 @@ export function LocationCard({ location, heightClass }: LocationCardProps) {
             </p>
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </a>
   )
 }

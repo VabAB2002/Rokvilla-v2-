@@ -2,7 +2,7 @@
 
 import { type ReactNode } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost'
 
@@ -11,6 +11,7 @@ interface ButtonBaseProps {
   readonly children: ReactNode
   readonly className?: string
   readonly fullWidth?: boolean
+  readonly disabled?: boolean
 }
 
 interface ButtonAsButton extends ButtonBaseProps {
@@ -56,6 +57,7 @@ export function Button({
   href,
   onClick,
   type = 'button',
+  disabled,
 }: ButtonProps) {
   const styles = variantStyles[variant]
 
@@ -71,13 +73,13 @@ export function Button({
   `.trim()
 
   const inner = (
-    <motion.span
+    <m.span
       className="inline-flex items-center gap-2"
       whileTap={{ scale: 0.97 }}
       transition={{ duration: 0.08 }}
     >
       {children}
-    </motion.span>
+    </m.span>
   )
 
   if (href) {
@@ -89,7 +91,7 @@ export function Button({
   }
 
   return (
-    <button type={type} onClick={onClick} className={baseClasses}>
+    <button type={type} onClick={onClick} disabled={disabled} className={`${baseClasses} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}>
       {inner}
     </button>
   )
@@ -102,6 +104,9 @@ export function ButtonDark({
   className = '',
   fullWidth = false,
   href,
+  onClick,
+  type = 'button',
+  disabled,
 }: ButtonProps) {
   const darkStyle = variantStylesDark[variant]
 
@@ -113,17 +118,18 @@ export function ButtonDark({
     transition-all duration-200
     ${darkStyle}
     ${fullWidth ? 'w-full' : ''}
+    ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
     ${className}
   `.trim()
 
   const inner = (
-    <motion.span
+    <m.span
       className="inline-flex items-center gap-2"
       whileTap={{ scale: 0.97 }}
       transition={{ duration: 0.08 }}
     >
       {children}
-    </motion.span>
+    </m.span>
   )
 
   if (href) {
@@ -135,7 +141,7 @@ export function ButtonDark({
   }
 
   return (
-    <button type="button" className={baseClasses}>
+    <button type={type} onClick={onClick} disabled={disabled} className={baseClasses}>
       {inner}
     </button>
   )

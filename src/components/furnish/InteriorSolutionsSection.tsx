@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { EASE_OUT_EXPO } from '@/lib/motion'
@@ -93,7 +93,7 @@ export function InteriorSolutionsSection() {
         </AnimatedSection>
 
         {/* Grid of solution items */}
-        <motion.div
+        <m.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -101,11 +101,11 @@ export function InteriorSolutionsSection() {
           className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
         >
           {SOLUTIONS.map((item) => (
-            <motion.div key={item.id} variants={itemVariants}>
+            <m.div key={item.id} variants={itemVariants}>
               <SolutionCard item={item} />
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

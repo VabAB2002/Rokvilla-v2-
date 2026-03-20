@@ -2,7 +2,8 @@
 
 import { useState, useCallback } from 'react'
 import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
-import { motion, AnimatePresence, type Transition } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence, type Transition } from 'framer-motion'
 import { Check, X, Minus, ChevronDown } from 'lucide-react'
 import type {
   PackageTier,
@@ -84,19 +85,19 @@ function CategoryAccordion({ category, tierIndex, isOpen, onToggle }: CategoryAc
         <span className="font-display text-[11px] font-semibold uppercase tracking-widest text-obsidian">
           {category.name}
         </span>
-        <motion.div
+        <m.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.2 }}
           className="shrink-0 flex items-center text-stone"
         >
           <ChevronDown size={14} aria-hidden="true" />
-        </motion.div>
+        </m.div>
       </button>
 
       {/* Collapsible content */}
       <AnimatePresence initial={false}>
         {isOpen && (
-          <motion.div
+          <m.div
             id={contentId}
             role="region"
             aria-labelledby={headerId}
@@ -130,7 +131,7 @@ function CategoryAccordion({ category, tierIndex, isOpen, onToggle }: CategoryAc
                       )}
                     </div>
                     {/* Value */}
-                    <span className="shrink-0 pt-0.5 text-right">
+                    <span className="min-w-0 max-w-[55%] pt-0.5 text-right">
                       <CellValue value={value} />
                     </span>
                   </div>
@@ -144,7 +145,7 @@ function CategoryAccordion({ category, tierIndex, isOpen, onToggle }: CategoryAc
                 </p>
               )}
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>
@@ -177,12 +178,12 @@ function PackageCard({ tier, tierIndex, categories }: PackageCardProps) {
 
   return (
     <article
-      className="w-[85vw] max-w-[340px] shrink-0 scroll-snap-align-start snap-start rounded-[8px] border border-limestone/30 bg-white shadow-card"
+      className="w-[85vw] max-w-[340px] shrink-0 snap-start rounded-[8px] border border-limestone/30 bg-white shadow-card"
       aria-label={`${tier.name} package`}
     >
       {/* Card header */}
       <div className="border-b border-limestone/20 bg-parchment px-6 py-5 rounded-t-[8px]">
-        <h3 className="font-display text-xl font-medium text-obsidian">
+        <h3 className="font-display text-xl font-medium text-terracotta">
           {tier.name}
         </h3>
         <p className="mt-1 font-body text-sm text-terracotta">

@@ -3,6 +3,8 @@ import { Footer } from '@/components/layout/Footer'
 import { FloatingCTAs } from '@/components/layout/FloatingCTAs'
 import { BottomActionStrip } from '@/components/layout/BottomActionStrip'
 import { MotionProvider } from '@/components/layout/MotionProvider'
+import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider'
+import { CookieConsent } from '@/components/layout/CookieConsent'
 
 export default function MainLayout({
   children,
@@ -11,11 +13,14 @@ export default function MainLayout({
 }>) {
   return (
     <MotionProvider>
-      <Navigation />
-      <main className="pb-20 lg:pb-0">{children}</main>
-      <Footer />
-      <FloatingCTAs />
-      <BottomActionStrip />
+      <SmoothScrollProvider>
+        <Navigation />
+        <main className="pb-20 lg:pb-0">{children}</main>
+        <Footer />
+        <FloatingCTAs />
+        <BottomActionStrip />
+        <CookieConsent />
+      </SmoothScrollProvider>
     </MotionProvider>
   )
 }

@@ -13,18 +13,6 @@ export function LocationMiniMap({ location }: LocationMiniMapProps) {
   const mapRef = useRef<mapboxgl.Map | null>(null)
   const [hasError, setHasError] = useState(false)
 
-  // Inject Mapbox CSS once (shared guard across all instances)
-  useEffect(() => {
-    const MAPBOX_CSS_ID = 'mapbox-gl-css'
-    if (!document.getElementById(MAPBOX_CSS_ID)) {
-      const link = document.createElement('link')
-      link.id = MAPBOX_CSS_ID
-      link.rel = 'stylesheet'
-      link.href = 'https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css'
-      document.head.appendChild(link)
-    }
-  }, [])
-
   // Lazy init map only when card is visible (IntersectionObserver)
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return
@@ -41,6 +29,16 @@ export function LocationMiniMap({ location }: LocationMiniMapProps) {
 
     async function initMap() {
       try {
+        // Dynamically inject Mapbox CSS on first use (avoids render-blocking on all pages)
+        if (!document.querySelector('link[data-mapbox-css]')) {
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.href = 'https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css'
+          link.crossOrigin = 'anonymous'
+          link.dataset.mapboxCss = 'true'
+          document.head.appendChild(link)
+        }
+
         const mapboxgl = (await import('mapbox-gl')).default
         if (cancelled) return
         mapboxgl.accessToken = token!

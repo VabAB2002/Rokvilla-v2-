@@ -23,7 +23,7 @@ export const FURNISH_STEPS: ReadonlyArray<FurnishStep> = [
   },
   {
     number: '02',
-    title: 'Choose Design Themes You Like',
+    title: 'Choose Design Styles You Like',
     description:
       'Pick the aesthetic direction that resonates — from contemporary minimalism to rich traditional Indian styles.',
     href: '#design-themes',
@@ -93,7 +93,7 @@ export const FURNISH_PROJECTS: ReadonlyArray<FurnishProject> = [
   {
     id: 'proj-sripradha',
     title: 'Sripradha Residence',
-    location: 'Hubli',
+    location: 'Hubballi',
     category: 'Residential Interior',
     image: '/00 FINISHED/01 SRIPRADHA/01_SRIPRADHA_01.jpg',
     rooms: ['living-room', 'bedroom', 'kitchen'],
@@ -109,7 +109,7 @@ export const FURNISH_PROJECTS: ReadonlyArray<FurnishProject> = [
   {
     id: 'proj-vanitha',
     title: 'Vanitha Residence',
-    location: 'Hubli',
+    location: 'Hubballi',
     category: 'Residential Interior',
     image: '/00 FINISHED/05 VANITHA RESIDENCE/05_VANITHA RESIDENCE_01.jpg',
     rooms: ['living-room', 'kitchen', 'pooja-room'],
@@ -125,7 +125,7 @@ export const FURNISH_PROJECTS: ReadonlyArray<FurnishProject> = [
   {
     id: 'proj-pavan-vj',
     title: 'Pavan VJ Residence',
-    location: 'Hubli',
+    location: 'Hubballi',
     category: 'Residential Interior',
     image: '/00 FINISHED/07 PAVAN VJ /07_PAVAN VJ_01.jpg',
     rooms: ['living-room', 'bedroom', 'kitchen'],
@@ -133,7 +133,7 @@ export const FURNISH_PROJECTS: ReadonlyArray<FurnishProject> = [
   {
     id: 'proj-raj',
     title: 'Raj Residence',
-    location: 'Hubli',
+    location: 'Hubballi',
     category: 'Full Home Interior',
     image: '/00 FINISHED/08 RAJ RESIDENCE/01_RAJ RESIDENCE_01.jpg',
     rooms: ['living-room', 'bedroom', 'kitchen', 'bathroom'],
@@ -151,46 +151,67 @@ export interface DesignTheme {
 
 export const DESIGN_THEMES: ReadonlyArray<DesignTheme> = [
   {
-    id: 'contemporary',
-    title: 'Contemporary',
+    id: 'luxe',
+    title: 'Luxe',
     description:
-      'Clean lines, neutral palettes, and sophisticated textures define this timeless style that balances comfort with refined elegance.',
-    image: '/00 FINISHED/03 MIG265/03_MIG265_02.jpg',
-  },
-  {
-    id: 'minimalist',
-    title: 'Minimalist',
-    description:
-      'Less is more — curated materials, purposeful furniture, and uncluttered spaces let every element breathe and speak for itself.',
-    image: '/00 FINISHED/06 SHIVPRASAD RESIDENCE/06_SHIVPRASAD RESIDENCE_02.jpg',
+      'Opulent finishes, rich textures, and statement pieces create interiors that exude sophistication and grandeur in every detail.',
+    image: '/00 FINISHED/FURNISH THEMES/LUXE.jpg',
   },
   {
     id: 'traditional-indian',
     title: 'Traditional Indian',
     description:
       'Rich warm tones, intricate carved details, and heritage motifs celebrate Indian craftsmanship while creating deeply personal homes.',
-    image: '/00 FINISHED/01 SRIPRADHA/01_SRIPRADHA_02.jpg',
+    image: '/00 FINISHED/FURNISH THEMES/traditional-indian.jpg',
+  },
+  {
+    id: 'modern-contemporary',
+    title: 'Modern Contemporary',
+    description:
+      'Clean lines, neutral palettes, and sophisticated textures define this timeless style that balances comfort with refined elegance.',
+    image: '/00 FINISHED/FURNISH THEMES/MODERN CONTEMPORARY.jpg',
+  },
+  {
+    id: 'urban-minimalism',
+    title: 'Urban Minimalism',
+    description:
+      'Less is more — curated materials, purposeful furniture, and uncluttered spaces let every element breathe and speak for itself.',
+    image: '/00 FINISHED/FURNISH THEMES/MINIMALISM.jpg',
+  },
+  {
+    id: 'european',
+    title: 'European',
+    description:
+      'Timeless European elegance with classic proportions, moulded details, and a refined palette that brings old-world charm to modern living.',
+    image: '/00 FINISHED/FURNISH THEMES/EUROPEAN.jpg',
   },
   {
     id: 'industrial',
     title: 'Industrial',
     description:
       'Exposed concrete, raw metal accents, and open structural elements create bold, edgy interiors with urban character.',
-    image: '/00 FINISHED/14 ROKVILLA OFFICE/14_ROKVILLA OFFICE_01.jpg',
+    image: '/00 FINISHED/FURNISH THEMES/INDUSTRIAL.jpg',
   },
   {
-    id: 'scandinavian',
-    title: 'Scandinavian',
+    id: 'boho',
+    title: 'Boho',
     description:
-      'Functional simplicity meets natural warmth — light woods, soft textiles, and a muted colour palette for serene, liveable spaces.',
-    image: '/00 FINISHED/07 PAVAN VJ /07_PAVAN VJ_02.jpg',
+      'Eclectic textures, earthy tones, and layered patterns bring a free-spirited, globally inspired warmth to your living spaces.',
+    image: '/00 FINISHED/FURNISH THEMES/bohemian.jpg',
   },
   {
-    id: 'transitional',
-    title: 'Transitional',
+    id: 'neoclassic',
+    title: 'Neoclassic',
     description:
-      'A harmonious blend of classic and contemporary — comfortable silhouettes paired with modern finishes for timeless versatility.',
-    image: '/00 FINISHED/08 RAJ RESIDENCE/01_RAJ RESIDENCE_02.jpg',
+      'Stately symmetry, ornate mouldings, and a restrained colour palette reimagine classical grandeur for the modern Indian home.',
+    image: '/00 FINISHED/FURNISH THEMES/NEOCLASSICAL.jpg',
+  },
+  {
+    id: 'moroccan',
+    title: 'Moroccan',
+    description:
+      'Vibrant geometric patterns, arched doorways, and jewel-toned accents transport you to the riads of Marrakech with every room.',
+    image: '/00 FINISHED/FURNISH THEMES/MOROCCAN.jpg',
   },
 ] as const
 
@@ -302,17 +323,17 @@ export const MATERIAL_FEATURES: ReadonlyArray<MaterialFeature> = [
 
 export const FURNISH_TESTIMONIALS: ReadonlyArray<Testimonial> = [
   {
-    id: 'furn-test-1',
+    id: 'furnish-review-1',
     name: 'Suresh Bhat',
     initials: 'SB',
     projectType: 'Full Home Interior',
-    location: 'Hubli',
+    location: 'Hubballi',
     quote:
       'RokVilla transformed our bare apartment into a warm, fully furnished home in just 45 days. The modular kitchen alone exceeded our expectations — every inch is utilised so smartly.',
     rating: 5,
   },
   {
-    id: 'furn-test-2',
+    id: 'furnish-review-2',
     name: 'Kavitha Rao',
     initials: 'KR',
     projectType: 'Modular Kitchen',
@@ -322,17 +343,17 @@ export const FURNISH_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'furn-test-3',
+    id: 'furnish-review-3',
     name: 'Deepak Kulkarni',
     initials: 'DK',
     projectType: 'Bedroom & Wardrobe',
-    location: 'Hubli',
+    location: 'Hubballi',
     quote:
       'The custom wardrobes for all three bedrooms are impeccably built. HETTICH hinges move like butter and the BWP plywood in our bathroom area has shown zero swelling even after two monsoons.',
     rating: 5,
   },
   {
-    id: 'furn-test-4',
+    id: 'furnish-review-4',
     name: 'Meena Patil',
     initials: 'MP',
     projectType: 'Living Room Furnishing',
@@ -342,7 +363,7 @@ export const FURNISH_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'furn-test-5',
+    id: 'furnish-review-5',
     name: 'Arun Hegde',
     initials: 'AH',
     projectType: 'Full Home Interior',

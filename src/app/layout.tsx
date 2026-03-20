@@ -1,13 +1,19 @@
 import type { Metadata, Viewport } from 'next'
-import { Cormorant_Garamond, Cormorant_SC, DM_Sans } from 'next/font/google'
+import { Cormorant_Garamond, Cormorant_SC, DM_Sans, Space_Grotesk } from 'next/font/google'
 import './globals.css'
+import { SITE_URL, OG_IMAGE_DEFAULT } from '@/lib/seo/constants'
+import { JsonLd } from '@/components/seo/JsonLd'
+import { buildOrganizationSchema, buildLocalBusinessSchema } from '@/lib/seo/schemas'
+import { Analytics } from '@vercel/analytics/next'
+import { LOCATIONS } from '@/lib/constants/locations'
+import { getNonce } from '@/lib/nonce'
 
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ['latin'],
   weight: ['300', '500'],
   style: ['normal', 'italic'],
   variable: '--font-cormorant-garamond',
-  display: 'optional',
+  display: 'swap',
   adjustFontFallback: true,
   fallback: ['Georgia', 'serif'],
 })
@@ -16,7 +22,7 @@ const cormorantSC = Cormorant_SC({
   subsets: ['latin'],
   weight: ['400', '500'],
   variable: '--font-cormorant-sc',
-  display: 'optional',
+  display: 'swap',
   adjustFontFallback: true,
   fallback: ['Georgia', 'serif'],
 })
@@ -25,7 +31,16 @@ const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500'],
   variable: '--font-dm-sans',
-  display: 'optional',
+  display: 'swap',
+  adjustFontFallback: true,
+  fallback: ['system-ui', 'sans-serif'],
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['600'],
+  variable: '--font-space-grotesk',
+  display: 'swap',
   adjustFontFallback: true,
   fallback: ['system-ui', 'sans-serif'],
 })
@@ -34,21 +49,23 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
+  viewportFit: 'cover',
   themeColor: '#0F0D0B',
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'RokVilla | Premium Architecture & Construction',
     template: '%s | RokVilla',
   },
   description:
-    'RokVilla crafts premium residential, commercial and interior spaces in Hubli, Dharwad and Ballari, Karnataka.',
+    'RokVilla crafts premium residential, commercial and interior spaces in Hubballi, Dharwad and Ballari, Karnataka.',
   keywords: [
     'architecture',
     'construction',
     'interior design',
-    'Hubli',
+    'Hubballi',
     'Dharwad',
     'Ballari',
     'Karnataka',
@@ -58,20 +75,46 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     siteName: 'RokVilla',
+    url: SITE_URL,
+    title: 'RokVilla — Design. Build. Furnish.',
+    description:
+      'Premium architecture, construction & interior design studio in Hubballi, Dharwad & Ballari, Karnataka.',
+    images: [{ url: OG_IMAGE_DEFAULT, width: 1200, height: 1200, alt: 'RokVilla — Premium Architecture' }],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'RokVilla — Design. Build. Furnish.',
+    description: 'Premium architecture, construction & interior design studio in Hubballi, Dharwad & Ballari, Karnataka.',
+    images: [OG_IMAGE_DEFAULT],
   },
   robots: { index: true, follow: true },
+  alternates: {
+    languages: {
+      'en-IN': SITE_URL,
+      'x-default': SITE_URL,
+    },
+  },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const nonce = await getNonce()
+
   return (
     <html lang="en">
       <body
-        className={`${cormorantGaramond.variable} ${cormorantSC.variable} ${dmSans.variable} antialiased`}
+        className={`${cormorantGaramond.variable} ${cormorantSC.variable} ${dmSans.variable} ${spaceGrotesk.variable} antialiased`}
       >
+        <JsonLd
+          nonce={nonce}
+          schema={[
+            buildOrganizationSchema(),
+            ...LOCATIONS.map(buildLocalBusinessSchema),
+          ]}
+        />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded focus:bg-terracotta focus:px-4 focus:py-2 focus:font-body focus:text-sm focus:text-bone focus:shadow-lg"
@@ -79,6 +122,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <div id="main-content" className="overflow-x-clip overscroll-x-none">{children}</div>
+        <Analytics />
       </body>
     </html>
   )

@@ -34,11 +34,10 @@ export function ProjectVisionSection({ project }: ProjectVisionSectionProps) {
             </span>
             <dl className="mt-6 flex flex-col">
               {[
-                { label: 'Category', value: capitalize(project.category) },
+                { label: 'Category', value: project.categoryDisplay ?? capitalize(project.category) },
                 { label: 'Location', value: capitalize(project.location) },
                 { label: 'Year', value: String(project.year) },
                 { label: 'Built-up Area', value: project.builtUpArea },
-                { label: 'Plot Size', value: project.plotSize },
                 { label: 'Floors', value: project.floors },
                 { label: 'Style', value: project.style },
               ]

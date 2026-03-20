@@ -1,7 +1,10 @@
 'use client'
 
 import { useState, useMemo, useRef, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence } from 'framer-motion'
+import { useGSAP } from '@gsap/react'
+import { gsap } from '@/lib/gsap-config'
 import Link from 'next/link'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ProjectCardLink } from '@/components/projects/ProjectCardLink'
@@ -19,6 +22,7 @@ const TABS: ReadonlyArray<{ readonly id: FilterTab; readonly label: string }> = 
   { id: 'residential', label: 'Residential' },
   { id: 'commercial', label: 'Commercial' },
   { id: 'interior', label: 'Interior' },
+  { id: 'industry', label: 'Industry' },
 ] as const
 
 export function ProjectsSection() {
@@ -26,7 +30,28 @@ export function ProjectsSection() {
   const reducedMotion = useReducedMotion()
   const fadeVariants = makeFadeUpVariants(reducedMotion)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
   const { activeIndex } = useScrollProgress(scrollRef)
+
+  useGSAP(() => {
+    const mm = gsap.matchMedia()
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      gsap.fromTo('.projects-heading', {
+        y: 40,
+      }, {
+        y: -20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.projects-heading',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      })
+    })
+    return () => mm.revert()
+  }, { scope: sectionRef })
+
 
   const handleDotClick = useCallback((index: number) => {
     const container = scrollRef.current
@@ -44,17 +69,19 @@ export function ProjectsSection() {
   )
 
   return (
-    <section id="projects" aria-labelledby="projects-heading" className="bg-white py-12 md:py-32 lg:py-36">
+    <section ref={sectionRef} id="projects" aria-labelledby="projects-heading" className="bg-white py-12 md:py-32 lg:py-36">
       {/* Header + tabs — contained */}
       <div className="mx-auto max-w-7xl px-6 md:px-12 xl:px-16">
-        <AnimatedSection className="text-center">
-          <h2 id="projects-heading" className="font-display text-3xl font-medium uppercase text-obsidian md:text-4xl lg:text-5xl">
-            Projects
-          </h2>
-          <p className="mt-3 font-body text-base tracking-wide text-slate md:text-lg">
-            From Home to Industries
-          </p>
-        </AnimatedSection>
+        <div className="projects-heading">
+          <AnimatedSection className="text-center">
+            <h2 id="projects-heading" className="font-display text-3xl font-medium uppercase text-obsidian md:text-4xl lg:text-5xl">
+              Projects
+            </h2>
+            <p className="mt-3 font-body text-base tracking-wide text-slate md:text-lg">
+              From Homes to Industries
+            </p>
+          </AnimatedSection>
+        </div>
 
         {/* Filter tabs — desktop only */}
         <AnimatedSection delay={0.15} className="mt-10 hidden md:block md:mt-12">
@@ -64,7 +91,7 @@ export function ProjectsSection() {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`shrink-0 rounded-full border px-4 md:px-5 min-h-[40px] md:min-h-[44px] inline-flex items-center font-body text-[12px] md:text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
+                className={`shrink-0 rounded-full border px-4 md:px-5 min-h-[44px] inline-flex items-center font-body text-[12px] md:text-[13px] uppercase tracking-[0.08em] transition-all duration-200 ${
                   activeTab === tab.id
                     ? 'border-2 border-terracotta/40 bg-terracotta/[0.15] backdrop-blur-sm text-terracotta font-semibold shadow-sm'
                     : 'border-terracotta/20 bg-terracotta/[0.06] backdrop-blur-sm text-slate font-normal hover:border-terracotta/[0.35] hover:bg-terracotta/10 hover:text-obsidian'
@@ -103,27 +130,27 @@ export function ProjectsSection() {
       {/* Desktop project cards — flex wrap grid */}
       <div className="mt-10 hidden md:block">
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={activeTab}
             initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -16 }}
             transition={{ duration: reducedMotion ? 0.15 : 0.35, ease: EASE_OUT_EXPO }}
-            className="flex flex-row flex-wrap justify-center gap-4"
+            className="flex flex-row flex-wrap justify-center gap-3"
           >
             {filteredProjects.map((project, i) => (
-              <motion.div
+              <m.div
                 key={project.id}
                 variants={fadeVariants}
                 initial="hidden"
                 animate="visible"
                 transition={{ ...TRANSITION_SMOOTH, delay: reducedMotion ? 0 : i * 0.08 }}
-                className="w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)]"
+                className="w-[calc(50%-6px)] lg:w-[calc(33.333%-8px)]"
               >
                 <ProjectCardLink project={project} heightClass="h-80" />
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
 

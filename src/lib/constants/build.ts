@@ -67,7 +67,7 @@ export const BUILD_PHASE_GROUPS: ReadonlyArray<BuildPhaseGroup> = [
         id: 'gs-1',
         title: 'Fill a Short Form',
         description:
-          'Share your requirements in a quick form — our team calls you back within 24 hours to get things moving.',
+          'Share your requirements in a quick form — we connect with you on WhatsApp to get things moving.',
         iconPath:
           'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2',
       },
@@ -139,7 +139,7 @@ export interface BuildKeyFeature {
 export const BUILD_KEY_FEATURES: ReadonlyArray<BuildKeyFeature> = [
   {
     id: 'feat-inhouse',
-    title: 'Inhouse Architects, Interior Designer, Project Coordinators',
+    title: 'Inhouse Architects, Interior Designers, Project Coordinators',
     description:
       'Our entire design and execution team is in-house — no outsourcing, no gaps in communication, just seamless end-to-end ownership of your project.',
     icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z',
@@ -201,27 +201,27 @@ export const PLATFORM_RATINGS: ReadonlyArray<PlatformRating> = [
 
 export const BUILD_TESTIMONIALS: ReadonlyArray<Testimonial> = [
   {
-    id: 'build-test-1',
+    id: 'build-review-1',
     name: 'Ramesh Hiremath',
     initials: 'RH',
     projectType: 'Residential Construction',
-    location: 'Hubli',
+    location: 'Hubballi',
     quote:
       'RokVilla built our 3BHK home from foundation to finish in just 8 months. The quality of the RCC frame and plastering is exceptional — our structural engineer was genuinely impressed.',
     rating: 5,
   },
   {
-    id: 'build-test-2',
+    id: 'build-review-2',
     name: 'Savita Gowda',
     initials: 'SG',
     projectType: 'Luxury Villa',
     location: 'Bengaluru',
     quote:
-      'We chose the Magnolia package and every detail exceeded our expectations. The imported marble work, the smart home integration, the finish quality — it truly feels like a luxury build.',
+      'We chose the Signature package and every detail exceeded our expectations. The imported marble work, the smart home integration, the finish quality — it truly feels like a luxury build.',
     rating: 5,
   },
   {
-    id: 'build-test-3',
+    id: 'build-review-3',
     name: 'Prakash Shetty',
     initials: 'PS',
     projectType: 'Residential Construction',
@@ -231,7 +231,7 @@ export const BUILD_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'build-test-4',
+    id: 'build-review-4',
     name: 'Lakshmi Devi',
     initials: 'LD',
     projectType: 'Residential Construction',
@@ -241,11 +241,11 @@ export const BUILD_TESTIMONIALS: ReadonlyArray<Testimonial> = [
     rating: 5,
   },
   {
-    id: 'build-test-5',
+    id: 'build-review-5',
     name: 'Anil Patil',
     initials: 'AP',
     projectType: 'Commercial Construction',
-    location: 'Hubli',
+    location: 'Hubballi',
     quote:
       'They handled our commercial showroom construction professionally from start to finish. The project coordination was seamless and they delivered ahead of schedule.',
     rating: 5,
@@ -332,9 +332,9 @@ export const BUILD_FAQS: ReadonlyArray<BuildFAQItem> = [
   {
     id: 'build-faq-9',
     category: 'process',
-    question: 'Does Rokvilla handle building approvals?',
+    question: 'Does RokVilla handle building approvals?',
     answer:
-      'Rokvilla facilitates the approval process through experienced Construction Professionals on our platform. While we are not directly involved in the approvals, our partners work closely with you to ensure a completely hassle-free experience from start to finish.',
+      'RokVilla facilitates the approval process through experienced Construction Professionals on our team. While we are not directly involved in the approvals, our partners work closely with you to ensure a completely hassle-free experience from start to finish.',
   },
   {
     id: 'build-faq-10',

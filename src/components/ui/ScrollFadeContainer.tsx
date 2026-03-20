@@ -38,11 +38,11 @@ export function ScrollFadeContainer({
   return (
     <div className="relative">
       <div
-        className={`pointer-events-none absolute left-0 top-0 z-10 h-full w-10 bg-gradient-to-r ${fadeColorClass} to-transparent transition-opacity duration-200 ${showLeft ? 'opacity-100' : 'opacity-0'}`}
+        className={`pointer-events-none absolute left-0 top-0 z-10 hidden h-full w-10 bg-gradient-to-r md:block ${fadeColorClass} to-transparent transition-opacity duration-200 ${showLeft ? 'opacity-100' : 'opacity-0'}`}
         aria-hidden="true"
       />
       <div
-        className={`pointer-events-none absolute right-0 top-0 z-10 h-full w-10 bg-gradient-to-l ${fadeColorClass} to-transparent transition-opacity duration-200 ${showRight ? 'opacity-100' : 'opacity-0'}`}
+        className={`pointer-events-none absolute right-0 top-0 z-10 hidden h-full w-10 bg-gradient-to-l md:block ${fadeColorClass} to-transparent transition-opacity duration-200 ${showRight ? 'opacity-100' : 'opacity-0'}`}
         aria-hidden="true"
       />
       <div

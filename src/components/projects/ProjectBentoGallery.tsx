@@ -2,7 +2,8 @@
 
 import { useState, useCallback, useRef } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { ScrollIndicatorDots } from '@/components/ui/ScrollIndicatorDots'
@@ -10,6 +11,7 @@ import { ProjectLightbox } from '@/components/projects/ProjectLightbox'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useScrollProgress } from '@/hooks/useScrollProgress'
 import { EASE_OUT_QUART } from '@/lib/motion'
+import { BLUR_DATA_URL } from '@/lib/constants/images'
 
 interface ProjectBentoGalleryProps {
   readonly images: ReadonlyArray<string>
@@ -28,7 +30,7 @@ function BentoImage({
   readonly reducedMotion: boolean
 }) {
   return (
-    <motion.button
+    <m.button
       type="button"
       onClick={onClick}
       className="relative h-full w-full cursor-pointer overflow-hidden rounded-sm"
@@ -44,8 +46,10 @@ function BentoImage({
         fill
         className="object-cover"
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        placeholder="blur"
+        blurDataURL={BLUR_DATA_URL}
       />
-    </motion.button>
+    </m.button>
   )
 }
 
@@ -105,7 +109,7 @@ export function ProjectBentoGallery({
                 <div className="col-span-3">
                   <BentoImage
                     src={bentoImages[0]}
-                    alt={`${projectName} 1`}
+                    alt={`${projectName} — project view 1`}
                     onClick={() => openLightbox(0)}
                     reducedMotion={reducedMotion}
                   />
@@ -115,7 +119,7 @@ export function ProjectBentoGallery({
                 <div className="col-span-2">
                   <BentoImage
                     src={bentoImages[1]}
-                    alt={`${projectName} 2`}
+                    alt={`${projectName} — project view 2`}
                     onClick={() => openLightbox(1)}
                     reducedMotion={reducedMotion}
                   />
@@ -129,7 +133,7 @@ export function ProjectBentoGallery({
                 <div key={img} className="aspect-[4/3]">
                   <BentoImage
                     src={img}
-                    alt={`${projectName} ${i + 3}`}
+                    alt={`${projectName} — project view ${i + 3}`}
                     onClick={() => openLightbox(i + 2)}
                     reducedMotion={reducedMotion}
                   />
@@ -153,7 +157,7 @@ export function ProjectBentoGallery({
                 >
                   <BentoImage
                     src={img}
-                    alt={`${projectName} ${i + 1}`}
+                    alt={`${projectName} — project view ${i + 1}`}
                     onClick={() => openLightbox(i)}
                     reducedMotion={reducedMotion}
                   />

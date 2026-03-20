@@ -4,13 +4,14 @@ import { useState, useCallback, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { motion } from 'framer-motion'
+import * as m from 'framer-motion/m'
 import { useScrollState } from '@/hooks/useScrollState'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 import { MenuOverlay } from '@/components/layout/MenuOverlay'
 
 /* Routes with light (white) backgrounds — navbar uses dark text */
-const LIGHT_BG_ROUTES = ['/design', '/furnish', '/build', '/projects'] as const
+const LIGHT_BG_ROUTES = ['/design', '/furnish', '/build', '/projects', '/about'] as const
 
 const LEFT_LINKS = [
   { label: 'Home', href: '/' },
@@ -24,6 +25,7 @@ const SERVICE_CHILDREN = [
 
 const RIGHT_LINKS = [
   { label: 'Projects', href: '/projects' },
+  { label: 'About', href: '/about' },
   { label: 'Locations', href: '/#locations' },
 ] as const
 
@@ -38,6 +40,7 @@ export function Navigation() {
   const { direction, isScrolled } = useScrollState()
   const isHidden = direction === 'down' && isScrolled
   const reducedMotion = useReducedMotion()
+  const isLowPower = useIsLowPowerDevice()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
   const servicesBtnRef = useRef<HTMLButtonElement>(null)
@@ -118,17 +121,17 @@ export function Navigation() {
 
   const hamburgerLines = (
     <div className="flex flex-col gap-1.5">
-      <motion.span
+      <m.span
         animate={isMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
         transition={hamburgerDuration ? { duration: hamburgerDuration } : undefined}
         className={`block h-[1.5px] w-5 origin-center transition-colors duration-300 ${lineColor}`}
       />
-      <motion.span
+      <m.span
         animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
         transition={hamburgerDuration ? { duration: hamburgerDuration } : undefined}
         className={`block h-[1.5px] w-5 transition-colors duration-300 ${lineColor}`}
       />
-      <motion.span
+      <m.span
         animate={isMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
         transition={hamburgerDuration ? { duration: hamburgerDuration } : undefined}
         className={`block h-[1.5px] w-5 origin-center transition-colors duration-300 ${lineColor}`}
@@ -141,7 +144,7 @@ export function Navigation() {
       <nav
         className={`fixed left-0 top-0 z-[60] w-full transition-all duration-300 ${
           shouldHide ? '-translate-y-full' : 'translate-y-0'
-        } ${isScrolled && !isMenuOpen ? 'bg-white/95 shadow-sm backdrop-blur-md' : ''}`}
+        } ${isScrolled && !isMenuOpen ? (isLowPower ? 'bg-white shadow-sm' : 'bg-white/95 shadow-sm backdrop-blur-md') : ''}`}
         aria-label="Main navigation"
       >
         {/* Desktop: hamburger left + centered links + spacer right */}

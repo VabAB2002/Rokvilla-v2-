@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useCallback, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import * as m from 'framer-motion/m'
+import { AnimatePresence } from 'framer-motion'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { ScrollFadeContainer } from '@/components/ui/ScrollFadeContainer'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -54,7 +55,7 @@ function FAQItem({
         <span className="font-body text-sm font-medium text-obsidian md:text-base">
           {question}
         </span>
-        <motion.svg
+        <m.svg
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: reduced ? 0.01 : 0.25, ease: EASE_OUT_QUART }}
           width="20"
@@ -69,12 +70,12 @@ function FAQItem({
           aria-hidden="true"
         >
           <path d="M6 9l6 6 6-6" />
-        </motion.svg>
+        </m.svg>
       </button>
 
       <AnimatePresence initial={false}>
         {isOpen && (
-          <motion.div
+          <m.div
             id={panelId}
             role="region"
             initial={{ height: 0, opacity: 0 }}
@@ -86,7 +87,7 @@ function FAQItem({
             <p className="pb-5 font-body text-sm leading-relaxed text-slate">
               {answer}
             </p>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>
@@ -216,7 +217,7 @@ export function FAQSection({
             className="mx-auto max-w-3xl rounded-[4px] border border-limestone/60 bg-white px-6 md:px-10"
           >
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={activeCategory}
                 initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -234,7 +235,7 @@ export function FAQSection({
                     reduced={reducedMotion}
                   />
                 ))}
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
         </AnimatedSection>
