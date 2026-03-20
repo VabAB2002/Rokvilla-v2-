@@ -288,7 +288,7 @@ function MarqueeRow({
     >
       {tripled.map((t, i) => (
         <TestimonialCard
-          key={`${t.id}-${i % 3}`}
+          key={`${t.id}-${Math.floor(i / items.length)}`}
           testimonial={t}
         />
       ))}
