@@ -348,7 +348,7 @@ export function ConsultationForm({
 
       const message = [
         `Name: ${fields.name}`,
-        `Email: ${fields.email}`,
+        fields.email.trim() ? `Email: ${fields.email}` : '',
         `Phone: ${fields.phone}`,
         `Category: ${fields.category}`,
         `Type: ${fields.consultationType}`,
@@ -534,7 +534,7 @@ export function ConsultationForm({
                         idPrefix={uid}
                       />
                       <FormInput
-                        label="Email"
+                        label="Email (optional)"
                         name="email"
                         type="email"
                         value={fields.email}
@@ -542,7 +542,6 @@ export function ConsultationForm({
                         placeholder="yourname@email.com"
                         onChange={handleChange}
                         autoComplete="email"
-                        required
                         idPrefix={uid}
                       />
                     </div>
@@ -776,7 +775,7 @@ export function ConsultationForm({
                     idPrefix={uid}
                   />
                   <FormInput
-                    label="Email"
+                    label="Email (optional)"
                     name="email"
                     type="email"
                     value={fields.email}
@@ -784,7 +783,6 @@ export function ConsultationForm({
                     placeholder="name@email.com"
                     onChange={handleChange}
                     autoComplete="email"
-                    required
                     idPrefix={uid}
                   />
                   <FormInput
