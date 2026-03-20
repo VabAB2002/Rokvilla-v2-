@@ -92,7 +92,7 @@ export function Navigation() {
       body.style.top = prev.bodyTop
       body.style.width = prev.bodyWidth
       body.style.paddingRight = prev.bodyPaddingRight
-      window.scrollTo({ top: scrollY, behavior: 'instant' })
+      window.scrollTo(0, scrollY)
     }
   }, [isMenuOpen])
 
