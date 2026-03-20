@@ -52,7 +52,6 @@ export function ProjectsSection() {
     return () => mm.revert()
   }, { scope: sectionRef })
 
-
   const handleDotClick = useCallback((index: number) => {
     const container = scrollRef.current
     if (!container) return
@@ -108,14 +107,14 @@ export function ProjectsSection() {
       <div className="mt-10 md:hidden">
         <div
           ref={scrollRef}
-          className="flex gap-3 overflow-x-auto scroll-snap-x no-scrollbar px-[10vw] pb-2"
+          className="flex gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar px-[10vw] pb-2"
         >
           {HOMEPAGE_PROJECTS.map((project) => (
             <div
               key={project.id}
-              className="w-[78vw] max-w-[340px] shrink-0 scroll-snap-center"
+              className="w-[85vw] shrink-0 snap-center"
             >
-              <ProjectCardLink project={project} heightClass="h-56" />
+              <ProjectCardLink project={project} heightClass="h-96" />
             </div>
           ))}
         </div>
