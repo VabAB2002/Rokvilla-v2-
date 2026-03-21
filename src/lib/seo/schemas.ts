@@ -27,7 +27,7 @@ export function buildOrganizationSchema(): SchemaBase {
       postalCode: LOCATIONS[0].address.match(/\d{6}/)?.[0] ?? '',
       addressCountry: 'IN',
     },
-    sameAs: SOCIAL_LINKS.map((link) => link.href),
+    sameAs: SOCIAL_LINKS.filter((link) => 'href' in link).map((link) => link.href!),
   }
 }
 
@@ -57,7 +57,7 @@ export function buildLocalBusinessSchema(
       latitude: location.lat,
       longitude: location.lng,
     },
-    sameAs: SOCIAL_LINKS.map((link) => link.href),
+    sameAs: SOCIAL_LINKS.filter((link) => 'href' in link).map((link) => link.href!),
   }
 }
 

@@ -91,13 +91,8 @@ export function Footer() {
           {/* Bottom bar */}
           <div className="flex flex-col items-center gap-2">
             <div className="flex items-center gap-3">
-              {SOCIAL_LINKS.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-bone/[0.06] text-bone/50 transition-colors duration-200 hover:border-brass-light/30 hover:text-brass-light active:text-brass-light"
-                >
+              {SOCIAL_LINKS.map((social) => {
+                const iconSvg = (
                   <svg
                     className="h-[18px] w-[18px]"
                     viewBox="0 0 24 24"
@@ -109,8 +104,26 @@ export function Footer() {
                   >
                     <path d={social.icon} />
                   </svg>
-                </a>
-              ))}
+                )
+                return 'href' in social ? (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    aria-label={social.label}
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-bone/[0.06] text-bone/50 transition-colors duration-200 hover:border-brass-light/30 hover:text-brass-light active:text-brass-light"
+                  >
+                    {iconSvg}
+                  </a>
+                ) : (
+                  <span
+                    key={social.label}
+                    aria-label={social.label}
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-bone/[0.06] text-bone/30"
+                  >
+                    {iconSvg}
+                  </span>
+                )
+              })}
             </div>
             <p className="mt-1 font-body text-[10px] text-bone/40">
               &copy; {new Date().getFullYear()} ROKVILLA. All rights reserved.
@@ -173,13 +186,8 @@ export function Footer() {
               &copy; {new Date().getFullYear()} ROKVILLA. All rights reserved.
             </p>
             <div className="flex items-center gap-5">
-              {SOCIAL_LINKS.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="flex min-h-[44px] min-w-[44px] items-center justify-center text-bone/50 transition-colors duration-200 hover:text-brass-light active:text-brass-light"
-                >
+              {SOCIAL_LINKS.map((social) => {
+                const iconSvg = (
                   <svg
                     className="h-5 w-5"
                     viewBox="0 0 24 24"
@@ -191,8 +199,26 @@ export function Footer() {
                   >
                     <path d={social.icon} />
                   </svg>
-                </a>
-              ))}
+                )
+                return 'href' in social ? (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    aria-label={social.label}
+                    className="flex min-h-[44px] min-w-[44px] items-center justify-center text-bone/50 transition-colors duration-200 hover:text-brass-light active:text-brass-light"
+                  >
+                    {iconSvg}
+                  </a>
+                ) : (
+                  <span
+                    key={social.label}
+                    aria-label={social.label}
+                    className="flex min-h-[44px] min-w-[44px] items-center justify-center text-bone/30"
+                  >
+                    {iconSvg}
+                  </span>
+                )
+              })}
             </div>
           </div>
         </div>

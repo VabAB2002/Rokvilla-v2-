@@ -17,12 +17,10 @@ export const SOCIAL_LINKS = [
   },
   {
     label: 'Facebook',
-    href: 'https://www.facebook.com/rokvilla/',
     icon: 'M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z',
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/rokvilla/',
     icon: 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z M2 9h4v12H2z M4 6a2 2 0 110-4 2 2 0 010 4z',
   },
-] as const
+] as const satisfies ReadonlyArray<{ label: string; href?: string; icon: string }>

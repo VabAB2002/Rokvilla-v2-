@@ -231,13 +231,8 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                       Follow Us
                     </h3>
                     <div className="mt-4 flex items-center gap-5">
-                      {SOCIAL_LINKS.map((social) => (
-                        <a
-                          key={social.label}
-                          href={social.href}
-                          aria-label={social.label}
-                          className="flex min-h-[44px] min-w-[44px] items-center justify-center text-bone/50 transition-colors duration-300 hover:text-terracotta"
-                        >
+                      {SOCIAL_LINKS.map((social) => {
+                        const iconSvg = (
                           <svg
                             className="h-5 w-5"
                             viewBox="0 0 24 24"
@@ -249,8 +244,26 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                           >
                             <path d={social.icon} />
                           </svg>
-                        </a>
-                      ))}
+                        )
+                        return 'href' in social ? (
+                          <a
+                            key={social.label}
+                            href={social.href}
+                            aria-label={social.label}
+                            className="flex min-h-[44px] min-w-[44px] items-center justify-center text-bone/50 transition-colors duration-300 hover:text-terracotta"
+                          >
+                            {iconSvg}
+                          </a>
+                        ) : (
+                          <span
+                            key={social.label}
+                            aria-label={social.label}
+                            className="flex min-h-[44px] min-w-[44px] items-center justify-center text-bone/30"
+                          >
+                            {iconSvg}
+                          </span>
+                        )
+                      })}
                     </div>
                   </div>
                 </div>
