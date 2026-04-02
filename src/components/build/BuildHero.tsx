@@ -25,7 +25,7 @@ export function BuildHero() {
           fill
           priority
           placeholder="blur"
-          className="object-contain object-center md:object-right-bottom"
+          className="object-cover object-center md:object-contain md:object-right-bottom"
           sizes="(max-width: 768px) 100vw, 100vw"
         />
         {/* Soft fade at image bottom — mobile only */}
@@ -42,7 +42,7 @@ export function BuildHero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 -mt-16 px-6 pb-12 md:mt-0 md:flex md:h-full md:items-center md:px-12 md:pb-0">
+      <div className="relative z-10 mt-4 px-6 pb-12 md:mt-0 md:flex md:h-full md:items-center md:px-12 md:pb-0">
         <div className="mx-auto w-full max-w-7xl">
           <m.div
             variants={containerVariants}

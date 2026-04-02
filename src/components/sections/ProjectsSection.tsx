@@ -82,9 +82,9 @@ export function ProjectsSection() {
           </AnimatedSection>
         </div>
 
-        {/* Filter tabs — desktop only */}
-        <AnimatedSection delay={0.15} className="mt-10 hidden md:block md:mt-12">
-          <div className="flex justify-center gap-2 md:gap-3">
+        {/* Filter tabs */}
+        <AnimatedSection delay={0.15} className="mt-10 md:mt-12">
+          <div className="flex gap-2 overflow-x-auto no-scrollbar px-1 pb-1 md:justify-center md:gap-3 md:overflow-visible md:px-0 md:pb-0">
             {TABS.map((tab) => (
               <button
                 key={tab.id}
@@ -105,25 +105,35 @@ export function ProjectsSection() {
 
       {/* Mobile project cards — horizontal scroll snap */}
       <div className="mt-10 md:hidden">
-        <div
-          ref={scrollRef}
-          className="flex gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar px-[10vw] pb-2"
-        >
-          {HOMEPAGE_PROJECTS.map((project) => (
+        <AnimatePresence mode="wait">
+          <m.div
+            key={activeTab}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
             <div
-              key={project.id}
-              className="w-[85vw] shrink-0 snap-center"
+              ref={scrollRef}
+              className="flex gap-2 overflow-x-auto snap-x snap-mandatory no-scrollbar px-[10vw] pb-2"
             >
-              <ProjectCardLink project={project} heightClass="h-96" />
+              {filteredProjects.map((project) => (
+                <div
+                  key={project.id}
+                  className="w-[85vw] shrink-0 snap-center"
+                >
+                  <ProjectCardLink project={project} heightClass="h-96" />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <ScrollIndicatorDots
-          count={HOMEPAGE_PROJECTS.length}
-          activeIndex={activeIndex}
-          onDotClick={handleDotClick}
-          className="mt-4"
-        />
+            <ScrollIndicatorDots
+              count={filteredProjects.length}
+              activeIndex={activeIndex}
+              onDotClick={handleDotClick}
+              className="mt-4"
+            />
+          </m.div>
+        </AnimatePresence>
       </div>
 
       {/* Desktop project cards — flex wrap grid */}

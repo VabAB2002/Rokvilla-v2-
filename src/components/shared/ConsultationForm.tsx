@@ -398,7 +398,7 @@ export function ConsultationForm({
           <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
             {/* Left column: text + illustration + contact */}
             <AnimatedSection className="flex-1 lg:max-w-md">
-              <p className="font-accent text-[11px] uppercase tracking-[0.18em] text-brass md:text-[15px]">
+              <p className="font-accent text-[11px] uppercase tracking-[0.18em] text-terracotta md:text-[15px]">
                 We&apos;re here to help
               </p>
               <h2

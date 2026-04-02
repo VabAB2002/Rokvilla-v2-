@@ -219,14 +219,14 @@ export function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                       >
                         {CONTACT.email}
                       </a>
-                      <p className="font-body text-base text-bone/60 lg:text-lg">
+                      <p className="hidden font-body text-base text-bone/60 lg:block lg:text-lg">
                         {CONTACT.address}
                       </p>
                     </div>
                   </div>
 
-                  {/* Social links */}
-                  <div>
+                  {/* Social links — desktop only */}
+                  <div className="hidden lg:block">
                     <h3 className="font-accent text-[11px] font-medium uppercase tracking-[0.18em] text-bone/50">
                       Follow Us
                     </h3>

@@ -442,8 +442,8 @@ export function ConstructionPackagesSection() {
             }}
           />
 
-          {/* Highlight differences toggle */}
-          <div className="mt-5 flex items-center justify-center gap-3">
+          {/* Highlight differences toggle — desktop only */}
+          <div className="mt-5 hidden items-center justify-center gap-3 md:flex">
             <span className="font-body text-[13px] tracking-[0.04em] text-slate">
               Highlight Differences
             </span>
@@ -465,9 +465,6 @@ export function ConstructionPackagesSection() {
               />
             </button>
           </div>
-          <p className="mt-3 text-center font-body text-xs text-stone md:hidden">
-            ← Swipe to compare →
-          </p>
         </AnimatedSection>
 
         {/* Comparison — keyed by type for clean re-mount */}

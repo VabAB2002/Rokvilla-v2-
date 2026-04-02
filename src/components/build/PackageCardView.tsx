@@ -235,10 +235,7 @@ export function PackageCardView({
         </ScrollFadeContainer>
       </div>
 
-      {/* Swipe hint */}
-      <p className="mt-3 text-center font-body text-xs text-stone">
-        ← Swipe to compare →
-      </p>
+      {/* Swipe hint removed per mobile design decision */}
     </div>
   )
 }

@@ -48,14 +48,43 @@ export function MaterialFeaturesSection() {
           </p>
         </AnimatedSection>
 
-        {/* Materials grid */}
+        {/* Materials — snap-scroll on mobile, grid on desktop */}
         <AnimatedSection delay={0.15} className="mt-16 md:mt-20">
+          {/* Mobile: horizontal snap scroll */}
+          <div className="md:hidden">
+            <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar px-6 pb-2">
+              {MATERIAL_FEATURES.map((mat, i) => {
+                const Scene = SCENES[i]
+                return (
+                  <div
+                    key={mat.id}
+                    className="w-[75vw] shrink-0 snap-center flex flex-col items-center text-center"
+                  >
+                    <div className="mb-6 w-full max-w-[180px]">
+                      <Scene />
+                    </div>
+                    <h3 className="mt-5 max-w-xs font-display text-lg font-medium leading-snug text-obsidian">
+                      {mat.area}
+                    </h3>
+                    <p className="mt-1.5 font-body text-sm font-semibold text-terracotta">
+                      {mat.material}
+                    </p>
+                    <p className="mt-2 max-w-xs font-body text-sm leading-relaxed text-slate">
+                      {mat.description}
+                    </p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Desktop: 4-col grid */}
           <m.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}
-            className="relative grid grid-cols-2 gap-8 md:grid-cols-4"
+            className="relative hidden md:grid md:grid-cols-4 md:gap-8"
           >
             {MATERIAL_FEATURES.map((mat, i) => {
               const Scene = SCENES[i]

@@ -90,41 +90,6 @@ export function Footer() {
 
           {/* Bottom bar */}
           <div className="flex flex-col items-center gap-2">
-            <div className="flex items-center gap-3">
-              {SOCIAL_LINKS.map((social) => {
-                const iconSvg = (
-                  <svg
-                    className="h-[18px] w-[18px]"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d={social.icon} />
-                  </svg>
-                )
-                return 'href' in social ? (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    className="flex h-11 w-11 items-center justify-center rounded-full border border-bone/[0.06] text-bone/50 transition-colors duration-200 hover:border-brass-light/30 hover:text-brass-light active:text-brass-light"
-                  >
-                    {iconSvg}
-                  </a>
-                ) : (
-                  <span
-                    key={social.label}
-                    aria-label={social.label}
-                    className="flex h-11 w-11 items-center justify-center rounded-full border border-bone/[0.06] text-bone/30"
-                  >
-                    {iconSvg}
-                  </span>
-                )
-              })}
-            </div>
             <p className="mt-1 font-body text-[10px] text-bone/40">
               &copy; {new Date().getFullYear()} ROKVILLA. All rights reserved.
             </p>
