@@ -46,8 +46,8 @@ export interface AboutStat {
 }
 
 export const ABOUT_STATS: ReadonlyArray<AboutStat> = [
-  { id: 'stat-projects', value: 15, suffix: '+', label: 'Projects Delivered' },
+  { id: 'stat-projects', value: 50, suffix: '+', label: 'Projects Delivered' },
   { id: 'stat-cities', value: 4, suffix: '', label: 'Cities Across Karnataka' },
   { id: 'stat-services', value: 3, suffix: '', label: 'Core Services' },
-  { id: 'stat-clients', value: 50, suffix: '+', label: 'Happy Clients' },
+  { id: 'stat-clients', value: 200, suffix: '+', label: 'Happy Clients' },
 ] as const

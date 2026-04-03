@@ -61,7 +61,7 @@ export function AboutStats() {
               id="stats-heading"
               className="mt-3 font-display text-3xl font-medium text-obsidian md:text-4xl lg:text-5xl"
             >
-              Building Karnataka
+              Designing &amp; Building Karnataka
             </h2>
           </AnimatedSection>
         </div>

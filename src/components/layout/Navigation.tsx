@@ -11,7 +11,7 @@ import { useIsLowPowerDevice } from '@/hooks/useIsLowPowerDevice'
 import { MenuOverlay } from '@/components/layout/MenuOverlay'
 
 /* Routes with light (white) backgrounds — navbar uses dark text */
-const LIGHT_BG_ROUTES = ['/design', '/furnish', '/build', '/projects', '/about'] as const
+const LIGHT_BG_ROUTES = ['/design', '/furnish', '/build', '/projects'] as const
 
 const LEFT_LINKS = [
   { label: 'Home', href: '/' },
