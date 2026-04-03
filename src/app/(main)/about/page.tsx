@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { AboutHero } from '@/components/about/AboutHero'
-import { AboutTimeline } from '@/components/about/AboutTimeline'
+import { AboutStats } from '@/components/about/AboutStats'
 import { AboutTeam } from '@/components/about/AboutTeam'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { buildBreadcrumbSchema } from '@/lib/seo/schemas'
@@ -31,7 +31,7 @@ export default function AboutPage() {
         ]}
       />
       <AboutHero />
-      <div className="cv-auto"><AboutTimeline /></div>
+      <div className="cv-auto"><AboutStats /></div>
       <div className="cv-auto"><AboutTeam /></div>
     </>
   )

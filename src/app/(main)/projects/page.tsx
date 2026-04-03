@@ -7,13 +7,13 @@ import { PROJECTS } from '@/lib/constants/projects'
 export const metadata: Metadata = {
   title: 'Projects',
   description:
-    'Explore our portfolio of residential, commercial, and interior projects across Hubballi, Dharwad, and Ballari.',
+    'Explore our portfolio of residential, commercial, and interior projects across Hubballi, Dharwad, Ballari, and Bijapur.',
   alternates: { canonical: `${SITE_URL}/projects` },
   openGraph: {
     title: 'Portfolio | RokVilla',
     url: `${SITE_URL}/projects`,
     description:
-      'Explore our portfolio of residential, commercial, and interior projects across Hubballi, Dharwad, and Ballari.',
+      'Explore our portfolio of residential, commercial, and interior projects across Hubballi, Dharwad, Ballari, and Bijapur.',
   },
 }
 

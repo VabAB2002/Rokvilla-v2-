@@ -70,13 +70,13 @@ export function LocationsSection() {
         ))}
       </m.div>
 
-      {/* Desktop cards — 3-column grid */}
+      {/* Desktop cards — 4-column grid */}
       <m.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-80px' }}
         variants={staggerVariants}
-        className="mt-16 hidden md:grid md:grid-cols-3 md:gap-4 md:px-4"
+        className="mt-16 hidden md:grid md:grid-cols-4 md:gap-4 md:px-4"
       >
         {LOCATIONS.map((location, i) => (
           <m.div

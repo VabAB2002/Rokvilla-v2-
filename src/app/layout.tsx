@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     template: '%s | RokVilla',
   },
   description:
-    'RokVilla crafts premium residential, commercial and interior spaces in Hubballi, Dharwad and Ballari, Karnataka.',
+    'RokVilla crafts premium residential, commercial and interior spaces in Hubballi, Dharwad, Ballari and Bijapur, Karnataka.',
   keywords: [
     'architecture',
     'construction',
@@ -68,6 +68,7 @@ export const metadata: Metadata = {
     'Hubballi',
     'Dharwad',
     'Ballari',
+    'Bijapur',
     'Karnataka',
     'RokVilla',
   ],
@@ -78,13 +79,13 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: 'RokVilla — Design. Build. Furnish.',
     description:
-      'Premium architecture, construction & interior design studio in Hubballi, Dharwad & Ballari, Karnataka.',
+      'Premium architecture, construction & interior design studio in Hubballi, Dharwad, Ballari & Bijapur, Karnataka.',
     images: [{ url: OG_IMAGE_DEFAULT, width: 1200, height: 1200, alt: 'RokVilla — Premium Architecture' }],
   },
   twitter: {
     card: 'summary',
     title: 'RokVilla — Design. Build. Furnish.',
-    description: 'Premium architecture, construction & interior design studio in Hubballi, Dharwad & Ballari, Karnataka.',
+    description: 'Premium architecture, construction & interior design studio in Hubballi, Dharwad, Ballari & Bijapur, Karnataka.',
     images: [OG_IMAGE_DEFAULT],
   },
   robots: { index: true, follow: true },

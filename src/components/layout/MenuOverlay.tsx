@@ -21,7 +21,6 @@ const MENU_LINKS = [
     ],
   },
   { label: 'Projects', href: '/projects' },
-  { label: 'About', href: '/about' },
   { label: 'Locations', href: '/#locations' },
 ] as const
 

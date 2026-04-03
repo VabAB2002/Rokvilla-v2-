@@ -19,6 +19,7 @@ const FOOTER_LINKS = {
     { label: 'Hubballi', href: '/#locations' },
     { label: 'Dharwad', href: '/#locations' },
     { label: 'Ballari', href: '/#locations' },
+    { label: 'Bijapur', href: '/#locations' },
   ],
 } as const
 

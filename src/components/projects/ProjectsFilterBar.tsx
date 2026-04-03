@@ -40,7 +40,7 @@ const LOCATION_OPTIONS: ReadonlyArray<{
   { value: 'dharwad', label: 'Dharwad' },
   { value: 'ballari', label: 'Ballari' },
   { value: 'bengaluru', label: 'Bengaluru' },
-  { value: 'vijayapur', label: 'Vijayapur' },
+  { value: 'vijayapur', label: 'Bijapur' },
 ]
 
 export function ProjectsFilterBar({

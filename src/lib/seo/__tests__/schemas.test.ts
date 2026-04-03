@@ -35,7 +35,7 @@ describe('buildOrganizationSchema', () => {
     const schema = buildOrganizationSchema()
     expect(schema.address).toEqual({
       '@type': 'PostalAddress',
-      streetAddress: 'Rokvilla Design & Build Co, 20, Hubballi, Karnataka 580031',
+      streetAddress: 'RokVilla Design & Build Co, 20, Hubballi, Karnataka 580031',
       addressLocality: 'Hubballi',
       addressRegion: 'Karnataka',
       postalCode: '580031',

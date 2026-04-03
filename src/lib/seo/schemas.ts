@@ -16,7 +16,7 @@ export function buildOrganizationSchema(): SchemaBase {
     url: SITE_URL,
     logo: `${SITE_URL}/logo/rok-logo-black.png`,
     description:
-      'Premium architecture, construction & interior design in Hubballi, Dharwad & Ballari, Karnataka.',
+      'Premium architecture, construction & interior design in Hubballi, Dharwad, Ballari & Bijapur, Karnataka.',
     telephone: PHONE_DISPLAY,
     email: EMAIL,
     address: {

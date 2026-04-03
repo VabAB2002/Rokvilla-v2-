@@ -36,62 +36,18 @@ export const TEAM_MEMBERS: ReadonlyArray<TeamMember> = [
   },
 ] as const
 
-/* ── Timeline Entries ── */
+/* ── About Stats ── */
 
-export interface TimelineEntry {
+export interface AboutStat {
   readonly id: string
-  readonly year: string
-  readonly title: string
-  readonly description: string
-  readonly imageSrc?: string
-  readonly imageAlt?: string
+  readonly value: number
+  readonly suffix: string
+  readonly label: string
 }
 
-export const TIMELINE_ENTRIES: ReadonlyArray<TimelineEntry> = [
-  {
-    id: 't1',
-    year: '2021',
-    title: 'RokVilla Founded',
-    description:
-      'Studio opens in Hubballi with a clear mission — design, build, and furnish spaces that stand the test of time.',
-    imageSrc: '/00 FINISHED/14 ROKVILLA OFFICE/14_ROKVILLA OFFICE_01.jpg',
-    imageAlt: 'RokVilla studio interior in Hubballi',
-  },
-  {
-    id: 't2',
-    year: '2022',
-    title: 'First Major Residences',
-    description:
-      'Sripradha and Sri Ganesha Residence delivered — establishing a reputation for quality craftsmanship in residential architecture.',
-    imageSrc: '/00 FINISHED/01 SRIPRADHA/HERO IMAGE_01_SRIPRADHA.jpg',
-    imageAlt: 'Sripradha residence exterior',
-  },
-  {
-    id: 't3',
-    year: '2023',
-    title: 'Commercial Expansion',
-    description:
-      'Cedar Homestore and Spectrum Industry completed — broadening the portfolio into commercial and industrial design.',
-    imageSrc:
-      '/00 FINISHED/11 CEDAR HOMESTORE/HERO IMAGE_CEDAR HOMESTORE_11.jpg',
-    imageAlt: 'Cedar Homestore showroom facade',
-  },
-  {
-    id: 't4',
-    year: '2024',
-    title: 'Multi-City Growth',
-    description:
-      'Operations expand to Dharwad and Ballari with Ashok Residence, Pavan VJ, and Raj Residence — taking the studio beyond Hubballi.',
-    imageSrc: '/00 FINISHED/09 ASHOK RESIDENCE/09_ASHOK RESIDENCE_01.jpg',
-    imageAlt: 'Ashok Residence exterior',
-  },
-  {
-    id: 't5',
-    year: '2025',
-    title: 'Design. Build. Furnish.',
-    description:
-      'Full end-to-end studio — 15+ projects delivered across residential, commercial, interior, and infrastructure.',
-    imageSrc: '/00 FINISHED/07 PAVAN VJ /HERO IMAGE_PAVAN VJ_07.jpg',
-    imageAlt: 'Pavan VJ residence exterior',
-  },
+export const ABOUT_STATS: ReadonlyArray<AboutStat> = [
+  { id: 'stat-projects', value: 15, suffix: '+', label: 'Projects Delivered' },
+  { id: 'stat-cities', value: 4, suffix: '', label: 'Cities Across Karnataka' },
+  { id: 'stat-services', value: 3, suffix: '', label: 'Core Services' },
+  { id: 'stat-clients', value: 50, suffix: '+', label: 'Happy Clients' },
 ] as const

@@ -25,7 +25,6 @@ const SERVICE_CHILDREN = [
 
 const RIGHT_LINKS = [
   { label: 'Projects', href: '/projects' },
-  { label: 'About', href: '/about' },
   { label: 'Locations', href: '/#locations' },
 ] as const
 
