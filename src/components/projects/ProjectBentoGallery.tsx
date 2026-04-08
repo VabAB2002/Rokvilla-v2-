@@ -57,7 +57,9 @@ export function ProjectBentoGallery({
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const reducedMotion = useReducedMotion()
 
-  const bentoImages = images.slice(0, 5)
+  const topRowImages = images.slice(0, 2)
+  const supportingImages = images.slice(2, 5)
+  const remainingImages = images.slice(5)
 
   const openLightbox = useCallback((index: number) => {
     setLightboxIndex(index)
@@ -91,48 +93,80 @@ export function ProjectBentoGallery({
         <AnimatedSection delay={0.15}>
           {/* Bento grid — desktop */}
           <div className="mt-8 hidden flex-col gap-2 sm:flex md:gap-3">
-            {/* Top row: 60/40 split, shared row height */}
-            <div className="grid aspect-[5/2] grid-cols-5 gap-2 md:gap-3">
-              {bentoImages[0] && (
-                <div className="col-span-3">
+            {/* Top row: feature the first two images */}
+            {topRowImages.length > 0 && (
+              <div
+                className={
+                  topRowImages.length === 1
+                    ? 'aspect-[16/9]'
+                    : 'grid aspect-[5/2] grid-cols-5 gap-2 md:gap-3'
+                }
+              >
+                <div className={topRowImages.length === 1 ? 'h-full w-full' : 'col-span-3'}>
                   <BentoImage
-                    src={bentoImages[0]}
+                    src={topRowImages[0]}
                     alt={`${projectName} — project view 1`}
                     onClick={() => openLightbox(0)}
                     reducedMotion={reducedMotion}
                   />
                 </div>
-              )}
-              {bentoImages[1] && (
-                <div className="col-span-2">
-                  <BentoImage
-                    src={bentoImages[1]}
-                    alt={`${projectName} — project view 2`}
-                    onClick={() => openLightbox(1)}
-                    reducedMotion={reducedMotion}
-                  />
-                </div>
-              )}
-            </div>
+                {topRowImages[1] && (
+                  <div className="col-span-2">
+                    <BentoImage
+                      src={topRowImages[1]}
+                      alt={`${projectName} — project view 2`}
+                      onClick={() => openLightbox(1)}
+                      reducedMotion={reducedMotion}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
 
-            {/* Bottom row: equal thirds */}
-            <div className="grid grid-cols-3 gap-2 md:gap-3">
-              {bentoImages.slice(2, 5).map((img, i) => (
-                <div key={img} className="aspect-[4/3]">
-                  <BentoImage
-                    src={img}
-                    alt={`${projectName} — project view ${i + 3}`}
-                    onClick={() => openLightbox(i + 2)}
-                    reducedMotion={reducedMotion}
-                  />
-                </div>
-              ))}
-            </div>
+            {/* Supporting row: next three images */}
+            {supportingImages.length > 0 && (
+              <div
+                className={
+                  supportingImages.length === 1
+                    ? 'grid grid-cols-1 gap-2 md:gap-3'
+                    : supportingImages.length === 2
+                      ? 'grid grid-cols-2 gap-2 md:gap-3'
+                      : 'grid grid-cols-3 gap-2 md:gap-3'
+                }
+              >
+                {supportingImages.map((img, i) => (
+                  <div key={img} className="aspect-[4/3]">
+                    <BentoImage
+                      src={img}
+                      alt={`${projectName} — project view ${i + 3}`}
+                      onClick={() => openLightbox(i + 2)}
+                      reducedMotion={reducedMotion}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Remaining gallery images */}
+            {remainingImages.length > 0 && (
+              <div className="grid grid-cols-2 gap-2 md:gap-3 xl:grid-cols-3">
+                {remainingImages.map((img, i) => (
+                  <div key={img} className="aspect-[4/3]">
+                    <BentoImage
+                      src={img}
+                      alt={`${projectName} — project view ${i + 6}`}
+                      onClick={() => openLightbox(i + 5)}
+                      reducedMotion={reducedMotion}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Mobile vertical stack */}
           <div className="mt-8 flex flex-col gap-3 sm:hidden">
-            {bentoImages.map((img, i) => (
+            {images.map((img, i) => (
               <div key={img} className="relative aspect-[4/3] w-full">
                 <BentoImage
                   src={img}
