@@ -48,12 +48,12 @@ export const PACKAGE_TYPES: ReadonlyArray<PackageType> = [
   {
     id: 'homes',
     label: 'Homes/Buildings',
-    startingPrice: 1910,
+    startingPrice: 1950,
     tiers: [
-      { id: 'basic', name: 'Basic', pricePerSqft: 1910 },
-      { id: 'classic', name: 'Classic', pricePerSqft: 2040 },
-      { id: 'premium', name: 'Premium', pricePerSqft: 2360 },
-      { id: 'royale', name: 'Royale', pricePerSqft: 2595 },
+      { id: 'basic', name: 'Basic', pricePerSqft: 1950 },
+      { id: 'classic', name: 'Classic', pricePerSqft: 2080 },
+      { id: 'premium', name: 'Premium', pricePerSqft: 2400 },
+      { id: 'royale', name: 'Royale', pricePerSqft: 2635 },
     ],
     categories: [
       /* ── STRUCTURE ── */
