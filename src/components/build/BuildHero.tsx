@@ -52,7 +52,7 @@ export function BuildHero() {
           >
             {/* Pricing callout — above overline on desktop */}
             <m.div variants={itemVariants} className="mb-5 hidden w-fit md:block">
-              <PricingBadge price="1,900" />
+              <PricingBadge price="1,950" />
             </m.div>
 
             {/* Overline */}
@@ -82,7 +82,7 @@ export function BuildHero() {
 
             {/* Pricing callout — inline on mobile */}
             <m.div variants={itemVariants} className="md:hidden">
-              <PricingBadgeMobile price="1,900" className="mt-6" />
+              <PricingBadgeMobile price="1,950" className="mt-6" />
             </m.div>
 
             {/* CTAs */}
