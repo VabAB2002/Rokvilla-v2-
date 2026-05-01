@@ -485,12 +485,12 @@ export const PACKAGE_TYPES: ReadonlyArray<PackageType> = [
             id: 'h-overhead-tank',
             icon: 'Container',
             feature: 'Overhead Tank',
-            subtitle: 'Double layered tank of Apollo / equivalent make',
+            subtitle: 'Double layered tank of standard brand',
             values: [
-              '1000 Ltrs. of Apollo / equivalent make',
-              '1500 Ltrs. of Apollo / equivalent make',
-              '2000 Ltrs. of Sintex / equivalent make',
-              '2000 Ltrs. of Sintex / equivalent make',
+              '1000 Ltrs. of standard brand',
+              '1500 Ltrs. of standard brand',
+              '2000 Ltrs. of standard brand',
+              '2000 Ltrs. of standard brand',
             ],
           },
           {
@@ -929,8 +929,8 @@ export const PACKAGE_TYPES: ReadonlyArray<PackageType> = [
             feature: 'Overhead Tank',
             subtitle: 'Triple layered Plastic / RCC Tank',
             values: [
-              '2500 Ltrs. of Sintex / equivalent make',
-              '2500 Ltrs. of Sintex / equivalent make',
+              '2500 Ltrs. of standard brand',
+              '2500 Ltrs. of standard brand',
               '2500 Ltrs. RCC Tank',
             ],
           },
