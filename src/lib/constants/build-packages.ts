@@ -63,9 +63,14 @@ export const PACKAGE_TYPES: ReadonlyArray<PackageType> = [
         rows: [
           {
             id: 'h-rcc-mix',
-            icon: 'FlaskConical',
-            feature: 'RCC Mix',
-            values: [true, true, 'ACC or Ultratech', 'ACC or Ultratech'],
+            icon: 'Columns2',
+            feature: 'No. of Columns',
+            values: [
+              '12 No. Maximum',
+              '12 No. Maximum',
+              '14 No. Maximum',
+              '16 No. Maximum',
+            ],
           },
           {
             id: 'h-steel',
