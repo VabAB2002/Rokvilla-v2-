@@ -23,13 +23,36 @@ export async function generateMetadata({
   const project = getProjectBySlug(slug)
   if (!project) return {}
 
+  const pageUrl = `${SITE_URL}/projects/${slug}`
+  const ogImageUrl = `${SITE_URL}/_next/image?url=${encodeURIComponent(project.heroImage)}&w=1200&q=75`
+  const ogTitle = `${project.name} | RokVilla`
+  const ogDescription = project.description
+
   return {
     title: project.name,
-    description: project.vision,
-    alternates: { canonical: `${SITE_URL}/projects/${slug}` },
+    description: ogDescription,
+    alternates: { canonical: pageUrl },
     openGraph: {
-      title: `${project.name} | RokVilla`,
-      images: [{ url: new URL(project.heroImage, SITE_URL).href }],
+      type: 'article',
+      siteName: 'RokVilla',
+      url: pageUrl,
+      title: ogTitle,
+      description: ogDescription,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${project.name} — ${project.style ?? 'RokVilla project'}`,
+          type: 'image/jpeg',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: ogTitle,
+      description: ogDescription,
+      images: [ogImageUrl],
     },
   }
 }
